@@ -1,0 +1,310 @@
+* {
+	overflow-x: hidden;
+}
+body {
+	/*background-image: linear-gradient(to bottom,rgb(40, 90, 50),rgb(200, 200, 35));*/
+	/*background-color: rgb(25, 25, 25);*/
+	background-size: 100vw 100vh;
+	overflow: hidden;
+
+	margin: 0;
+	padding: 0;
+
+	/*display: flexbox;
+	display: grid;*/
+}
+#MenuBar {
+	position: absolute;
+	top: 0vh;
+	left: 0vw;
+	z-index: 2;
+
+	width: 8vw;
+	height: 100vh;
+
+	overflow: hidden;
+
+	font-size: 2vw;
+
+	background-color: rgba(90, 90, 90);
+}
+.Menu {
+	position: relative;
+	z-index: 3;
+	
+	width: 6vw;
+	height: 7vh;
+
+	margin: 1vw;
+
+	text-align: center;
+
+	/*border-top: 1px solid rgba(0, 0, 0, 0.4);
+	border-left: 1px solid rgba(0, 0, 0, 0.4);*/
+}
+#ButtonTheme {
+	position: relative;
+	top: 44vh;
+	z-index: 3;
+
+	width: 6vw;
+	height: 7vh;
+
+	margin: 1vw;
+
+	text-align: center;
+}
+#Container {
+	position: absolute;
+	top: 0vh;
+	left: 8vw;
+	z-index: 2;
+
+	width: 92vw;
+	height: 100vh;
+
+	overflow: hidden;
+
+	background-color: rgb(25, 25, 25);
+}
+#TextSearchUser {
+	position: absolute;
+	top: 0vh;
+	left: 5vw;
+	z-index: 3;
+
+	width: 19.5vw;
+	height: 9vh;
+
+	background-color: rgb(255, 255, 255);
+	/*visibility: hidden;*/
+}
+#ButtonSearchUser {
+	position: absolute;
+	top: 0vh;
+	left: 25vw;
+	z-index: 3;
+
+	width: 10vw;
+	height: 10vh;
+
+	background-color: rgb(180, 180, 180);
+}
+#SearchResults {
+	position: absolute;
+	top: 10vh;
+	left: 5vw;
+	z-index: 4;
+
+	width: 30vw;
+	height: 90vh;
+
+	margin: 0;
+	padding: 0;
+
+	background-color: rgb(90, 90, 90);
+
+	visibility: hidden;
+}
+#ChatList {
+	position: absolute;
+	top: 10vh;
+	left: 5vw;
+	z-index: 3;
+
+	width: 30vw;
+	height: 90vh;
+
+	margin: 0;
+	padding: 0;
+
+	background-color: rgb(90, 90, 90);
+}
+.Chat {
+	position: relative;
+	top: 0vh;
+	left: 0vw;
+	z-index: 4;
+
+	width: 30vw;
+	height: 10vh;
+
+	border-bottom: solid 0.1vw black;
+
+	font-size: 2vw;
+	text-align: left;
+}
+#ProfileHeader {
+	position: absolute;
+	top: 0vw;
+	left: 40vw;
+	z-index: 3;
+
+	width: 10vw;
+	height: 9.5vh;
+
+	margin: 0;
+	padding: 0;
+
+	border: solid 0.1vw rgb(0, 0, 0);
+
+	background-color: rgb(90, 90, 90);
+
+	font-size: 2vw;
+	text-align: left;
+
+	overflow: hidden;
+}
+img {
+	position: relative;
+	top: 0vw;
+	left: 0vw;
+	z-index: 4;
+
+	width: 10vw;
+	height: 9.5vh;
+}
+#TextKey {
+	position: absolute;
+	top: 0vw;
+	left: 50vw;
+	z-index: 3;
+
+	width: 27vw;
+	height: 9.5vh;
+
+	margin: 0;
+	padding: 0;
+
+	border: solid 0.1vw rgb(0, 0, 0);
+
+	background-color: rgb(255, 255, 255);
+
+	text-align: left;
+}
+#ButtonEorD {
+	position: absolute;
+	top: 0vw;
+	left: 77vw;
+	z-index: 3;
+
+	width: 10vw;
+	height: 9.5vh;
+
+	margin: 0;
+	padding: 0;
+
+	border: solid 0.1vw rgb(0, 0, 0);
+
+	background-color: rgb(180, 180, 180);
+
+	font-size: 2vw;
+	text-align: left;
+}
+#MessagesList {
+	position: absolute;
+	top: 10vh;
+	left: 40vw;
+	z-index: 3;
+
+	width: 47vw;
+	height: 80vh;
+
+	margin: 0;
+	padding: 0;
+
+	/*overflow: auto;*/
+
+	background-color: rgb(90, 90, 90);
+
+	font-size: 2vw;
+	text-align: center;
+}
+.MessagesSent {
+	position: relative;
+	top: 0vh;
+	left: 23vw;
+	/*right: 2vw;*/
+	z-index: 4;
+
+	width: 21vw;
+	/*min-width: 5vw;*/
+	height: fit-content;
+
+	margin-bottom: 1vh;
+	/*margin-left: 24vw;*/
+	/*margin-right: 5vw;*/
+
+	text-align: right;
+	padding-right: 1vw;
+
+	overflow: hidden;
+
+	background-color: rgb(200, 200, 35);
+
+	font-size: 1.5vw;
+}
+.MessagesReceived {
+	position: relative;
+	top: 0vh;
+	left: 1vw;
+	z-index: 4;
+
+	width: 21vw;
+	height: fit-content;
+
+	margin-bottom: 1vh;
+	/*margin-left: 4vw;*/
+
+	text-align: left;
+	padding-left: 1vw;
+
+	overflow: hidden;
+
+	background-color: rgb(40, 90, 50);
+
+	font-size: 1.5vw;
+}
+#ButtonCheckForNewMessages {
+	position: absolute;
+	top: 90vh;
+	left: 40vw;
+	z-index: 3;
+
+	width: 11vw;
+	height: 10vh;
+
+	word-break: break-all;
+}
+#TextNewMessage {
+	position: absolute;
+	top: 90vh;
+	left: 51vw;
+	z-index: 3;
+
+	width: 24.3vw;
+	height: 10vh;
+
+	/*margin-top: 95vh;
+	margin-left: 50vw;*/
+	
+	background-color: rgb(255, 255, 255);
+}
+#ButtonNewMessage {
+	position: absolute;
+	top: 90vh;
+	left: 76vw;
+	z-index: 3;
+
+	width: 11vw;
+	height: 10vh;
+
+	/*margin-top: 95vh;
+	margin-left: 90vw;*/
+}
+.Menu:hover {
+	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
+}
+.Chat:hover {
+	background-color: rgb(180, 180, 180);
+}
