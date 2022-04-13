@@ -1,5 +1,6 @@
 <?php
 	require 'server.php';
+	session_start();
 
 	//echo "<div id='container'>";
 	echo "<div id='menu_bar'>";
@@ -17,10 +18,14 @@
 	echo "</div>";
 
 	echo "<div id='content'>";
+		/*
+		echo "<script>qqq = <?php echo $";
+		echo "_SESSION['user_name']; ?>;alert(qqq);</script>";
+		*/
 	echo "</div>";
 	//echo "</div>";
 	
-	echo "<script src='main.js'></script>";
+	//echo "<script src='main.js'></script>";
 	
 	//header('location: index.php');
 ?>

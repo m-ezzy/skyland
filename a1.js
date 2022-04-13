@@ -19,6 +19,7 @@ function button_log_in() {
 			if(num == 2) {
 				console.log("4");
 				load_skeleton();
+				load_home();
 			}
 		}
 	};
@@ -45,21 +46,6 @@ function button_sign_up_clicked() {
 		}
 	};
 	xmlhttp.open("POST", "sign_up.php?u=" + s_u_u_n + "p=" + s_u_p_w + "fn=" + f_n + "ln=" + l_n, true);
-	xmlhttp.send();
-}
-function load_skeleton() {
-	console.log("5");
-	
-	let c = document.getElementById("container");
-	c.innerHTML = "";
-
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			c.innerHTML = this.responseText;
-		}
-	};
-	xmlhttp.open("POST", "load_skeleton.php", true);
 	xmlhttp.send();
 }
 

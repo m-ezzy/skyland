@@ -1,8 +1,7 @@
 <?php
-	if (isset($_SESSION['user_name'])) {
-		require 'server.php';
+	if(isset($_SESSION['user_name'])) {
 		session_start();
-   		header('location: load_skeleton.php');
+   		//header('location: load_skeleton.php');
 	}
 ?>
 
@@ -37,6 +36,7 @@
 			</div>
 		</div>
 
+		<script src="clicked_load_menus.js"></script>
 		<script src="a1.js"></script>
 	</body>
 </html>

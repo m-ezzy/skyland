@@ -9,6 +9,7 @@
     $result = $conn->query($query);
 
     $row = $result->fetch_assoc();
+
     $imageURL = "images/ProfilePictures/" . $u . ".jpg";
     
     echo "<img src=$imageURL alt='' width='50' height='50'/>";

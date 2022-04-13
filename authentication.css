@@ -2,7 +2,7 @@
 	/*display: flex;*/
 
 	position: relative;
-	top: 10vw;
+	top: 5vw;
 	left: 10vw;
 	z-index: 2;
 
@@ -15,8 +15,7 @@
 	padding-top: 1vh;
 	padding-left: 1vw;*/
 
-	background-color: rgb(255, 255, 255);
-	color: rgb(0, 0, 0);
+	background-color: rgb(29, 29, 29);
 
 	font-family: 'Orbitron', serif;
 	font-size: 1.2vw;

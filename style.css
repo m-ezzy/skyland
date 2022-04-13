@@ -20,32 +20,40 @@ body {*/
 	left: 0vw;
 	z-index: 2;
 
-	width: 8vw;
+	width: 10vw;
 	height: 100vh;
 
 	overflow: hidden;
 
 	font-size: 2vw;
 
-	background-color: rgba(90, 90, 90);
+	/*background-color: rgba(90, 90, 90);*/
+	background-image: url(media/images/shell.jpeg);
+	background-size: auto;
 }
 .menu {
 	position: relative;
 	z-index: 3;
 	
-	width: 6vw;
+	width: 8vw;
 	height: 7vh;
 
 	margin: 1vw;
 
+	font-size: 1.8vw;
+	font-weight: 1000;
+	color: white;
 	text-align: center;
 
 	/*border-top: 1px solid rgba(0, 0, 0, 0.4);
 	border-left: 1px solid rgba(0, 0, 0, 0.4);*/
 }
+.menu:hover {
+	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
+}
 #button_theme {
 	position: relative;
-	top: 44vh;
+	top: 40vh;
 	z-index: 3;
 
 	width: 6vw;
@@ -54,6 +62,30 @@ body {*/
 	margin: 1vw;
 
 	text-align: center;
+}
+#side_bar {
+	position: absolute;
+	top: 0vh;
+	left: 10vw;
+	z-index: 2;
+
+	width: 30vw;
+	height: 100vh;
+
+	background-color: rgb(255, 253, 140);
+}
+#content {
+	position: absolute;
+	top: 0vh;
+	left: 40vw;
+	z-index: 2;
+
+	width: 60vw;
+	height: 100vh;
+
+	background-image: url(media/images/pulp.jpeg);
+	background-repeat: repeat;
+	/*background-size: cover;*/
 }
 #TextSearchUser {
 	position: absolute;
@@ -289,9 +321,6 @@ img {
 
 	/*margin-top: 95vh;
 	margin-left: 90vw;*/
-}
-.Menu:hover {
-	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
 }
 .Chat:hover {
 	background-color: rgb(180, 180, 180);

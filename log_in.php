@@ -1,5 +1,6 @@
 <?php
 	require 'server.php';
+	session_start();
 
 	$user_name = '';
 	$pass_word = '';
@@ -25,7 +26,7 @@
 		}
 	} else {
 		echo "2";
-		session_start();
+		//session_start();
 		$_SESSION['user_name'] = $user_name;
 		//header('location: index.php');
 	}
