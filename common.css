@@ -1,0 +1,25 @@
+* {
+	font-size: 1.5vw;
+	font-weight: 30;
+
+	overflow-x: hidden;
+}
+body {
+	overflow: hidden;
+}
+#container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+
+	width: 100vw;
+	height: 100vh;
+
+	overflow: hidden;
+
+	background-image: url(media/images/pf3.jpg);
+	background-repeat: no-repeat;
+	background-color: rgb(20, 20, 20);
+	background-size: 100vw 100vh;
+}

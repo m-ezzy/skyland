@@ -21,6 +21,22 @@
 	}
 	*/
 
+	/*
+	<!--
+	<div id="ChatList">
+		<div id="NewChat" onclick="SelectedNewChat()"></div>
+	</div>
+	<div id="MessagesList" onmouseover="showName(this)">
+	</div>
+	<form>
+		<input type='text' id='TextNewMessage'>
+		<input type='button' value='send' id='ButtonNewMessage' onclick='SendNewMessage()'>
+	</form>
+	-->
+	<!--<div class="content" id="c1"><?php echo $_SESSION['username'];?></div>-->
+</div>
+<script src="privacy.js"></script>*/
+
 	echo "<form>";
 	echo "<input type='text' placeholder='Type a User Name' id='TextSearchUser' onfocus='VisibleOnFocus()' onblur='HiddenOnBlur()'>";
 	echo "<input type='button' value='Search User' id='ButtonSearchUser' onclick='SearchUser()'>";

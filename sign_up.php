@@ -20,7 +20,7 @@
 
 	$UserName = strtolower($UserName);
 
-	$query = "INSERT INTO accounts(UserName,PassWord) VALUES('" . $UserName . "','" . $PassWord . "')";
+	$query = "INSERT INTO accounts(user_name,pass_word) VALUES('" . $user_name . "','" . $pass_word . "')";
 	mysqli_query($conn, $query);
 
 	$query = "INSERT INTO user_info(UserName,FirstName,LastName) VALUES('" . $UserName . "','" . $FirstName . "','" . $LastName . "')";

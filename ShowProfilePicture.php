@@ -2,10 +2,10 @@
     // Include the database configuration file
     include 'server.php';
 
-	$u = $_SESSION['username'];
+	$u = $_SESSION['user_name'];
 
     // Get images from the database
-    $query = "SELECT * FROM user_info WHERE UserName='$u'";
+    $query = "SELECT * FROM user_info WHERE user_name='$u'";
     $result = $conn->query($query);
 
     $row = $result->fetch_assoc();

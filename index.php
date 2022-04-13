@@ -1,9 +1,8 @@
 <?php
-	if (!isset($_SESSION['UserName'])) {
-   		header('location: authentication.php');
-	} else {
+	if (isset($_SESSION['user_name'])) {
 		require 'server.php';
 		session_start();
+   		header('location: load_skeleton.php');
 	}
 ?>
 
@@ -14,38 +13,30 @@
 		<title>
 			watermelon!
 		</title>
+		<link type="text/css" rel="stylesheet" href="common.css">
+		<link type="text/css" rel="stylesheet" href="authentication.css">
 		<link type="text/css" rel="stylesheet" href="style.css">
 		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
 		<script>
-			let server = "<?php echo $server_name?>"
-			//server = "e";
+			let resources = 1;
 		</script>
 	</head>
 	<body>
-		<div id="MenuBar"> <!--sider/sideheader/navigator-->
-			<div class="Menu" onclick="SelectedMenuHome()">Home</div>
-			<div class="Menu" onclick="SelectedMenuChats()">Chats</div>
-			<div class="Menu">Groups</div>
-			<div class="Menu">Communities</div>
-			<div class="Menu">Games</div>
-			<div class="Menu">Market</div>
-			<div class="Menu" id="ButtonTheme" onclick="ToggleTheme()">Theme</div>
-		</div>
-		<div id="Container">
-			<!--
-			<div id="ChatList">
-				<div id="NewChat" onclick="SelectedNewChat()"></div>
+		<div id = "container">
+			<div class = "card">
+				<input type="text" class="text" id="log_in_user_name">
+				<input type="text" class="text" id="log_in_pass_word">
+				<div class="button" id="button_log_in"> log in </div>
 			</div>
-			<div id="MessagesList" /*onmouseover="showName(this)*/">
+			<div class = "card">
+				<input type="text" class="text" id ="sign_up_user_name">
+				<input type="text" class="text" id ="sign_up_pass_word">
+				<input type="text" class="text" id ="first_name">
+				<input type="text" class="text" id="last_name">
+				<div class="button" id="button_sign_up"> sign up </div>
 			</div>
-			<form>
-				<input type='text' id='TextNewMessage'>
-				<input type='button' value='send' id='ButtonNewMessage' onclick='SendNewMessage()'>
-			</form>
-			-->
-			<!--<div class="content" id="c1"><?/*php echo $_SESSION['username'];*/?></div>-->
 		</div>
-		<script src="privacy.js"></script>
-		<script src="main.js"></script>
+
+		<script src="a1.js"></script>
 	</body>
 </html>
