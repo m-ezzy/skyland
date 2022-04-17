@@ -1,7 +1,7 @@
 <?php
 	require 'server.php';
 
-	$u = $_SESSION['user_name'];
+	$u = $_SESSION['UserName'];
 	$u2 = $_SESSION['ChattingWith'];
 	$RowNumber = $_SESSION['RowNumber'];
 	

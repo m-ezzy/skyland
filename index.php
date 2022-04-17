@@ -1,11 +1,13 @@
 <?php
-	if(isset($_SESSION['user_name'])) {
-		session_start();
+	include 'server.php';
+
+	//if(isset($_SESSION['UserName'])) {
+		//session_start();
    		//header('location: load_skeleton.php');
-	}
+	//}
 ?>
 
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">

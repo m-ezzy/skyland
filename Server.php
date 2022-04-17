@@ -11,10 +11,19 @@ $server_user_name = "root";
 $server_pass_word = "";
 $data_base = "watermelon";
 
-//session_start();
-
 $conn = mysqli_connect($server_name, $server_user_name, $server_pass_word, $data_base);
 
+session_start();
+/*
+if (ini_get('register_globals'))
+{
+    foreach ($_SESSION as $key=>$value)
+    {
+        if (isset($GLOBALS[$key]))
+            unset($GLOBALS[$key]);
+    }
+}
+*/
 /*
 // User login
 if (isset($_POST['login'])) {

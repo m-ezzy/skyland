@@ -1,7 +1,7 @@
 <?php
 	require 'server.php';
 
-	$u = $_SESSION['user_name'];
+	$u = $_SESSION['UserName'];
 	$_SESSION['Chats'] = array();
 
 	$Chats = array();

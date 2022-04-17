@@ -1,13 +1,15 @@
 <?php
 	require 'server.php';
-	session_start();
+	//session_start();
 
-	$u = $_SESSION['user_name'];
+	$u = $_SESSION['UserName'];
 	//$u = '1';
 
-	$image_URL = "data/profile_pictures/" . $u . ".jpg";
+	$imageURL = "data/ProfilePictures/".$u.".jpg";
 
 	echo "<div id='profile_picture'>";
-		echo "<img src=$image_URL alt='' width='100' height='100'/>";
+		echo "<img src=$imageURL alt='' width=200 height=200 />";
 	echo "</div>";
+
+	echo $u;
 ?>

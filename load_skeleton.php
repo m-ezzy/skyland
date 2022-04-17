@@ -1,6 +1,6 @@
 <?php
 	require 'server.php';
-	session_start();
+	//session_start();
 
 	//echo "<div id='container'>";
 	echo "<div id='menu_bar'>";
@@ -18,6 +18,7 @@
 	echo "</div>";
 
 	echo "<div id='content'>";
+		echo "<p>ki</p>";
 		/*
 		echo "<script>qqq = <?php echo $";
 		echo "_SESSION['user_name']; ?>;alert(qqq);</script>";
