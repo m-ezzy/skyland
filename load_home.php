@@ -5,9 +5,9 @@
 	$u = $_SESSION['user_name'];
 	//$u = '1';
 
-	$imageURL = "data/ProfilePictures/" . $u . ".jpg";
+	//$imageURL = "data/ProfilePictures/" . $u . ".jpg";
 
-	$query = "SELECT user_name,first_name,last_name FROM user_info WHERE user_name=" . $u;
+	$query = "SELECT user_name,first_name,last_name,extension FROM user_info WHERE user_name=" . $u;
 	$result = mysqli_query($conn, $query);
 	$row = $result->fetch_object();
 

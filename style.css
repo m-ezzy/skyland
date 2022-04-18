@@ -1,5 +1,8 @@
 * {
-	overflow-x: hidden;
+	overflow: hidden;
+
+	font-family: 'Courier New', Courier, monospace;
+	font-weight: 800;
 }
 /*
 body {*/
@@ -21,9 +24,7 @@ body {*/
 	z-index: 2;
 
 	width: 100vw;
-	height: 10vh;
-
-	overflow: hidden;
+	height: 8vh;
 
 	background-color: rgb(10, 80, 7);
 	background-image: url(media/images/shell.jpeg);
@@ -40,12 +41,12 @@ body {*/
 	z-index: 3;
 	
 	width: fit-content;
-	height: 8vh;
+	height: 6vh;
 
 	margin: 1vw;
 
-	font-size: 2vw;
-	font-weight: 500;
+	font-size: 1.8vw;
+	font-weight: 800;
 	color: white;
 	text-align: center;
 
@@ -61,7 +62,7 @@ body {*/
 }
 #side_bar {
 	position: absolute;
-	top: 10vh;
+	top: 8vh;
 	left: 10vw;
 	z-index: 2;
 
@@ -69,10 +70,12 @@ body {*/
 	height: 90vh;
 
 	background-color: rgb(255, 254, 170);
+
+	font-size: 2vw;
 }
 #content {
 	position: absolute;
-	top: 10vh;
+	top: 8vh;
 	left: 40vw;
 	z-index: 2;
 
@@ -83,6 +86,15 @@ body {*/
 	background-image: url(media/images/pulp.jpeg);
 	background-repeat: repeat;
 	/*background-size: cover;*/
+}
+#pp {
+	position: absolute;
+	left: 10vw;
+
+	width: 10vw;
+	height: 10vw;
+
+	border-radius: 500px;
 }
 #ButtonBack {
 	position: absolute;
@@ -147,6 +159,8 @@ body {*/
 	padding: 0;
 
 	background-color: rgb(255, 254, 170);
+
+	overflow-y: visible;
 }
 .chat {
 	position: relative;
@@ -162,13 +176,25 @@ body {*/
 	font-size: 2vw;
 	text-align: left;
 }
-#CurrentlyHeader {
+.chat img {
+	/*
+	position: relative;
+	top: 0vw;
+	left: 0vw;
+	z-index: 4;
+	*/
+	width: 10vw;
+	height: 10vh;
+
+	overflow: hidden;
+}
+#chatting_with_header {
 	position: absolute;
-	top: 10vw;
-	left: 40vw;
+	top: 0vw;
+	left: 0vw;
 	z-index: 3;
 
-	width: 10vw;
+	width: 60vw;
 	height: 10vh;
 
 	margin: 0;
@@ -180,22 +206,11 @@ body {*/
 
 	font-size: 2vw;
 	text-align: left;
-
-	overflow: hidden;
-}
-img {
-	position: relative;
-	top: 0vw;
-	left: 0vw;
-	z-index: 4;
-
-	width: 10vw;
-	height: 9.5vh;
 }
 #TextKey {
 	position: absolute;
-	top: 20vw;
-	left: 40vw;
+	top: 5vw;
+	left: 0vw;
 	z-index: 3;
 
 	width: 40vw;
@@ -212,11 +227,11 @@ img {
 }
 #ButtonED {
 	position: absolute;
-	top: 20vw;
-	left: 80vw;
+	top: 10vh;
+	left: 40vw;
 	z-index: 3;
 
-	width: 10vw;
+	width: 20vw;
 	height: 5vh;
 
 	margin: 0;
@@ -231,17 +246,17 @@ img {
 }
 #MessagesList {
 	position: absolute;
-	top: 10vh;
-	left: 40vw;
+	top: 15vh;
+	left: 0vw;
 	z-index: 3;
 
-	width: 47vw;
+	width: 60vw;
 	height: 80vh;
 
 	margin: 0;
 	padding: 0;
 
-	/*overflow: auto;*/
+	overflow: auto;
 
 	background-color: rgb(90, 90, 90);
 
@@ -251,11 +266,11 @@ img {
 .MessagesSent {
 	position: relative;
 	top: 0vh;
-	left: 23vw;
+	left: 26vw;
 	/*right: 2vw;*/
 	z-index: 4;
 
-	width: 21vw;
+	width: 25vw;
 	/*min-width: 5vw;*/
 	height: fit-content;
 
@@ -265,8 +280,6 @@ img {
 
 	text-align: right;
 	padding-right: 1vw;
-
-	overflow: hidden;
 
 	background-color: rgb(200, 200, 35);
 
@@ -278,7 +291,7 @@ img {
 	left: 1vw;
 	z-index: 4;
 
-	width: 21vw;
+	width: 25vw;
 	height: fit-content;
 
 	margin-bottom: 1vh;
@@ -287,30 +300,28 @@ img {
 	text-align: left;
 	padding-left: 1vw;
 
-	overflow: hidden;
-
 	background-color: rgb(40, 90, 50);
 
 	font-size: 1.5vw;
 }
 #ButtonCheckForNewMessages {
 	position: absolute;
-	top: 90vh;
-	left: 40vw;
+	top: 80vh;
+	left: 0vw;
 	z-index: 3;
 
-	width: 11vw;
+	width: 20vw;
 	height: 10vh;
 
 	word-break: break-all;
 }
 #TextNewMessage {
 	position: absolute;
-	top: 90vh;
-	left: 51vw;
+	top: 80vh;
+	left: 20vw;
 	z-index: 3;
 
-	width: 24.3vw;
+	width: 25vw;
 	height: 10vh;
 
 	/*margin-top: 95vh;
@@ -320,11 +331,11 @@ img {
 }
 #ButtonNewMessage {
 	position: absolute;
-	top: 90vh;
-	left: 76vw;
+	top: 80vh;
+	left: 45vw;
 	z-index: 3;
 
-	width: 11vw;
+	width: 20vw;
 	height: 10vh;
 
 	/*margin-top: 95vh;

@@ -27,9 +27,9 @@
 		<div id = "container">
 		</div>
 
+		<script src="main.js"></script>
 		<script src="menus.js"></script>
 		<script src="messages.js"></script>
 		<script src="privacy.js"></script>
-		<script src="main.js"></script>
 	</body>
 </html>

@@ -1,16 +1,27 @@
-function ShowMessages(UserName) {
+function show_messages(user_name) {
+	//console.log(this);
+	let ML = document.getElementById("MessagesList");
+	ML.innerHTML = "";
+
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if(this.readyState == 4 && this.status == 200) {
 			//ML.innerHTML = this.responseText;
 
-			const result = JSON.parse(this.responseText);
-			result.forEach(r => {
+			let result = Array();
+			result = JSON.parse(this.responseText);
+			
+			let i = 0;
+			while(o = result[i]) {
+			//result.forEach(r => {
 				//r.forEach(c => {
-				let m = decryption(r.message);
+				console.log(o);
+				let m = decryption(o.message);
+				console.log(m);
+
 
 				let who;
-				if(r.sent_by == UserName) {
+				if(o.sent_by == user_name) {
 					who = "MessagesReceived";
 				} else {
 					who = "MessagesSent";
@@ -32,23 +43,27 @@ function ShowMessages(UserName) {
 
 				//ML.innerHTML += "<div class='MessagesReceived'>" + m + "</div>";
 				//});
-			});
+				
+				i++;
+			//});
+			}
 			
 			//let mlh = ML.style.height;
 			ML.scrollTo(0,99999);
 
-			PH.innerHTML = UserName;
+			//CWH.innerHTML = this.innerHTML;
 
 			//A = document.getElementsByClassName("*");
 			MS = document.getElementsByClassName("MessagesSent");
 			MR = document.getElementsByClassName("MessagesReceived");
 
-			if(server == "localhost") {
+			/*
+			if(resources) {
 				let ci = setInterval(CheckForNewMessages,1000);
-			}
+			}*/
 		}
 	};
-	xmlhttp.open("POST", "ShowMessages.php?q=" + UserName, true);
+	xmlhttp.open("POST", "show_messages.php?q=" + user_name, true);
 	xmlhttp.send();
 }
 function SendNewMessage() {
@@ -65,8 +80,10 @@ function SendNewMessage() {
 
 			let newDiv = document.createElement("div");
 			newDiv.className = "MessagesSent";
+
 			let newText = document.createTextNode(TNM.value);
 			newDiv.appendChild(newText);
+
 			ML.appendChild(newDiv);
 
 			/*ML.innerHTML += this.responseText;*/

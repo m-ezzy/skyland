@@ -70,20 +70,22 @@ let BNM = document.getElementById("ButtonNewMessage");
 */
 let A;
 
-let MB = document.getElementById("MenuBar");
-let BT = document.getElementById("ButtonTheme");
+let MB;
+let BT;
 
-let C = document.getElementById("Container");
+let SB;
+let C;
 
+let BB;
 let TSU;
 let BSU;
 
 let SR
 
 let CL;
-//let CLinnerHTML;
 
-let PH;
+let CWH;
+
 let TK;
 let BED;
 
@@ -91,6 +93,7 @@ let ML;
 let MS;
 let MR;
 
+let BCNM;
 let TNM;
 let BNM;
 
@@ -112,70 +115,8 @@ function showName(content) {
 	xmlhttp.send();
 }
 */
-function SelectedMenuHome() {
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			C.innerHTML = this.responseText;
-		}
-	};
-	xmlhttp.open("POST", "LoadHome.php?", true);
-	xmlhttp.send();
-}
-function SelectedMenuChats() {
-	/*let NewChat = document.getElementById("NewChat");
-	NewChat.style.visibility = "visible";*/
 
-	/*
-	arr.push(document.createElement("div"));
-	textNode.push(document.createTextNode(string[i]));
-	arr[i].appendChild(textNode[i]);
-	document.getElementById("master").appendChild(arr[i]);
-	*/
-
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			C.innerHTML = this.responseText;
-
-			//A = document.getElementsByClassName("*");
-
-			C = document.getElementById("Container");
-
-			TSU = document.getElementById("TextSearchUser");
-			BSU = document.getElementById("ButtonSearchUser");
-
-			SR = document.getElementById("SearchResults");
-
-			CL = document.getElementById("ChatList");
-
-			PH = document.getElementById("ProfileHeader");
-
-			TK = document.getElementById("TextKey");
-			BED = document.getElementById("ButtonEorD");
-
-			ML = document.getElementById("MessagesList");
-
-			TNM = document.getElementById("TextNewMessage");
-			BNM = document.getElementById("ButtonNewMessage");
-
-			if(server == "localhost") {
-				/*
-				TSU.setAttribute(onkeyup:'SearchUser(this.value)');
-				don't know this works or not
-				alternatively i can simply add event listener
-				*/
-
-				TSU.addEventListener("keyup",function(e) {
-					SearchUser();
-				});
-			}
-		}
-	};
-	xmlhttp.open("POST", "LoadChat.php?", true);
-	xmlhttp.send();
-}
-function ToggleTheme() {
+function toggle_theme() {
 	Theme = Theme ? 0 : 1;
 	C.style.backgroundColor = ThemeColors[Theme][0];
 
@@ -183,7 +124,7 @@ function ToggleTheme() {
 	SR.style.backgroundColor = ThemeColors[Theme][1];
 	
 	CL.style.backgroundColor = ThemeColors[Theme][1];
-	PH.style.backgroundColor = ThemeColors[Theme][1];
+	CWH.style.backgroundColor = ThemeColors[Theme][1];
 	ML.style.backgroundColor = ThemeColors[Theme][1];
 
 	for(let i=0 ; i<MS.length ; i++) {
@@ -227,37 +168,59 @@ function SearchUser() {
 }
 function TakeToThatChat(UserName) {
 	//CL.innerHTML = CLinnerHTML;
-	SR.style.visibility = "hidden";
-	SR.innerHTML = "";
+	//SR.style.visibility = "hidden";
+	//SR.innerHTML = "";
 
-	ShowMessages(UserName);
+	show_messages(UserName);
 }
 function CreateNewChat(UserName) {
-	SR.style.visibility = "hidden";
-	SR.innerHTML = "";
-
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
+			//SR.style.visibility = "hidden";
+			//SR.innerHTML = "";
+		
 			//CL.innerHTML = CLinnerHTML;
 			CL.innerHTML += this.responseText;
 
-			PH.innerHTML = UserName;
+			CWH.innerHTML = UserName;
 
-			ShowMessages(UserName);
+			show_messages(UserName);
 		}
 	};
 	xmlhttp.open("POST", "CreateNewChat.php?q=" + UserName, true);
 	xmlhttp.send();
 }
 
+function upload_profile_picture() {
+	let xhr = new XMLHttpRequest();
+
+	let file = document.getElementById('file_pp').files[0];
+	
+	let fd = new FormData();
+	fd.append("file_pp", file);
+
+	xhr.open("POST", "upload_profile_picture.php", true);
+	//xhr.setRequestHeader("Content-type","image");
+	xhr.send(fd);
+
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			SB.removeChild(document.getElementById("file_pp"));
+			SB.removeChild(document.getElementById("button_pp"));
+
+			SB.innerHTML = "<img src='data/ProfilePictures/" + this.responseText + "'>" + SB.innerHTML;
+		}
+	};
+}
+
 function ShowProfile() {
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			PH.innerHTML = this.responseText;
+			CWH.innerHTML = this.responseText;
 		}
 	};
-	xmlhttp.open("POST", "ShowProfile.php?q=" + 0, true);
+	xmlhttp.open("POST", "show_profile_picture.php?q=" + 0, true);
 	xmlhttp.send();
 }

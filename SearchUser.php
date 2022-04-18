@@ -14,20 +14,20 @@
 	$result = mysqli_query($conn, $query);
 
 	if($result->num_rows == 0) {
-		echo "<div class='Chat'>";
+		echo "<div class='chat'>";
 		echo "No Such UserName Found.";
 		echo "</div>";
 	} else {
 
 	//add banner showing already created chats
-	echo "<div class='Chat'>";
+	echo "<div class='chat'>";
 	echo "Previous Chats";
 	echo "</div>";
 
 	while($row = $result->fetch_object()) {
 		$i = 0;
 		//while($Chat = $_SESSION['Chats'][$i]) {
-		$i = array_search($row->UserName,$_SESSION['Chats']);
+		$i = array_search($row->UserName,$_SESSION['chats']);
 
 		if($i OR $i === 0) {
 			echo "<div class='Chat' onclick='TakeToThatChat(" . $row->UserName . ")'>";
@@ -41,7 +41,7 @@
 	}
 
 	//add banner showing chats with whom no previous communication
-	echo "<div class='Chat'>";
+	echo "<div class='chat'>";
 	echo "Start a New Chat";
 	echo "</div>";
 

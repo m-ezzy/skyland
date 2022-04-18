@@ -9,7 +9,7 @@
 
 	//$query = "SELECT user FROM chats_$u";
 	//user_info needs to be written first then chats_u table if we want user chat first
-	$query = "SELECT chats_$u.user,user_info.first_name,user_info.last_name FROM user_info INNER JOIN chats_$u ON user_info.user_name=chats_$u.user";
+	$query = "SELECT chats_$u.user,user_info.first_name,user_info.last_name,user_info.extension FROM user_info INNER JOIN chats_$u ON user_info.user_name=chats_$u.user";
 	$result = $conn->query($query);
 
 	$rows = array();

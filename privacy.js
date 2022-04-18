@@ -21,14 +21,18 @@ function decryption(cipher) {
 	let plain = "";
 	let key = parseInt(TK.value);
 
+	console.log(key);
+
 	let aaa;
 
 	for(let i=0 ; i<cipher.length ; i++) {
 		aaa = cipher.charCodeAt(i) - key;
 		plain = plain + String.fromCharCode(aaa);
+
+		console.log(plain);
 	}
 	return plain;
 }
-function EorD() {
+function ED() {
 
 }

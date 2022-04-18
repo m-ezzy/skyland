@@ -2,7 +2,7 @@
 	require 'server.php';
 
 	$u2 = $_REQUEST['q'];
-	$u = $_SESSION['UserName'];
+	$u = $_SESSION['user_name'];
 
 	/*
 	//check if chat already exists, by extension chat table between them
@@ -28,7 +28,7 @@
 		}
 		$conn->query($query);
 
-		echo "<div class='Chat' onclick='ShowMessages(" . $u2 . ")'>";
+		echo "<div class='chat' onclick='show_messages(" . $u2 . ")'>";
 		echo $u2;
 		echo "</div>";
 	//}

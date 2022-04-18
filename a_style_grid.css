@@ -1,6 +1,10 @@
 * {
-	font-size: 2vw;
-	font-weight: 30;
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 1.8vw;
+	font-weight: 800;
+	color: black;
+
+	overflow: hidden;
 }
 #container {
 	position: absolute;
@@ -9,14 +13,20 @@
 
 	width: 100vw;
 	height: 100vh;
-
-	overflow: visible;
 	
 	background-image: url(media/images/pf3.jpg);
 	background-repeat: no-repeat;
 	background-size: 100vw 100vh;
 
 	display: grid;
+	/*grid-row: 10vw 10vw;
+	grid-column: 10vh 10vh;*/
+
+	align-content: center;
+    justify-content: center;
+
+    align-items: center;
+    justify-items: start;
 
 	/*padding-top: 10vh;
 	padding-left: 20vw;
@@ -25,12 +35,14 @@
 form {
 	display: grid;
 
+	/*width: 30vw;
+	height: 50vh;*/
+
 	/*margin-top: 10vh;
 	margin-left: 10vw;
 
 	padding-top: 1vh;
 	padding-left: 1vw;*/
 
-	background-color: rgb(46, 137, 255);
-	color: rgb(0, 0, 0);
+	background-color: rgb(108, 75, 255);
 }
