@@ -18,13 +18,11 @@
 	echo "</div>";
 
 	echo "<div id='content'>";
-		echo "<p>ki</p>";
-		/*
-		echo "<script>qqq = <?php echo $";
-		echo "_SESSION['user_name']; ?>;alert(qqq);</script>";
-		*/
 	echo "</div>";
+	
+	/*
 	//echo "</div>";
+	*/
 	
 	//echo "<script src='main.js'></script>";
 	

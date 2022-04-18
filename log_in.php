@@ -6,8 +6,13 @@
 	//$UserName = '';
 	//$pass_word = '';
 
+	$UserName = $_POST['user_name'];
+	$pass_word = $_POST['pass_word'];
+
+	/*
 	$UserName = &$_POST['u'];
 	$pass_word = &$_POST['p'];
+	*/
 
 	$query = "SELECT * FROM accounts WHERE UserName='$UserName' AND pass_word='$pass_word'";
 	$result = mysqli_query($conn, $query);
@@ -26,13 +31,15 @@
 			echo "pass word is incorrect !";
 		}
 	} else {
-		echo "2";
+		//echo "2";
 		//session_start();
 		//$_SESSION['UserName'] = $UserName;
-		$_SESSION['UserName'] = $UserName;
+		$_SESSION['user_name'] = $UserName;
+		
 		printf($UserName);
 		print($UserName);
 		print_r($_SESSION);
-		//header('location: index.php');
+		
+		header('location: index.php');
 	}
 ?>

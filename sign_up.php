@@ -36,8 +36,7 @@
 	$query = "INSERT INTO chats_$UserName(user) VALUES('" . $UserName . "')";
 	mysqli_query($conn, $query);
 
-	$_SESSION['UserName'] = $UserName;
-	$_SESSION['success'] = "You have logged in!";
+	$_SESSION['user_name'] = $UserName;
 
 	header('location: index.php');
 ?>

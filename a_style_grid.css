@@ -2,11 +2,18 @@
 	font-size: 2vw;
 	font-weight: 30;
 }
-body {
-	overflow: hidden;
-	background-image: url(../images/pf3.jpg);
+#container {
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	width: 100vw;
+	height: 100vh;
+
+	overflow: visible;
+	
+	background-image: url(media/images/pf3.jpg);
 	background-repeat: no-repeat;
-	background-color: rgb(0, 0, 0);
 	background-size: 100vw 100vh;
 
 	display: grid;
@@ -14,9 +21,6 @@ body {
 	/*padding-top: 10vh;
 	padding-left: 20vw;
 	padding-right: 20vw;*/
-}
-body form:nth-of-type(2) {
-	flex-grow: 0;
 }
 form {
 	display: grid;
@@ -27,6 +31,6 @@ form {
 	padding-top: 1vh;
 	padding-left: 1vw;*/
 
-	background-color: rgb(255, 255, 255);
+	background-color: rgb(46, 137, 255);
 	color: rgb(0, 0, 0);
 }

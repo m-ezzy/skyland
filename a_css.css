@@ -30,15 +30,17 @@
 	width: 20vw;
 	height: 5vh;
 }
-.button {
+.submit {
 	position: relative;
 	/*display: flex;*/
 	z-index: 3;
 
-	width: 10vw;
+	width: 20vw;
 	height: 5vh;
 
 	overflow: hidden;
+
+	background-color: blue;
 }
 .button:hover {
 	background-color: aqua;

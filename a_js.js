@@ -5,6 +5,7 @@ bli.addEventListener("click", button_log_in)
 bsu.addEventListener("click",button_sign_up);
 
 function button_log_in() {
+	let li = document.getElementById("log_in");
 	let liun = document.getElementById("log_in_user_name");
 	let lipw = document.getElementById("log_in_pass_word");
 
@@ -16,14 +17,18 @@ function button_log_in() {
 			console.log(this.responseText);
 			let num = parseInt(this.responseText);
 
-			if(num == 2) {
+			if(num == NaN) {
+				li = this.responseText;
 				console.log("4");
-				load_skeleton();
+				
+				//load_skeleton();
 				//load_home();
+			} else {
+				window.location.href = "index.php";
 			}
 		}
 	};
-	xmlhttp.open("POST","log_in.php?u=" + liun.text + "&p=" + lipw.text,true);
+	xmlhttp.open("POST", "log_in.php?u=" + liun.value + "&p=" + lipw.value, true);
 	//xmlhttp.setRequestHeader("Content-type", "log_in.php");
 	//xmlhttp.open("POST", "log_in.php", true);
 	//xmlhttp.send("u=" + liun + "&p=" + lipw);
