@@ -139,41 +139,34 @@ function toggle_theme() {
 	}
 	*/
 }
-function VisibleOnFocus() {
-	//DSU.innerHTML = "";
-	SR.style.visibility = "visible";
-}
-function HiddenOnBlur() {
+function search_results_hidden() {
 	SR.style.visibility = "hidden";
 }
-function SearchUser() {
+function search_results_visible() {
 	SR.style.visibility = "visible";
-
-	/*
-	if (TSU.value.length == 0) {
-		CL.innerHTML = "";
-		return;
-	} else {
-	*/
-	if(TSU.value.length) {
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				SR.innerHTML = this.responseText;
-			}
-		};
-		xmlhttp.open("GET", "SearchUser.php?q=" + TSU.value, true);
-		xmlhttp.send();
-	}
 }
-function TakeToThatChat(UserName) {
+function search_user() {
+	if(TSU.value == "") {
+		return;
+	}
+
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			SR.innerHTML = this.responseText;
+		}
+	};
+	xmlhttp.open("GET", "search_user.php?q=" + TSU.value, true);
+	xmlhttp.send();
+}
+function take_to_that_chat(user_name) {
 	//CL.innerHTML = CLinnerHTML;
 	//SR.style.visibility = "hidden";
 	//SR.innerHTML = "";
 
-	show_messages(UserName);
+	show_messages(user_name);
 }
-function CreateNewChat(UserName) {
+function create_new_chat(user_name) {
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -183,15 +176,14 @@ function CreateNewChat(UserName) {
 			//CL.innerHTML = CLinnerHTML;
 			CL.innerHTML += this.responseText;
 
-			CWH.innerHTML = UserName;
+			CWH.innerHTML = user_name;
 
-			show_messages(UserName);
+			show_messages(user_name);
 		}
 	};
-	xmlhttp.open("POST", "CreateNewChat.php?q=" + UserName, true);
+	xmlhttp.open("POST", "create_new_chat.php?q=" + user_name, true);
 	xmlhttp.send();
 }
-
 function upload_profile_picture() {
 	let xhr = new XMLHttpRequest();
 
@@ -213,7 +205,6 @@ function upload_profile_picture() {
 		}
 	};
 }
-
 function ShowProfile() {
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {

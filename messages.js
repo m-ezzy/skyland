@@ -1,4 +1,10 @@
 function show_messages(user_name) {
+	let key = parseInt(document.getElementById("TextKey").value);
+
+	if(isNaN(key)) {
+		return;
+	}
+
 	//console.log(this);
 	let ML = document.getElementById("MessagesList");
 	ML.innerHTML = "";
@@ -66,17 +72,21 @@ function show_messages(user_name) {
 	xmlhttp.open("POST", "show_messages.php?q=" + user_name, true);
 	xmlhttp.send();
 }
-function SendNewMessage() {
+function send_new_message() {
+	console.log(40);
+
 	if(TNM.value == "" || TK.value == "") {
 		return;
 	}
 
-	let EM
-	EM = encryption(TNM.value);
+	let EM = encryption(TNM.value);
+
+	console.log(TNM.value + " " + TK.value);
 
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
+			console.log(41);
 
 			let newDiv = document.createElement("div");
 			newDiv.className = "MessagesSent";
@@ -91,10 +101,10 @@ function SendNewMessage() {
 			ML.scrollBy(0,100);
 		}
 	};
-	xmlhttp.open("POST", "SendNewMessage.php?q=" + EM, true);
+	xmlhttp.open("POST", "send_new_message.php?q=" + EM, true);
 	xmlhttp.send();
 }
-function CheckForNewMessages() {
+function check_for_new_messages() {
 	if(TK.value == "") {
 		return;
 	}
@@ -133,6 +143,6 @@ function CheckForNewMessages() {
 			}
 		}
 	};
-	xmlhttp.open("POST", "CheckForNewMessages.php?", true);
+	xmlhttp.open("POST", "check_for_new_messages.php", true);
 	xmlhttp.send();
 }

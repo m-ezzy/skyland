@@ -111,9 +111,9 @@ function load_chats() {
 			let cc;
 
 			//csb = "<form>";
-			csb = "<input type='button' value='Back' id='ButtonBack' onclick='BackToChats()'>";
-			csb += "<input type='text' placeholder='Type a Name to Search' id='TextSearchUser' onfocus='VisibleOnFocus()' onblur='HiddenOnBlur()'>";
-			csb += "<input type='button' value='Search User' id='ButtonSearchUser' onclick='SearchUser()'>";
+			csb = "<input type='button' value='Back' id='ButtonBack' onclick='search_results_hidden()'>";
+			csb += "<input type='text' placeholder='Type a Name to Search' id='TextSearchUser' onfocus='search_results_visible()'>";
+			csb += "<input type='button' value='Search' id='ButtonSearchUser' onclick='search_user()'>";
 			//csb += "</form>";
 
 			csb += "<div id='SearchResults'></div>";
@@ -156,9 +156,9 @@ function load_chats() {
 			cc += "</div>";
 
 			//cc += "<form>";
-			cc += "<input type='button' value='Check For New Messages' id='ButtonCheckForNewMessages' onclick='CheckForNewMessages()'>";
+			cc += "<input type='button' value='Check For New Messages' id='ButtonCheckForNewMessages' onclick='check_for_new_messages()'>";
 			cc += "<input type='text' placeholder='Type a new message' id='TextNewMessage'>";
-			cc += "<input type='button' value='send' id='ButtonNewMessage' onclick='SendNewMessage()'>";
+			cc += "<input type='button' value='send' id='ButtonNewMessage' onclick='send_new_message()'>";
 			//cc += "</form>";
 
 			menu_chats.sb = csb;
@@ -195,7 +195,7 @@ function load_chats() {
 				//alternatively i can simply add event listener
 
 				TSU.addEventListener("keyup",function(e) {
-					SearchUser();
+					search_user();
 				});
 			}
 		}

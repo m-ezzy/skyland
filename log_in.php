@@ -6,7 +6,7 @@
 	//$UserName = '';
 	//$pass_word = '';
 
-	$UserName = $_POST['user_name'];
+	$user_name = $_POST['user_name'];
 	$pass_word = $_POST['pass_word'];
 
 	/*
@@ -14,17 +14,17 @@
 	$pass_word = &$_POST['p'];
 	*/
 
-	$query = "SELECT * FROM accounts WHERE UserName='$UserName' AND pass_word='$pass_word'";
+	$query = "SELECT * FROM accounts WHERE user_name='$user_name' AND pass_word='$pass_word'";
 	$result = mysqli_query($conn, $query);
 
 	if(mysqli_num_rows($result) == 0) {
-		$query = "SELECT * FROM accounts WHERE UserName='$UserName'";
+		$query = "SELECT * FROM accounts WHERE user_name='$user_name'";
 		$result = mysqli_query($conn, $query);
 
 		if(mysqli_num_rows($result) == 0) {
 			echo "0";
 			echo "user name is incorrect !";
-			echo $UserName;
+			echo $user_name;
 			echo $pass_word;
 		} else {
 			echo "1";
@@ -34,12 +34,12 @@
 		//echo "2";
 		//session_start();
 		//$_SESSION['UserName'] = $UserName;
-		$_SESSION['user_name'] = $UserName;
-		
-		printf($UserName);
-		print($UserName);
+		$_SESSION['user_name'] = $user_name;
+
+		printf($user_name);
+		print($user_name);
 		print_r($_SESSION);
-		
+
 		header('location: index.php');
 	}
 ?>

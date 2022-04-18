@@ -1,8 +1,10 @@
 * {
 	overflow: hidden;
 
-	font-family: 'Courier New', Courier, monospace;
-	font-weight: 800;
+	/*font-family: 'Courier New', Courier, monospace;*/
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	font-size: 1vw;
+	font-weight: 700;
 }
 /*
 body {*/
@@ -24,7 +26,7 @@ body {*/
 	z-index: 2;
 
 	width: 100vw;
-	height: 8vh;
+	height: 6vh;
 
 	background-color: rgb(10, 80, 7);
 	background-image: url(media/images/shell.jpeg);
@@ -33,28 +35,28 @@ body {*/
 	display: flex;
 }
 .menu {
+	/*
 	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
+	flex-direction: row;*/
 
 	position: relative;
 	z-index: 3;
-	
+
 	width: fit-content;
-	height: 6vh;
+	height: 4vh;
 
-	margin: 1vw;
+	margin: 1vh;
+	margin-left: 1.5vw;
 
-	font-size: 1.8vw;
-	font-weight: 800;
+	font-size: 1.5vw;
 	color: white;
-	text-align: center;
+	/*text-align: center;*/
 
 	/*border-top: 1px solid rgba(0, 0, 0, 0.4);
 	border-left: 1px solid rgba(0, 0, 0, 0.4);*/
 }
 .menu:hover {
-	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
+	box-shadow: 0px 0px 40px rgba(0, 0, 0, 1);
 }
 #button_theme {
 	position: absolute;
@@ -62,12 +64,12 @@ body {*/
 }
 #side_bar {
 	position: absolute;
-	top: 8vh;
+	top: 6vh;
 	left: 10vw;
 	z-index: 2;
 
 	width: 30vw;
-	height: 90vh;
+	height: 94vh;
 
 	background-color: rgb(255, 254, 170);
 
@@ -75,17 +77,14 @@ body {*/
 }
 #content {
 	position: absolute;
-	top: 8vh;
+	top: 6vh;
 	left: 40vw;
 	z-index: 2;
 
 	width: 60vw;
-	height: 90vh;
+	height: 94vh;
 
-	background-color: rgb(160, 17, 17);
-	background-image: url(media/images/pulp.jpeg);
-	background-repeat: repeat;
-	/*background-size: cover;*/
+	background-color: rgb(199, 11, 36);
 }
 #pp {
 	position: absolute;
@@ -102,18 +101,18 @@ body {*/
 	left: 0vw;
 	z-index: 3;
 
-	width: 10vw;
+	width: 5vw;
 	height: 10vh;
 
-	background-color: rgb(255, 255, 255);
+	background-color: rgb(150, 150, 150);
 }
 #TextSearchUser {
 	position: absolute;
 	top: 0vh;
-	left: 10vw;
+	left: 5vw;
 	z-index: 3;
 
-	width: 10vw;
+	width: 20vw;
 	height: 10vh;
 
 	background-color: rgb(255, 255, 255);
@@ -122,13 +121,13 @@ body {*/
 #ButtonSearchUser {
 	position: absolute;
 	top: 0vh;
-	left: 20vw;
+	left: 25vw;
 	z-index: 3;
 
-	width: 10vw;
+	width: 5vw;
 	height: 10vh;
 
-	background-color: rgb(180, 180, 180);
+	background-color: rgb(150, 150, 150);
 }
 #SearchResults {
 	position: absolute;
@@ -142,7 +141,7 @@ body {*/
 	margin: 0;
 	padding: 0;
 
-	background-color: rgb(90, 90, 90);
+	background-color: rgb(255, 252, 98);
 
 	visibility: hidden;
 }
@@ -153,7 +152,7 @@ body {*/
 	z-index: 3;
 
 	width: 30vw;
-	height: 90vh;
+	height: 80vh;
 
 	margin: 0;
 	padding: 0;
@@ -188,6 +187,9 @@ body {*/
 
 	overflow: hidden;
 }
+.chat:hover {
+	background-color: rgb(255, 252, 98);
+}
 #chatting_with_header {
 	position: absolute;
 	top: 0vw;
@@ -200,9 +202,9 @@ body {*/
 	margin: 0;
 	padding: 0;
 
-	border: solid 0.1vw rgb(0, 0, 0);
+	/*border: solid 0.1vw rgb(0, 0, 0);*/
 
-	background-color: rgb(90, 90, 90);
+	background-color: rgb(199, 11, 36);
 
 	font-size: 2vw;
 	text-align: left;
@@ -239,7 +241,7 @@ body {*/
 
 	border: solid 0.1vw rgb(0, 0, 0);
 
-	background-color: rgb(180, 180, 180);
+	background-color: rgb(150, 150, 150);
 
 	font-size: 2vw;
 	text-align: left;
@@ -251,7 +253,7 @@ body {*/
 	z-index: 3;
 
 	width: 60vw;
-	height: 80vh;
+	height: 69vh;
 
 	margin: 0;
 	padding: 0;
@@ -259,6 +261,9 @@ body {*/
 	overflow: auto;
 
 	background-color: rgb(90, 90, 90);
+	background-image: url(media/images/pulp2.jpeg);
+	background-repeat: repeat;
+	/*background-size: cover;*/
 
 	font-size: 2vw;
 	text-align: center;
@@ -281,7 +286,8 @@ body {*/
 	text-align: right;
 	padding-right: 1vw;
 
-	background-color: rgb(200, 200, 35);
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 255, 179);
 
 	font-size: 1.5vw;
 }
@@ -300,13 +306,14 @@ body {*/
 	text-align: left;
 	padding-left: 1vw;
 
-	background-color: rgb(40, 90, 50);
+	color: rgb(255, 255, 255);
+	background-color: rgb(27, 3, 3);
 
 	font-size: 1.5vw;
 }
 #ButtonCheckForNewMessages {
 	position: absolute;
-	top: 80vh;
+	top: 84vh;
 	left: 0vw;
 	z-index: 3;
 
@@ -314,10 +321,12 @@ body {*/
 	height: 10vh;
 
 	word-break: break-all;
+
+	background-color: rgb(150, 150, 150);
 }
 #TextNewMessage {
 	position: absolute;
-	top: 80vh;
+	top: 84vh;
 	left: 20vw;
 	z-index: 3;
 
@@ -331,7 +340,7 @@ body {*/
 }
 #ButtonNewMessage {
 	position: absolute;
-	top: 80vh;
+	top: 84vh;
 	left: 45vw;
 	z-index: 3;
 
@@ -340,7 +349,6 @@ body {*/
 
 	/*margin-top: 95vh;
 	margin-left: 90vw;*/
-}
-.Chat:hover {
-	background-color: rgb(180, 180, 180);
+
+	background-color: rgb(150, 150, 150);
 }
