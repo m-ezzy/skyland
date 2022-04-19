@@ -11,13 +11,14 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			watermelon!
+			watermelon !
 		</title>
 		<!--
 		<link type="text/css" rel="stylesheet" href="common.css">
 		<link type="text/css" rel="stylesheet" href="authentication.css">
 		-->
 		<link type="text/css" rel="stylesheet" href="style.css">
+		<link type="text/css" rel="stylesheet" href="s_home.css">
 		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
 		<script>
 			let resources = 1;

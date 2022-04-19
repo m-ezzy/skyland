@@ -11,7 +11,7 @@ $server_user_name = "root";
 $server_pass_word = "";
 $data_base = "watermelon";
 
-$conn = mysqli_connect($server_name, $server_user_name, $server_pass_word, $data_base);
+$conn = new mysqli($server_name, $server_user_name, $server_pass_word, $data_base);
 
 session_start();
 /*

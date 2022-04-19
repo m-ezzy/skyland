@@ -29,7 +29,7 @@
 			$i = array_search($row->user_name,$_SESSION['chats']);
 
 			if($i OR $i === 0) {
-				echo "<div class='Chat' onclick='take_to_that_chat(" . $row->user_name . ")'>";
+				echo "<div class='chat' onclick='take_to_that_chat(" . $row->user_name . ")'>";
 				echo $row->user_name;
 				echo "</div>";
 			} else {
@@ -45,7 +45,7 @@
 		echo "</div>";
 
 		foreach($NewChat as $NC) {
-			echo "<div class='Chat' onclick='create_new_chat(" . $NC . ")'>";
+			echo "<div class='chat' onclick='create_new_chat(" . $NC . ")'>";
 			//echo "<div class='Chat' onclick='CreateNewChat(";
 			//echo "'$NC'";
 			//echo ")'>";

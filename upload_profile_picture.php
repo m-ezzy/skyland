@@ -51,7 +51,14 @@
 	move_uploaded_file($_FILES['file_pp']['tmp_name'], $image);
 
 	$query = "UPDATE user_info SET extension = '$extension' WHERE user_name='$u'";
-	mysqli_query($conn, $query);
+	$conn->query($query);
 
 	echo $image;
+
+	/*
+	// Check file size
+	if ($_FILES["file_pp"]["size"] > 500000) {
+		echo "Sorry, your file is too large.";
+	}
+	*/
 ?>

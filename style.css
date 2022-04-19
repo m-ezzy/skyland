@@ -29,7 +29,7 @@ body {*/
 	height: 6vh;
 
 	background-color: rgb(10, 80, 7);
-	background-image: url(media/images/shell.jpeg);
+	background-image: url(media/images/s4.jfif);
 	background-size: auto;
 
 	display: flex;
@@ -46,10 +46,13 @@ body {*/
 	height: 4vh;
 
 	margin: 1vh;
-	margin-left: 1.5vw;
+	/*margin-left: 1.5vw;*/
 
-	font-size: 1.5vw;
-	color: white;
+	padding-left: 1vw;
+	padding-right: 1vw;
+
+	font-size: 1.6vw;
+	/*color: rgb(255, 255, 255);*/
 	/*text-align: center;*/
 
 	/*border-top: 1px solid rgba(0, 0, 0, 0.4);
@@ -144,7 +147,15 @@ body {*/
 	background-color: rgb(255, 252, 98);
 
 	visibility: hidden;
+	/*transition: visibility 2s linear;
+
+	border-radius: 1500px;
+	transition: border-radius 2s linear 0s;*/
 }
+/*
+#SearchResults:hover {
+	visibility: collapse;
+}*/
 #ChatList {
 	position: absolute;
 	top: 10vh;
@@ -271,7 +282,7 @@ body {*/
 .MessagesSent {
 	position: relative;
 	top: 0vh;
-	left: 26vw;
+	left: 30vw;
 	/*right: 2vw;*/
 	z-index: 4;
 

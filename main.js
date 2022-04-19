@@ -161,7 +161,7 @@ function search_user() {
 }
 function take_to_that_chat(user_name) {
 	//CL.innerHTML = CLinnerHTML;
-	//SR.style.visibility = "hidden";
+	SR.style.visibility = "hidden";
 	//SR.innerHTML = "";
 
 	show_messages(user_name);
@@ -176,8 +176,8 @@ function create_new_chat(user_name) {
 			//CL.innerHTML = CLinnerHTML;
 			CL.innerHTML += this.responseText;
 
-			CWH.innerHTML = user_name;
-
+			SR.style.visibility = "hidden";
+		
 			show_messages(user_name);
 		}
 	};

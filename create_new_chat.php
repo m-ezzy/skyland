@@ -18,18 +18,27 @@
 	*/
 
 	//if($u2 != -1) {
-		$query = "INSERT INTO chats_$u(user) VALUES('" . $u2 . "')";
-		$conn->query($query);
+	$query = "INSERT INTO chats_$u(user_name) VALUES('" . $u2 . "')";
+	$conn->query($query);
 
-		if($u < $u2){
-			$query = "CREATE TABLE chat_between_$u" . "_$u2 (ROWNUM int(20),sent_by varchar(20),message varchar(500),time DATETIME(2) DEFAULT CURRENT_TIMESTAMP)";
-		} else {
-			$query = "CREATE TABLE chat_between_$u2" . "_$u (ROWNUM int(20),sent_by varchar(20),message varchar(500),time DATETIME(2) DEFAULT CURRENT_TIMESTAMP)";
-		}
-		$conn->query($query);
+	$first = $u;
+	$second = $u2;
+
+	if($u > $u2) {
+		$first = $u2;
+		$second = $u;
+	}
+	$query = "CREATE TABLE chat_between_$first" . "_$second (ROWNUM int(20),sent_by varchar(20),message varchar(500),time DATETIME(2) DEFAULT CURRENT_TIMESTAMP)";
+
+	if ($conn->query($query)) {
+
+		$chats = array();
+		$chats = $_SESSION['chats'];
+		$chats[] = $u2;
+		$_SESSION['chats'] = $chats;
 
 		echo "<div class='chat' onclick='show_messages(" . $u2 . ")'>";
 		echo $u2;
 		echo "</div>";
-	//}
+	}
 ?>

@@ -57,6 +57,7 @@ function show_messages(user_name) {
 			//let mlh = ML.style.height;
 			ML.scrollTo(0,99999);
 
+			CWH.innerHTML = user_name;
 			//CWH.innerHTML = this.innerHTML;
 
 			//A = document.getElementsByClassName("*");

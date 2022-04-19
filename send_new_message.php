@@ -10,14 +10,14 @@
 	$row_number += 1;
 	$_SESSION['row_number'] = $row_number;
 
-	if($u < $u2){
-		$query = "INSERT INTO chat_between_$u" . "_$u2 (ROWNUM,sent_by,message) VALUES (" . $row_number . ",'" . $u . "','" . $EM . "')";
-	} else {
-		$query = "INSERT INTO chat_between_$u2" . "_$u (ROWNUM,sent_by,message) VALUES (" . $row_number . ",'" . $u . "','" . $EM . "')";
-	}
+	$first = $u < $u2 ? $u : $u2;
+	$second = $u < $u2 ? $u2 : $u;
 
-	//$conn->query($query);
-	$result = mysqli_query($conn, $query);
+	$query = "INSERT INTO chat_between_$first" . "_$second (ROWNUM,sent_by,message) VALUES (" . $row_number . ",'" . $u . "','" . $EM . "')";
+
+	if ($conn->query($query)) {
+		echo "1 success";
+	}
 
 	/*
 	echo "<div class='MessagesSent'>";

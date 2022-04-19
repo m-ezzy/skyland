@@ -13,6 +13,10 @@
 
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
 		<link style="text/css" rel="stylesheet" href="a_style_grid.css">
+
+		<script>
+			let resources = 1;
+		</script>
 	</head>
 	<body>
 		<div id = "container">
@@ -34,18 +38,22 @@
 		
 			-->
 
-			<form method="POST" action="sign_up.php" id="f1">
-				UserName : <input type="text" name="UserName" class="text"><br>
-				PassWord : <input type="text" name="PassWord" class="text"><br>
-				FirstName : <input type="text" name="FirstName" class="text"><br>
-				LastName : <input type="text" name="LastName" class="text"><br>
-				<input type="submit" name="SignUp" value="Sign Up" class="submit">
+			<form method="POST" action="log_in.php" id="fli">
+				user name   : <input type="text" name="user_name" class="text"><br>
+				pass word : <input type="text" name="pass_word" class="text"><br>
+				<input type="submit" name="log_in" value="log in" class="submit">
 			</form>
-			<form method="POST" action="log_in.php" id="f2">
-				UserName   : <input type="text" name="user_name" class="text"><br>
-				PassWord : <input type="text" name="pass_word" class="text"><br>
-				<input type="submit" name="LogIn" value="Log In" class="submit">
+			<form method="POST" action="sign_up.php" id="fsu">
+				<div id="r"></div><br>
+	
+				user name : <input type="text" name="user_name" class="text" id="suun"><br>
+				pass word : <input type="text" name="pass_word" class="text"><br>
+				first name : <input type="text" name="first_name" class="text"><br>
+				last name : <input type="text" name="last_name" class="text"><br>
+				<input type="submit" name="sign_up" value="sign up" class="submit">
 			</form>
 		</div>
+
+		<script src="a_js.js"></script>
 	</body>
 </html>

@@ -15,20 +15,18 @@
 	*/
 
 	$query = "SELECT * FROM accounts WHERE user_name='$user_name' AND pass_word='$pass_word'";
-	$result = mysqli_query($conn, $query);
+	$result = $conn->query($query);
 
-	if(mysqli_num_rows($result) == 0) {
+	if ( $result->num_rows == 0 ) {
 		$query = "SELECT * FROM accounts WHERE user_name='$user_name'";
-		$result = mysqli_query($conn, $query);
+		$result = $conn->query($query);
 
-		if(mysqli_num_rows($result) == 0) {
-			echo "0";
-			echo "user name is incorrect !";
-			echo $user_name;
-			echo $pass_word;
-		} else {
+		if ( $result->num_rows == 0 ) {
 			echo "1";
-			echo "pass word is incorrect !";
+			echo "user name $user_name is incorrect !";
+		} else {
+			echo "2";
+			echo "pass word $pass_word is incorrect !";
 		}
 	} else {
 		//echo "2";

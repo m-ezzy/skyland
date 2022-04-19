@@ -1,8 +1,8 @@
 let bli = document.getElementById("button_log_in");
 let bsu = document.getElementById("button_sign_up");
 
-bli.addEventListener("click", button_log_in)
-bsu.addEventListener("click",button_sign_up);
+//bli.addEventListener("click", button_log_in)
+//bsu.addEventListener("click",button_sign_up);
 
 function button_log_in() {
 	let li = document.getElementById("log_in");
@@ -15,16 +15,14 @@ function button_log_in() {
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			console.log(this.responseText);
+
 			let num = parseInt(this.responseText);
 
-			if(num == NaN) {
-				li = this.responseText;
-				console.log("4");
-				
-				//load_skeleton();
-				//load_home();
+			let fli = document.getElementById("fli");
+			if(num == 1 || 2) {
+				fli = this.responseText;
 			} else {
-				window.location.href = "index.php";
+				fli = "successfully logged in !";
 			}
 		}
 	};
@@ -54,5 +52,34 @@ function button_sign_up() {
 	xmlhttp.send();
 }
 
+if(resources) {
+	let suun = document.getElementById("suun");
+	suun.addEventListener("input", user_name_available);
+}
+
+function user_name_available() {
+	let sunn = document.getElementById("suun");
+	let r = document.getElementById("r");
+
+	if(sunn.value == "") {
+		r.innerHTML = "";
+		return;
+	}
+
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			if(this.responseText == 1) {
+				r.style.color = "black";
+				r.innerHTML = "user name is available !";
+			} else {
+				r.style.color = "red";
+				r.innerHTML = "user name is not available !";
+			}
+		}
+	};
+	xmlhttp.open("POST", "user_name_available.php?s=" + sunn.value, true);
+	xmlhttp.send();
+}
 
 

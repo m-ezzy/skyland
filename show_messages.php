@@ -12,7 +12,7 @@
 	$first = $u;
 	$second = $u2;
 
-	if($u >= $u2) {
+	if($u > $u2) {
 		$first = $u2;
 		$second = $u;
 	}

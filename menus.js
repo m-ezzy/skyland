@@ -72,7 +72,7 @@ function load_home() {
 
 			if(result.extension == null || result.extension == "") {
 				home.sb = "<input type='file' name='file_pp' id='file_pp'>";
-				home.sb += "<input type='button' id='button_pp' onclick='upload_profile_picture()'>";
+				home.sb += "<input type='button' value='upload picture to server' id='button_pp' onclick='upload_profile_picture()'>";
 			} else {
 				home.sb = "<img src='data/ProfilePictures/" + result.user_name + "." + result.extension + "' id='pp'>";
 			}
@@ -134,10 +134,11 @@ function load_chats() {
 				//let s = result['chats'][i];
 
 				//let s = r[i];
+				let path = s.extension ? "data/ProfilePictures/" + s.user_name + "." + s.extension : "media/images/place_holder3.png";
 
-				csb += "<div class='chat' onclick='show_messages(" + s.user + ")'>";
-				csb += "<img src='data/ProfilePictures/" + s.user + "." + s.extension + "'>";
-				csb += s.user + " " + s.first_name + " " + s.last_name;
+				csb += "<div class='chat' onclick='show_messages(" + s.user_name + ")'>";
+				csb += "<img src='" + path + "'>";
+				csb += s.user_name + " " + s.first_name + " " + s.last_name;
 				csb += "</div>";
 				//});
 				i++;
