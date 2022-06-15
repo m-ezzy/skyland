@@ -9,7 +9,7 @@ $data_base = "epiz_28162099_db3";
 $server_name = "localhost";
 $server_user_name = "root";
 $server_pass_word = "";
-$data_base = "watermelon";
+$data_base = "time";
 
 $conn = new mysqli($server_name, $server_user_name, $server_pass_word, $data_base);
 

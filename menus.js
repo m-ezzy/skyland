@@ -122,7 +122,7 @@ function load_chats() {
 
 			let r = new Array();
 			r = JSON.parse(this.responseText);
-			
+
 			/*let s = new Array();
 			s = JSON.parse(result);*/
 
@@ -158,7 +158,7 @@ function load_chats() {
 
 			//cc += "<form>";
 			cc += "<input type='button' value='Check For New Messages' id='ButtonCheckForNewMessages' onclick='check_for_new_messages()'>";
-			cc += "<input type='text' placeholder='Type a new message' id='TextNewMessage'>";
+			cc += "<input type='text' placeholder='Type a new message' id='TextNewMessage' onfocus='add_event()' onblur='remove_event()'>";
 			cc += "<input type='button' value='send' id='ButtonNewMessage' onclick='send_new_message()'>";
 			//cc += "</form>";
 
@@ -201,6 +201,7 @@ function load_chats() {
 			}
 		}
 	};
+	//xmlhttp.setRequestHeader("Access-Control-Allow-Origin": "*");
 	xmlhttp.open("POST", "load_chats.php", true);
 	xmlhttp.send();
 }

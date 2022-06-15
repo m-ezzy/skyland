@@ -52,10 +52,14 @@ function button_sign_up() {
 	xmlhttp.send();
 }
 
+let ev;
 if(resources) {
-	let suun = document.getElementById("suun");
-	suun.addEventListener("input", user_name_available);
+	ev = "input";
+} else {
+	ev = "change";
 }
+let suun = document.getElementById("suun");
+suun.addEventListener(ev, user_name_available);
 
 function user_name_available() {
 	let sunn = document.getElementById("suun");

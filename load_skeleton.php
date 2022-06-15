@@ -11,7 +11,7 @@
 		echo "<div class='menu' onclick='load_communities()'> Communities </div>";
 		echo "<div class='menu' onclick='load_games()'> Games </div>";
 		echo "<div class='menu' onclick='load_market()'> Market </div>";
-		echo "<div class='menu' id='button_theme' onclick='toggle_theme()'> Theme </div>";
+		echo "<div class='menu' id='button_theme'> Theme </div>";
 	echo "</div>";
 
 	echo "<div id='side_bar'>";

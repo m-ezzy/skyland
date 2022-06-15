@@ -70,8 +70,8 @@
 	</form>
 	-->
 	<!--<div class="content" id="c1"><?php echo $_SESSION['username'];?></div>-->
-</div>
-<script src="privacy.js"></script>*/
+	</div>
+	<script src="privacy.js"></script>*/
 
 	/*
 	while($row = $result->fetch_object()) {

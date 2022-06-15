@@ -64,10 +64,9 @@ function show_messages(user_name) {
 			MS = document.getElementsByClassName("MessagesSent");
 			MR = document.getElementsByClassName("MessagesReceived");
 
-			/*
 			if(resources) {
-				let ci = setInterval(CheckForNewMessages,1000);
-			}*/
+				let ci = setInterval(check_for_new_messages,1000);
+			}
 		}
 	};
 	xmlhttp.open("POST", "show_messages.php?q=" + user_name, true);

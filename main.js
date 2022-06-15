@@ -116,6 +116,12 @@ function showName(content) {
 }
 */
 
+$(document).ready(function() {
+	$("#button_theme").click(function() {
+		$(".MessagesSent").style.backgroundColor = "green";
+	});
+});
+
 function toggle_theme() {
 	Theme = Theme ? 0 : 1;
 	C.style.backgroundColor = ThemeColors[Theme][0];
@@ -214,4 +220,21 @@ function ShowProfile() {
 	};
 	xmlhttp.open("POST", "show_profile_picture.php?q=" + 0, true);
 	xmlhttp.send();
+}
+function snm(e) {
+	if(e.key == "Enter") {
+		send_new_message();
+	}
+}
+function add_event() {
+	document.addEventListener("keydown",snm);
+
+	/*let TNM = document.getElementById("TextNewMessage");
+	TNM.addEventListener("keydown",send_new_message);*/
+}
+function remove_event() {
+	document.removeEventListener("keydown",snm);
+
+	/*let TNM = document.getElementById("TextNewMessage");
+	TNM.removeEventListener("keydown",send_new_message);*/
 }
