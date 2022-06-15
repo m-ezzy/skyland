@@ -11,8 +11,13 @@
 			authentication
 		</title>
 
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
-		<link style="text/css" rel="stylesheet" href="a_style_grid.css">
+		<!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">-->
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
+
+		<link style="text/css" rel="stylesheet" href="../css/a_grid.css">
 
 		<script>
 			let resources = 1;
@@ -54,6 +59,6 @@
 			</form>
 		</div>
 
-		<script src="a_js.js"></script>
+		<script src="../js/a.js"></script>
 	</body>
 </html>

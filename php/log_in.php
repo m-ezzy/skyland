@@ -3,7 +3,7 @@
 	//require 'server.php';
 	//session_start();
 
-	//$UserName = '';
+	//$user_name = '';
 	//$pass_word = '';
 
 	$user_name = $_POST['user_name'];
@@ -31,7 +31,6 @@
 	} else {
 		//echo "2";
 		//session_start();
-		//$_SESSION['UserName'] = $UserName;
 		$_SESSION['user_name'] = $user_name;
 
 		printf($user_name);

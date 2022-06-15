@@ -1,6 +1,7 @@
 * {
 	font-family: 'Courier New', Courier, monospace;
-	font-size: 1.5vw;
+	/*font-family: 'Tangerine', cursive;*/
+	font-size: 2vw;
 	font-weight: 800;
 	color: black;
 
@@ -14,7 +15,7 @@
 	width: 100vw;
 	height: 100vh;
 	
-	background-image: url(media/images/pf3.jpg);
+	background-image: url(../media/images/bg1.jpg);
 	background-repeat: no-repeat;
 	background-size: 100vw 100vh;
 

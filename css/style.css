@@ -20,13 +20,15 @@ body {*/
 	display: grid;*//*
 }*/
 #menu_bar {
-	position: absolute;
+	/*position: absolute;
 	top: 0vh;
 	left: 0vw;
-	z-index: 2;
+	z-index: 2;*/
 
-	width: 100vw;
-	height: 6vh;
+	margin: 0;
+
+	width: 10vw;
+	height: 100vh;
 
 	background-color: rgb(10, 80, 7);
 	background-image: url(media/images/s5.jpg);
