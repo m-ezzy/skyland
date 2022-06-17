@@ -38,7 +38,7 @@
 	$chats[] = $u2;
 	$_SESSION['chats'] = $chats;
 
-	echo "<div class='chat' onclick='show_messages(" . $u2 . ")'>";
+	echo "<div class='chat' onclick='show_messages(this, " . $u2 . ")'>";
 	echo $u2;
 	echo "</div>";
 ?>

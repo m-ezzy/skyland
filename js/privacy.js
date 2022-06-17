@@ -1,6 +1,6 @@
 function encryption(plain) {
 	let cipher = "";
-	let key = parseInt(document.getElementById("TextKey").value);
+	let key = parseInt(document.getElementById("text_key").value);
 
 	let aaa;
 	let bbb;
@@ -19,7 +19,7 @@ function encryption(plain) {
 }
 function decryption(cipher) {
 	let plain = "";
-	let key = parseInt(document.getElementById("TextKey").value);
+	let key = parseInt(document.getElementById("text_key").value);
 
 	if(key == "") {
 		return;

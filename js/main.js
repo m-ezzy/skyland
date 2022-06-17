@@ -70,11 +70,8 @@ let BNM = document.getElementById("ButtonNewMessage");
 */
 let A;
 
-let MB;
-let BT;
-
-let SB;
-let C;
+let MB = document.getElementById("menu_bar");
+let BT = document.getElementById("toggle_theme");
 
 let BB;
 let TSU;
@@ -97,12 +94,14 @@ let BCNM;
 let TNM;
 let BNM;
 
-let Theme = 0;
+let theme = 8;
+
 let ThemeColors = [
 	["rgb(25, 25, 25)", "rgb(90, 90, 90)", "rgb(200, 200, 35)", "rgb(40, 90, 50)","rgb(255, 255, 255)"],
 	["rgb(100, 100, 100)", "rgb(255, 255, 255)", "rgb(255, 255, 60)", "rgb(30, 200, 60)","rgb(0, 0, 0)"],
 ];
 
+let theme_names = ["apple","cherry","grapes","mango","orange","pineapple","pumpkin","strawberry","watermelon"];
 /*
 function showName(content) {
 	let xmlhttp = new XMLHttpRequest();
@@ -123,23 +122,23 @@ $(document).ready(function() {
 });
 
 function toggle_theme() {
-	Theme = Theme ? 0 : 1;
-	C.style.backgroundColor = ThemeColors[Theme][0];
+	if(theme == theme_names.length - 1) {
+		theme = 0;
+	} else {
+		theme++;
+	}
 
-	MB.style.backgroundColor = ThemeColors[Theme][1];
-	SR.style.backgroundColor = ThemeColors[Theme][1];
-	
-	CL.style.backgroundColor = ThemeColors[Theme][1];
-	CWH.style.backgroundColor = ThemeColors[Theme][1];
-	ML.style.backgroundColor = ThemeColors[Theme][1];
+	MB.style.backgroundImage = "url(../media/images/skins/" + theme_names[theme] + "/menu_bar.jpg)";
+	CL.style.backgroundImage = "url(../media/images/skins/" + theme_names[theme] + "/chat_list.jpg)";
+	ML.style.backgroundImage = "url(../media/images/skins/" + theme_names[theme] + "/messages_list.jpg)";
 
+	/*
 	for(let i=0 ; i<MS.length ; i++) {
 		MS[i].style.backgroundColor = ThemeColors[Theme][2];
 	}
 	for(let i=0 ; i<MR.length ; i++) {
 		MR[i].style.backgroundColor = ThemeColors[Theme][3];
 	}
-	/*
 	for(let i=0 ; i<A.length ; i++) {
 		A[i].style.color = ThemeColors[Theme][4];
 	}
@@ -207,11 +206,11 @@ function upload_profile_picture() {
 			SB.removeChild(document.getElementById("file_pp"));
 			SB.removeChild(document.getElementById("button_pp"));
 
-			SB.innerHTML = "<img src='data/ProfilePictures/" + this.responseText + "'>" + SB.innerHTML;
+			SB.innerHTML = "<img src='../data/profile_pictures/" + this.responseText + "'>" + SB.innerHTML;
 		}
 	};
 }
-function ShowProfile() {
+function show_profile() {
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {

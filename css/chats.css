@@ -1,120 +1,18 @@
-* {
-	overflow: hidden;
 
-	/*font-family: 'Courier New', Courier, monospace;*/
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-	font-size: 1vw;
-	font-weight: 700;
-}
-/*
-body {*/
-	/*background-image: linear-gradient(to bottom,rgb(40, 90, 50),rgb(200, 200, 35));*/
-	/*background-color: rgb(25, 25, 25);*/
-/*	background-size: 100vw 100vh;
-	overflow: hidden;
-
-	margin: 0;
-	padding: 0;
-
-	/*display: flexbox;
-	display: grid;*//*
-}*/
-#menu_bar {
-	/*position: absolute;
-	top: 0vh;
-	left: 0vw;
-	z-index: 2;*/
-
-	margin: 0;
-
-	width: 10vw;
-	height: 100vh;
-
-	background-color: rgb(10, 80, 7);
-	background-image: url(media/images/s5.jpg);
-	background-size: auto;
-
-	display: flex;
-}
-.menu {
-	/*
-	display: flex;
-	flex-direction: row;*/
-
+#button_back {
 	position: relative;
-	z-index: 3;
-
-	width: fit-content;
-	height: 4vh;
-
-	margin: 1vh;
-	/*margin-left: 1.5vw;*/
-
-	padding-left: 1vw;
-	padding-right: 1vw;
-
-	font-size: 1.6vw;
-	/*color: rgb(255, 255, 255);*/
-	/*text-align: center;*/
-
-	/*border-top: 1px solid rgba(0, 0, 0, 0.4);
-	border-left: 1px solid rgba(0, 0, 0, 0.4);*/
-}
-.menu:hover {
-	box-shadow: 0px 0px 40px rgba(0, 0, 0, 1);
-}
-#button_theme {
-	position: absolute;
-	right: 0vw;
-}
-#side_bar {
-	position: absolute;
-	top: 6vh;
-	left: 10vw;
-	z-index: 2;
-
-	width: 30vw;
-	height: 94vh;
-
-	background-color: rgb(255, 254, 170);
-
-	font-size: 2vw;
-}
-#content {
-	position: absolute;
-	top: 6vh;
-	left: 40vw;
-	z-index: 2;
-
-	width: 60vw;
-	height: 94vh;
-
-	background-color: rgb(199, 11, 36);
-}
-#pp {
-	position: absolute;
-	left: 10vw;
-
-	width: 10vw;
-	height: 10vw;
-
-	border-radius: 500px;
-}
-#ButtonBack {
-	position: absolute;
 	top: 0vh;
-	left: 0vw;
+	left: 10vw;
 	z-index: 3;
-
 	width: 5vw;
 	height: 10vh;
 
 	background-color: rgb(150, 150, 150);
 }
-#TextSearchUser {
-	position: absolute;
+#text_search_user {
+	position: relative;
 	top: 0vh;
-	left: 5vw;
+	left: 10vw;
 	z-index: 3;
 
 	width: 20vw;
@@ -123,10 +21,10 @@ body {*/
 	background-color: rgb(255, 255, 255);
 	/*visibility: hidden;*/
 }
-#ButtonSearchUser {
-	position: absolute;
+#button_search_user {
+	position: relative;
 	top: 0vh;
-	left: 25vw;
+	left: 10vw;
 	z-index: 3;
 
 	width: 5vw;
@@ -134,19 +32,16 @@ body {*/
 
 	background-color: rgb(150, 150, 150);
 }
-#SearchResults {
-	position: absolute;
-	top: 10vh;
-	left: 0vw;
+#search_results {
+	position: relative;
+	top: 0vh;
+	left: 10vw;
 	z-index: 4;
 
 	width: 30vw;
 	height: 90vh;
 
-	margin: 0;
-	padding: 0;
-
-	background-color: rgb(255, 252, 98);
+	background-color: rgb(110, 110, 110);
 
 	visibility: hidden;
 	/*transition: visibility 2s linear;
@@ -155,26 +50,27 @@ body {*/
 	transition: border-radius 2s linear 0s;*/
 }
 /*
-#SearchResults:hover {
+#search_results:hover {
 	visibility: collapse;
 }*/
-#ChatList {
+#chat_list {
 	position: absolute;
 	top: 10vh;
-	left: 0vw;
+	left: 10vw;
 	z-index: 3;
 
 	width: 30vw;
-	height: 80vh;
+	height: 90vh;
 
 	margin: 0;
 	padding: 0;
 
-	background-color: rgb(255, 254, 170);
+	/*background-color: rgb(255, 254, 170);*/
+	background-image: url(../media/images/skins/watermelon/chat_list.jpg);
 
 	overflow-y: visible;
 }
-.chat {
+#chat_list div {
 	position: relative;
 	top: 0vh;
 	left: 0vw;
@@ -187,8 +83,10 @@ body {*/
 
 	font-size: 2vw;
 	text-align: left;
+
+	overflow: hidden;
 }
-.chat img {
+#chat_list div img {
 	/*
 	position: relative;
 	top: 0vw;
@@ -201,12 +99,12 @@ body {*/
 	overflow: hidden;
 }
 .chat:hover {
-	background-color: rgb(255, 252, 98);
+	background-color: rgb(110, 110, 110, 0.5);
 }
-#chatting_with_header {
+#header {
 	position: absolute;
 	top: 0vw;
-	left: 0vw;
+	left: 40vw;
 	z-index: 3;
 
 	width: 60vw;
@@ -222,10 +120,14 @@ body {*/
 	font-size: 2vw;
 	text-align: left;
 }
-#TextKey {
+#header img {
+	width: 10vw;
+	height: 10vh;
+}
+#text_key {
 	position: absolute;
-	top: 5vw;
-	left: 0vw;
+	top: 10vh;
+	left: 40vw;
 	z-index: 3;
 
 	width: 40vw;
@@ -240,10 +142,10 @@ body {*/
 
 	text-align: left;
 }
-#ButtonED {
+#button_e_d {
 	position: absolute;
 	top: 10vh;
-	left: 40vw;
+	left: 80vw;
 	z-index: 3;
 
 	width: 20vw;
@@ -259,33 +161,33 @@ body {*/
 	font-size: 2vw;
 	text-align: left;
 }
-#MessagesList {
+#messages_list {
 	position: absolute;
 	top: 15vh;
-	left: 0vw;
+	left: 40vw;
 	z-index: 3;
 
 	width: 60vw;
-	height: 69vh;
+	height: 75vh;
 
 	margin: 0;
 	padding: 0;
 
 	overflow: auto;
 
-	background-color: rgb(90, 90, 90);
-	background-image: url(media/images/pulp2.jpeg);
+	/*background-color: rgb(103, 199, 191);*/
+	background-image: url(../media/images/skins/watermelon/messages_list.jpg);
 	background-repeat: repeat;
 	/*background-size: cover;*/
 
 	font-size: 2vw;
 	text-align: center;
 }
-.MessagesSent {
+.messages_sent {
 	position: relative;
 	top: 0vh;
 	left: 30vw;
-	/*right: 2vw;*/
+	/*right: -50vw;*/
 	z-index: 4;
 
 	width: 25vw;
@@ -304,7 +206,7 @@ body {*/
 
 	font-size: 1.5vw;
 }
-.MessagesReceived {
+.messages_received {
 	position: relative;
 	top: 0vh;
 	left: 1vw;
@@ -324,10 +226,10 @@ body {*/
 
 	font-size: 1.5vw;
 }
-#ButtonCheckForNewMessages {
+#button_check_for_new_messages {
 	position: absolute;
-	top: 84vh;
-	left: 0vw;
+	top: 90vh;
+	left: 40vw;
 	z-index: 3;
 
 	width: 20vw;
@@ -337,10 +239,10 @@ body {*/
 
 	background-color: rgb(150, 150, 150);
 }
-#TextNewMessage {
+#text_new_message {
 	position: absolute;
-	top: 84vh;
-	left: 20vw;
+	top: 90vh;
+	left: 60vw;
 	z-index: 3;
 
 	width: 25vw;
@@ -351,10 +253,10 @@ body {*/
 	
 	background-color: rgb(255, 255, 255);
 }
-#ButtonNewMessage {
+#button_new_message {
 	position: absolute;
-	top: 84vh;
-	left: 45vw;
+	top: 90vh;
+	left: 85vw;
 	z-index: 3;
 
 	width: 20vw;

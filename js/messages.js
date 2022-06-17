@@ -1,12 +1,15 @@
-function show_messages(user_name) {
-	let key = parseInt(document.getElementById("TextKey").value);
+//can't use 'this' in function parameters, using 't' instead of 'this'
+function show_messages(t, user_name) {
+	let key = parseInt(document.getElementById("text_key").value);
 
 	if(isNaN(key)) {
 		return;
 	}
 
+	CWH.innerHTML = t.innerHTML;
+
 	//console.log(this);
-	let ML = document.getElementById("MessagesList");
+	let ML = document.getElementById("messages_list");
 	ML.innerHTML = "";
 
 	let xmlhttp = new XMLHttpRequest();
@@ -28,9 +31,9 @@ function show_messages(user_name) {
 
 				let who;
 				if(o.sent_by == user_name) {
-					who = "MessagesReceived";
+					who = "messages_received";
 				} else {
-					who = "MessagesSent";
+					who = "messages_sent";
 				}
 
 				/*
@@ -57,12 +60,12 @@ function show_messages(user_name) {
 			//let mlh = ML.style.height;
 			ML.scrollTo(0,99999);
 
-			CWH.innerHTML = user_name;
+			//CWH.innerHTML = user_name;
 			//CWH.innerHTML = this.innerHTML;
 
 			//A = document.getElementsByClassName("*");
-			MS = document.getElementsByClassName("MessagesSent");
-			MR = document.getElementsByClassName("MessagesReceived");
+			MS = document.getElementsByClassName("messages_sent");
+			MR = document.getElementsByClassName("messages_received");
 
 			if(resources) {
 				let ci = setInterval(check_for_new_messages,1000);
@@ -89,7 +92,7 @@ function send_new_message() {
 			console.log(41);
 
 			let newDiv = document.createElement("div");
-			newDiv.className = "MessagesSent";
+			newDiv.className = "messages_sent";
 
 			let newText = document.createTextNode(TNM.value);
 			newDiv.appendChild(newText);
@@ -132,7 +135,7 @@ function check_for_new_messages() {
 						/*ne = CreateElement("MessagesReceived","NULL",dm);
 						ML.appendChild(ne);*/
 
-						ML.innerHTML += "<div class='MessagesReceived'>" + dm + "</div>";
+						ML.innerHTML += "<div class='messages_received'>" + dm + "</div>";
 					//});
 				});
 

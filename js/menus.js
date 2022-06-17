@@ -1,59 +1,27 @@
 document.body.onload = function() {
-	load_skeleton();
-	load_home();
+	load_chats();
 }
 
-function load_skeleton() {
-	//console.log("5");
-	
-	let c = document.getElementById("container");
-	//c.innerHTML = "";
-
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			c.innerHTML = this.responseText;
-			//console.log(c);
-			//console.log("99999");
-		}
-	};
-	xmlhttp.open("POST", "load_skeleton.php", true);
-	xmlhttp.send();
-}
-
-let home = {
-	sb: "",
-	c: "",
-};
-let menu_chats = {
-	sb: "",
-	c: "",
-};
-let menu_groups = "";
-let menu_communities = "";
-let menu_market = "";
-
+let content = document.getElementById("content");
+let home = "";
+let chats = "";
+let groups = "";
 
 function load_home() {
 	/*
 	SB = document.getElementById("side_bar");
 	C = document.getElementById("content");
-	*/
-	
-	let sb = document.getElementById("side_bar");
-	let c = document.getElementById("content");
-	//console.log(con);
 
-	/*
-	if(home.sb != "") {
-		sb.innerHTML = menu_home.sb;
-		c.innerHTML = "";
+	let content = document.getElementById("content");
+	console.log(con);*/
+
+	if(home) {
+		content.innerHTML = home;
 		return;
 	}
-	*/
-	sb.innerHTML = "";
-	c.innerHTML = "";
-	
+	/*sb.innerHTML = "";
+	c.innerHTML = "";*/
+
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -71,16 +39,14 @@ function load_home() {
 			let result = JSON.parse(this.responseText);
 
 			if(result.extension == null || result.extension == "") {
-				home.sb = "<input type='file' name='file_pp' id='file_pp'>";
-				home.sb += "<input type='button' value='upload picture to server' id='button_pp' onclick='upload_profile_picture()'>";
+				home = "<input type='file' name='file_pp' id='file_pp'>";
+				home += "<input type='button' value='upload picture to server' id='button_pp' onclick='upload_profile_picture()'>";
 			} else {
-				home.sb = "<img src='data/ProfilePictures/" + result.user_name + "." + result.extension + "' id='pp'>";
+				home = "<img src='../data/profile_pictures/" + result.user_name + "." + result.extension + "' id='profile_picture'>";
 			}
-			home.sb += "<br>" + result.user_name + "<br>" + result.first_name + "<br>" + result.last_name;
+			home += "<br>" + result.user_name + "<br>" + result.first_name + "<br>" + result.last_name;
 
-			sb.innerHTML = home.sb;
-
-
+			content.innerHTML = home;
 
 			//SB = document.getElementById("side_bar");
 			//C = document.getElementById("content");
@@ -90,35 +56,24 @@ function load_home() {
 	xmlhttp.send();
 }
 function load_chats() {
-	let sb = document.getElementById("side_bar");
-	let c = document.getElementById("content");
+	let content = document.getElementById("content");
 
-	console.log("99");
-
-	/*
-	if(menu_chats.sb != null) {
-		sb.innerHTML = menu_chats.sb;
+	if(chats) {
+		content.innerHTML = chats;
 		return;
 	}
-	*/
 	
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			console.log("101");
+			let c;
 
-			let csb;
-			let cc;
+			c = "<input type='button' class='button' value='back' id='button_back' onclick='search_results_hidden()'>";
+			c += "<input type='text' placeholder='type a name to search' id='text_search_user' onfocus='search_results_visible()'>";
+			c += "<input type='button' class='button' value='search' id='button_search_user' onclick='search_user()'>";
 
-			//csb = "<form>";
-			csb = "<input type='button' value='Back' id='ButtonBack' onclick='search_results_hidden()'>";
-			csb += "<input type='text' placeholder='Type a Name to Search' id='TextSearchUser' onfocus='search_results_visible()'>";
-			csb += "<input type='button' value='Search' id='ButtonSearchUser' onclick='search_user()'>";
-			//csb += "</form>";
-
-			csb += "<div id='SearchResults'></div>";
-
-			csb += "<div id='ChatList'>";
+			c += "<div id='search_results'></div>";
+			c += "<div id='chat_list'>";
 
 			let r = new Array();
 			r = JSON.parse(this.responseText);
@@ -134,61 +89,53 @@ function load_chats() {
 				//let s = result['chats'][i];
 
 				//let s = r[i];
-				let path = s.extension ? "data/ProfilePictures/" + s.user_name + "." + s.extension : "media/images/place_holder3.png";
+				let path = s.extension ? "../data/profile_pictures/" + s.user_name + "." + s.extension : "../media/images/place_holder3.png";
 
-				csb += "<div class='chat' onclick='show_messages(" + s.user_name + ")'>";
-				csb += "<img src='" + path + "'>";
-				csb += s.user_name + " " + s.first_name + " " + s.last_name;
-				csb += "</div>";
+				c += "<div class='chat' onclick='show_messages(this, " + s.user_name + ")'>";
+				c += "<img src='" + path + "'>";
+				c += s.user_name + " " + s.first_name + " " + s.last_name;
+				c += "</div>";
 				//});
 				i++;
 			}
+			c += "</div>";
 
-			csb += "</div>";
+			c += "<div id='header'></div>";
 
-			cc += "<div id='chatting_with_header' onclick='ShowProfile()'>";
-			cc += "</div>";
+			c += "<input type='text' placeholder='enter key of this conversation' id='text_key' value='1'>";
+			c += "<input type='button' value='encrypt / decrypt' id='button_e_d' onclick='e_d()'>";
 
-			cc += "<input type='text' placeholder='Enter key of this conversation' id='TextKey'>";
-			cc += "<input type='button' value='Encrypt/Decrypt' id='ButtonED' onclick='ED()'>";
+			c += "<div id='messages_list'>";
+			c += "select any chat to show your messages with them here";
+			c += "</div>";
 
-			cc += "<div id='MessagesList'>";
-			cc += "Select any chat to show your messages with them here";
-			cc += "</div>";
+			c += "<input type='button' value='check for new messages' id='button_check_for_new_messages' onclick='check_for_new_messages()'>";
+			c += "<input type='text' placeholder='type a new message' id='text_new_message' onfocus='add_event()' onblur='remove_event()'>";
+			c += "<input type='button' value='send' id='button_new_message' onclick='send_new_message()'>";
 
-			//cc += "<form>";
-			cc += "<input type='button' value='Check For New Messages' id='ButtonCheckForNewMessages' onclick='check_for_new_messages()'>";
-			cc += "<input type='text' placeholder='Type a new message' id='TextNewMessage' onfocus='add_event()' onblur='remove_event()'>";
-			cc += "<input type='button' value='send' id='ButtonNewMessage' onclick='send_new_message()'>";
-			//cc += "</form>";
-
-			menu_chats.sb = csb;
-			menu_chats.c = c;
-
-			sb.innerHTML = csb;
-			c.innerHTML = cc;
+			chats = c;
+			content.innerHTML = c;
 
 
 
+			BB = document.getElementById("button_back");
+			TSU = document.getElementById("text_search_user");
+			BSU = document.getElementById("button_search_user");
 
-			BB = document.getElementById("ButtonBack");
-			TSU = document.getElementById("TextSearchUser");
-			BSU = document.getElementById("ButtonSearchUser");
+			SR = document.getElementById("search_results");
 
-			SR = document.getElementById("SearchResults");
+			CL = document.getElementById("chat_list");
 
-			CL = document.getElementById("ChatList");
+			CWH = document.getElementById("header");
 
-			CWH = document.getElementById("chatting_with_header");
+			TK = document.getElementById("text_key");
+			BED = document.getElementById("button_e_d");
 
-			TK = document.getElementById("TextKey");
-			BED = document.getElementById("ButtonED");
+			ML = document.getElementById("messages_list");
 
-			ML = document.getElementById("MessagesList");
-
-			BCNM = document.getElementById("ButtonCheckForNewMessage");
-			TNM = document.getElementById("TextNewMessage");
-			BNM = document.getElementById("ButtonNewMessage");
+			BCNM = document.getElementById("button_check_for_new_message");
+			TNM = document.getElementById("text_new_message");
+			BNM = document.getElementById("button_new_message");
 
 			if(resources) {
 				//TSU.setAttribute(onkeyup:'SearchUser(this.value)');
