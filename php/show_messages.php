@@ -4,7 +4,7 @@
 	$u = $_SESSION['user_name'];
 	$u2 = $_REQUEST['q'];
 
-	$_SESSION['chatting_with'] = $u2;
+	$_SESSION['current']['chat'] = $u2;
 
 	//$_SESSION['row_number'] = 0;
 	$row_number = 0;

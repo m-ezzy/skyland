@@ -43,7 +43,7 @@
 	require 'server.php';
 	$u = $_SESSION['user_name'];
 
-	$dir = "data/ProfilePictures/";
+	$dir = "data/profile_pictures/";
 	$image = $dir . basename($_FILES["file_pp"]["name"]);
 
 	$extension = strtolower(pathinfo($image,PATHINFO_EXTENSION));

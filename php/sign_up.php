@@ -18,7 +18,7 @@
 	$last_name = mysqli_real_escape_string($conn, $_POST['last_name']);
 
 
-	$user_name = strtolower($user_name);
+	//$user_name = strtolower($user_name);
 
 	$query = "INSERT INTO accounts(user_name,pass_word) VALUES('" . $user_name . "','" . $pass_word . "')";
 	$conn->query($query);

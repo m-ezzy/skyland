@@ -114,12 +114,13 @@ function showName(content) {
 	xmlhttp.send();
 }
 */
-
+/*
 $(document).ready(function() {
 	$("#button_theme").click(function() {
 		$(".MessagesSent").style.backgroundColor = "green";
 	});
 });
+*/
 
 function toggle_theme() {
 	if(theme == theme_names.length - 1) {

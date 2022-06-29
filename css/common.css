@@ -6,8 +6,8 @@
 	overflow: hidden;
 
 	color: black;
-	font-family: 'Courier New', Courier, monospace;
-	/*font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;*/
+	/*font-family: 'Courier New', Courier, monospace;*/
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	font-size: 1vw;
 	font-weight: 700;
 
@@ -95,7 +95,7 @@ body {
 #theme {
 	position: absolute;
 	left: 0vw;
-	top: 80vh;
+	top: 95vh;
 }/*
 #content {
 	position: absolute;
