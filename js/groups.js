@@ -12,7 +12,7 @@ function load_groups() {
 			let c;
 
 			c = "<input type='button' class='button' value='back' id='button_back' onclick='search_results_hidden()'>";
-			c += "<input type='text' placeholder='type a name to search' id='text_search_user' onfocus='search_results_visible()'>";
+			c += "<input type='text' placeholder='type group name to search' id='text_search_user' onfocus='search_results_visible()'>";
 			c += "<input type='button' class='button' value='search' id='button_search_user' onclick='search_user()'>";
 
 			c += "<div id='search_results'></div>";

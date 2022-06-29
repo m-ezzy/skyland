@@ -45,13 +45,28 @@
 			
 			<!--<div class='menu' onclick='load_games()'> Games </div>
 			<div class='menu' onclick='load_market()'> Market </div>-->
-			<button id='theme' onclick='toggle_theme()'> theme </button>
+			<!--<button id='theme' onclick='toggle_theme()'> theme </button>-->
+			<div class='button' id='theme' onclick='toggle_theme(this)'> theme </div>
 		</div>
 		<div id='content'></div>
+
+		<div class='tp' id='tp1'></div>
+		<div class='tp' id='tp2'></div>
+		<div class='tp' id='tp3'></div>
+		<div class='tp' id='tp4'></div>
+		<div class='tp' id='tp5'></div>
 	</div>
 	
 	<script src="../js/main.js"></script>
-	<script src="../js/menus.js"></script>
+
+	<script src="../js/home.js"></script>
+	<script src="../js/chats.js"></script>
+	<script src="../js/groups.js"></script>
+	<script src="../js/channels.js"></script>
+
+	<script src="../js/classes.js"></script>
+	<script src="../js/others.js"></script>
+	
 	<script src="../js/messages.js"></script>
 	<script src="../js/privacy.js"></script>
 </body>
