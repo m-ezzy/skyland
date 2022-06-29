@@ -1,5 +1,5 @@
 function load_groups() {
-	let content = document.getElementById("content");
+	//let content = document.getElementById("content");
 
 	if(groups) {
 		content.innerHTML = groups;
@@ -11,12 +11,12 @@ function load_groups() {
 		if (this.readyState == 4 && this.status == 200) {
 			let c;
 
-			c = "<input type='button' class='button' value='back' id='button_back' onclick='search_results_hidden()'>";
-			c += "<input type='text' placeholder='type group name to search' id='text_search_user' onfocus='search_results_visible()'>";
-			c += "<input type='button' class='button' value='search' id='button_search_user' onclick='search_user()'>";
+			c = "<div class='button' id='button_create_new_group' onclick='create_new_group()'>+</div>";
+			c += "<input type='text' placeholder='type group name here to search' id='text_search_group' onfocus='search_results_visible_groups()' oninput='search_group()'>";
+			//c += "<input type='button' class='button' value='search' id='button_search_user' onclick='search_user()'>";
 
-			c += "<div id='search_results'></div>";
-			c += "<div id='chat_list'>";
+			c += "<div id='search_results_groups'></div>";
+			c += "<div id='groups_list'>";
 
 			let r = new Array();
 			r = JSON.parse(this.responseText);
@@ -32,7 +32,7 @@ function load_groups() {
 				//let s = result['chats'][i];
 
 				//let s = r[i];
-				let path = s.extension ? "../data/profile_pictures/" + s.user_name + "." + s.extension : "../media/images/place_holder3.png";
+				let path = s.extension ? "../data/groups/icons/" + s.user_name + "." + s.extension : "../media/images/place_holder3.png";
 
 				c += "<div class='chat' onclick='show_messages(this, " + s.user_name + ")'>";
 				c += "<img src='" + path + "'>";
@@ -48,7 +48,7 @@ function load_groups() {
 			c += "<input type='text' placeholder='enter key of this conversation' id='text_key' value='1'>";
 			c += "<input type='button' value='encrypt / decrypt' id='button_e_d' onclick='e_d()'>";
 
-			c += "<div id='messages_list'>";
+			c += "<div id='messages_list_group'>";
 			c += "select any chat to show your messages with them here";
 			c += "</div>";
 
@@ -92,6 +92,32 @@ function load_groups() {
 		}
 	};
 	//xmlhttp.setRequestHeader("Access-Control-Allow-Origin": "*");
-	xmlhttp.open("POST", "load_chats.php", true);
+	xmlhttp.open("POST", "load_groups.php", true);
+	xmlhttp.send();
+}
+function create_new_group() {
+	let gl = document.getElementById('groups_list');
+	let nd = document.createElement(div);
+	nd.classname = 'groups_list_child';
+	gl.append(nd);
+
+	//gl.append(create_div_tag('groups_list_div', NULL, NULL));
+
+
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			//SR.style.visibility = "hidden";
+			//SR.innerHTML = "";
+		
+			//CL.innerHTML = CLinnerHTML;
+			CL.innerHTML += this.responseText;
+
+			SR.style.visibility = "hidden";
+		
+			show_messages(user_name);
+		}
+	};
+	xmlhttp.open("POST", "create_new_group.php?q=" + user_name, true);
 	xmlhttp.send();
 }

@@ -1,11 +1,13 @@
 
-#button_back {
+#button_create_new_group {
 	position: relative;
 	top: 0vh;
 	left: 10vw;
 	z-index: 3;
 	width: 5vw;
 	height: 10vh;
+
+	background-color: #AAFFA2;
 }
 #text_search_user {
 	position: relative;
@@ -27,6 +29,8 @@
 
 	width: 5vw;
 	height: 10vh;
+
+	background-color: rgb(150, 150, 150);
 }
 #search_results {
 	position: relative;
@@ -49,7 +53,7 @@
 #search_results:hover {
 	visibility: collapse;
 }*/
-#chat_list {
+#groups_list {
 	position: absolute;
 	top: 10vh;
 	left: 10vw;
@@ -61,8 +65,7 @@
 	margin: 0;
 	padding: 0;
 
-	background-color: rgb(255, 254, 170);
-	/*background-image: url(../media/images/skins/watermelon/chat_list.jpg);*/
+	background-color: #AAFFA2;
 
 	overflow-y: visible;
 }
@@ -111,7 +114,7 @@
 
 	/*border: solid 0.1vw rgb(0, 0, 0);*/
 
-	background-color: #FFAEF7;
+	background-color: rgb(199, 11, 36);
 
 	font-size: 2vw;
 	text-align: left;
@@ -171,8 +174,8 @@
 
 	overflow: auto;
 
-	background-color: #F5FFA2;
-	/*background-image: url(../media/images/skins/watermelon/messages_list.jpg);*/
+	/*background-color: rgb(103, 199, 191);*/
+	background-image: url(../media/images/skins/watermelon/messages_list.jpg);
 	background-repeat: repeat;
 	/*background-size: cover;*/
 

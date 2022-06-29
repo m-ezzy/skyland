@@ -1,4 +1,3 @@
-
 /*
 let MB = document.getElementById("MenuBar");
 let BT = document.getElementById("ButtonTheme");
@@ -15,15 +14,18 @@ let ML = document.getElementById("MessagesList");
 
 let TNM = document.getElementById("TextNewMessage");
 let BNM = document.getElementById("ButtonNewMessage");
-*/
+
 let A;
+*/
+
+let container = document.getElementById("container");
+
+let tp = [];
+tp = document.getElementsByClassName("tp");
 
 let MB = document.getElementById("menu_bar");
-let BT = document.getElementById("toggle_theme");
-
-/*
-let tp = [];
-tp = document.getElementsByClassName("tp");*/
+let BT = document.getElementById("theme");
+let C = document.getElementById("content");
 
 let BB;
 let TSU;
@@ -60,11 +62,51 @@ document.body.onload = function() {
 	load_chats();
 }
 
-let content = document.getElementById("content");
 let home = "";
 let chats = "";
 let groups = "";
 let channels = "";
 
+function reset_width() {
+	for(let i = 0 ; i < 5 ; i++) {
+		tp[i].style.width = "0vw";
+	}
+}
+function toggle_theme(t) {
+	t.style.backgroundColor = 'rgb(255, 255, 255, 0)';
 
-//export {tp};
+	for(let i = 0 ; i < 5 ; i++) {
+		tp[i].style.width = "10vw";
+	}
+
+	setTimeout(reset_width, 1200);
+
+	/*
+	if(t.style.backgroundColor = "blue") {
+		t.style.backgroundColor = "red";
+	} else {
+		t.style.backgroundColor = "blue";
+	}*/
+
+	if(theme == theme_names.length - 1) {
+		theme = 0;
+	} else {
+		theme++;
+	}
+
+	MB.style.backgroundImage = "url(../media/images/skins/" + theme_names[theme] + "/menu_bar.jpg)";
+	CL.style.backgroundImage = "url(../media/images/skins/" + theme_names[theme] + "/chat_list.jpg)";
+	ML.style.backgroundImage = "url(../media/images/skins/" + theme_names[theme] + "/messages_list.jpg)";
+
+	/*
+	for(let i=0 ; i<MS.length ; i++) {
+		MS[i].style.backgroundColor = ThemeColors[Theme][2];
+	}
+	for(let i=0 ; i<MR.length ; i++) {
+		MR[i].style.backgroundColor = ThemeColors[Theme][3];
+	}
+	for(let i=0 ; i<A.length ; i++) {
+		A[i].style.color = ThemeColors[Theme][4];
+	}
+	*/
+}

@@ -46,3 +46,36 @@ function load_home() {
 	xmlhttp.open("POST", "load_home.php", true);
 	xmlhttp.send();
 }
+
+
+function upload_profile_picture() {
+	let xhr = new XMLHttpRequest();
+
+	let file = document.getElementById('file_pp').files[0];
+	
+	let fd = new FormData();
+	fd.append("file_pp", file);
+
+	xhr.open("POST", "upload_profile_picture.php", true);
+	//xhr.setRequestHeader("Content-type","image");
+	xhr.send(fd);
+
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			SB.removeChild(document.getElementById("file_pp"));
+			SB.removeChild(document.getElementById("button_pp"));
+
+			SB.innerHTML = "<img src='../data/profile_pictures/" + this.responseText + "'>" + SB.innerHTML;
+		}
+	};
+}
+function show_profile() {
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			CWH.innerHTML = this.responseText;
+		}
+	};
+	xmlhttp.open("POST", "show_profile_picture.php?q=" + 0, true);
+	xmlhttp.send();
+}
