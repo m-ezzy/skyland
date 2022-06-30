@@ -29,6 +29,9 @@
 	$query = "CREATE TABLE chats_" . $user_name . " (user_name VARCHAR(20) DEFAULT NULL, PRIMARY KEY(user_name))";
 	$conn->query($query);
 
+	$query = "CREATE TABLE groups_" . $user_name . " (names VARCHAR(20) DEFAULT NULL, PRIMARY KEY(names))";
+	$conn->query($query);
+
 	//creating chat between itself
 	$query = "CREATE TABLE chat_between_$user_name" . "_$user_name (ROWNUM int(20),sent_by varchar(20),message varchar(500),time DATETIME(2) DEFAULT CURRENT_TIMESTAMP)";
 	$conn->query($query);

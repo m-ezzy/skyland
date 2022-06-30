@@ -34,10 +34,12 @@ body {
 	/*display: flex;*/
 }
 .button {
-	/*box-shadow: 0px 0px 40px rgba(0, 0, 0, 1);*/
-	background-color: #9FD1FF;
+	box-shadow: 0px 0px 40px rgba(255, 255, 255, 0);
+	/*background-color: #9FD1FF;*/
 
 	/*background-image: linear-gradient(red, green, blue);*/
+
+	border: 0.2vw solid black;
 
 	/*transition-delay: 0s;
 	transition-duration: 1s;
@@ -57,11 +59,11 @@ body {
 		background-color: yellow;
 	}
 }*/
-.button_animations {
+.ba { /*button_animations*/
 	position: absolute;
 	left: 0vw;
 	top: 95vh;
-	z-index: 4;
+	z-index: 5;
 	width: 0vw;
 	height: 10vh;
 
@@ -116,7 +118,7 @@ body {
 	/*position: relative;
 	left: 1vw;
 	top: 1vh;*/
-	z-index: 4;
+	z-index: 5;
 
 	width: 10vw;
 	height: 5vh;
@@ -139,10 +141,10 @@ body {
 
 	background-color: blue;
 	background-color: rgb(0, 0, 0, 0);
-}
+}/*
 .menu_bar button:hover {
 	box-shadow: 0px 0px 40px rgba(0, 0, 0, 1);
-}
+}*/
 #button_theme {
 	position: absolute;
 	left: 0vw;
@@ -153,6 +155,8 @@ body {
 
 	font-size: large;
 	border: 1px solid rgba(0, 0, 0, 0.4);
+
+	background-color: rgb(255, 255, 255, 0);
 }/*
 #content {
 	position: absolute;

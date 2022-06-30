@@ -47,15 +47,15 @@ function load_chats() {
 			c += "<div id='header'></div>";
 
 			c += "<input type='text' placeholder='enter key of this conversation' id='text_key' value='1'>";
-			c += "<input type='button' value='encrypt / decrypt' id='button_e_d' onclick='e_d()'>";
+			c += "<div class='button' id='button_e_d' onclick='e_d()'> encrypt / decrypt </div>";
 
 			c += "<div id='messages_list'>";
 			c += "select any chat to show your messages with them here";
 			c += "</div>";
 
-			c += "<input type='button' value='check for new messages' id='button_check_for_new_messages' onclick='check_for_new_messages()'>";
+			c += "<div class='button' id='button_check_for_new_messages' onclick='check_for_new_messages()'> check for new messages </div>";
 			c += "<input type='text' placeholder='type a new message' id='text_new_message' onfocus='add_event()' onblur='remove_event()'>";
-			c += "<input type='button' value='send' id='button_new_message' onclick='send_new_message()'>";
+			c += "<div class='button' id='button_new_message' onclick='send_new_message()'> send </div>";
 
 			chats = c;
 			content.innerHTML = c;
@@ -93,7 +93,7 @@ function load_chats() {
 		}
 	};
 	//xmlhttp.setRequestHeader("Access-Control-Allow-Origin": "*");
-	xmlhttp.open("POST", "./chats/load_chats.php", true);
+	xmlhttp.open("POST", "load_chats.php", true);
 	xmlhttp.send();
 }
 
@@ -104,6 +104,9 @@ function show_messages(t, user_name) {
 	if(isNaN(key)) {
 		return;
 	}
+
+	//do_amazing_animation('id',t.style.left, t.style.top, t.style.width);
+	do_amazing_animation("10vw", "10vh", "30vw");
 
 	CWH.innerHTML = t.innerHTML;
 
@@ -259,6 +262,8 @@ function search_user() {
 	if(TSU.value == "") {
 		return;
 	}
+
+	do_amazing_animation("35vw", "0vh", "5vw");
 
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {

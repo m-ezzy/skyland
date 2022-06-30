@@ -1,6 +1,6 @@
 
 #button_back {
-	position: relative;
+	position: absolute;
 	top: 0vh;
 	left: 10vw;
 	z-index: 3;
@@ -8,9 +8,9 @@
 	height: 10vh;
 }
 #text_search_user {
-	position: relative;
+	position: absolute;
 	top: 0vh;
-	left: 10vw;
+	left: 15vw;
 	z-index: 3;
 
 	width: 20vw;
@@ -20,10 +20,10 @@
 	/*visibility: hidden;*/
 }
 #button_search_user {
-	position: relative;
+	position: absolute;
 	top: 0vh;
-	left: 10vw;
-	z-index: 3;
+	left: 35vw;
+	z-index: 6;
 
 	width: 5vw;
 	height: 10vh;
@@ -61,7 +61,7 @@
 	margin: 0;
 	padding: 0;
 
-	background-color: rgb(255, 254, 170);
+	background-color: #AAFFA2;
 	/*background-image: url(../media/images/skins/watermelon/chat_list.jpg);*/
 
 	overflow-y: visible;
@@ -70,7 +70,7 @@
 	position: relative;
 	top: 0vh;
 	left: 0vw;
-	z-index: 4;
+	z-index: 8;
 
 	width: 30vw;
 	height: 10vh;
@@ -86,17 +86,17 @@
 	/*
 	position: relative;
 	top: 0vw;
-	left: 0vw;
-	z-index: 4;
-	*/
+	left: 0vw;*/
+	z-index: 9;
+	
 	width: 10vw;
 	height: 10vh;
 
 	overflow: hidden;
-}
+}/*
 .chat:hover {
-	background-color: rgb(110, 110, 110, 0.5);
-}
+	background-color: rgb(255, 255, 255);
+}*/
 #header {
 	position: absolute;
 	top: 0vw;
@@ -111,7 +111,7 @@
 
 	/*border: solid 0.1vw rgb(0, 0, 0);*/
 
-	background-color: #FFAEF7;
+	background-color: #FF8B8B;
 
 	font-size: 2vw;
 	text-align: left;
@@ -152,7 +152,7 @@
 
 	border: solid 0.1vw rgb(0, 0, 0);
 
-	background-color: rgb(150, 150, 150);
+	/*background-color: rgb(150, 150, 150);*/
 
 	font-size: 2vw;
 	text-align: left;
@@ -233,7 +233,9 @@
 
 	word-break: break-all;
 
-	background-color: rgb(255, 255, 255, 0);
+	font-size: 2vw;
+
+	/*background-color: rgb(255, 255, 255, 0);*/
 }
 #text_new_message {
 	position: absolute;
@@ -258,8 +260,11 @@
 	width: 20vw;
 	height: 10vh;
 
+	font-size: 5vw;
+
 	/*margin-top: 95vh;
 	margin-left: 90vw;*/
 
-	background-color: rgb(150, 150, 150);
+	/*background-color: rgb(150, 150, 150);*/
+	background-color: rgb(255, 255, 255, 0);
 }

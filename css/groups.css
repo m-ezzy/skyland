@@ -1,19 +1,19 @@
-
 #button_create_new_group {
-	position: relative;
+	position: absolute;
 	top: 0vh;
 	left: 10vw;
-	z-index: 3;
+	z-index: 5;
+
 	width: 5vw;
 	height: 10vh;
 
-	background-color: #AAFFA2;
+	/*background-color: #AAFFA2;*/
 }
-#text_search_user {
-	position: relative;
+#text_search_groups {
+	position: absolute;
 	top: 0vh;
-	left: 10vw;
-	z-index: 3;
+	left: 15vw;
+	z-index: 5;
 
 	width: 20vw;
 	height: 10vh;
@@ -21,18 +21,18 @@
 	background-color: rgb(255, 255, 255);
 	/*visibility: hidden;*/
 }
-#button_search_user {
-	position: relative;
+#button_search_groups {
+	position: absolute;
 	top: 0vh;
-	left: 10vw;
-	z-index: 3;
+	left: 35vw;
+	z-index: 5;
 
 	width: 5vw;
 	height: 10vh;
 
-	background-color: rgb(150, 150, 150);
+	/*background-color: rgb(150, 150, 150);*/
 }
-#search_results {
+#search_results_groups {
 	position: relative;
 	top: 0vh;
 	left: 10vw;
@@ -41,7 +41,7 @@
 	width: 30vw;
 	height: 90vh;
 
-	background-color: rgb(110, 110, 110);
+	background-color: rgb(161, 161, 161);
 
 	visibility: hidden;
 	/*transition: visibility 2s linear;
@@ -66,10 +66,11 @@
 	padding: 0;
 
 	background-color: #AAFFA2;
+	/*background-image: url(../media/images/skins/watermelon/chat_list.jpg);*/
 
 	overflow-y: visible;
 }
-#chat_list div {
+#groups_list div {
 	position: relative;
 	top: 0vh;
 	left: 0vw;
@@ -78,14 +79,14 @@
 	width: 30vw;
 	height: 10vh;
 
-	border-bottom: solid 0.1vw black;
+	border-bottom: solid 0.1vw rgb(0, 0, 0);
 
 	font-size: 2vw;
 	text-align: left;
 
 	overflow: hidden;
 }
-#chat_list div img {
+#groups_list div img {
 	/*
 	position: relative;
 	top: 0vw;
@@ -97,10 +98,10 @@
 
 	overflow: hidden;
 }
-.chat:hover {
-	background-color: rgb(110, 110, 110, 0.5);
+.groups_list div:hover {
+	background-color: rgb(255, 255, 255);
 }
-#header {
+#header_groups {
 	position: absolute;
 	top: 0vw;
 	left: 40vw;
@@ -114,53 +115,16 @@
 
 	/*border: solid 0.1vw rgb(0, 0, 0);*/
 
-	background-color: rgb(199, 11, 36);
+	background-color: #FF8B8B;
 
 	font-size: 2vw;
 	text-align: left;
 }
-#header img {
+#header_groups img {
 	width: 10vw;
 	height: 10vh;
 }
-#text_key {
-	position: absolute;
-	top: 10vh;
-	left: 40vw;
-	z-index: 3;
-
-	width: 40vw;
-	height: 5vh;
-
-	margin: 0;
-	padding: 0;
-
-	border: solid 0.1vw rgb(0, 0, 0);
-
-	background-color: rgb(255, 255, 255);
-
-	text-align: left;
-}
-#button_e_d {
-	position: absolute;
-	top: 10vh;
-	left: 80vw;
-	z-index: 3;
-
-	width: 20vw;
-	height: 5vh;
-
-	margin: 0;
-	padding: 0;
-
-	border: solid 0.1vw rgb(0, 0, 0);
-
-	background-color: rgb(150, 150, 150);
-
-	font-size: 2vw;
-	text-align: left;
-}
-#messages_list {
+#messages_list_groups {
 	position: absolute;
 	top: 15vh;
 	left: 40vw;
@@ -174,15 +138,15 @@
 
 	overflow: auto;
 
-	/*background-color: rgb(103, 199, 191);*/
-	background-image: url(../media/images/skins/watermelon/messages_list.jpg);
+	background-color: #F5FFA2;
+	/*background-image: url(../media/images/skins/watermelon/messages_list.jpg);
 	background-repeat: repeat;
-	/*background-size: cover;*/
+	background-size: cover;*/
 
 	font-size: 2vw;
 	text-align: center;
 }
-.messages_sent {
+.messages_sent_groups {
 	position: relative;
 	top: 0vh;
 	left: 30vw;
@@ -205,7 +169,7 @@
 
 	font-size: 1.5vw;
 }
-.messages_received {
+.messages_received_groups {
 	position: relative;
 	top: 0vh;
 	left: 1vw;
@@ -225,20 +189,35 @@
 
 	font-size: 1.5vw;
 }
-#button_check_for_new_messages {
+#button_upload_images {
 	position: absolute;
 	top: 90vh;
 	left: 40vw;
 	z-index: 3;
 
-	width: 20vw;
+	width: 5vw;
 	height: 10vh;
 
 	word-break: break-all;
 
-	background-color: rgb(255, 255, 255, 0);
+	font-size: 1vw;
+
+	/*background-color: rgb(255, 255, 255, 0);*/
 }
-#text_new_message {
+#button_upload_videos {
+	position: absolute;
+	top: 90vh;
+	left: 45vw;
+	z-index: 3;
+
+	width: 5vw;
+	height: 10vh;
+
+	word-break: break-all;
+
+	font-size: 1vw;
+}
+#text_new_message_groups {
 	position: absolute;
 	top: 90vh;
 	left: 60vw;
@@ -252,7 +231,7 @@
 	
 	background-color: rgb(255, 255, 255);
 }
-#button_new_message {
+#button_new_message_groups {
 	position: absolute;
 	top: 90vh;
 	left: 85vw;
@@ -261,8 +240,11 @@
 	width: 20vw;
 	height: 10vh;
 
+	font-size: 5vw;
+
 	/*margin-top: 95vh;
 	margin-left: 90vw;*/
 
-	background-color: rgb(150, 150, 150);
+	/*background-color: rgb(150, 150, 150);*/
+	background-color: rgb(255, 255, 255, 0);
 }

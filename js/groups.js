@@ -11,9 +11,9 @@ function load_groups() {
 		if (this.readyState == 4 && this.status == 200) {
 			let c;
 
-			c = "<div class='button' id='button_create_new_group' onclick='create_new_group()'>+</div>";
-			c += "<input type='text' placeholder='type group name here to search' id='text_search_group' onfocus='search_results_visible_groups()' oninput='search_group()'>";
-			//c += "<input type='button' class='button' value='search' id='button_search_user' onclick='search_user()'>";
+			c = "<div class='button' id='button_create_new_group' onclick='create_new_group()'> + </div>";
+			c += "<input type='text' placeholder='type group name here to search' id='text_search_groups' oninput='search_groups()'>";
+			c += "<div class='button' id='button_search_groups' onclick='search_groups()'> search </div>";
 
 			c += "<div id='search_results_groups'></div>";
 			c += "<div id='groups_list'>";
@@ -32,35 +32,39 @@ function load_groups() {
 				//let s = result['chats'][i];
 
 				//let s = r[i];
-				let path = s.extension ? "../data/groups/icons/" + s.user_name + "." + s.extension : "../media/images/place_holder3.png";
+				let path = s.extension ? "../data/groups/icons/" + s.names + "." + s.extension : "../media/images/place_holder3.png";
 
-				c += "<div class='chat' onclick='show_messages(this, " + s.user_name + ")'>";
+				c += "<div onclick='show_messages_groups(this, " + s.names + ")'>";
 				c += "<img src='" + path + "'>";
-				c += s.user_name + " " + s.first_name + " " + s.last_name;
+				c += s.names;
 				c += "</div>";
 				//});
 				i++;
 			}
 			c += "</div>";
 
-			c += "<div id='header'></div>";
+			c += "<div id='header_groups'></div>";
 
-			c += "<input type='text' placeholder='enter key of this conversation' id='text_key' value='1'>";
-			c += "<input type='button' value='encrypt / decrypt' id='button_e_d' onclick='e_d()'>";
+			/*c += "<input type='text' placeholder='enter key of this conversation' id='text_key' value='1'>";
+			c += "<input type='button' value='encrypt / decrypt' id='button_e_d' onclick='e_d()'>";*/
 
-			c += "<div id='messages_list_group'>";
-			c += "select any chat to show your messages with them here";
+			c += "<div id='messages_list_groups'>";
+			c += "select any group to show your messages with them here";
 			c += "</div>";
 
-			c += "<input type='button' value='check for new messages' id='button_check_for_new_messages' onclick='check_for_new_messages()'>";
-			c += "<input type='text' placeholder='type a new message' id='text_new_message' onfocus='add_event()' onblur='remove_event()'>";
-			c += "<input type='button' value='send' id='button_new_message' onclick='send_new_message()'>";
+			c += "<div class='button' id='button_upload_images' onclick='upload_images()'> images </div>";
+			c += "<div class='button' id='button_upload_videos' onclick='upload_images()'> videos </div>";
+			c += "<div class='button' id='button_upload_audios' onclick='upload_images()'> audios </div>";
+			c += "<div class='button' id='button_upload_location' onclick='upload_images()'> location </div>";
 
-			chats = c;
+			c += "<input type='text' placeholder='type a new message' id='text_new_message_groups' onfocus='add_event()' onblur='remove_event()'>";
+			c += "<div class='button' id='button_new_message_groups' onclick='send_new_message_groups()'> send </div>";
+
+			groups = c;
 			content.innerHTML = c;
 
 
-
+			/*
 			BB = document.getElementById("button_back");
 			TSU = document.getElementById("text_search_user");
 			BSU = document.getElementById("button_search_user");
@@ -79,6 +83,7 @@ function load_groups() {
 			BCNM = document.getElementById("button_check_for_new_message");
 			TNM = document.getElementById("text_new_message");
 			BNM = document.getElementById("button_new_message");
+			*/
 
 			if(resources) {
 				//TSU.setAttribute(onkeyup:'SearchUser(this.value)');
@@ -86,7 +91,7 @@ function load_groups() {
 				//alternatively i can simply add event listener
 
 				TSU.addEventListener("keyup",function(e) {
-					search_user();
+					search_groups();
 				});
 			}
 		}
@@ -97,27 +102,40 @@ function load_groups() {
 }
 function create_new_group() {
 	let gl = document.getElementById('groups_list');
-	let nd = document.createElement(div);
-	nd.classname = 'groups_list_child';
-	gl.append(nd);
+	//let nd = document.createElement('div');
+	//gl.append(nd);
 
 	//gl.append(create_div_tag('groups_list_div', NULL, NULL));
 
+	let group_name = document.getElementById("text_search_groups").value;
 
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			//SR.style.visibility = "hidden";
-			//SR.innerHTML = "";
-		
-			//CL.innerHTML = CLinnerHTML;
-			CL.innerHTML += this.responseText;
+			gl.innerHTML += "<div onclick='show_messages_groups(this, " + group_name + ")'>";
+			
+			//gl.innerHTML += this.responseText;
 
-			SR.style.visibility = "hidden";
-		
-			show_messages(user_name);
+			//show_messages_groups(group_name);
 		}
 	};
-	xmlhttp.open("POST", "create_new_group.php?q=" + user_name, true);
+	xmlhttp.open("POST", "create_new_group.php?q=" + group_name, true);
+	xmlhttp.send();
+}
+function search_groups() {
+	let TSG = document.getElementById("text_search_groups");
+	let SRG = document.getElementById("search_results_groups");
+
+	if(TSG.value == "") {
+		return;
+	}
+
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			SRG.innerHTML = this.responseText;
+		}
+	};
+	xmlhttp.open("GET", "search_groups.php?q=" + TSG.value, true);
 	xmlhttp.send();
 }

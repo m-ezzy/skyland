@@ -1,7 +1,7 @@
 <?php
 	require 'server.php';
 
-	$name = $_REQUEST['name'];
+	$name = $_REQUEST['q'];
 	$u = $_SESSION['user_name'];
 
 	/*
@@ -20,7 +20,16 @@
     $query = "INSERT INTO groups(name, created_by) VALUES('" . $name . "','" . $u . "')";
 	$conn->query($query);
 
-	$query = "CREATE TABLE groups_$name (members) VALUES('" . $name . "','" . $u . "')";
+	$query = "CREATE TABLE groups_members_$name (members VARCHAR(20) DEFAULT NULL,joined_on DATETIME(2) DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(members))";
+	$conn->query($query);
+
+	$query = "INSERT INTO groups_members_$name (members) VALUES('" . $u . "')";
+	$conn->query($query);
+
+	$query = "INSERT INTO groups_$u (names) VALUES('" . $name . "')";
+	$conn->query($query);
+
+	$query = "CREATE TABLE group_messages_$name (ROWNUM int(20),sent_by varchar(20),message varchar(500),time DATETIME(2) DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(ROWNUM))";
 	$conn->query($query);
 
 	$first = $u;
@@ -33,12 +42,12 @@
 	$query = "CREATE TABLE chat_between_$first" . "_$second (ROWNUM int(20),sent_by varchar(20),message varchar(500),time DATETIME(2) DEFAULT CURRENT_TIMESTAMP)";
 	$conn->query($query);
 
-	$chats = array();
-	$chats = $_SESSION['chats'];
-	$chats[] = $u2;
-	$_SESSION['chats'] = $chats;
+	$groups = array();
+	$groups = $_SESSION['groups'];
+	$groups[] = $name;
+	$_SESSION['groups'] = $groups;
 
-	echo "<div class='chat' onclick='show_messages(this, " . $u2 . ")'>";
-	echo $u2;
+	echo "<div onclick='show_messages_groups(this, " . $name . ")'>";
+	echo $name;
 	echo "</div>";
 ?>

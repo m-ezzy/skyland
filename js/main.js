@@ -20,8 +20,8 @@ let A;
 
 let container = document.getElementById("container");
 
-let tp = [];
-tp = document.getElementsByClassName("tp");
+let ba = [];
+ba = document.getElementsByClassName("ba");
 
 let MB = document.getElementById("menu_bar");
 let BT = document.getElementById("theme");
@@ -50,7 +50,7 @@ let BNM;
 
 let theme = 8;
 
-let ThemeColors = [
+let theme_colors = [
 	["rgb(25, 25, 25)", "rgb(90, 90, 90)", "rgb(200, 200, 35)", "rgb(40, 90, 50)","rgb(255, 255, 255)"],
 	["rgb(100, 100, 100)", "rgb(255, 255, 255)", "rgb(255, 255, 60)", "rgb(30, 200, 60)","rgb(0, 0, 0)"],
 ];
@@ -67,19 +67,11 @@ let chats = "";
 let groups = "";
 let channels = "";
 
-function reset_width() {
-	for(let i = 0 ; i < 5 ; i++) {
-		tp[i].style.width = "0vw";
-	}
-}
 function toggle_theme(t) {
-	t.style.backgroundColor = 'rgb(255, 255, 255, 0)';
+	/*t.style.backgroundColor = 'rgb(255, 255, 255, 0)';*/
 
-	for(let i = 0 ; i < 5 ; i++) {
-		tp[i].style.width = "10vw";
-	}
-
-	setTimeout(reset_width, 1200);
+	do_amazing_animation("0vw", "95vh", "10vw");
+	//do_amazing_animation_id('button_theme');
 
 	/*
 	if(t.style.backgroundColor = "blue") {

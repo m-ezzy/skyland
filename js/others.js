@@ -50,6 +50,39 @@ function create_div_tag(class_name, id, text) {
 
 	return element;
 }
+function do_amazing_animation(left, top, width) {
+	/*t.style.backgroundColor = 'rgb(255, 255, 255, 0)';*/
+
+	for(let i = 0 ; i < 5 ; i++) {
+		/*ba[i].style.left = t.style.left;
+		ba[i].style.top = t.style.top;*/
+
+		ba[i].style.left = left;
+		ba[i].style.top = top;
+		ba[i].style.width = width;
+	}
+
+	setTimeout(reset_width, 1200);
+}
+function do_amazing_animation_id(id) {
+	let t = document.getElementById(id);
+	console.log(t);
+	console.log("100");
+	console.log(t.style.top);
+
+	
+	for(let i = 0 ; i < 5 ; i++) {
+		ba[i].style.left = t.style.left;
+		ba[i].style.top = t.style.top;
+		ba[i].style.width = t.style.width;
+	}
+	setTimeout(reset_width, 1200);
+}
+function reset_width() {
+	for(let i = 0 ; i < 5 ; i++) {
+		ba[i].style.width = "0vw";
+	}
+}
 
 /*
 function showName(content) {
