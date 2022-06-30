@@ -29,8 +29,8 @@
 	height: 10vh;
 }
 #search_results {
-	position: relative;
-	top: 0vh;
+	position: absolute;
+	top: 10vh;
 	left: 10vw;
 	z-index: 4;
 
@@ -198,7 +198,7 @@
 	padding-right: 1vw;
 
 	color: rgb(0, 0, 0);
-	background-color: rgb(255, 255, 179);
+	background-color: #9FD1FF;
 
 	font-size: 1.5vw;
 }
@@ -218,7 +218,7 @@
 	padding-left: 1vw;
 
 	color: rgb(255, 255, 255);
-	background-color: rgb(27, 3, 3);
+	background-color: #9FD1FF;
 
 	font-size: 1.5vw;
 }

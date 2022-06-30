@@ -48,6 +48,9 @@ body {
 
 	/*animation: example 5s linear infinite;*/
 }
+input {
+	border: 0.2vw solid black;
+}
 /*@keyframes example {
 	0% {
 		background-color: red;
@@ -67,7 +70,7 @@ body {
 	width: 0vw;
 	height: 10vh;
 
-	transition-duration: 0.4s;
+	transition-duration: 0.2s;
 	transition-property: width;
 	/*transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);*/
 }
@@ -154,7 +157,6 @@ body {
 	height: 10vh;
 
 	font-size: large;
-	border: 1px solid rgba(0, 0, 0, 0.4);
 
 	background-color: rgb(255, 255, 255, 0);
 }/*

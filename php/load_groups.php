@@ -5,7 +5,7 @@
 	$_SESSION['groups'] = array();
 
 	//$query = "SELECT names FROM groups_$u";
-	$query = "SELECT groups_$u.names,groups.extension FROM groups INNER JOIN groups_$u ON groups.names=groups_$u.names";
+	$query = "SELECT groups_$u.names,groups.extension FROM groups INNER JOIN groups_$u ON groups.name=groups_$u.names";
 
 	$result = $conn->query($query);
 

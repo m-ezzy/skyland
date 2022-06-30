@@ -44,9 +44,8 @@ function load_groups() {
 			c += "</div>";
 
 			c += "<div id='header_groups'></div>";
-
-			/*c += "<input type='text' placeholder='enter key of this conversation' id='text_key' value='1'>";
-			c += "<input type='button' value='encrypt / decrypt' id='button_e_d' onclick='e_d()'>";*/
+			c += "<input type='text' id='text_add_user_to_group'>";
+			c += "<div class='button' id='button_add_user_to_group' onclick='add_user_to_group()'> add member </div>";
 
 			c += "<div id='messages_list_groups'>";
 			c += "select any group to show your messages with them here";
@@ -112,9 +111,9 @@ function create_new_group() {
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			gl.innerHTML += "<div onclick='show_messages_groups(this, " + group_name + ")'>";
+			//gl.innerHTML += "<div onclick='show_messages_groups(this, " + group_name + ")'>";
 			
-			//gl.innerHTML += this.responseText;
+			gl.innerHTML += this.responseText;
 
 			//show_messages_groups(group_name);
 		}
@@ -122,20 +121,104 @@ function create_new_group() {
 	xmlhttp.open("POST", "create_new_group.php?q=" + group_name, true);
 	xmlhttp.send();
 }
-function search_groups() {
-	let TSG = document.getElementById("text_search_groups");
-	let SRG = document.getElementById("search_results_groups");
+function show_messages_groups(t, group_name) {
+	do_amazing_animation("10vw", "10vh", "30vw");
 
-	if(TSG.value == "") {
+	document.getElementById("header_groups").innerHTML = t.innerHTML;
+
+	//console.log(this);
+	let MLG = document.getElementById("messages_list_groups");
+	MLG.innerHTML = "";
+
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if(this.readyState == 4 && this.status == 200) {
+			//ML.innerHTML = this.responseText;
+
+			let result = Array();
+			result = JSON.parse(this.responseText);
+			
+			let i = 0;
+			while(o = result[i]) {
+				let who;
+				if(o.sent_by == user_name) {
+					who = "messages_received_groups";
+				} else {
+					who = "messages_sent_groups";
+				}
+
+				let new_element = document.createElement("div");
+				new_element.className = who;
+
+				let text_node = document.createTextNode(o.sent_by + " : " + o.message);
+				new_element.appendChild(text_node);
+
+				MLG.appendChild(new_nlement);
+
+				i++;
+			}
+
+			MLG.scrollTo(0, 99999);
+
+			MSG = document.getElementsByClassName("messages_sent_groups");
+			MRG = document.getElementsByClassName("messages_received_groups");
+
+			if(resources) {
+				//let ci = setInterval(check_for_new_messages_groups, 1000);
+			}
+		}
+	};
+	xmlhttp.open("POST", "show_messages_groups.php?q=" + group_name, true);
+	xmlhttp.send();
+}
+function send_new_message_groups() {
+	let MLG = document.getElementById("messages_list_groups");
+	let TNMG = document.getElementById("text_new_message_groups");
+
+	if(TNMG.value == "") {
 		return;
 	}
 
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			SRG.innerHTML = this.responseText;
+			let new_div = document.createElement("div");
+			new_div.className = "messages_sent_groups";
+
+			let new_text = document.createTextNode(TNMG.value);
+			new_div.appendChild(new_text);
+
+			MLG.appendChild(new_div);
+
+			/*ML.innerHTML += this.responseText;*/
+
+			MLG.scrollBy(0,100);
 		}
 	};
-	xmlhttp.open("GET", "search_groups.php?q=" + TSG.value, true);
+	xmlhttp.open("POST", "send_new_message_groups.php?q=" + TNMG.value, true);
 	xmlhttp.send();
 }
+function add_user_to_group() {
+	let TAUTG = document.getElementById("text_add_user_to_group");
+	console.log(TAUTG);
+
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			let r = this.responseText;
+			console.log(TAUTG.value);
+		}
+	};
+	xmlhttp.open("POST", "add_user_to_group.php?q=" + TAUTG.value, true);
+	xmlhttp.send();
+}
+
+
+
+
+
+
+
+
+
+

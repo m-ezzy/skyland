@@ -62,7 +62,7 @@ function do_amazing_animation(left, top, width) {
 		ba[i].style.width = width;
 	}
 
-	setTimeout(reset_width, 1200);
+	setTimeout(reset_width, 1000);
 }
 function do_amazing_animation_id(id) {
 	let t = document.getElementById(id);
@@ -76,7 +76,7 @@ function do_amazing_animation_id(id) {
 		ba[i].style.top = t.style.top;
 		ba[i].style.width = t.style.width;
 	}
-	setTimeout(reset_width, 1200);
+	setTimeout(reset_width, 1000);
 }
 function reset_width() {
 	for(let i = 0 ; i < 5 ; i++) {
