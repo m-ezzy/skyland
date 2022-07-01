@@ -1,5 +1,5 @@
 <?php
-	require 'server.php';
+	require '../server.php';
 
 	$gn = $_REQUEST['q'];
 	$u = $_SESSION['user_name'];

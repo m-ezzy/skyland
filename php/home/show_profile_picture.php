@@ -10,7 +10,7 @@
 
     $row = $result->fetch_assoc();
 
-    $imageURL = "data/ProfilePictures/" . $u . "." . $row->extension;
+    $imageURL = "data/profile_pictures/" . $u . "." . $row->extension;
     
     echo "<img src=$imageURL alt='loading picture...' width='50' height='50'/>";
 ?>

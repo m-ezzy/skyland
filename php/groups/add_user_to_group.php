@@ -1,5 +1,5 @@
 <?php
-	require 'server.php';
+	require '../server.php';
 
 	$user_to_add = $_REQUEST['q'];
 

@@ -1,5 +1,5 @@
 <?php
-	require 'server.php';
+	require '../server.php';
 
 	$u = $_SESSION['user_name'];
 	$u2 = $_SESSION['current']['chat'];

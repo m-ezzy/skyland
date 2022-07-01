@@ -1,5 +1,5 @@
 <?php
-	require 'server.php';
+	require '../server.php';
 
 	$u = $_SESSION['user_name'];
 	$gn = $_REQUEST['q'];
@@ -14,6 +14,11 @@
 
 	$rows = array();
 	$rows[] = $u;
+
+	/*$query = "SELECT members FROM group_members_$gn";
+	$result2 = $conn->query($query);
+
+	$rows[] = $result2->fetch_assoc();*/
 
 	while($r = $result->fetch_object()) {
 		$rows[] = $r;

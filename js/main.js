@@ -70,7 +70,7 @@ let channels = "";
 function toggle_theme(t) {
 	/*t.style.backgroundColor = 'rgb(255, 255, 255, 0)';*/
 
-	do_amazing_animation("0vw", "95vh", "10vw");
+	do_amazing_animation("0vw", "95vh", "10vw", "5vh");
 	//do_amazing_animation_id('button_theme');
 
 	/*

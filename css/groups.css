@@ -41,7 +41,7 @@
 	width: 30vw;
 	height: 90vh;
 
-	background-color: rgb(161, 161, 161);
+	background-color: rgb(180, 180, 180);
 
 	visibility: hidden;
 	/*transition: visibility 2s linear;
@@ -151,7 +151,7 @@
 	z-index: 3;
 
 	width: 60vw;
-	height: 75vh;
+	height: 85vh;
 
 	margin: 0;
 	padding: 0;
@@ -209,7 +209,7 @@
 
 	font-size: 1.5vw;
 }
-#button_upload_images {
+#button_upload_images_groups {
 	position: absolute;
 	top: 90vh;
 	left: 40vw;
@@ -220,11 +220,9 @@
 
 	word-break: break-all;
 
-	font-size: 1vw;
-
-	/*background-color: rgb(255, 255, 255, 0);*/
+	background-color: rgb(255, 255, 255, 0);
 }
-#button_upload_videos {
+#button_upload_videos_groups {
 	position: absolute;
 	top: 90vh;
 	left: 45vw;
@@ -234,16 +232,51 @@
 	height: 10vh;
 
 	word-break: break-all;
-
-	font-size: 1vw;
 }
-#text_new_message_groups {
+#button_upload_audios_groups {
+	position: absolute;
+	top: 90vh;
+	left: 50vw;
+	z-index: 3;
+
+	width: 5vw;
+	height: 10vh;
+
+	word-break: break-all;
+
+	/*background-color: rgb(255, 255, 255, 0);*/
+}
+#button_upload_document_groups {
+	position: absolute;
+	top: 90vh;
+	left: 55vw;
+	z-index: 3;
+
+	width: 5vw;
+	height: 10vh;
+
+	word-break: break-all;
+}
+#button_upload_location_groups {
 	position: absolute;
 	top: 90vh;
 	left: 60vw;
 	z-index: 3;
 
-	width: 25vw;
+	width: 5vw;
+	height: 10vh;
+
+	word-break: break-all;
+
+	/*background-color: rgb(255, 255, 255, 0);*/
+}
+#text_new_message_groups {
+	position: absolute;
+	top: 90vh;
+	left: 65vw;
+	z-index: 3;
+
+	width: 30vw;
 	height: 10vh;
 
 	/*margin-top: 95vh;
@@ -253,14 +286,14 @@
 }
 #button_new_message_groups {
 	position: absolute;
+	left: 95vw;
 	top: 90vh;
-	left: 85vw;
 	z-index: 3;
 
-	width: 20vw;
+	width: 5vw;
 	height: 10vh;
 
-	font-size: 5vw;
+	font-size: 2vw;
 
 	/*margin-top: 95vh;
 	margin-left: 90vw;*/

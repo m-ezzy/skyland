@@ -40,14 +40,16 @@
 			<!--<input type="button" onclick='load_home()' value='home'>
 			<input type="button" onclick='load_frequent()' value='frequent'>-->
 
-			<button onclick='load_home()'> home </button>
-			<button onclick='load_chats()'> chats </button>
-			<button onclick='load_groups()'> groups </button>
-			<button onclick='load_channels()'> channels </button>
+			<div class='button' onclick='load_home(this)'> home </div>
+			<div class='button' onclick='load_chats(this)'> chats </div>
+			<div class='button' onclick='load_groups(this)'> groups </div>
+			<div class='button' onclick='load_channels(this)'> channels </div>
 			
-			<!--<div class='menu' onclick='load_games()'> Games </div>
-			<div class='menu' onclick='load_market()'> Market </div>-->
-			<!--<button id='theme' onclick='toggle_theme()'> theme </button>-->
+			<!--
+			<div class='menu' onclick='load_games()'> Games </div>
+			<div class='menu' onclick='load_market()'> Market </div>
+			<button id='theme' onclick='toggle_theme()'> theme </button>
+			-->
 			<div class='button' id='button_theme' onclick='toggle_theme(this)'> theme </div>
 		</div>
 		<div id='content'></div>

@@ -1,5 +1,5 @@
 <?php
-	require 'server.php';
+	require '../server.php';
 
 	$EM = $_REQUEST['q'];
 	

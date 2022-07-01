@@ -50,7 +50,7 @@ function create_div_tag(class_name, id, text) {
 
 	return element;
 }
-function do_amazing_animation(left, top, width) {
+function do_amazing_animation(left, top, width, height) {
 	/*t.style.backgroundColor = 'rgb(255, 255, 255, 0)';*/
 
 	for(let i = 0 ; i < 5 ; i++) {
@@ -60,6 +60,7 @@ function do_amazing_animation(left, top, width) {
 		ba[i].style.left = left;
 		ba[i].style.top = top;
 		ba[i].style.width = width;
+		ba[i].style.height = height;
 	}
 
 	setTimeout(reset_width, 1000);

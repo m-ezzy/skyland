@@ -1,5 +1,5 @@
 <?php
-	require 'server.php';
+	require '../server.php';
 	//session_start();
 
 	$u = $_SESSION['user_name'];

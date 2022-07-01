@@ -1,5 +1,7 @@
 
 function load_chats() {
+	do_amazing_animation("0vw", "5vh", "10vw", "5vh");
+
 	let content = document.getElementById("content");
 
 	if(chats) {
@@ -12,9 +14,9 @@ function load_chats() {
 		if (this.readyState == 4 && this.status == 200) {
 			let c;
 
-			c = "<input type='button' class='button' value='back' id='button_back' onclick='search_results_hidden()'>";
+			c = "<div class='button' id='button_back' onclick='search_results_hidden()'> back </div>";
 			c += "<input type='text' placeholder='type a name to search' id='text_search_user' onfocus='search_results_visible()'>";
-			c += "<input type='button' class='button' value='search' id='button_search_user' onclick='search_user()'>";
+			c += "<div class='button' id='button_search_user' onclick='search_user()'> search </div>";
 
 			c += "<div id='search_results'></div>";
 			c += "<div id='chat_list'>";
@@ -53,7 +55,13 @@ function load_chats() {
 			c += "select any chat to show your messages with them here";
 			c += "</div>";
 
-			c += "<div class='button' id='button_check_for_new_messages' onclick='check_for_new_messages()'> check for new messages </div>";
+			c += "<div class='button' id='button_upload_images' onclick='upload_images()'> images </div>";
+			c += "<div class='button' id='button_upload_videos' onclick='upload_images()'> videos </div>";
+			c += "<div class='button' id='button_upload_audios' onclick='upload_images()'> audios </div>";
+			c += "<div class='button' id='button_upload_document' onclick='upload_document()'> document </div>";
+			c += "<div class='button' id='button_upload_location' onclick='upload_images()'> location </div>";
+
+			//c += "<div class='button' id='button_check_for_new_messages' onclick='check_for_new_messages()'> check for new messages </div>";
 			c += "<input type='text' placeholder='type a new message' id='text_new_message' onfocus='add_event()' onblur='remove_event()'>";
 			c += "<div class='button' id='button_new_message' onclick='send_new_message()'> send </div>";
 
@@ -93,7 +101,7 @@ function load_chats() {
 		}
 	};
 	//xmlhttp.setRequestHeader("Access-Control-Allow-Origin": "*");
-	xmlhttp.open("POST", "load_chats.php", true);
+	xmlhttp.open("POST", "../php/chats/load_chats.php", true);
 	xmlhttp.send();
 }
 
@@ -106,7 +114,7 @@ function show_messages(t, user_name) {
 	}
 
 	//do_amazing_animation('id',t.style.left, t.style.top, t.style.width);
-	do_amazing_animation("10vw", "10vh", "30vw");
+	do_amazing_animation("10vw", "10vh", "30vw", "10vh");
 
 	CWH.innerHTML = t.innerHTML;
 
@@ -174,7 +182,7 @@ function show_messages(t, user_name) {
 			}
 		}
 	};
-	xmlhttp.open("POST", "show_messages.php?q=" + user_name, true);
+	xmlhttp.open("POST", "../php/chats/show_messages.php?q=" + user_name, true);
 	xmlhttp.send();
 }
 function send_new_message() {
@@ -183,6 +191,8 @@ function send_new_message() {
 	if(TNM.value == "" || TK.value == "") {
 		return;
 	}
+
+	do_amazing_animation("95vw", "90vh", "5vw", "10vh");
 
 	let EM = encryption(TNM.value);
 
@@ -206,7 +216,7 @@ function send_new_message() {
 			ML.scrollBy(0,100);
 		}
 	};
-	xmlhttp.open("POST", "send_new_message.php?q=" + EM, true);
+	xmlhttp.open("POST", "../php/chats/send_new_message.php?q=" + EM, true);
 	xmlhttp.send();
 }
 function check_for_new_messages() {
@@ -248,7 +258,7 @@ function check_for_new_messages() {
 			}
 		}
 	};
-	xmlhttp.open("POST", "check_for_new_messages.php", true);
+	xmlhttp.open("POST", "../php/chats/check_for_new_messages.php", true);
 	xmlhttp.send();
 }
 
@@ -263,7 +273,7 @@ function search_user() {
 		return;
 	}
 
-	do_amazing_animation("35vw", "0vh", "5vw");
+	do_amazing_animation("35vw", "0vh", "5vw", "10vh");
 
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
@@ -271,7 +281,7 @@ function search_user() {
 			SR.innerHTML = this.responseText;
 		}
 	};
-	xmlhttp.open("GET", "search_user.php?q=" + TSU.value, true);
+	xmlhttp.open("GET", "../php/chats/search_user.php?q=" + TSU.value, true);
 	xmlhttp.send();
 }
 function take_to_that_chat(user_name) {
@@ -296,7 +306,7 @@ function create_new_chat(user_name) {
 			show_messages(user_name);
 		}
 	};
-	xmlhttp.open("POST", "create_new_chat.php?q=" + user_name, true);
+	xmlhttp.open("POST", "../php/chats/create_new_chat.php?q=" + user_name, true);
 	xmlhttp.send();
 }
 function snm(e) {

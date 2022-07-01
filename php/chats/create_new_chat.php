@@ -1,5 +1,5 @@
 <?php
-	require 'server.php';
+	require '../server.php';
 
 	$u2 = $_REQUEST['q'];
 	$u = $_SESSION['user_name'];
@@ -30,7 +30,9 @@
 		$first = $u2;
 		$second = $u;
 	}
-	$query = "CREATE TABLE chat_between_$first" . "_$second (ROWNUM int(20),sent_by varchar(20),message varchar(500),time DATETIME(2) DEFAULT CURRENT_TIMESTAMP)";
+
+	//check this ' IF NOT EXISTS ' stuff in action
+	$query = "CREATE TABLE IF NOT EXISTS chat_between_$first" . "_$second (ROWNUM int(20),sent_by varchar(20),message varchar(500),time DATETIME(2) DEFAULT CURRENT_TIMESTAMP)";
 	$conn->query($query);
 
 	$chats = array();
@@ -38,7 +40,20 @@
 	$chats[] = $u2;
 	$_SESSION['chats'] = $chats;
 
+	$query = "SELECT user_name,first_name,last_name,extension FROM user_info WHERE user_name=$u2";
+	$result = $conn->query($query);
+	$row = $result->fetch_object();
+
+	$path = "";
+
+	if($e = $row->extension) {
+		$path = "../data/profile_pictures/$u2" . "." . $e;
+	} else {
+		$path = "../media/images/place_holder3.png";
+	}
+
 	echo "<div class='chat' onclick='show_messages(this, " . $u2 . ")'>";
-	echo $u2;
+	echo "<img src='" . $path . "'>";
+	echo $row->user_name . " " . $row->first_name . " " . $row->last_name;
 	echo "</div>";
 ?>

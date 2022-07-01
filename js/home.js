@@ -43,7 +43,7 @@ function load_home() {
 			//C = document.getElementById("content");
 		}
 	};
-	xmlhttp.open("POST", "load_home.php", true);
+	xmlhttp.open("POST", "../php/home/load_home.php", true);
 	xmlhttp.send();
 }
 
@@ -56,7 +56,7 @@ function upload_profile_picture() {
 	let fd = new FormData();
 	fd.append("file_pp", file);
 
-	xhr.open("POST", "upload_profile_picture.php", true);
+	xhr.open("POST", "../php/home/upload_profile_picture.php", true);
 	//xhr.setRequestHeader("Content-type","image");
 	xhr.send(fd);
 
@@ -76,6 +76,6 @@ function show_profile() {
 			CWH.innerHTML = this.responseText;
 		}
 	};
-	xmlhttp.open("POST", "show_profile_picture.php?q=" + 0, true);
+	xmlhttp.open("POST", "../php/home/show_profile_picture.php?q=" + 0, true);
 	xmlhttp.send();
 }

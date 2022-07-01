@@ -1,6 +1,8 @@
 function load_groups() {
 	//let content = document.getElementById("content");
 
+	do_amazing_animation("0vw", "10vh", "10vw", "5vh");
+
 	if(groups) {
 		content.innerHTML = groups;
 		return;
@@ -58,10 +60,11 @@ function load_groups() {
 			c += "select any group to show your messages with them here";
 			c += "</div>";
 
-			c += "<div class='button' id='button_upload_images' onclick='upload_images()'> images </div>";
-			c += "<div class='button' id='button_upload_videos' onclick='upload_images()'> videos </div>";
-			c += "<div class='button' id='button_upload_audios' onclick='upload_images()'> audios </div>";
-			c += "<div class='button' id='button_upload_location' onclick='upload_images()'> location </div>";
+			c += "<div class='button' id='button_upload_images_groups' onclick='upload_images_groups()'> images </div>";
+			c += "<div class='button' id='button_upload_videos_groups' onclick='upload_videos_groups()'> videos </div>";
+			c += "<div class='button' id='button_upload_audios_groups' onclick='upload_audios_groups()'> audios </div>";
+			c += "<div class='button' id='button_upload_document_groups' onclick='upload_document_groups()'> document </div>";
+			c += "<div class='button' id='button_upload_location_groups' onclick='upload_location_groups()'> location </div>";
 
 			c += "<input type='text' placeholder='type a new message' id='text_new_message_groups' onfocus='add_event()' onblur='remove_event()'>";
 			c += "<div class='button' id='button_new_message_groups' onclick='send_new_message_groups()'> send </div>";
@@ -103,7 +106,7 @@ function load_groups() {
 		}
 	};
 	//xmlhttp.setRequestHeader("Access-Control-Allow-Origin": "*");
-	xmlhttp.open("POST", "load_groups2.php", true);
+	xmlhttp.open("POST", "../php/groups/load_groups2.php", true);
 	xmlhttp.send();
 }
 function create_new_group() {
@@ -125,19 +128,40 @@ function create_new_group() {
 			//show_messages_groups(group_name);
 		}
 	};
-	xmlhttp.open("POST", "create_new_group.php?q=" + group_name, true);
+	xmlhttp.open("POST", "../php/groups/create_new_group.php?q=" + group_name, true);
 	xmlhttp.send();
 }
 function show_messages_groups(t, group_name) {
-	do_amazing_animation("10vw", "10vh", "30vw");
+	do_amazing_animation("10vw", "10vh", "30vw", "10vh");
 
-	document.getElementById("header_groups").innerHTML = t.innerHTML;
+	let hg = document.getElementById("header_groups");
+
+	hg.innerHTML = t.innerHTML + " : ";
+
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			let result = Array();
+			result = JSON.parse(this.responseText);
+
+			let i = 0;
+			let r = "";
+
+			while(o = result[i]) {
+				r += (o.members + " , ");
+				i++;
+			}
+			hg.innerHTML += r;
+		}
+	};
+	xmlhttp.open("POST", "../php/groups/give_members.php?q=" + group_name, true);
+	xmlhttp.send();
 
 	//console.log(this);
 	let MLG = document.getElementById("messages_list_groups");
 	MLG.innerHTML = "";
 
-	let xmlhttp = new XMLHttpRequest();
+	xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if(this.readyState == 4 && this.status == 200) {
 			//ML.innerHTML = this.responseText;
@@ -146,6 +170,7 @@ function show_messages_groups(t, group_name) {
 			result = JSON.parse(this.responseText);
 
 			let user_name = result[0];
+			/*let members = result[0].members;*/
 
 			let i = 1;
 			while(o = result[i]) {
@@ -177,7 +202,7 @@ function show_messages_groups(t, group_name) {
 			}
 		}
 	};
-	xmlhttp.open("POST", "show_messages_groups.php?q=" + group_name, true);
+	xmlhttp.open("POST", "../php/groups/show_messages.php?q=" + group_name, true);
 	xmlhttp.send();
 }
 function send_new_message_groups() {
@@ -204,7 +229,7 @@ function send_new_message_groups() {
 			MLG.scrollBy(0,100);
 		}
 	};
-	xmlhttp.open("POST", "send_new_message_groups.php?q=" + TNMG.value, true);
+	xmlhttp.open("POST", "../php/groups/send_new_message.php?q=" + TNMG.value, true);
 	xmlhttp.send();
 }
 function add_user_to_group() {
@@ -218,7 +243,7 @@ function add_user_to_group() {
 			console.log(TAUTG.value);
 		}
 	};
-	xmlhttp.open("POST", "add_user_to_group.php?q=" + TAUTG.value, true);
+	xmlhttp.open("POST", "../php/groups/add_user_to_group.php?q=" + TAUTG.value, true);
 	xmlhttp.send();
 }
 function search_groups() {
