@@ -10,9 +10,11 @@
 	$row_number += 1;
 	$_SESSION['groups'][$gn]['row_number'] = $row_number;
 
-	$query = "INSERT INTO group_messages_$gn (ROWNUM,sent_by,message) VALUES (" . $row_number . ",'" . $u . "','" . $m . "')";
+	$query = "INSERT INTO group_messages_$gn (ROWNUM,sent_by,messages) VALUES(" . $row_number . ",'" . $u . "','" . $m . "')";
+	$conn->query($query);
 
+	/*
 	if ($conn->query($query)) {
 		echo "success";
-	}
+	}*/
 ?>

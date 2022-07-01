@@ -18,14 +18,16 @@ function load_groups() {
 			c += "<div id='search_results_groups'></div>";
 			c += "<div id='groups_list'>";
 
+			/*
 			let r = new Array();
 			r = JSON.parse(this.responseText);
 
-			/*let s = new Array();
-			s = JSON.parse(result);*/
+			//let s = new Array();
+			//s = JSON.parse(result);
 
 			let i = 0;
 			//let s;
+			if(r != "0") {
 			while(s = r[i]) {
 				//s = JSON.parse(r[i]);
 
@@ -33,6 +35,7 @@ function load_groups() {
 
 				//let s = r[i];
 				let path = s.extension ? "../data/groups/icons/" + s.names + "." + s.extension : "../media/images/place_holder3.png";
+				//let path =  "../media/images/place_holder3.png";
 
 				c += "<div onclick='show_messages_groups(this, " + s.names + ")'>";
 				c += "<img src='" + path + "'>";
@@ -41,6 +44,10 @@ function load_groups() {
 				//});
 				i++;
 			}
+			}
+			*/
+
+			c += this.responseText;
 			c += "</div>";
 
 			c += "<div id='header_groups'></div>";
@@ -96,7 +103,7 @@ function load_groups() {
 		}
 	};
 	//xmlhttp.setRequestHeader("Access-Control-Allow-Origin": "*");
-	xmlhttp.open("POST", "load_groups.php", true);
+	xmlhttp.open("POST", "load_groups2.php", true);
 	xmlhttp.send();
 }
 function create_new_group() {
@@ -137,23 +144,25 @@ function show_messages_groups(t, group_name) {
 
 			let result = Array();
 			result = JSON.parse(this.responseText);
-			
-			let i = 0;
+
+			let user_name = result[0];
+
+			let i = 1;
 			while(o = result[i]) {
 				let who;
 				if(o.sent_by == user_name) {
-					who = "messages_received_groups";
-				} else {
 					who = "messages_sent_groups";
+				} else {
+					who = "messages_received_groups";
 				}
 
 				let new_element = document.createElement("div");
 				new_element.className = who;
 
-				let text_node = document.createTextNode(o.sent_by + " : " + o.message);
+				let text_node = document.createTextNode(o.sent_by + " : " + o.messages);
 				new_element.appendChild(text_node);
 
-				MLG.appendChild(new_nlement);
+				MLG.appendChild(new_element);
 
 				i++;
 			}
@@ -212,6 +221,10 @@ function add_user_to_group() {
 	xmlhttp.open("POST", "add_user_to_group.php?q=" + TAUTG.value, true);
 	xmlhttp.send();
 }
+function search_groups() {
+
+}
+
 
 
 

@@ -9,6 +9,7 @@
 
 	$query = "SELECT user_name,first_name,last_name,extension FROM user_info WHERE user_name=" . $u;
 	$result = $conn->query($query);
+	
 	$row = $result->fetch_object();
 
 	$json = json_encode($row);

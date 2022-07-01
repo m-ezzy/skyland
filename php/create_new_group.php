@@ -1,7 +1,7 @@
 <?php
 	require 'server.php';
 
-	$name = $_REQUEST['q'];
+	$gn = $_REQUEST['q'];
 	$u = $_SESSION['user_name'];
 
 	/*
@@ -17,28 +17,28 @@
 		}
 	}*/
 
-    $query = "INSERT INTO groups(name, created_by) VALUES('" . $name . "','" . $u . "')";
+	$query = "INSERT INTO groups (names, created_by) VALUES('" . $gn . "','" . $u . "')";
 	$conn->query($query);
 
-	$query = "CREATE TABLE group_members_$name (members VARCHAR(20) DEFAULT NULL,joined_on DATETIME(2) DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(members))";
+	$query = "CREATE TABLE group_members_$gn (members VARCHAR(20) DEFAULT NULL,joined_on DATETIME(2) DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(members))";
 	$conn->query($query);
 
-	$query = "INSERT INTO group_members_$name (members) VALUES('" . $u . "')";
+	$query = "INSERT INTO group_members_$gn (members) VALUES('" . $u . "')";
 	$conn->query($query);
 
-	$query = "INSERT INTO groups_$u (names) VALUES('" . $name . "')";
+	$query = "INSERT INTO groups_$u (names) VALUES('" . $gn . "')";
 	$conn->query($query);
 
-	$query = "CREATE TABLE group_messages_$name (ROWNUM int(20),sent_by varchar(20),message varchar(500),time DATETIME(2) DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(ROWNUM))";
+	$query = "CREATE TABLE group_messages_$gn (ROWNUM int(20),sent_by varchar(20),messages varchar(500),sent_time DATETIME(2) DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(ROWNUM))";
 	$conn->query($query);
 
 	$groups = array();
 	$groups = $_SESSION['groups'];
-	$groups[] = $name;
+	$groups[] = $gn;
 	$_SESSION['groups'] = $groups;
 
-	echo "<div onclick='show_messages_groups(this, " . $name . ")'>";
+	echo "<div onclick='show_messages_groups(this, " . $gn . ")'>";
 	echo "<img src='../media/images/place_holder3.png'>";
-	echo $name;
+	echo $gn;
 	echo "</div>";
 ?>

@@ -6,7 +6,7 @@
 	$u = $_SESSION['user_name'];
 	$gn = $_SESSION['current']['group'];
 
-    $query = "INSERT INTO group_members_$name (members) VALUES('" . $user_to_add . "')";
+    $query = "INSERT INTO group_members_$gn (members) VALUES('" . $user_to_add . "')";
 	$conn->query($query);
 
     $query = "INSERT INTO groups_$user_to_add (names) VALUES('" . $gn . "')";
