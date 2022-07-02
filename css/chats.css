@@ -167,7 +167,7 @@
 	z-index: 3;
 
 	width: 60vw;
-	height: 85vh;
+	height: 75vh;
 
 	margin: 0;
 	padding: 0;
@@ -240,6 +240,38 @@
 
 	background-color: rgb(255, 255, 255, 0);
 }*/
+#send_new_media {
+	position: absolute;
+	left: 40vw;
+	top: 90vh;
+	z-index: 5;
+	width: 60vw;
+	height: 10vh;
+
+	display: flex;
+}
+.upload {
+	position: relative;
+	top: 0vh;
+	left: 0vw;
+	z-index: 6;
+
+	width: 5vw;
+	height: 10vh;
+
+	font-size: 1vw;
+
+	word-break: break-all;
+
+	background-color: rgb(255, 255, 255, 0);
+
+	/*display: flex;*/
+}/*
+.upload input {
+	height: 10vh;
+	background-color: black;
+}*/
+/*
 #button_upload_images {
 	position: absolute;
 	top: 90vh;
@@ -275,7 +307,7 @@
 
 	word-break: break-all;
 
-	/*background-color: rgb(255, 255, 255, 0);*/
+	background-color: rgb(255, 255, 255, 0);
 }
 #button_upload_document {
 	position: absolute;
@@ -299,13 +331,14 @@
 
 	word-break: break-all;
 
-	/*background-color: rgb(255, 255, 255, 0);*/
+	background-color: rgb(255, 255, 255, 0);
 }
+*/
 #text_new_message {
-	position: absolute;
-	top: 90vh;
-	left: 65vw;
-	z-index: 3;
+	position: relative;
+	top: 0vh;
+	left: 0vw;
+	z-index: 6;
 
 	width: 30vw;
 	height: 10vh;
@@ -314,13 +347,14 @@
 	margin-left: 50vw;*/
 	
 	background-color: rgb(255, 255, 255);
+
+	/*display: flex;*/
 }
 #button_new_message {
 	position: absolute;
-	left: 95vw;
-	top: 90vh;
-	z-index: 3;
-
+	left: 55vw;
+	top: 0vh;
+	z-index: 7;
 	width: 5vw;
 	height: 10vh;
 
@@ -331,4 +365,6 @@
 
 	/*background-color: rgb(150, 150, 150);*/
 	background-color: rgb(255, 255, 255, 0);
+
+	/*display: flex;*/
 }

@@ -55,15 +55,45 @@ function load_chats() {
 			c += "select any chat to show your messages with them here";
 			c += "</div>";
 
-			c += "<div class='button' id='button_upload_images' onclick='upload_images()'> images </div>";
-			c += "<div class='button' id='button_upload_videos' onclick='upload_images()'> videos </div>";
-			c += "<div class='button' id='button_upload_audios' onclick='upload_images()'> audios </div>";
-			c += "<div class='button' id='button_upload_document' onclick='upload_document()'> document </div>";
-			c += "<div class='button' id='button_upload_location' onclick='upload_images()'> location </div>";
+			c += "<div id='send_new_media'>";
+
+			c += "<div class='sending'>";
+			c += "<input type='file' name='new_images' id='new_images' class='upload'  accept='.jpg, .jpeg, .png'>";
+			c += "<div class='button' onclick='send_images()'> send </div>";
+			c += "</div>";
+
+			c += "<div class='sending'>";
+			c += "<input type='file' name='new_videos' id='new_videos' class='upload'>";
+			c += "<div class='button' onclick='send_videos()'> send </div>";
+			c += "</div>";
+
+			c += "<div class='sending'>";
+			c += "<input type='file' name='new_audios' id='new_audios' class='upload'>";
+			c += "<div class='button' onclick='send_audios()'> send </div>";
+			c += "</div>";
+
+			c += "<div class='sending'>";
+			c += "<input type='file' name='new_documents' id='new_documents' class='upload'>";
+			c += "<div class='button' onclick='send_documents()'> send </div>";
+			c += "</div>";
+
+			c += "<div class='sending'>";
+			c += "<input type='file' name='new_location' id='new_location' class='upload'>";
+			c += "<div class='button' onclick='send_location()'> send </div>";
+			c += "</div>";
+
+			//c += "<label for='file'> image </label>";
+
+			c += "<div class='button' id='button_upload_images' onclick='select_images()'> images </div>";
+			c += "<div class='button' id='button_upload_videos' onclick='select_videos()'> videos </div>";
+			c += "<div class='button' id='button_upload_audios' onclick='select_audios()'> audios </div>";
+			c += "<div class='button' id='button_upload_documents' onclick='select_documents()'> documents </div>";
+			c += "<div class='button' id='button_upload_location' onclick='select_location()'> location </div>";
 
 			//c += "<div class='button' id='button_check_for_new_messages' onclick='check_for_new_messages()'> check for new messages </div>";
-			c += "<input type='text' placeholder='type a new message' id='text_new_message' onfocus='add_event()' onblur='remove_event()'>";
+			c += "<input type='text' placeholder='type a new message' id='text_new_message' onfocus='add_enter_event()' onblur='remove_enter_event()'>";
 			c += "<div class='button' id='button_new_message' onclick='send_new_message()'> send </div>";
+			c += "</div>";
 
 			chats = c;
 			content.innerHTML = c;
@@ -88,6 +118,8 @@ function load_chats() {
 			BCNM = document.getElementById("button_check_for_new_message");
 			TNM = document.getElementById("text_new_message");
 			BNM = document.getElementById("button_new_message");
+
+			buttons = document.getElementsByClassName("button");
 
 			if(resources) {
 				//TSU.setAttribute(onkeyup:'SearchUser(this.value)');
@@ -219,6 +251,22 @@ function send_new_message() {
 	xmlhttp.open("POST", "../php/chats/send_new_message.php?q=" + EM, true);
 	xmlhttp.send();
 }
+function select_images() {
+	document.getElementById("upload_images").click();
+}
+function select_videos() {
+	document.getElementById("upload_videos").click();
+}
+function select_audios() {
+	document.getElementById("upload_audios").click();
+}
+function select_documents() {
+	document.getElementById("upload_documents").click();
+}
+function select_location() {
+	document.getElementById("upload_location").click();
+}
+
 function check_for_new_messages() {
 	if(TK.value == "") {
 		return;
@@ -314,13 +362,13 @@ function snm(e) {
 		send_new_message();
 	}
 }
-function add_event() {
+function add_enter_event() {
 	document.addEventListener("keydown",snm);
 
 	/*let TNM = document.getElementById("TextNewMessage");
 	TNM.addEventListener("keydown",send_new_message);*/
 }
-function remove_event() {
+function remove_enter_event() {
 	document.removeEventListener("keydown",snm);
 
 	/*let TNM = document.getElementById("TextNewMessage");

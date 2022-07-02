@@ -25,6 +25,9 @@
 	<link type="text/css" rel="stylesheet" href="../css/home.css">
 	<link type="text/css" rel="stylesheet" href="../css/chats.css">
 	<link type="text/css" rel="stylesheet" href="../css/groups.css">
+	<link type="text/css" rel="stylesheet" href="../css/games.css">
+	<link type="text/css" rel="stylesheet" href="../css/market.css">
+
 
 
 	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
@@ -44,6 +47,8 @@
 			<div class='button' onclick='load_chats(this)'> chats </div>
 			<div class='button' onclick='load_groups(this)'> groups </div>
 			<div class='button' onclick='load_channels(this)'> channels </div>
+			<div class='button' onclick='load_games(this)'> games </div>
+			<div class='button' onclick='load_market(this)'> market </div>
 			
 			<!--
 			<div class='menu' onclick='load_games()'> Games </div>
@@ -67,6 +72,8 @@
 	<script src="../js/chats.js"></script>
 	<script src="../js/groups.js"></script>
 	<script src="../js/channels.js"></script>
+	<script src="../js/games.js"></script>
+	<script src="../js/market.js"></script>
 
 	<script src="../js/others.js"></script>
 	<script src="../js/privacy.js"></script>

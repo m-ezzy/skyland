@@ -48,6 +48,8 @@ let BCNM;
 let TNM;
 let BNM;
 
+let buttons;
+
 let theme = 8;
 
 let theme_colors = [
