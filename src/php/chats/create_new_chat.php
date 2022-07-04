@@ -35,7 +35,7 @@
 	$query = "CREATE TABLE IF NOT EXISTS chat_between_$first" . "_$second (ROWNUM int(20),sent_by varchar(20),message varchar(500) DEFAULT NULL,images varchar(10) DEFAULT NULL,videos varchar(10) DEFAULT NULL,audios varchar(10) DEFAULT NULL,document varchar(10) DEFAULT NULL,location varchar(10) DEFAULT NULL,time DATETIME(2) DEFAULT CURRENT_TIMESTAMP)";
 	$conn->query($query);
 
-	mkdir("../../data/chats/chat_between_" . $first . "_" . $second);
+	mkdir("../../../data/chats/chat_between_" . $first . "_" . $second);
 
 	$chats = array();
 	$chats = $_SESSION['chats'];
@@ -49,9 +49,9 @@
 	$path = "";
 
 	if($e = $row->extension) {
-		$path = "../data/profile_pictures/$u2" . "." . $e;
+		$path = "../../data/profile_pictures/$u2" . "." . $e;
 	} else {
-		$path = "../media/images/place_holder3.png";
+		$path = "../../media/images/place_holder3.png";
 	}
 
 	echo "<div class='chat' onclick='show_messages(this, " . $u2 . ")'>";

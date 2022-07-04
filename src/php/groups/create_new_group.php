@@ -20,7 +20,7 @@
 	$query = "INSERT INTO groups (names, created_by) VALUES('" . $gn . "','" . $u . "')";
 	$conn->query($query);
 
-	$query = "CREATE TABLE group_members_$gn (members VARCHAR(20) DEFAULT NULL,joined_on DATETIME(2) DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(members))";
+	$query = "CREATE TABLE group_members_$gn (members VARCHAR(20) DEFAULT NULL,requested int(2) DEFAULT 0,joined_on DATETIME(2) DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(members))";
 	$conn->query($query);
 
 	$query = "INSERT INTO group_members_$gn (members) VALUES('" . $u . "')";
@@ -38,7 +38,7 @@
 	$_SESSION['groups'] = $groups;
 
 	echo "<div onclick='show_messages_groups(this, " . $gn . ")'>";
-	echo "<img src='../media/images/place_holder3.png'>";
+	echo "<img src='../../media/images/place_holder3.png'>";
 	echo $gn;
 	echo "</div>";
 ?>

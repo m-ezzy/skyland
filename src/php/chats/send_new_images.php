@@ -15,7 +15,7 @@
 
 	$temp_name = $_FILES["select_images"]["tmp_name"]; //this seems important. temp name is used by computer to give image unique id regardless of it's name
 
-    $dir = "../../data/chats/chat_between_" . $first . "_" . $second . "/";
+    $dir = "../../../data/chats/chat_between_" . $first . "_" . $second . "/";
 
 	$image = $dir . basename($_FILES["select_images"]["name"]);
 

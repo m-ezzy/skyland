@@ -36,8 +36,8 @@ function load_groups() {
 				//let s = result['chats'][i];
 
 				//let s = r[i];
-				let path = s.extension ? "../data/groups/icons/" + s.names + "." + s.extension : "../media/images/place_holder3.png";
-				//let path =  "../media/images/place_holder3.png";
+				let path = s.extension ? "../../data/groups/icons/" + s.names + "." + s.extension : "../../media/images/place_holder3.png";
+				//let path =  "../../media/images/place_holder3.png";
 
 				c += "<div onclick='show_messages_groups(this, " + s.names + ")'>";
 				c += "<img src='" + path + "'>";
@@ -131,15 +131,30 @@ function search_groups() {
 	xmlhttp.open("GET", "../php/groups/search_groups.php?q=" + TSG.value, true);
 	xmlhttp.send();
 }
-function take_to_that_group(group_name) {
+function take_to_that_group(t, group_name) {
 	//CL.innerHTML = CLinnerHTML;
 	SRG.style.visibility = "hidden";
 	//SR.innerHTML = "";
 
-	show_messages_groups(group_name);
+	show_messages_groups(t, group_name);
 }
 function send_request_to_join_group(group_name) {
+	let group_name = document.getElementById("text_search_groups").value;
 
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			//gl.innerHTML += "<div onclick='show_messages_groups(this, " + group_name + ")'>";
+
+			search_results_hidden_groups();
+			
+			GL.innerHTML += this.responseText;
+
+			//show_messages_groups(group_name);
+		}
+	};
+	xmlhttp.open("POST", "../php/groups/send_request_to_join_group.php?q=" + group_name, true);
+	xmlhttp.send();
 }
 function create_new_group() {
 	//let nd = document.createElement('div');

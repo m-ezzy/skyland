@@ -33,7 +33,7 @@ function load_home() {
 				home = "<input type='file' name='file_pp' id='file_pp'>";
 				home += "<input type='button' value='upload picture to server' id='button_pp' onclick='upload_profile_picture()'>";
 			} else {
-				home = "<img src='../data/profile_pictures/" + result.user_name + "." + result.extension + "' id='profile_picture'>";
+				home = "<img src='../../data/profile_pictures/" + result.user_name + "." + result.extension + "' id='profile_picture'>";
 			}
 			home += "<br>" + result.user_name + "<br>" + result.first_name + "<br>" + result.last_name;
 
@@ -67,7 +67,7 @@ function upload_profile_picture() {
 			/*C.removeChild(document.getElementById("file_pp"));
 			C.removeChild(document.getElementById("button_pp"));*/
 
-			C.innerHTML = "<img src='../data/profile_pictures/" + this.responseText + "' id='profile_picture'>";
+			C.innerHTML = "<img src='../../data/profile_pictures/" + this.responseText + "' id='profile_picture'>";
 		}
 	};
 }

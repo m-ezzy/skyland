@@ -31,7 +31,7 @@
 			$i = array_search($row->user_name,$_SESSION['chats']);
 
 			if($i OR $i === 0) {
-				$path = $row->extension ? "../data/profile_pictures/" . $row->user_name . "." . $row->extension : "../media/images/place_holder3.png";
+				$path = $row->extension ? "../../data/profile_pictures/" . $row->user_name . "." . $row->extension : "../../media/images/place_holder3.png";
 				echo "<div class='chat' onclick='take_to_that_chat(this," . $row->user_name . ")'>";
 				echo "<img src='$path'>";
 				echo $row->user_name . " " . $row->first_name . " " . $row->last_name;

@@ -14,7 +14,7 @@
 		echo "<div onclick='show_messages_groups(this,";
 		echo $row->names;
 		echo ")'>";
-		echo "<img src='../media/images/place_holder3.png'>";
+		echo "<img src='../../media/images/place_holder3.png'>";
 		echo $row->names;
 		echo "</div>";
 

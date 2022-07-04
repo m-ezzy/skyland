@@ -43,7 +43,7 @@
 	require '../server.php';
 	$u = $_SESSION['user_name'];
 
-	$dir = "../../data/profile_pictures/";
+	$dir = "../../../data/profile_pictures/";
 
 	$image = $dir . basename($_FILES["file_pp"]["name"]);
 

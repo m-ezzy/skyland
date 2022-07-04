@@ -65,10 +65,16 @@ let content2 = {
 	home: "",
 	chats: {
 		CL: "",
+		SR: "",
 		CH: "",
 		ML: "",
 	},
-    groups: "",
+    groups: {
+		CL: "",
+		SR: "",
+		CH: "",
+		ML: "",
+	},
     channels: "",
 }
 

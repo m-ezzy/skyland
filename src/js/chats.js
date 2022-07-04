@@ -28,6 +28,8 @@ function load_chats() {
 
 		buttons = document.getElementsByClassName("button");
 
+		CL.firstElementChild.click();
+
 		if(resources) {
 			//TSU.setAttribute(onkeyup:'SearchUser(this.value)');
 			//don't know this works or not
@@ -68,7 +70,7 @@ function load_chats() {
 				//let s = result['chats'][i];
 
 				//let s = r[i];
-				let path = s.extension ? "../data/profile_pictures/" + s.user_name + "." + s.extension : "../media/images/place_holder3.png";
+				let path = s.extension ? "../../data/profile_pictures/" + s.user_name + "." + s.extension : "../../media/images/place_holder3.png";
 
 				c += "<div onclick='show_messages(this," + s.user_name + ")'>";
 				c += "<img src='" + path + "'>";
@@ -159,6 +161,8 @@ function load_chats() {
 
 			buttons = document.getElementsByClassName("button");
 
+			CL.firstElementChild.click();
+
 			if(resources) {
 				//TSU.setAttribute(onkeyup:'SearchUser(this.value)');
 				//don't know this works or not
@@ -188,7 +192,7 @@ function search_user() {
 		return;
 	}
 
-	do_amazing_animation("35vw", "0vh", "5vw", "10vh");
+	do_amazing_animation("25vw", "0vh", "5vw", "10vh");
 
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
@@ -286,13 +290,13 @@ function show_messages(t, user_name) {
 
 					//ML.innerHTML += "<div class='MessagesReceived'>" + m + "</div>";
 					//});
-				} else if(o.image) {
+				} else if(o.images) {
 					let class_image = o.sent_by == me.user_name ? "sent image" : "received image";
 
 					let first = me.user_name < current.chat ? me.user_name : current.chat;
 					let second = me.user_name > current.chat ? me.user_name : current.chat;
 
-					ML += "<img src='../data/chats/chat_between_'" + first + "_" + second + "/" + o.ROWNUM + "." + o.image + "' class='" + class_image + "'>";
+					ML.innerHTML += "<img src='../../data/chats/chat_between_" + first + "_" + second + "/" + o.ROWNUM + "." + o.images + "' class='" + class_image + "'>";
 				}
 				i++;
 			//});
@@ -323,7 +327,7 @@ function send_new_message() {
 		return;
 	}
 
-	do_amazing_animation("95vw", "90vh", "5vw", "10vh");
+	do_amazing_animation_z("55vw", "0vh", 7, "5vw", "10vh");
 
 	let EM = encryption(TNM.value);
 
@@ -386,7 +390,7 @@ function send_images() {
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			document.getElementsByClassName("sending")[0].style.visibility = "hidden";
-			ML.innerHTML += "<img src='../data/chats/chat_between_" + this.responseText + "'>";
+			ML.innerHTML += "<img src='../../data/chats/chat_between_" + this.responseText + "'>";
 		}
 	};
 }

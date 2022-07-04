@@ -29,7 +29,7 @@
 	$query = "CREATE TABLE chats_" . $user_name . " (user_name VARCHAR(20) DEFAULT NULL)";
 	$conn->query($query);
 
-	$query = "CREATE TABLE groups_$user_name (names VARCHAR(20) DEFAULT NULL, PRIMARY KEY(names))";
+	$query = "CREATE TABLE groups_$user_name (names VARCHAR(20) DEFAULT NULL,requested int(2) DEFAULT 0,PRIMARY KEY(names))";
 	$conn->query($query);
 
 	//creating chat between itself

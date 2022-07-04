@@ -6,7 +6,7 @@
 	width: 5vw;
 	height: 10vh;
 
-	/*background-color: #AAFFA2;*/
+	background-color: #AAFFA2;
 }
 #text_search {
 	position: absolute;
@@ -30,7 +30,7 @@
 	width: 5vw;
 	height: 10vh;
 
-	/*background-color: #AAFFA2;*/
+	background-color: #AAFFA2;
 }
 #search_results {
 	position: absolute;
@@ -52,7 +52,7 @@
 #search_results div {
 	z-index: 8;
 	height: 10vh;
-	border-bottom: 0.5vw solid black;
+	border-bottom: 0.2vw solid black;
 }
 #search_results div img {
 	/*
@@ -191,7 +191,8 @@
 	margin: 0;
 	padding: 0;
 
-	overflow: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
 
 	background-color: #F5FFA2;
 	/*background-image: url(../media/images/skins/watermelon/messages_list.jpg);*/
@@ -200,6 +201,8 @@
 
 	font-size: 2vw;
 	text-align: center;
+
+	object-fit: cover;
 }
 .messages_sent {
 	position: relative;
@@ -243,14 +246,32 @@
 	background-color: #9FD1FF;
 
 	font-size: 1.5vw;
-}
-#messages_list img{
+}/*
+#messages_list img {
 	position: relative;
 	z-index: 7;
-	/*width: 20vw;
-	height: 20vh;*/
+	width: 20vw;
+	height: 20vh;
 	width: fit-content;
 	height: fit-content;
+}*/
+.received.image {
+	position: relative;
+	left: 1vw;
+	top: 1vh;
+	z-index: 7;
+	width: 20vw;
+	height: 20vh;
+	object-fit: cover;
+}
+.sent.image {
+	position: relative;
+	left: 40vw;
+	top: 1vh;
+	z-index: 7;
+	width: 20vw;
+	height: 20vh;
+	object-fit: cover;
 }
 /*
 #button_check_for_new_messages {
