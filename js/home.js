@@ -6,8 +6,8 @@ function load_home() {
 	let content = document.getElementById("content");
 	console.log(con);*/
 
-	if(home) {
-		content.innerHTML = home;
+	if(content.home) {
+		C.innerHTML = content.home;
 		return;
 	}
 	/*sb.innerHTML = "";
@@ -37,7 +37,9 @@ function load_home() {
 			}
 			home += "<br>" + result.user_name + "<br>" + result.first_name + "<br>" + result.last_name;
 
-			content.innerHTML = home;
+			me.user_name = result.user_name;
+
+			C.innerHTML = home;
 
 			//SB = document.getElementById("side_bar");
 			//C = document.getElementById("content");
@@ -62,10 +64,10 @@ function upload_profile_picture() {
 
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200) {
-			SB.removeChild(document.getElementById("file_pp"));
-			SB.removeChild(document.getElementById("button_pp"));
+			/*C.removeChild(document.getElementById("file_pp"));
+			C.removeChild(document.getElementById("button_pp"));*/
 
-			SB.innerHTML = "<img src='../data/profile_pictures/" + this.responseText + "'>" + SB.innerHTML;
+			C.innerHTML = "<img src='../data/profile_pictures/" + this.responseText + "' id='profile_picture'>";
 		}
 	};
 }

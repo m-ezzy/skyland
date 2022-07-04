@@ -29,7 +29,7 @@
 	$query = "INSERT INTO groups_$u (names) VALUES('" . $gn . "')";
 	$conn->query($query);
 
-	$query = "CREATE TABLE group_messages_$gn (ROWNUM int(20),sent_by varchar(20),messages varchar(500),sent_time DATETIME(2) DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(ROWNUM))";
+	$query = "CREATE TABLE group_messages_$gn (ROWNUM int(20),sent_by varchar(20),messages varchar(500),images varchar(10),videos varchar(10),audios varchar(10),document varchar(10),location varchar(10),sent_time DATETIME(2) DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(ROWNUM))";
 	$conn->query($query);
 
 	$groups = array();

@@ -17,7 +17,8 @@
 		$second = $u;
 	}
 
-	$query = "SELECT sent_by,message FROM chat_between_$first" . "_$second";
+	//$query = "SELECT sent_by,message,images,videos,audios,documents,location FROM chat_between_$first" . "_" . $second";
+	$query = "SELECT * FROM chat_between_$first" . "_" . $second;
 	$result = $conn->query($query);
 	//$result = mysqli_query($conn, $query);
 
@@ -33,6 +34,15 @@
 	
 	$json = json_encode($rows);
 	echo $json;
+
+
+	/*
+	$row_number = $result->num_rows();
+	$rrr = $result->fetch_all();
+	$json = json_encode($rrr);
+	echo $json;
+	*/
+
 
 	/*
 	while($row = $result->fetch_object()) {

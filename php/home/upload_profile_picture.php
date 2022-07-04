@@ -43,17 +43,20 @@
 	require '../server.php';
 	$u = $_SESSION['user_name'];
 
-	$dir = "data/profile_pictures/";
+	$dir = "../../data/profile_pictures/";
+
 	$image = $dir . basename($_FILES["file_pp"]["name"]);
 
 	$extension = strtolower(pathinfo($image,PATHINFO_EXTENSION));
 
-	move_uploaded_file($_FILES['file_pp']['tmp_name'], $image);
+	$new_file_name = $dir . $u . "." . $extension;
+
+	move_uploaded_file($_FILES['file_pp']['tmp_name'], $new_file_name);
 
 	$query = "UPDATE user_info SET extension = '$extension' WHERE user_name='$u'";
 	$conn->query($query);
 
-	echo $image;
+	echo $u . "." . $extension;
 
 	/*
 	// Check file size

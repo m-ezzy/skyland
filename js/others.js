@@ -50,6 +50,57 @@ function create_div_tag(class_name, id, text) {
 
 	return element;
 }
+
+
+let theme_current = 1;
+
+let theme_colors = [
+	["rgb(25, 25, 25)", "rgb(90, 90, 90)", "rgb(200, 200, 35)", "rgb(40, 90, 50)","rgb(255, 255, 255)","rgb(25, 25, 25)"],
+	["rgb(100, 100, 100)", "rgb(255, 255, 255)", "rgb(255, 255, 60)", "rgb(30, 200, 60)","rgb(0, 0, 0)","rgb(25, 25, 25)"],
+	["rgb(10, 100, 100)", "rgb(255, 255, 25)", "rgb(255, 255, 100)", "rgb(250, 20, 60)","rgb(0, 90, 10)","rgb(250, 25, 15)"],
+	["rgb(30, 100, 200)", "rgb(255, 255, 255)", "rgb(255, 255, 200)", "rgb(30, 200, 60)","rgb(100, 50, 0)","rgb(5, 25, 85)"],
+];
+
+let theme_names = ["apple","cherry","grapes","mango","orange","pineapple","pumpkin","strawberry","watermelon"];
+
+
+function toggle_theme(t) {
+	/*t.style.backgroundColor = 'rgb(255, 255, 255, 0)';*/
+
+	do_amazing_animation("0vw", "95vh", "10vw", "5vh");
+	//do_amazing_animation_id('button_theme');
+
+	if(theme_current == theme_colors.length - 1) {
+		theme_current = 0;
+	} else {
+		theme_current++;
+	}
+
+	MB.style.backgroundColor = theme_colors[theme_current][0];
+	CL.style.backgroundColor = theme_colors[theme_current][1];
+	SR.style.backgroundColor = theme_colors[theme_current][2];
+	CH.style.backgroundColor = theme_colors[theme_current][3];
+	ML.style.backgroundColor = theme_colors[theme_current][4];
+	SNM.style.backgroundColor = theme_colors[theme_current][5];
+
+	/*
+	MB.style.backgroundImage = "url(../media/images/skins/" + theme_names[theme] + "/menu_bar.jpg)";
+	CL.style.backgroundImage = "url(../media/images/skins/" + theme_names[theme] + "/chat_list.jpg)";
+	ML.style.backgroundImage = "url(../media/images/skins/" + theme_names[theme] + "/messages_list.jpg)";
+	*/
+
+	/*
+	for(let i=0 ; i<MS.length ; i++) {
+		MS[i].style.backgroundColor = ThemeColors[Theme][2];
+	}
+	for(let i=0 ; i<MR.length ; i++) {
+		MR[i].style.backgroundColor = ThemeColors[Theme][3];
+	}
+	for(let i=0 ; i<A.length ; i++) {
+		A[i].style.color = ThemeColors[Theme][4];
+	}
+	*/
+}
 function do_amazing_animation(left, top, width, height) {
 	/*t.style.backgroundColor = 'rgb(255, 255, 255, 0)';*/
 
@@ -76,6 +127,7 @@ function do_amazing_animation_id(id) {
 		ba[i].style.left = t.style.left;
 		ba[i].style.top = t.style.top;
 		ba[i].style.width = t.style.width;
+		ba[i].style.height = t.style.height;
 	}
 	setTimeout(reset_width, 1000);
 }

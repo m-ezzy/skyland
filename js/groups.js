@@ -3,8 +3,8 @@ function load_groups() {
 
 	do_amazing_animation("0vw", "10vh", "10vw", "5vh");
 
-	if(groups) {
-		content.innerHTML = groups;
+	if(content.groups) {
+		C.innerHTML = content.groups;
 		return;
 	}
 
@@ -13,8 +13,8 @@ function load_groups() {
 		if (this.readyState == 4 && this.status == 200) {
 			let c;
 
-			c = "<div class='button' id='button_create_new_group' onclick='create_new_group()'> + </div>";
-			c += "<input type='text' placeholder='type group name here to search' id='text_search_groups' oninput='search_groups()'>";
+			c = "<div class='button' id='button_back_groups' onclick='search_results_hidden_groups()'> back </div>";
+			c += "<input type='text' placeholder='type group name here to search' id='text_search_groups' onfocus='search_results_visible_groups()' oninput='search_groups()'>";
 			c += "<div class='button' id='button_search_groups' onclick='search_groups()'> search </div>";
 
 			c += "<div id='search_results_groups'></div>";
@@ -53,8 +53,8 @@ function load_groups() {
 			c += "</div>";
 
 			c += "<div id='header_groups'></div>";
-			c += "<input type='text' id='text_add_user_to_group'>";
-			c += "<div class='button' id='button_add_user_to_group' onclick='add_user_to_group()'> add member </div>";
+			c += "<input type='text' id='text_add_member'>";
+			c += "<div class='button' id='button_add_member' onclick='add_member()'> add member </div>";
 
 			c += "<div id='messages_list_groups'>";
 			c += "select any group to show your messages with them here";
@@ -69,37 +69,35 @@ function load_groups() {
 			c += "<input type='text' placeholder='type a new message' id='text_new_message_groups' onfocus='add_event()' onblur='remove_event()'>";
 			c += "<div class='button' id='button_new_message_groups' onclick='send_new_message_groups()'> send </div>";
 
-			groups = c;
-			content.innerHTML = c;
+			content.groups = c;
+			C.innerHTML = c;
 
 
-			/*
-			BB = document.getElementById("button_back");
-			TSU = document.getElementById("text_search_user");
-			BSU = document.getElementById("button_search_user");
 
-			SR = document.getElementById("search_results");
+			BBG = document.getElementById("button_back_groups");
+			TSG = document.getElementById("text_search_groups");
+			BSG = document.getElementById("button_search_groups");
 
-			CL = document.getElementById("chat_list");
+			SRG = document.getElementById("search_results_groups");
 
-			CWH = document.getElementById("header");
+			GL = document.getElementById("groups_list");
 
-			TK = document.getElementById("text_key");
-			BED = document.getElementById("button_e_d");
+			HG = document.getElementById("header_groups");
 
-			ML = document.getElementById("messages_list");
+			TAM = document.getElementById("text_add_member");
+			BAM = document.getElementById("button_add_member");
 
-			BCNM = document.getElementById("button_check_for_new_message");
-			TNM = document.getElementById("text_new_message");
-			BNM = document.getElementById("button_new_message");
-			*/
+			MLG = document.getElementById("messages_list_groups");
+
+			TNMG = document.getElementById("text_new_message_groups");
+			BNMG = document.getElementById("button_new_message_groups");
 
 			if(resources) {
 				//TSU.setAttribute(onkeyup:'SearchUser(this.value)');
 				//don't know this works or not
 				//alternatively i can simply add event listener
 
-				TSU.addEventListener("keyup",function(e) {
+				TSG.addEventListener("keyup",function(e) {
 					search_groups();
 				});
 			}
@@ -109,8 +107,41 @@ function load_groups() {
 	xmlhttp.open("POST", "../php/groups/load_groups2.php", true);
 	xmlhttp.send();
 }
+function search_results_hidden_groups() {
+	do_amazing_animation("10vw", "0vh", "5vw", "10vh");
+	SRG.style.visibility = "hidden";
+}
+function search_results_visible_groups() {
+	SRG.style.visibility = "visible";
+}
+function search_groups() {
+	if(TSG.value == "") {
+		return;
+	}
+	search_results_visible_groups();
+
+	do_amazing_animation("35vw", "0vh", "5vw", "10vh");
+
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			SRG.innerHTML = this.responseText;
+		}
+	};
+	xmlhttp.open("GET", "../php/groups/search_groups.php?q=" + TSG.value, true);
+	xmlhttp.send();
+}
+function take_to_that_group(group_name) {
+	//CL.innerHTML = CLinnerHTML;
+	SRG.style.visibility = "hidden";
+	//SR.innerHTML = "";
+
+	show_messages_groups(group_name);
+}
+function send_request_to_join_group(group_name) {
+
+}
 function create_new_group() {
-	let gl = document.getElementById('groups_list');
 	//let nd = document.createElement('div');
 	//gl.append(nd);
 
@@ -123,7 +154,9 @@ function create_new_group() {
 		if (this.readyState == 4 && this.status == 200) {
 			//gl.innerHTML += "<div onclick='show_messages_groups(this, " + group_name + ")'>";
 			
-			gl.innerHTML += this.responseText;
+			search_results_hidden_groups();
+			
+			GL.innerHTML += this.responseText;
 
 			//show_messages_groups(group_name);
 		}
@@ -154,7 +187,7 @@ function show_messages_groups(t, group_name) {
 			hg.innerHTML += r;
 		}
 	};
-	xmlhttp.open("POST", "../php/groups/give_members.php?q=" + group_name, true);
+	xmlhttp.open("POST", "../php/groups/get_members.php?q=" + group_name, true);
 	xmlhttp.send();
 
 	//console.log(this);
@@ -232,24 +265,22 @@ function send_new_message_groups() {
 	xmlhttp.open("POST", "../php/groups/send_new_message.php?q=" + TNMG.value, true);
 	xmlhttp.send();
 }
-function add_user_to_group() {
-	let TAUTG = document.getElementById("text_add_user_to_group");
-	console.log(TAUTG);
+function add_member() {
+	do_amazing_animation("90vw", "0vh", "10vw", "10vh");
+	//console.log(TAM);
 
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			let r = this.responseText;
-			console.log(TAUTG.value);
+			if(this.responseText == "1") {
+				HG.innerHTML += TAM.value + " , ";
+			}
+			//console.log(TAM.value);
 		}
 	};
-	xmlhttp.open("POST", "../php/groups/add_user_to_group.php?q=" + TAUTG.value, true);
+	xmlhttp.open("POST", "../php/groups/add_member.php?q=" + TAM.value, true);
 	xmlhttp.send();
 }
-function search_groups() {
-
-}
-
 
 
 

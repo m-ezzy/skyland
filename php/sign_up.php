@@ -26,14 +26,14 @@
 	$query = "INSERT INTO user_info(user_name,first_name,last_name) VALUES('" . $user_name . "','" . $first_name . "','" . $last_name . "')";
 	$conn->query($query);
 
-	$query = "CREATE TABLE chats_" . $user_name . " (user_name VARCHAR(20) DEFAULT NULL, PRIMARY KEY(user_name))";
+	$query = "CREATE TABLE chats_" . $user_name . " (user_name VARCHAR(20) DEFAULT NULL)";
 	$conn->query($query);
 
 	$query = "CREATE TABLE groups_$user_name (names VARCHAR(20) DEFAULT NULL, PRIMARY KEY(names))";
 	$conn->query($query);
 
 	//creating chat between itself
-	$query = "CREATE TABLE chat_between_$user_name" . "_$user_name (ROWNUM int(20),sent_by varchar(20),message varchar(500),time DATETIME(2) DEFAULT CURRENT_TIMESTAMP)";
+	$query = "CREATE TABLE chat_between_$user_name" . "_$user_name (ROWNUM int(20),sent_by varchar(20),message varchar(500),images varchar(10),videos varchar(10),audios varchar(10),document varchar(10),location varchar(10),time DATETIME(2) DEFAULT CURRENT_TIMESTAMP)";
 	$conn->query($query);
 
 	$query = "INSERT INTO chats_$user_name(user_name) VALUES('" . $user_name . "')";

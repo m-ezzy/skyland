@@ -10,17 +10,19 @@
 	// lookup all hints from array if $q is different from ""
     $s = strtolower($s);
 
-	$query = "SELECT user_name FROM accounts WHERE user_name LIKE '" . $s . "%'";
+	//$query = "SELECT user_name FROM accounts WHERE user_name LIKE '" . $s . "%'";
+
+	$query = "SELECT user_name,first_name,last_name,extension FROM user_info WHERE user_name LIKE '" . $s . "%'";
 	$result = mysqli_query($conn, $query);
 
 	if($result->num_rows == 0) {
 		echo "<div class='chat'>";
-		echo "No Such user name Found.";
+		echo "no such user found.";
 		echo "</div>";
 	} else {
 		//add banner showing already created chats
 		echo "<div class='chat'>";
-		echo "Previous Chats";
+		echo "your previous chats";
 		echo "</div>";
 
 		while($row = $result->fetch_object()) {
@@ -29,8 +31,10 @@
 			$i = array_search($row->user_name,$_SESSION['chats']);
 
 			if($i OR $i === 0) {
-				echo "<div class='chat' onclick='take_to_that_chat(" . $row->user_name . ")'>";
-				echo $row->user_name;
+				$path = $row->extension ? "../data/profile_pictures/" . $row->user_name . "." . $row->extension : "../media/images/place_holder3.png";
+				echo "<div class='chat' onclick='take_to_that_chat(this," . $row->user_name . ")'>";
+				echo "<img src='$path'>";
+				echo $row->user_name . " " . $row->first_name . " " . $row->last_name;
 				echo "</div>";
 			} else {
 				$NewChat[] = $row->user_name;
@@ -41,7 +45,7 @@
 
 		//add banner showing chats with whom no previous communication
 		echo "<div class='chat'>";
-		echo "Start a New Chat";
+		echo "start a new chat";
 		echo "</div>";
 
 		foreach($NewChat as $NC) {
