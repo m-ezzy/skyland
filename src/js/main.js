@@ -54,22 +54,27 @@ let BBG,
 let ba = [];
 ba = document.getElementsByClassName("ba");
 
-let content = {
+let content2 = {
 	home: "",
 	chats: "",
     groups: "",
     channels: "",
 }
 
-let content2 = {
+let content = {
 	home: "",
+	common: {
+		loaded_already: 0,
+	},
 	chats: {
+		loaded_already: 0,
 		CL: "",
 		SR: "",
 		CH: "",
 		ML: "",
 	},
     groups: {
+		loaded_already: 0,
 		CL: "",
 		SR: "",
 		CH: "",
@@ -85,8 +90,14 @@ let me = {
 }
 let current = {
 	//user: <?php echo $_SESSION['user_name']?>,
-	chat: '',
-	group: '',
+	chat: {
+		open: 0,
+		name: '',
+	},
+	group: {
+		open: 0,
+		name: '',
+	},
 };
 
 document.body.onload = function() {

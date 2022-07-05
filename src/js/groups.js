@@ -1,4 +1,4 @@
-function load_groups() {
+function load_groups(t) {
 	//let content = document.getElementById("content");
 
 	do_amazing_animation("0vw", "10vh", "10vw", "5vh");

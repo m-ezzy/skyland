@@ -9,7 +9,6 @@
 <!--<!DOCTYPE html>-->
 <html lang="en">
 <head>
-
 	<meta charset="UTF-8">
 	<title> fruits! </title>
 		
@@ -69,6 +68,7 @@
 	<script src="../js/main.js"></script>
 
 	<script src="../js/home.js"></script>
+	<script src="../js/common.js"></script>
 	<script src="../js/chats.js"></script>
 	<script src="../js/groups.js"></script>
 	<script src="../js/channels.js"></script>

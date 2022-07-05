@@ -1,5 +1,16 @@
-
 function load_chats() {
+	current.chat.open = 1;
+
+	if(content.chats.loaded_already) {
+		//if common and chats are already loaded before
+		CL.innerHTML = content.chats.CL;
+		SR.innerHTML = content.chats.SR;
+		CH.innerHTML = content.chats.CH;
+		ML.innerHTML = content.chats.ML;
+	} else if(content.common.loaded_already) {
+		//retrieve info for first time and put it in respective places
+	}
+
 	do_amazing_animation("0vw", "5vh", "10vw", "5vh");
 
 	//let content = document.getElementById("content");
@@ -47,14 +58,7 @@ function load_chats() {
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			let c;
-
-			c = "<div class='button' id='button_back' onclick='search_results_hidden()'> back </div>";
-			c += "<input type='text' placeholder='type a name to search' id='text_search' onfocus='search_results_visible()'>";
-			c += "<div class='button' id='button_search' onclick='search_user()'> search </div>";
-
-			c += "<div id='search_results'></div>";
-			c += "<div id='chat_list'>";
+			let c = "";
 
 			let r = new Array();
 			r = JSON.parse(this.responseText);
@@ -231,7 +235,7 @@ function create_new_chat(user_name) {
 
 //can't use 'this' in function parameters, using 't' instead of 'this'
 function show_messages(t, user_name) {
-	current.chat = user_name;
+	current.chat.name = user_name;
 
 	let key = parseInt(document.getElementById("text_key").value);
 
