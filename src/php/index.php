@@ -11,8 +11,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title> fruits! </title>
-		
-	<link rel="icon" href="../media/images/icon2.ico">
+
+	<link rel="icon" href="../../media/images/icon2.ico">
 
 	<!--
 	<link type="text/css" rel="stylesheet" href="common.css">
@@ -20,10 +20,14 @@
 	<link type="text/css" rel="stylesheet" href="s_home.css">
 	-->
 
-	<link type="text/css" rel="stylesheet" href="../css/common.css">
+	<link type="text/css" rel="stylesheet" href="../css/style.css">
 	<link type="text/css" rel="stylesheet" href="../css/home.css">
+
+	<link type="text/css" rel="stylesheet" href="../css/common.css">
 	<link type="text/css" rel="stylesheet" href="../css/chats.css">
 	<link type="text/css" rel="stylesheet" href="../css/groups.css">
+
+	<link type="text/css" rel="stylesheet" href="../css/channels.css">
 	<link type="text/css" rel="stylesheet" href="../css/games.css">
 	<link type="text/css" rel="stylesheet" href="../css/market.css">
 

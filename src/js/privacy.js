@@ -37,6 +37,6 @@ function decryption(cipher) {
 	}
 	return plain;
 }
-function ED() {
+function e_d() {
 
 }

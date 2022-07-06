@@ -3,7 +3,7 @@ let container = document.getElementById("container");
 let MB = document.getElementById("menu_bar");
 let BT = document.getElementById("button_theme");
 
-let C = document.getElementById("content");
+let CO = document.getElementById("content");
 
 let BB;
 let TS;
@@ -37,20 +37,6 @@ let BNM;
 
 let buttons = [];
 
-//groups
-let BBG,
-	TSG,
-	BSG,
-	
-	SRG,
-	GL,
-	
-	HG,
-
-	MLG,
-	TNMG,
-	BNMG;
-
 let ba = [];
 ba = document.getElementsByClassName("ba");
 
@@ -61,11 +47,10 @@ let content2 = {
     channels: "",
 }
 
+let common_loaded = 0;
+
 let content = {
 	home: "",
-	common: {
-		loaded_already: 0,
-	},
 	chats: {
 		loaded_already: 0,
 		CL: "",

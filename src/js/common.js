@@ -1,9 +1,11 @@
 function load_common() {
-    let c = "";
+	common_loaded = 1;
+	
+    let c;
 
-	c += "<div class='button' id='button_back' onclick='search_results_hidden()'> back </div>";
-	c += "<input class='text' id='text_search' type='text' placeholder='type here to search' onfocus='search_results_visible()'>";
-	c += "<div class='button' id='button_search' onclick='search_user_or_groups()'> search </div>";
+	c = "<div class='button' id='button_back' onclick='search_results_hidden()'> back </div>";
+	c += "<input type='text' placeholder='type here to search' class='text' id='text_search' onfocus='search_results_visible()'>";
+	c += "<div class='button' id='button_search' onclick='search_user()'> search </div>";
 
 	c += "<div id='search_results'></div>";
 	c += "<div id='chat_list'></div>";
@@ -57,7 +59,7 @@ function load_common() {
 
     c += "</div>";
 
-	C.innerHTML = c;
+	CO.innerHTML = c;
 
 	BB = document.getElementById("button_back");
 	TS = document.getElementById("text_search");
@@ -77,9 +79,26 @@ function load_common() {
 
 	buttons = document.getElementsByClassName("button");
 
+	/*document.getElementById("text_search_user").addEventListener("focus", search_results_visible);*/
+	/*
 	if(resources) {
+		//TSU.setAttribute(onkeyup:'SearchUser(this.value)');
+		//don't know this works or not
+		//alternatively i can simply add event listener
 		TS.addEventListener("keyup",function(e) {
 		search_user_or_groups();
 		});
-	}
+	}*/
+}
+function search_results_hidden() {
+	console.log("10000");
+	SR.style.visibility = "hidden";
+	do_amazing_animation("10vw", "0vh", "5vw", "10vh");
+}
+function search_results_visible() {
+	console.log("100");
+	console.log(SR);
+
+	//document.getElementById("search_results").style.visibility = "visible";
+	SR.style.visibility = "visible";
 }

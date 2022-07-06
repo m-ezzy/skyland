@@ -7,7 +7,7 @@ function load_home() {
 	console.log(con);*/
 
 	if(content.home) {
-		C.innerHTML = content.home;
+		CO.innerHTML = content.home;
 		return;
 	}
 	/*sb.innerHTML = "";
@@ -39,7 +39,8 @@ function load_home() {
 
 			me.user_name = result.user_name;
 
-			C.innerHTML = home;
+			CO.innerHTML = home;
+			content.home = home;
 
 			//SB = document.getElementById("side_bar");
 			//C = document.getElementById("content");
@@ -67,7 +68,7 @@ function upload_profile_picture() {
 			/*C.removeChild(document.getElementById("file_pp"));
 			C.removeChild(document.getElementById("button_pp"));*/
 
-			C.innerHTML = "<img src='../../data/profile_pictures/" + this.responseText + "' id='profile_picture'>";
+			CO.innerHTML = "<img src='../../data/profile_pictures/" + this.responseText + "' id='profile_picture'>";
 		}
 	};
 }
@@ -75,7 +76,7 @@ function show_profile() {
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			CWH.innerHTML = this.responseText;
+			CH.innerHTML = this.responseText;
 		}
 	};
 	xmlhttp.open("POST", "../php/home/show_profile_picture.php?q=" + 0, true);

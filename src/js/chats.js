@@ -1,5 +1,8 @@
 function load_chats() {
 	current.chat.open = 1;
+	current.group.open = 0;
+
+	console.log("100");
 
 	if(content.chats.loaded_already) {
 		//if common and chats are already loaded before
@@ -7,54 +10,25 @@ function load_chats() {
 		SR.innerHTML = content.chats.SR;
 		CH.innerHTML = content.chats.CH;
 		ML.innerHTML = content.chats.ML;
-	} else if(content.common.loaded_already) {
-		//retrieve info for first time and put it in respective places
+	} else if(common_loaded) {
+		//TS.removeEventListener("keyup", search_groups);
+		//BS.removeEventListener("click", search_groups);
+
+		load_chats_from_server();
+	} else {
+		console.log("501");
+		load_common();
+		load_chats_from_server();
+		console.log("502");
 	}
 
 	do_amazing_animation("0vw", "5vh", "10vw", "5vh");
+}
 
-	//let content = document.getElementById("content");
+function load_chats_from_server() {
+	//retrieve info for first time and put it in respective places
+	content.chats.loaded_already = 1;
 
-	if(content.chats) {
-		C.innerHTML = content.chats;
-
-		BB = document.getElementById("button_back");
-		TS = document.getElementById("text_search");
-		BS = document.getElementById("button_search");
-
-		SR = document.getElementById("search_results");
-		CL = document.getElementById("chat_list");
-
-		CH = document.getElementById("current_header");
-
-		TK = document.getElementById("text_key");
-		BED = document.getElementById("button_e_d");
-
-		ML = document.getElementById("messages_list");
-
-		SNM = document.getElementById("send_new_media");
-
-		TNM = document.getElementById("text_new_message");
-		BNM = document.getElementById("button_new_message");
-
-		buttons = document.getElementsByClassName("button");
-
-		CL.firstElementChild.click();
-
-		if(resources) {
-			//TSU.setAttribute(onkeyup:'SearchUser(this.value)');
-			//don't know this works or not
-			//alternatively i can simply add event listener
-
-			TS.addEventListener("keyup",function(e) {
-				search_user();
-			});
-		}
-
-		/*document.getElementById("text_search_user").addEventListener("focus", search_results_visible);*/
-		return;
-	}
-	
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -63,148 +37,73 @@ function load_chats() {
 			let r = new Array();
 			r = JSON.parse(this.responseText);
 
-			/*let s = new Array();
-			s = JSON.parse(result);*/
-
 			let i = 0;
-			//let s;
 			while(s = r[i]) {
-				//s = JSON.parse(r[i]);
-
-				//let s = result['chats'][i];
-
-				//let s = r[i];
 				let path = s.extension ? "../../data/profile_pictures/" + s.user_name + "." + s.extension : "../../media/images/place_holder3.png";
 
 				c += "<div onclick='show_messages(this," + s.user_name + ")'>";
 				c += "<img src='" + path + "'>";
 				c += s.user_name + " " + s.first_name + " " + s.last_name;
 				c += "</div>";
-				//});
+
 				i++;
 			}
-			c += "</div>";
+			CL.innerHTML = c;
+			content.chats.CL = c;
 
-			c += "<div id='current_header'></div>";
+			SR.innerHTML = "";
+			content.chats.SR = "";
 
-			c += "<input type='text' placeholder='enter key of this conversation' id='text_key' value='0'>";
+			c = "<input type='text' placeholder='enter key of this conversation' id='text_key' value='0'>";
 			c += "<div class='button' id='button_e_d' onclick='e_d()'> encrypt / decrypt </div>";
-
-			c += "<div id='messages_list'>";
-			c += "select any chat to show your messages with them here";
-			c += "</div>";
-
-			c += "<div class='sending'>";
-			c += "<div class='button close_sending' onclick='close_images()'> + </div>";
-			c += "<input type='file' name='select_images' id='select_images' accept='.jpg, .jpeg, .png'>";
-			c += "<div class='button send' onclick='send_images()'> send </div>";
-			c += "</div>";
-
-			c += "<div class='sending'>";
-			c += "<div class='button' class='close_sending' onclick='close_videos()'> + </div>";
-			c += "<input type='file' name='select_videos' id='select_videos'>";
-			c += "<div class='button send' onclick='send_videos()'> send </div>";
-			c += "</div>";
-
-			c += "<div class='sending'>";
-			c += "<div class='button' class='close_sending' onclick='close_audios()'> + </div>";
-			c += "<input type='file' name='select_audios' id='select_audios'>";
-			c += "<div class='button send' onclick='send_audios()'> send </div>";
-			c += "</div>";
-
-			c += "<div class='sending'>";
-			c += "<div class='button' class='close_sending' onclick='close_documents()'> + </div>";
-			c += "<input type='file' name='select_documents' id='select_documents'>";
-			c += "<div class='button send' onclick='send_documents()'> send </div>";
-			c += "</div>";
-
-			c += "<div class='sending'>";
-			c += "<div class='button' class='close_sending' onclick='close_location()'> + </div>";
-			c += "<input type='file' name='select_location' id='select_location'>";
-			c += "<div class='button send' onclick='send_location()'> send </div>";
-			c += "</div>";
-
-			c += "<div id='send_new_media'>";
-
-			//c += "<label for='file'> image </label>";
-
-			c += "<div class='button' id='button_upload_images' onclick='select_images()'> images </div>";
-			c += "<div class='button' id='button_upload_videos' onclick='select_videos()'> videos </div>";
-			c += "<div class='button' id='button_upload_audios' onclick='select_audios()'> audios </div>";
-			c += "<div class='button' id='button_upload_documents' onclick='select_documents()'> documents </div>";
-			c += "<div class='button' id='button_upload_location' onclick='select_location()'> location </div>";
-
-			//c += "<div class='button' id='button_check_for_new_messages' onclick='check_for_new_messages()'> check for new messages </div>";
-			c += "<input type='text' placeholder='type a new message' id='text_new_message' onfocus='add_enter_event()' onblur='remove_enter_event()'>";
-			c += "<div class='button' id='button_new_message' onclick='send_new_message()'> send </div>";
-			c += "</div>";
-
-			content.chats = c;
-			C.innerHTML = c;
-
-
-
-			BB = document.getElementById("button_back");
-			TS = document.getElementById("text_search");
-			BS = document.getElementById("button_search");
-
-			SR = document.getElementById("search_results");
-			CL = document.getElementById("chat_list");
-
-			CH = document.getElementById("current_header");
+			CO.innerHTML += c;
 
 			TK = document.getElementById("text_key");
-			BED = document.getElementById("button_e_d");
 
-			ML = document.getElementById("messages_list");
+			//show_messages(CL.firstElementChild, r[0].user_name);
+			//CL.firstElementChild.click();
+			//CL.firstElementChild.click(this, r[0].user_name);
 
-			SNM = document.getElementById("send_new_media");
+			content.chats.CH = CH.innerHTML;
 
-			TNM = document.getElementById("text_new_message");
-			BNM = document.getElementById("button_new_message");
+			content.chats.ML = ML.innerHTML;
 
-			buttons = document.getElementsByClassName("button");
+			//TS.addEventListener("keyup", search_user);
+			//BS.addEventListener("click", search_user);
 
-			CL.firstElementChild.click();
+			//current.chat.name = r[0].user_name;
 
-			if(resources) {
-				//TSU.setAttribute(onkeyup:'SearchUser(this.value)');
-				//don't know this works or not
-				//alternatively i can simply add event listener
-
-				TS.addEventListener("keyup",function(e) {
-					search_user();
-				});
-			}
+			//TS.addEventListener("keyup", search_user);
+			//BS.addEventListener("click",search_user);
 		}
 	};
 	//xmlhttp.setRequestHeader("Access-Control-Allow-Origin": "*");
 	xmlhttp.open("POST", "../php/chats/load_chats.php", true);
 	xmlhttp.send();
 }
-
-function search_results_hidden() {
-	do_amazing_animation("10vw", "0vh", "5vw", "10vh");
-	SR.style.visibility = "hidden";
-}
-function search_results_visible() {
-	//document.getElementById("search_results").style.visibility = "visible";
-	SR.style.visibility = "visible";
-}
 function search_user() {
-	if(TS.value == "") {
+	console.log("503");
+	console.log(TS.value);
+
+	let TS_value = document.getElementById("text_search").value;
+
+	if(TS_value == "") {
+		console.log(TS_value + "23");
 		return;
 	}
+	console.log(TS_value);
 
 	do_amazing_animation("25vw", "0vh", "5vw", "10vh");
 
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("search_results").style.visibility = "visible";
+			console.log('102');
 			SR.innerHTML = this.responseText;
 		}
 	};
-	xmlhttp.open("GET", "../php/chats/search_user.php?q=" + TS.value, true);
+	xmlhttp.open("GET", "../php/chats/search_user.php?q=" + TS_value, true);
 	xmlhttp.send();
 }
 function take_to_that_chat(t,user_name) {
@@ -223,6 +122,7 @@ function create_new_chat(user_name) {
 		
 			//CL.innerHTML = CLinnerHTML;
 			CL.innerHTML += this.responseText;
+			content.chats.CL += this.responseText;
 
 			SR.style.visibility = "hidden";
 		
@@ -247,6 +147,7 @@ function show_messages(t, user_name) {
 	do_amazing_animation("10vw", "10vh", "30vw", "10vh");
 
 	CH.innerHTML = t.innerHTML;
+	content.chats.CH = CH.innerHTML;
 
 	//console.log(this);
 	//let ML = document.getElementById("messages_list");
@@ -255,7 +156,7 @@ function show_messages(t, user_name) {
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if(this.readyState == 4 && this.status == 200) {
-			current.chat = user_name;
+			current.chat.name = user_name;
 			//ML.innerHTML = this.responseText;
 
 			let result = Array();
@@ -305,6 +206,8 @@ function show_messages(t, user_name) {
 				i++;
 			//});
 			}
+
+			content.chats.ML = ML.innerHTML;
 			
 			//let mlh = ML.style.height;
 			ML.scrollTo(0,99999);
@@ -317,7 +220,7 @@ function show_messages(t, user_name) {
 			MR = document.getElementsByClassName("messages_received");
 
 			if(resources) {
-				let ci = setInterval(check_for_new_messages,1000);
+				let ci = setInterval(check_for_new_messages, 1000);
 			}
 		}
 	};
