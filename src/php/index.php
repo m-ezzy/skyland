@@ -10,9 +10,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title> fruits! </title>
+	<title> skyland! </title>
 
-	<link rel="icon" href="../../media/images/icon2.ico">
+	<!--<link rel="icon" href="../../media/images/icon2.ico">-->
 
 	<!--
 	<link type="text/css" rel="stylesheet" href="common.css">
@@ -60,7 +60,12 @@
 			-->
 			<div class='button' id='button_theme' onclick='toggle_theme(this)'> theme </div>
 		</div>
-		<div id='content'></div>
+		<div id='content_home'></div>
+		<div id='content_chats'></div>
+		<div id='content_groups'></div>
+		<div id='content_channels'></div>
+		<div id='content_games'></div>
+		<div id='content_market'></div>
 
 		<div class='ba' id='ba1'></div>
 		<div class='ba' id='ba2'></div>

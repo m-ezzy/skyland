@@ -1,21 +1,9 @@
 function load_home() {
-	/*
-	SB = document.getElementById("side_bar");
-	C = document.getElementById("content");
-
-	let content = document.getElementById("content");
-	console.log(con);*/
-
-	if(content.home) {
-		CO.innerHTML = content.home;
-		return;
-	}
-	/*sb.innerHTML = "";
-	c.innerHTML = "";*/
-
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
+			let h;
+
 			/*let un = <?php echo $_SESSION['user_name'] ?>;*/
 
 			//let e = document.createElement("div");
@@ -30,26 +18,26 @@ function load_home() {
 			let result = JSON.parse(this.responseText);
 
 			if(result.extension == null || result.extension == "") {
-				home = "<input type='file' name='file_pp' id='file_pp'>";
-				home += "<input type='button' value='upload picture to server' id='button_pp' onclick='upload_profile_picture()'>";
+				//let input = create_element("input", "", "file_pp", "");
+				//input.addAttribute();
+
+				h = "<input type='file' name='file_pp' id='file_pp'>";
+				h += "<input type='button' value='upload picture to server' id='button_pp' onclick='upload_profile_picture()'>";
 			} else {
-				home = "<img src='../../data/profile_pictures/" + result.user_name + "." + result.extension + "' id='profile_picture'>";
+				//create_element("img", "", "profile_picture", "");
+
+				h = "<img src='../../data/profile_pictures/" + result.user_name + "." + result.extension + "' id='profile_picture'>";
 			}
-			home += "<br>" + result.user_name + "<br>" + result.first_name + "<br>" + result.last_name;
+			h += "<br>" + result.user_name + "<br>" + result.first_name + "<br>" + result.last_name;
 
 			me.user_name = result.user_name;
 
-			CO.innerHTML = home;
-			content.home = home;
-
-			//SB = document.getElementById("side_bar");
-			//C = document.getElementById("content");
+			home.innerHTML = h;
 		}
 	};
-	xmlhttp.open("POST", "../php/home/load_home.php", true);
-	xmlhttp.send();
+	xhr.open("POST", "../php/home/load_home.php", true);
+	xhr.send();
 }
-
 
 function upload_profile_picture() {
 	let xhr = new XMLHttpRequest();

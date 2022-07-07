@@ -1,7 +1,7 @@
 function load_common() {
 	common_loaded = 1;
-	
-    let c;
+
+	let c;
 
 	c = "<div class='button' id='button_back' onclick='search_results_hidden()'> back </div>";
 	c += "<input type='text' placeholder='type here to search' class='text' id='text_search' onfocus='search_results_visible()'>";
@@ -20,7 +20,7 @@ function load_common() {
 	c += "<div class='button send' onclick='send_images()'> send </div>";
 	c += "</div>";
 
-    c += "<div class='sending'>";
+	c += "<div class='sending'>";
 	c += "<div class='button' class='close_sending' onclick='close_videos()'> + </div>";
 	c += "<input type='file' name='select_videos' id='select_videos'>";
 	c += "<div class='button send' onclick='send_videos()'> send </div>";
@@ -57,7 +57,7 @@ function load_common() {
 	c += "<input class='text' id='text_new_message' type='text' placeholder='type a new message' onfocus='add_enter_event()' onblur='remove_enter_event()'>";
 	c += "<div class='button' id='button_new_message' onclick='send_new_message()'> send </div>";
 
-    c += "</div>";
+	c += "</div>";
 
 	CO.innerHTML = c;
 

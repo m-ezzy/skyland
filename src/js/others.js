@@ -40,15 +40,24 @@ class Element { //Node
 	}
 }
 
-function create_div_tag(class_name, id, text) {
-	let element = document.createElement("div");
-	element.className = class_name;
-	element.id = id;
+function create_element(type, class_name, id, text) {
+	let e = document.createElement(type);
+	e.className = class_name;
+	e.id = id;
+	let t = document.createTextNode(text);
+	e.appendChild(t);
+
+	return e;
+}
+function create_element_div(class_name, id, text) {
+	let e = document.createElement("div");
+	e.className = class_name;
+	e.id = id;
 
 	let text_node = document.createTextNode(text);
-	element.appendChild(text_node);
+	e.appendChild(text_node);
 
-	return element;
+	return e;
 }
 
 
