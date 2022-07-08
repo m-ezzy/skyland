@@ -14,7 +14,7 @@ function load_groups(t) {
 
 		load_groups_from_server();
 	} else {
-		load_common();
+		load_common(groups);
 		load_groups_from_server();
 	}
 

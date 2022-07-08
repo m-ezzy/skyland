@@ -59,6 +59,7 @@ let loaded = {
 	games: 0,
 	market: 0,
 };
+let current_menu = home;
 let common_loaded = 0;
 
 let content = {

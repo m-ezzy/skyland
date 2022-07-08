@@ -60,12 +60,13 @@
 			-->
 			<div class='button' id='button_theme' onclick='toggle_theme(this)'> theme </div>
 		</div>
-		<div id='content_home'></div>
-		<div id='content_chats'></div>
-		<div id='content_groups'></div>
-		<div id='content_channels'></div>
-		<div id='content_games'></div>
-		<div id='content_market'></div>
+		
+		<div class='content' id='content_home'></div>
+		<div class='content' id='content_chats'></div>
+		<div class='content' id='content_groups'></div>
+		<div class='content' id='content_channels'></div>
+		<div class='content' id='content_games'></div>
+		<div class='content' id='content_market'></div>
 
 		<div class='ba' id='ba1'></div>
 		<div class='ba' id='ba2'></div>

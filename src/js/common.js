@@ -1,4 +1,4 @@
-function load_common() {
+function load_common(c_or_g) {
 	common_loaded = 1;
 
 	let c;
@@ -59,8 +59,9 @@ function load_common() {
 
 	c += "</div>";
 
-	CO.innerHTML = c;
+	c_or_g.innerHTML = c;
 
+	/*
 	BB = document.getElementById("button_back");
 	TS = document.getElementById("text_search");
 	BS = document.getElementById("button_search");
@@ -77,7 +78,7 @@ function load_common() {
 	TNM = document.getElementById("text_new_message");
 	BNM = document.getElementById("button_new_message");
 
-	buttons = document.getElementsByClassName("button");
+	buttons = document.getElementsByClassName("button");*/
 
 	/*document.getElementById("text_search_user").addEventListener("focus", search_results_visible);*/
 	/*

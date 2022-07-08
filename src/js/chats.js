@@ -4,12 +4,12 @@ function load_chats() {
 
 	console.log("100");
 
+	current_menu.style.visibility = "hidden";
+	current.menu = chats;
+	chats.style.visibility = "visible";
+
 	if(content.chats.loaded_already) {
 		//if common and chats are already loaded before
-		CL.innerHTML = content.chats.CL;
-		SR.innerHTML = content.chats.SR;
-		CH.innerHTML = content.chats.CH;
-		ML.innerHTML = content.chats.ML;
 	} else if(common_loaded) {
 		//TS.removeEventListener("keyup", search_groups);
 		//BS.removeEventListener("click", search_groups);
@@ -17,7 +17,30 @@ function load_chats() {
 		load_chats_from_server();
 	} else {
 		console.log("501");
-		load_common();
+		load_common(chats);
+
+
+
+		BB = document.getElementById("button_back");
+		TS = document.getElementById("text_search");
+		BS = document.getElementById("button_search");
+
+		SR = document.getElementById("search_results");
+		CL = document.getElementById("chat_list");
+
+		CH = document.getElementById("current_header");
+
+		ML = document.getElementById("messages_list");
+
+		SNM = document.getElementById("send_new_media");
+
+		TNM = document.getElementById("text_new_message");
+		BNM = document.getElementById("button_new_message");
+
+		buttons = document.getElementsByClassName("button");
+
+
+
 		load_chats_from_server();
 		console.log("502");
 	}
@@ -29,8 +52,8 @@ function load_chats_from_server() {
 	//retrieve info for first time and put it in respective places
 	content.chats.loaded_already = 1;
 
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			let c = "";
 
@@ -56,7 +79,8 @@ function load_chats_from_server() {
 
 			c = "<input type='text' placeholder='enter key of this conversation' id='text_key' value='0'>";
 			c += "<div class='button' id='button_e_d' onclick='e_d()'> encrypt / decrypt </div>";
-			CO.innerHTML += c;
+			CH.innerHTML += c;
+			content.chats.CH = c;
 
 			TK = document.getElementById("text_key");
 
@@ -78,8 +102,8 @@ function load_chats_from_server() {
 		}
 	};
 	//xmlhttp.setRequestHeader("Access-Control-Allow-Origin": "*");
-	xmlhttp.open("POST", "../php/chats/load_chats.php", true);
-	xmlhttp.send();
+	xhr.open("POST", "../php/chats/load_chats.php", true);
+	xhr.send();
 }
 function search_user() {
 	console.log("503");
@@ -100,7 +124,7 @@ function search_user() {
 		if (this.readyState == 4 && this.status == 200) {
 			document.getElementById("search_results").style.visibility = "visible";
 			console.log('102');
-			SR.innerHTML = this.responseText;
+			document.getElementById("search_results").innerHTML = this.responseText;
 		}
 	};
 	xmlhttp.open("GET", "../php/chats/search_user.php?q=" + TS_value, true);
