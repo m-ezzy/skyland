@@ -74,7 +74,33 @@
 		<div class='ba' id='ba4'></div>
 		<div class='ba' id='ba5'></div>
 	</div>
-	
+
+	<script>
+		function append_js_script_files() {
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					let files = new Array();
+					files = JSON.parse(this.responseText);
+
+					console.log(files);
+
+					let i = 0;
+					while (i < files.length) {
+						let s = document.createElement("script");
+						s.src = files[i];
+						document.body.appendChild(s);
+						i++;
+					}
+				}
+			};
+			xhr.open("GET", "directory_js.php", true);
+			xhr.send();
+		}
+		append_js_script_files();
+	</script>
+
+	<!--
 	<script src="../js/main.js"></script>
 
 	<script src="../js/home.js"></script>
@@ -87,5 +113,6 @@
 
 	<script src="../js/others.js"></script>
 	<script src="../js/privacy.js"></script>
+	-->
 </body>
 </html>

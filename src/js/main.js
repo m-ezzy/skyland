@@ -85,18 +85,46 @@ let me = {
 	first_name: '',
 	last_name: '',
 };
-let current = {
-	//user: <?php echo $_SESSION['user_name']?>,
-	chat: {
-		open: 0,
-		name: '',
-	},
-	group: {
-		open: 0,
-		name: '',
-	},
-};
 
 document.body.onload = function() {
 	load_home();
 }
+/*
+function attach_javascript_files() {
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			let files = new Array();
+			files = JSON.parse(this.responseText);
+
+			for (let file in files) {
+				let s = document.createElement("script");
+				s.src = file;
+				document.body.appendChild(s);
+			}
+			load_home();
+		}
+	};
+	xhr.open("GET", "../php/directory_js.php", true);
+	xhr.send();
+}
+*/
+
+class menu {
+	constructor() {
+		this.loaded_already = 0;
+		this.open = 0;
+		this.current = "";
+
+		this.CL = "";
+		this.SR = "";
+		this.CH = "";
+		this.ML = "";
+	}
+	static current = "";
+}
+
+
+
+
+

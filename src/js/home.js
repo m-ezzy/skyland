@@ -33,6 +33,8 @@ function load_home() {
 			me.user_name = result.user_name;
 
 			home.innerHTML = h;
+
+			menu.current = "home";
 		}
 	};
 	xhr.open("POST", "../php/home/load_home.php", true);
