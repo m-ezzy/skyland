@@ -59,7 +59,7 @@ function load_common(c_or_g) {
 
 	c += "</div>";
 
-	c_or_g.innerHTML = c;
+	c_or_g.element.innerHTML = c;
 
 	/*
 	BB = document.getElementById("button_back");

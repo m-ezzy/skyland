@@ -40,6 +40,15 @@ class Element { //Node
 	}
 }
 
+function create_element_all(type, class_name, id, oc, text) {
+	let e = document.createElement(type);
+	e.className = class_name;
+	e.id = id;
+	e.onclick = oc;
+	e.appendChild(document.createTextNode(text));
+
+	return e;
+}
 function create_element(type, class_name, id, text) {
 	let e = document.createElement(type);
 	e.className = class_name;
@@ -59,11 +68,42 @@ function create_element_div(class_name, id, text) {
 
 	return e;
 }
+function create_div(class_name, id, oc, text) {
+	let e = document.createElement("div");
+	e.className = class_name;
+	e.id = id;
+	e.setAttribute("onclick", oc);
+	e.appendChild(document.createTextNode(text));
+	return e;
+}
+function create_div_class_text(class_name, text) {
+	let e = document.createElement("div");
+	e.className = class_name;
+	e.appendChild(document.createTextNode(text));
+	return e;
+}
+function create_image(class_name, id, oc, src) {
+	let e = document.createElement("img");
+	e.className = class_name;
+	e.id = id;
+	e.setAttribute("onclick", oc);
+	e.src = src;
+	return e;
+}
+function create_input_text(ph, id, value) {
+	let e = document.createElement("input");
+	e.type = "text";
+	e.placeholder = ph;
+	e.id = id;
+	e.value = value;
 
+	return e;
+}
 
 let theme_current = 1;
 
 let theme_colors = [
+	["#FFAEF7", "#AAFFA2", "rgb(180, 180, 180)", "#FF8B8B", "#F5FFA2", "#ffa860"],
 	["rgb(25, 25, 25)", "rgb(90, 90, 90)", "rgb(200, 200, 35)", "rgb(40, 90, 50)","rgb(255, 255, 255)","rgb(25, 25, 25)"],
 	["rgb(100, 100, 100)", "rgb(255, 255, 255)", "rgb(255, 255, 60)", "rgb(30, 200, 60)","rgb(0, 0, 0)","rgb(25, 25, 25)"],
 	["rgb(10, 100, 100)", "rgb(255, 255, 25)", "rgb(255, 255, 100)", "rgb(250, 20, 60)","rgb(0, 90, 10)","rgb(250, 25, 15)"],

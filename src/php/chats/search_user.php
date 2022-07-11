@@ -4,57 +4,60 @@
 	$s = $_REQUEST['q'];
 	$u = $_SESSION['user_name'];
 
-	$i = 0;
-	$NewChat = array();
+	$pre = 0;
+	$new = 0;
+
+	$new_chats = array();
+	$rows = array();
 
 	// lookup all hints from array if $q is different from ""
     $s = strtolower($s);
 
 	//$query = "SELECT user_name FROM accounts WHERE user_name LIKE '" . $s . "%'";
+	//$query = "SELECT user_name,first_name,last_name,extension FROM user_info WHERE user_name LIKE '" . $s . "%'";
 
-	$query = "SELECT user_name,first_name,last_name,extension FROM user_info WHERE user_name LIKE '" . $s . "%'";
+	//$query = "SELECT * FROM user_info LEFT JOIN chats_$u ON user_info.user_name=chats_$u.user_name WHERE chats_$u.user_name IS NULL";
+	$query = "SELECT * FROM user_info WHERE user_name LIKE '" . $s . "%'" . " AND user_name NOT IN (SELECT user_name FROM chats_$u)";
+	//$query = "SELECT * FROM user_info WHERE NOT EXISTS (SELECT * FROM chats_$u WHERE chats_$u.user_name=user_info.username)";
+
 	$result = mysqli_query($conn, $query);
 
-	if($result->num_rows == 0) {
-		echo "<div class='chat'>";
-		echo "no such user found.";
-		echo "</div>";
-	} else {
-		//add banner showing already created chats
-		echo "<div class='chat'>";
-		echo "your previous chats";
-		echo "</div>";
+	while ($row = $result->fetch_object()) {
+		$rows[] = $row;
+	}
 
-		while($row = $result->fetch_object()) {
-			$i = 0;
-			//while($Chat = $_SESSION['Chats'][$i]) {
-			$i = array_search($row->user_name,$_SESSION['chats']);
+	/*
+	$rows[0]->match_found = "0";
+	$rows[0]->previous = 0;
+	$rows[0]->new_chat = 0;
+	*/
 
-			if($i OR $i === 0) {
-				$path = $row->extension ? "../../data/profile_pictures/" . $row->user_name . "." . $row->extension : "../../media/images/place_holder3.png";
-				echo "<div class='chat' onclick='take_to_that_chat(this," . $row->user_name . ")'>";
-				echo "<img src='$path'>";
-				echo $row->user_name . " " . $row->first_name . " " . $row->last_name;
-				echo "</div>";
-			} else {
-				$NewChat[] = $row->user_name;
-			}
-			//$i++;
-			//}
-		}
+	//array_push($rows, ["match_found" => 0, "previous" => 0, "new_chat" => 0]);
 
-		//add banner showing chats with whom no previous communication
-		echo "<div class='chat'>";
-		echo "start a new chat";
-		echo "</div>";
+	/*
+	if ($result->num_rows == 0) {
+		//$rows[0]->match_found = 0;
+		return;
+	}
 
-		foreach($NewChat as $NC) {
-			echo "<div class='chat' onclick='create_new_chat(" . $NC . ")'>";
-			//echo "<div class='Chat' onclick='CreateNewChat(";
-			//echo "'$NC'";
-			//echo ")'>";
-			echo $NC;
-			echo "</div>";
+	while ($row = $result->fetch_object()) {
+		$match = in_array($row->user_name, $_SESSION['chats']);
+
+		if ($match) {
+			$rows[] = $row;
+			//$rows[0]->previous++;
+		} else {
+			$new_chats[] = $row;
+			//$rows[0]->new_chat++;
 		}
 	}
+	//array_merge($rows, $new_chats);
+	
+	foreach($new_chats as $nc) {
+		$rows[] = $nc;
+	}
+	*/
+
+	$json = json_encode($rows);
+	echo $json;
 ?>

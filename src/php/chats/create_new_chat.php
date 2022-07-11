@@ -37,25 +37,11 @@
 
 	mkdir("../../../data/chats/chat_between_" . $first . "_" . $second);
 
+	/*
 	$chats = array();
 	$chats = $_SESSION['chats'];
 	$chats[] = $u2;
 	$_SESSION['chats'] = $chats;
-
-	$query = "SELECT user_name,first_name,last_name,extension FROM user_info WHERE user_name=$u2";
-	$result = $conn->query($query);
-	$row = $result->fetch_object();
-
-	$path = "";
-
-	if($e = $row->extension) {
-		$path = "../../data/profile_pictures/$u2" . "." . $e;
-	} else {
-		$path = "../../media/images/place_holder3.png";
-	}
-
-	echo "<div class='chat' onclick='show_messages(this, " . $u2 . ")'>";
-	echo "<img src='" . $path . "'>";
-	echo $row->user_name . " " . $row->first_name . " " . $row->last_name;
-	echo "</div>";
+	*/
+	$_SESSION['chats'][] = $u2;
 ?>

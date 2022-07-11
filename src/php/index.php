@@ -87,6 +87,10 @@
 
 					let i = 0;
 					while (i < files.length) {
+						if(files[i] == "../js/a.js") {
+							i++;
+							continue;
+						}
 						let s = document.createElement("script");
 						s.src = files[i];
 						document.body.appendChild(s);

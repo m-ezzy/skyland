@@ -5,13 +5,10 @@
 	$u2 = $_SESSION['current']['chat'];
 	$row_number = $_SESSION['row_number'];
 
-	$i = 0;
+	$first = $u < $u2 ? $u : $u2;
+	$second = $u < $u2 ? $u2 : $u;
 
-	if($u < $u2){
-		$query = "SELECT * FROM chat_between_$u"."_$u2 WHERE ROWNUM>" . $row_number;
-	} else {
-		$query = "SELECT * FROM chat_between_$u2"."_$u WHERE ROWNUM>" . $row_number;
-	}
+	$query = "SELECT * FROM chat_between_$first"."_$second WHERE ROWNUM>" . $row_number;
 	$result = $conn->query($query);
 
 	if($result->num_rows > 0) {
@@ -19,17 +16,8 @@
 	
 		while($row = $result->fetch_object()) {
 			if($row->sent_by == $u2) {
-
-				$rows[] = $row->message;
-				//$RowsArray[] = $row->time;
-				$i++;
-				
-				/*echo "<div class='MessagesReceived'>";
-				echo $row->message;
-				echo "</div>";*/
-		
+				$rows[] = $row;
 				$row_number++;
-				/*$_SESSION['RowNumber'] = $RowNumber;*/
 			}
 		}
 		$_SESSION['row_number'] = $row_number;

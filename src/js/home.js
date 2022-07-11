@@ -32,15 +32,16 @@ function load_home() {
 
 			me.user_name = result.user_name;
 
-			home.innerHTML = h;
+			//home.innerHTML = h;
+			home.element.innerHTML = h;
 
-			menu.current = "home";
+			Menu.current = home;
+			home.open = 1;
 		}
 	};
 	xhr.open("POST", "../php/home/load_home.php", true);
 	xhr.send();
 }
-
 function upload_profile_picture() {
 	let xhr = new XMLHttpRequest();
 
@@ -58,17 +59,17 @@ function upload_profile_picture() {
 			/*C.removeChild(document.getElementById("file_pp"));
 			C.removeChild(document.getElementById("button_pp"));*/
 
-			CO.innerHTML = "<img src='../../data/profile_pictures/" + this.responseText + "' id='profile_picture'>";
+			home.innerHTML = "<img src='../../data/profile_pictures/" + this.responseText + "' id='profile_picture'>";
 		}
 	};
 }
 function show_profile() {
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			CH.innerHTML = this.responseText;
 		}
 	};
-	xmlhttp.open("POST", "../php/home/show_profile_picture.php?q=" + 0, true);
-	xmlhttp.send();
+	xhr.open("POST", "../php/home/show_profile_picture.php?q=" + 0, true);
+	xhr.send();
 }

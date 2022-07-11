@@ -2,14 +2,14 @@ let container = document.getElementById("container");
 
 let MB = document.getElementById("menu_bar");
 let BT = document.getElementById("button_theme");
-
+/*
 let home = document.getElementById("content_home");
 let chats = document.getElementById("content_chats");
 let groups = document.getElementById("content_groups");
 let channels = document.getElementById("content_channels");
 let games = document.getElementById("content_games");
 let market = document.getElementById("content_market");
-
+*/
 let ba = [];
 ba = document.getElementsByClassName("ba");
 
@@ -45,41 +45,8 @@ let BNM;
 
 let buttons = [];
 
-let content2 = {
-	home: "",
-	chats: "",
-    groups: "",
-    channels: "",
-}
-let loaded = {
-	home: 0,
-	chats: 0,
-    groups: 0,
-    channels: 0,
-	games: 0,
-	market: 0,
-};
-let current_menu = home;
 let common_loaded = 0;
 
-let content = {
-	home: "",
-	chats: {
-		loaded_already: 0,
-		CL: "",
-		SR: "",
-		CH: "",
-		ML: "",
-	},
-    groups: {
-		loaded_already: 0,
-		CL: "",
-		SR: "",
-		CH: "",
-		ML: "",
-	},
-    channels: "",
-};
 let me = {
 	user_name: '',
 	first_name: '',
@@ -109,20 +76,32 @@ function attach_javascript_files() {
 	xhr.send();
 }
 */
-
-class menu {
-	constructor() {
+class Menu {
+	constructor(id) {
+		this.element = document.getElementById(id);
+		this.innerHTML = "";
 		this.loaded_already = 0;
 		this.open = 0;
-		this.current = "";
-
+		this.current;
+		this.previous = [];
+		/*
 		this.CL = "";
 		this.SR = "";
 		this.CH = "";
 		this.ML = "";
+		*/
 	}
 	static current = "";
 }
+
+let home = new Menu("content_home");
+let chats = new Menu("content_chats");
+let groups = new Menu("content_groups");
+let channels = new Menu("content_channels");
+let games = new Menu("content_games");
+let market = new Menu("content_market");
+
+
 
 
 

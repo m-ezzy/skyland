@@ -1,13 +1,14 @@
 function load_groups(t) {
-	current.chat.open = 0;
-	current.group.open = 1;
+	if(groups.open) {
+		return;
+	} else if(groups.loaded_already) {
+		//
+		Menu.current.open = 0;
+		Menu.current.element.style.visibility = "hidden";
 
-	if(content.groups.loaded_already) {
-		//if common and groups are already loaded before
-		CL.innerHTML = content.groups.CL;
-		SR.innerHTML = content.groups.SR;
-		CH.innerHTML = content.groups.CH;
-		ML.innerHTML = content.groups.ML;
+		Menu.current = groups;
+		groups.open = 1;
+		groups.element.style.visibility = "visible";
 	} else if(common_loaded) {
 		TS.removeEventListener("keyup", search_user);
 		BS.removeEventListener("click", search_user);
