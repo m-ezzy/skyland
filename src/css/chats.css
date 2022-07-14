@@ -1,4 +1,4 @@
-#text_key {
+.text.key {
 	position: absolute;
 	top: 0vh;
 	left: 70vw;
@@ -16,7 +16,7 @@
 
 	text-align: left;
 }
-#button_e_d {
+.button.key {
 	position: absolute;
 	top: 0vh;
 	left: 80vw;

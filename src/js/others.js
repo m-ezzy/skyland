@@ -1,6 +1,6 @@
 class Element { //Node
-	constructor(x, y, w, h, color) {
-		this.element = this.createElement();
+	constructor(type, x, y, w, h, color) {
+		this.element = document.createElement(type);
 
 		this.x = x;
 		this.y = y;
@@ -46,7 +46,6 @@ function create_element_all(type, class_name, id, oc, text) {
 	e.id = id;
 	e.onclick = oc;
 	e.appendChild(document.createTextNode(text));
-
 	return e;
 }
 function create_element(type, class_name, id, text) {
@@ -82,21 +81,36 @@ function create_div_class_text(class_name, text) {
 	e.appendChild(document.createTextNode(text));
 	return e;
 }
-function create_image(class_name, id, oc, src) {
+function create_image(class_name, id, oc, src, w, h) {
 	let e = document.createElement("img");
 	e.className = class_name;
 	e.id = id;
 	e.setAttribute("onclick", oc);
 	e.src = src;
+	e.setAttribute("width", w);
+	e.setAttribute("height", h);
 	return e;
 }
-function create_input_text(ph, id, value) {
+function create_video(class_name, id, oc, src, w, h) {
+	let e = document.createElement("video");
+	e.className = class_name;
+	e.id = id;
+	e.setAttribute("onclick", oc);
+	e.src = src;
+	e.setAttribute("width", w);
+	e.setAttribute("height", h);
+
+	e.controls = true;
+	e.muted = false;
+	return e;
+}
+function create_input_text(class_name, id, ph, value) {
 	let e = document.createElement("input");
 	e.type = "text";
-	e.placeholder = ph;
+	e.className = class_name;
 	e.id = id;
+	e.placeholder = ph;
 	e.value = value;
-
 	return e;
 }
 
@@ -126,11 +140,11 @@ function toggle_theme(t) {
 	}
 
 	MB.style.backgroundColor = theme_colors[theme_current][0];
-	CL.style.backgroundColor = theme_colors[theme_current][1];
-	SR.style.backgroundColor = theme_colors[theme_current][2];
-	CH.style.backgroundColor = theme_colors[theme_current][3];
-	ML.style.backgroundColor = theme_colors[theme_current][4];
-	SNM.style.backgroundColor = theme_colors[theme_current][5];
+	chats.cl.style.backgroundColor = theme_colors[theme_current][1];
+	chats.sr.style.backgroundColor = theme_colors[theme_current][2];
+	chats.ch.style.backgroundColor = theme_colors[theme_current][3];
+	chats.ml.style.backgroundColor = theme_colors[theme_current][4];
+	chats.snm.style.backgroundColor = theme_colors[theme_current][5];
 
 	/*
 	MB.style.backgroundImage = "url(../media/images/skins/" + theme_names[theme] + "/menu_bar.jpg)";
@@ -186,8 +200,20 @@ function do_amazing_animation_id(id) {
 	console.log(t);
 	console.log("100");
 	console.log(t.style.top);
-
 	
+	for(let i = 0 ; i < 5 ; i++) {
+		ba[i].style.left = t.style.left;
+		ba[i].style.top = t.style.top;
+		ba[i].style.width = t.style.width;
+		ba[i].style.height = t.style.height;
+	}
+	setTimeout(reset_width, 1000);
+}
+function do_amazing_animation_this(t) {
+	console.log(t);
+	console.log("100");
+	console.log(t.style.top);
+
 	for(let i = 0 ; i < 5 ; i++) {
 		ba[i].style.left = t.style.left;
 		ba[i].style.top = t.style.top;

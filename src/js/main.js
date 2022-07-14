@@ -2,46 +2,9 @@ let container = document.getElementById("container");
 
 let MB = document.getElementById("menu_bar");
 let BT = document.getElementById("button_theme");
-/*
-let home = document.getElementById("content_home");
-let chats = document.getElementById("content_chats");
-let groups = document.getElementById("content_groups");
-let channels = document.getElementById("content_channels");
-let games = document.getElementById("content_games");
-let market = document.getElementById("content_market");
-*/
+
 let ba = [];
 ba = document.getElementsByClassName("ba");
-
-let BB;
-let TS;
-let BS;
-
-let SR
-let CL;
-
-let CH;
-
-let TK;
-let BED;
-
-let TAM;
-let BAM;
-
-let ML;
-let MS = [];
-let MR = [];
-
-let SNM;
-
-let BUI;
-let BUV;
-let BUA;
-let BUD;
-let BUL;
-
-let TNM;
-let BNM;
 
 let buttons = [];
 
@@ -56,6 +19,7 @@ let me = {
 document.body.onload = function() {
 	load_home();
 }
+//document.body.addEventListener("load", load_home);
 /*
 function attach_javascript_files() {
 	let xhr = new XMLHttpRequest();
@@ -77,26 +41,96 @@ function attach_javascript_files() {
 }
 */
 class Menu {
-	constructor(id) {
+	constructor(id, who) {
 		this.element = document.getElementById(id);
 		this.innerHTML = "";
 		this.loaded_already = 0;
 		this.open = 0;
-		this.current;
+		this.current = {
+			name: "",
+			rows: 0,
+		};
 		this.previous = [];
-		/*
-		this.CL = "";
-		this.SR = "";
-		this.CH = "";
-		this.ML = "";
-		*/
+
+		this.who = who;
 	}
-	static current = "";
+	static current;
+}
+class CGC extends Menu {
+	constructor(id, who) {
+		super(id, who);
+		this.list = [{}]
+
+		this.bb;
+		this.ts;
+		this.bs;
+		this.sr;
+		this.cl;
+
+		this.ch;
+		this.tk;
+		this.bed;
+		this.ml;
+
+		this.sending;
+		this.snm;
+		this.tm;
+		this.bm;
+
+	}
+	initialize() {
+		this.bb = this.element.getElementsByClassName("button back")[0];
+		this.ts = this.element.getElementsByClassName("text search")[0];
+		this.bs = this.element.getElementsByClassName("button search")[0];
+		this.sr = this.element.getElementsByClassName("search_results")[0];
+		this.cl = this.element.getElementsByClassName("chat_list")[0];
+
+		this.ch = this.element.getElementsByClassName("current_header")[0];
+		this.tk = this.element.getElementsByClassName("text key")[0];
+		this.bed = this.element.getElementsByClassName("button e_d")[0];
+		this.ml = this.element.getElementsByClassName("messages_list")[0];
+
+		this.snm = this.element.getElementsByClassName("send_new_media")[0];
+		this.tm = this.element.getElementsByClassName("text message")[0];
+		this.bm = this.element.getElementsByClassName("button message")[0];
+	}
+	send_message() {
+		if(this.tm.value == "" || this.tk.value == "") {
+			return;
+		}
+	
+		do_amazing_animation_z("55vw", "0vh", 7, "5vw", "10vh");
+
+		let em = encryption(this.tm.value, this.tk.value);
+
+		let xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				this.ml.appendChild(create_div("sent messages", "", "", this.tm.value));
+				this.ml.scrollBy(0,100);
+			}
+		};
+		xhr.open("POST", "../php/" + this.who + "/send_new_message.php?q=" + em, true);
+		xhr.send();
+	}
+}
+class Chats extends CGC {
+	constructor(id, who) {
+		super(id, who);
+	}
+}
+class Groups extends CGC {
+	constructor(id, who) {
+		super(id, who);
+
+		this.tam;
+		this.bam;
+	}
 }
 
 let home = new Menu("content_home");
-let chats = new Menu("content_chats");
-let groups = new Menu("content_groups");
+let chats = new CGC("content_chats, chats");
+let groups = new CGC("content_groups, groups");
 let channels = new Menu("content_channels");
 let games = new Menu("content_games");
 let market = new Menu("content_market");

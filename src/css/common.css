@@ -1,4 +1,4 @@
-#button_back {
+.button.back {
 	position: absolute;
 	top: 0vh;
 	left: 0vw;
@@ -8,7 +8,7 @@
 
 	background-color: #AAFFA2;
 }
-#text_search {
+.text.search {
 	position: absolute;
 	top: 0vh;
 	left: 5vw;
@@ -20,7 +20,7 @@
 	background-color: #AAFFA2;
 	/*visibility: hidden;*/
 }
-#button_search {
+.button.search {
 	position: absolute;
 	top: 0vh;
 	left: 25vw;
@@ -30,7 +30,7 @@
 
 	background-color: #AAFFA2;
 }
-#search_results {
+.search_results {
 	position: absolute;
 	top: 10vh;
 	left: 0vw;
@@ -46,12 +46,12 @@
 	border-radius: 1500px;
 	transition: border-radius 2s linear 0s;*/
 }
-#search_results div {
+.search_results div {
 	z-index: 8;
 	height: 10vh;
 	border-bottom: 0.2vw solid black;
 }
-#search_results div img {
+.search_results div img {
 	/*
 	position: relative;
 	top: 0vw;
@@ -66,7 +66,7 @@
 #search_results:hover {
 	visibility: collapse;
 }*/
-#chat_list {
+.chat_list {
 	position: absolute;
 	top: 10vh;
 	left: 0vw;
@@ -82,7 +82,7 @@
 
 	overflow-y: visible;
 }
-#chat_list div {
+.chat_list div {
 	position: relative;
 	top: 0vh;
 	left: 0vw;
@@ -97,7 +97,7 @@
 
 	overflow: hidden;
 }
-#chat_list div img {
+.chat_list div img {
 	/*
 	position: relative;
 	top: 0vw;
@@ -107,11 +107,11 @@
 	height: 10vh;
 
 	overflow: hidden;
-}/*
-.chat:hover {
-	background-color: rgb(255, 255, 255);
-}*/
-#current_header {
+}
+.chat_list div:hover {
+	background-color: rgb(187, 187, 187);
+}
+.current_header {
 	position: absolute;
 	top: 0vw;
 	left: 30vw;
@@ -129,12 +129,12 @@
 	font-size: 2vw;
 	text-align: left;
 }
-#current_header img {
+.current_header img {
 	z-index: 7;
 	width: 10vw;
 	height: 10vh;
 }
-#messages_list {
+.messages_list {
 	position: absolute;
 	top: 10vh;
 	left: 30vw;
@@ -157,92 +157,63 @@
 	text-align: center;
 
 	object-fit: cover;
+	/*display: flex;*/
 }
-.messages_sent {
+.messages_list > * {   /*#messages_list * {*/   /*.media {*/
 	position: relative;
-	top: 0vh;
-	left: 30vw;
-	/*right: -50vw;*/
+	top: 1vh;
 	z-index: 7;
-	width: 25vw;
-	/*min-width: 5vw;*/
+}
+.received {
+	left: 1vw;
+}
+.sent {
+	left: 30vw;
+	/*right: 1vw;
+	margin-right: 1vw;*/
+}
+.messages {
+	min-width: 5vw;
+	width: fit-content;
 	height: fit-content;
 
-	margin-bottom: 1vh;
+	/*margin-bottom: 1vh;*/
 	/*margin-left: 24vw;*/
 	/*margin-right: 5vw;*/
 
+	/*text-align: right;*/
+	/*padding-right: 1vw;*/
+
+	color: rgb(0, 0, 0);
+	background-color: #9FD1FF;
+
+	font-size: 1.5vw;
+}
+.messages_list img {
+	width: 20vw;
+	height: 20vh;
+	/*width: fit-content;*/
+	/*height: fit-content;*/
+}
+.messages_list video {
+	width: 20vw;
+	height: 20vh;
+}
+.sent.messages {
 	text-align: right;
 	padding-right: 1vw;
 
-	color: rgb(0, 0, 0);
-	background-color: #9FD1FF;
-
-	font-size: 1.5vw;
+	/*color: rgb(0, 0, 0);
+	background-color: #9FD1FF;*/
 }
-.messages_received {
-	position: relative;
-	top: 0vh;
-	left: 1vw;
-	z-index: 7;
-
-	width: 25vw;
-	height: fit-content;
-
-	margin-bottom: 1vh;
-	/*margin-left: 4vw;*/
-
+.received.messages {
 	text-align: left;
 	padding-left: 1vw;
 
-	color: rgb(0, 0, 0);
-	background-color: #9FD1FF;
-
-	font-size: 1.5vw;
-}/*
-#messages_list img {
-	position: relative;
-	z-index: 7;
-	width: 20vw;
-	height: 20vh;
-	width: fit-content;
-	height: fit-content;
-}*/
-.received.image {
-	position: relative;
-	left: 1vw;
-	top: 1vh;
-	z-index: 7;
-	width: 20vw;
-	height: 20vh;
-	object-fit: cover;
+	/*color: rgb(0, 0, 0);
+	background-color: #9FD1FF;*/
 }
-.sent.image {
-	position: relative;
-	left: 40vw;
-	top: 1vh;
-	z-index: 7;
-	width: 20vw;
-	height: 20vh;
-	object-fit: cover;
-}
-/*
-#button_check_for_new_messages {
-	position: absolute;
-	top: 90vh;
-	left: 40vw;
-	z-index: 3;
-
-	width: 20vw;
-	height: 10vh;
-
-	word-break: break-all;
-
-	font-size: 2vw;
-
-	background-color: rgb(255, 255, 255, 0);
-}*/
-#send_new_media {
+.send_new_media {
 	position: absolute;
 	left: 30vw;
 	top: 90vh;
@@ -254,7 +225,7 @@
 
 	background-color: #ffa860;
 }
-#send_new_media div{
+.send_new_media div {
 	background-color: rgb(255, 255, 255, 0);
 }
 .sending {
@@ -326,7 +297,7 @@
 	height: 10vh;
 	background-color: black;
 }*/
-#text_new_message {
+.text.message {
 	position: relative;
 	top: 0vh;
 	left: 0vw;
@@ -342,7 +313,7 @@
 
 	/*display: flex;*/
 }
-#button_new_message {
+.button.message {
 	position: absolute;
 	left: 55vw;
 	top: 0vh;

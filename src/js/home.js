@@ -1,4 +1,25 @@
-function load_home() {
+function load_home(t) {
+	if (home.open) {
+		return;
+	}
+	if (Menu.current) {
+		Menu.current.open = 0;
+		Menu.current.element.style.visibility = "hidden";
+	}
+
+	Menu.current = home;
+	home.open = 1;
+	home.element.style.visibility = "visible";
+
+	console.log("99" + home);
+
+	if(home.loaded_already) {
+		return;
+	}
+	console.log("100 l");
+	load_home_from_server();
+}
+function load_home_from_server() {
 	let xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -37,6 +58,7 @@ function load_home() {
 
 			Menu.current = home;
 			home.open = 1;
+			home.loaded_already = 1;
 		}
 	};
 	xhr.open("POST", "../php/home/load_home.php", true);

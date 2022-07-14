@@ -1,6 +1,10 @@
-function encryption(plain) {
+function encryption(plain, key) {
+	key = parseInt(key);
 	let cipher = "";
-	let key = parseInt(TK.value);
+
+	if(key == 0) {
+		return plain;
+	}
 
 	let aaa;
 	let bbb;
@@ -17,12 +21,12 @@ function encryption(plain) {
 
 	return cipher;
 }
-function decryption(cipher) {
+function decryption(cipher, key) {
+	key = parseInt(key);
 	let plain = "";
-	let key = parseInt(TK.value);
 
-	if(key == "") {
-		return;
+	if(key == 0) {
+		return cipher;
 	}
 
 	console.log(key);

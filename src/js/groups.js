@@ -1,28 +1,34 @@
 function load_groups(t) {
 	if(groups.open) {
 		return;
-	} else if(groups.loaded_already) {
-		//
-		Menu.current.open = 0;
-		Menu.current.element.style.visibility = "hidden";
-
-		Menu.current = groups;
-		groups.open = 1;
-		groups.element.style.visibility = "visible";
-	} else if(common_loaded) {
-		TS.removeEventListener("keyup", search_user);
-		BS.removeEventListener("click", search_user);
-
-		load_groups_from_server();
-	} else {
-		load_common(groups);
-		load_groups_from_server();
 	}
+	//
+	Menu.current.open = 0;
+	Menu.current.element.style.visibility = "hidden";
+
+	Menu.current = groups;
+	groups.open = 1;
+	groups.element.style.visibility = "visible";
+
+	if(groups.loaded_already) {
+		return;
+	}
+	if(common_loaded) {
+		//TS.removeEventListener("keyup", search_user);
+		//BS.removeEventListener("click", search_user);
+
+		load_groups_from_server();
+		return;
+	}
+	groups.element.innerHTML = load_common("_g");
+	groups.initialize();
+	load_groups_from_server();
 
 	do_amazing_animation("0vw", "10vh", "10vw", "5vh");
+	t.style.backgroundColor = "black";
 }
 function load_groups_from_server() {
-	content.groups.loaded_already = 1;
+	groups.loaded_already = 1;
 
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
@@ -55,12 +61,10 @@ function load_groups_from_server() {
 
 				i++;
 			}
+
 			}
 			CL.innerHTML = c;
-			content.groups.CL = c;
-
 			SR.innerHTML = "";
-			content.groups.SR = "";
 
 			c = "<input type='text' id='text_add_member'>";
 			c += "<div class='button' id='button_add_member' onclick='add_member()'> add member </div>";
@@ -69,15 +73,8 @@ function load_groups_from_server() {
 
 			CL.firstElementChild.click(this, r[0].names);
 
-			content.chats.CH = CH.innerHTML;
-
-			content.chats.ML = ML.innerHTML;
-
 			TAM = document.getElementById("text_add_member");
 			BAM = document.getElementById("button_add_member");
-
-			TS.addEventListener("keyup", search_groups);
-			BS.addEventListener("click", search_groups);
 		}
 	};
 	//xmlhttp.setRequestHeader("Access-Control-Allow-Origin": "*");
@@ -210,32 +207,8 @@ function show_messages_groups(t, group_name) {
 	xmlhttp.open("POST", "../php/groups/show_messages.php?q=" + group_name, true);
 	xmlhttp.send();
 }
-function send_new_message_groups() {
-	let MLG = document.getElementById("messages_list_groups");
-	let TNMG = document.getElementById("text_new_message_groups");
-
-	if(TNMG.value == "") {
-		return;
-	}
-
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			let new_div = document.createElement("div");
-			new_div.className = "messages_sent_groups";
-
-			let new_text = document.createTextNode(TNMG.value);
-			new_div.appendChild(new_text);
-
-			MLG.appendChild(new_div);
-
-			/*ML.innerHTML += this.responseText;*/
-
-			MLG.scrollBy(0,100);
-		}
-	};
-	xmlhttp.open("POST", "../php/groups/send_new_message.php?q=" + TNMG.value, true);
-	xmlhttp.send();
+function send_message_g() {
+	groups.send_message();
 }
 function add_member() {
 	do_amazing_animation("90vw", "0vh", "10vw", "10vh");

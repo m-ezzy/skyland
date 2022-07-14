@@ -1,52 +1,40 @@
-function load_chats() {
+function load_chats(t) {
 	if (chats.open) {
 		return;
-	} else if(chats.loaded_already) {
-		//if common and chats are already loaded before
-		Menu.current.open = 0;
-		Menu.current.element.style.visibility = "hidden";
+	}
 
-		Menu.current = chats;
-		chats.open = 1;
-		chats.element.style.visibility = "visible";
+	//if common and chats are already loaded before
+	Menu.current.open = 0;
+	Menu.current.element.style.visibility = "hidden";
 
-		console.log("100" + chats);
-	} else if(common_loaded) {
+	Menu.current = chats;
+	chats.open = 1;
+	chats.element.style.visibility = "visible";
+
+	console.log("100" + chats);
+
+	if (chats.loaded_already) {
+		return;
+	}
+	if (common_loaded) {
 		//TS.removeEventListener("keyup", search_groups);
 		//BS.removeEventListener("click", search_groups);
 
 		load_chats_from_server();
-	} else {
-		console.log("101");
-		load_common(chats);
-
-
-
-		BB = document.getElementById("button_back");
-		TS = document.getElementById("text_search");
-		BS = document.getElementById("button_search");
-
-		SR = document.getElementById("search_results");
-		CL = document.getElementById("chat_list");
-
-		CH = document.getElementById("current_header");
-
-		ML = document.getElementById("messages_list");
-
-		SNM = document.getElementById("send_new_media");
-
-		TNM = document.getElementById("text_new_message");
-		BNM = document.getElementById("button_new_message");
-
-		buttons = document.getElementsByClassName("button");
-
-
-
-		load_chats_from_server();
-		console.log("502");
+		return;
 	}
 
-	do_amazing_animation("0vw", "5vh", "10vw", "5vh");
+	console.log("101");
+	chats.element.innerHTML = load_common("");
+
+	chats.initialize();
+
+	load_chats_from_server();
+
+	console.log("502");
+
+	//do_amazing_animation("0vw", "5vh", "10vw", "5vh");
+	do_amazing_animation_this(t);
 }
 function load_chats_from_server() {
 	//retrieve info for first time and put it in respective places
@@ -64,51 +52,36 @@ function load_chats_from_server() {
 			while(s = r[i]) {
 				let path = s.extension ? "../../data/profile_pictures/" + s.user_name + "." + s.extension : "../../media/images/place_holder3.png";
 
-				c += "<div onclick='show_messages(this," + s.user_name + ")'>";
+				c += "<div onclick='show_conversation(this," + s.user_name + ")'>";
 				c += "<img src='" + path + "'>";
 				c += s.user_name + " " + s.first_name + " " + s.last_name;
 				c += "</div>";
 
-				chats.previous.push({user_name: s.user_name, first_name: s.first_name, last_name: s.last_name, extension: s.extension});
+				chats.previous.push({user_name: (s.user_name), first_name: (s.first_name), last_name: (s.last_name), extension: (s.extension), rows: 0});
 				i++;
 			}
-			CL.innerHTML = c;
-			//content.chats.CL = c;
+			chats.cl.innerHTML = c;
 
-			SR.innerHTML = "";
-			//content.chats.SR = "";
-
-			/*
-			c = "<input type='text' placeholder='enter key of this conversation' id='text_key' value='0' />";
-			c += "<div class='button' id='button_e_d' onclick='e_d()'> encrypt / decrypt </div>";
-			CH.innerHTML += c;
-			//content.chats.CH = c;
-			*/
+			chats.sr.innerHTML = "";
 
 			let e;
-			e = create_input_text("enter key of this conversation", "text_key", "0");
+			e = create_input_text("text key", "", "enter key of this conversation", "0");
 			chats.element.appendChild(e);
 
-			e = create_element_all("div", "button", "button_e_d", "e_d", "encrypt/decrypt");
+			e = create_div("button key", "", "e_d", "encrypt/decrypt");
 			chats.element.appendChild(e);
 
-			TK = document.getElementById("text_key");
+			chats.tk = chats.element.getElementsByClassName("text key")[0];
+			chats.bk = chats.element.getElementsByClassName("button key")[0];
 
-			show_messages(CL.firstElementChild, r[0].user_name);
+			show_conversation(chats.cl.firstElementChild, r[0].user_name);
 			//CL.firstElementChild.click();
 			//CL.firstElementChild.click(this, r[0].user_name);
 
-			//content.chats.CH = CH.innerHTML;
-
-			//content.chats.ML = ML.innerHTML;
-
-			//TS.addEventListener("keyup", search_user);
-			//BS.addEventListener("click", search_user);
-
-			//current.chat.name = r[0].user_name;
-
-			//TS.addEventListener("keyup", search_user);
-			//BS.addEventListener("click",search_user);
+			/*
+			if (resources) {
+				TS.addEventListener("input", search_user);
+			}*/
 		}
 	};
 	//xhr.setRequestHeader("Access-Control-Allow-Origin": "*");
@@ -116,21 +89,23 @@ function load_chats_from_server() {
 	xhr.send();
 }
 function search_user() {
-	let TS_value = document.getElementById("text_search").value;
-	if(TS_value == "") {
-		console.log(TS_value + "23");
+	let s = chats.ts.value;
+	if(s == "") {
+		console.log(s + "23");
 		return;
 	}
-	console.log(TS_value);
+	console.log(s);
 
-	SR.innerHTML = "";
-	SR.style.visibility = "visible";
+	chats.sr.innerHTML = "";
+	chats.sr.style.visibility = "visible";
 
 	let pre = [];
 	for (let i=0 ; i<chats.previous.length ; i++) {
-		let un = chats.previous[i].user_name.search(TS_value);
-		let fn = chats.previous[i].first_name.search(TS_value);
-		let ln = chats.previous[i].last_name.search(TS_value);
+		let un = chats.previous[i].user_name.search(s);
+		let fn = chats.previous[i].first_name.search(s);
+		let ln = chats.previous[i].last_name.search(s);
+
+		console.log(un + fn + ln);
 
 		if (un != -1 || fn != -1 || ln != -1) {
 			pre.push(chats.previous[i]);
@@ -138,7 +113,7 @@ function search_user() {
 	}
 	if (pre.length) {
 		//add banner showing already created chats
-		SR.appendChild(create_div("chat", "", "", "your previous chats"));
+		chats.sr.appendChild(create_div("chat", "", "", "your previous chats"));
 	}
 	for (let i = 0 ; i < pre.length ; i++) {
 		let img = document.createElement("img");
@@ -149,11 +124,11 @@ function search_user() {
 		let temp = create_div("chat", "", oc, text);
 
 		temp.appendChild(img);
-		SR.appendChild(temp);
+		chats.sr.appendChild(temp);
 	}
 
 	console.log("503");
-	console.log(TS.value);
+	console.log(s);
 
 	do_amazing_animation("25vw", "0vh", "5vw", "10vh");
 
@@ -168,7 +143,7 @@ function search_user() {
 
 			if (r.length) {
 				//add banner showing chats with whom no previous communication
-				SR.appendChild(create_div("chat", "", "", "start a new chat"));
+				chats.sr.appendChild(create_div("chat", "", "", "start a new chat"));
 			}
 			for (let i = 0 ; i < r.length ; i++) {
 				let img = document.createElement("img");
@@ -182,39 +157,39 @@ function search_user() {
 				console.log(temp);
 
 				temp.appendChild(img);
-				SR.appendChild(temp);
+				chats.sr.appendChild(temp);
 			}
 			if (pre.length == 0 && r.length == 0) {
 				//SR.innerHTML = "<div class='chat'> no such user found </div>";
-				SR.appendChild(create_div("chat", "", "", "no such user found"));
+				chats.sr.appendChild(create_div("chat", "", "", "no such user found"));
 			}
 		}
 	};
-	xhr.open("GET", "../php/chats/search_user.php?q=" + TS_value, true);
+	xhr.open("GET", "../php/chats/search_user.php?q=" + s, true);
 	xhr.send();
 }
-function take_to_that_chat(t,user_name) {
-	SR.style.visibility = "hidden";
+function take_to_that_chat(t, user_name) {
+	chats.sr.style.visibility = "hidden";
 
-	show_messages(t,user_name);
+	show_conversation(t, user_name);
 }
 function create_new_chat(user_name, first_name, last_name, extension) {
-	SR.style.visibility = "hidden";
+	chats.sr.style.visibility = "hidden";
 
 	let xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			let img = document.createElement("img");
-			img.src = extension ? "../../data/profile_pictures/" + user_name + "." + extension : "../../media/images/place_holder3.png";
+			img.src = extension != "null" ? "../../data/profile_pictures/" + user_name + "." + extension : "../../media/images/place_holder3.png";
 
-			let oc = "show_messages(this, " + user_name + ")";
+			let oc = "show_conversation(this, " + user_name + ")";
 			let text = user_name + " " + first_name + " " + last_name;
 			let temp = create_div("chat", "", oc, text);
 
 			temp.appendChild(img);
-			SR.appendChild(temp);
+			chats.cl.appendChild(temp);
 
-			//show_messages(temp, user_name);
+			show_conversation(chats.cl.lastElementChild, user_name);
 		}
 	};
 	xhr.open("POST", "../php/chats/create_new_chat.php?q=" + user_name, true);
@@ -222,15 +197,15 @@ function create_new_chat(user_name, first_name, last_name, extension) {
 }
 
 //can't use 'this' in function parameters, using 't' instead of 'this'
-function show_messages(t, user_name) {
-	let key = parseInt(document.getElementById("text_key").value);
+function show_conversation(t, user_name) {
+	let key = chats.tk.value;
 	if(isNaN(key)) {
 		return;
 	}
 
-	chats.current = user_name;
-	CH.innerHTML = t.innerHTML;
-	ML.innerHTML = "";
+	chats.current = chats.previous.user_name.indexOf(user_name);
+	chats.ch.innerHTML = t.innerHTML;
+	chats.ml.innerHTML = "";
 
 	//do_amazing_animation('id',t.style.left, t.style.top, t.style.width);
 	do_amazing_animation("10vw", "10vh", "30vw", "10vh");
@@ -244,87 +219,100 @@ function show_messages(t, user_name) {
 			let i = 0;
 			while(o = result[i]) {
 				console.log(o);
+
+				let e;
+
+				let class_media = o.sent_by == me.user_name ? "sent" : "received";
+
+				let w = Math.floor(innerWidth/5);
+				let h = Math.floor(innerHeight/5);
+
+				let first = me.user_name < chats.current ? me.user_name : chats.current;
+				let second = me.user_name > chats.current ? me.user_name : chats.current;
+				
 				if(o.message) {
-					let m = decryption(o.message);
+					let m = decryption(o.message, chats.tk.value);
 					console.log(m);
-
-					let who;
-					if(o.sent_by == user_name) {
-						who = "messages_received";
-					} else {
-						who = "messages_sent";
-					}
-					ML.appendChild(create_div(who, "", "", m));
+					
+					e = create_div(class_media + " messages", "", "", m);
 				} else if(o.images) {
-					let class_image = o.sent_by == me.user_name ? "sent image" : "received image";
-
-					let first = me.user_name < chats.current ? me.user_name : chats.current;
-					let second = me.user_name > chats.current ? me.user_name : chats.current;
-
-					ML.appendChild(create_image(class_image, "", "", "../../data/chats/chat_between_" + first + "_" + second + "/" + o.ROWNUM + "." + o.images));
+					e = create_image(class_media, "", "", "../../data/chats/chat_between_" + first + "_" + second + "/" + o.ROWNUM + "." + o.images, w, h);
+				} else if(o.videos) {
+					e = create_video(class_media, "", "", "../../data/chats/chat_between_" + first + "_" + second + "/" + o.ROWNUM + "." + o.videos, w, h);
 				}
+				chats.ml.appendChild(e);
 				i++;
 			}
-			//let mlh = ML.style.height;
-			ML.scrollTo(0,99999);
+			//let mlh = chats.ml.style.height;
+			chats.ml.scrollTo(0,99999);
 
-			MS = document.getElementsByClassName("messages_sent");
-			MR = document.getElementsByClassName("messages_received");
+			//MS = document.getElementsByClassName("sent messages");
+			//MR = document.getElementsByClassName("received messages");
 
 			if(resources) {
 				let ci = setInterval(check_for_new_messages, 1000);
 			}
 		}
 	};
-	xhr.open("POST", "../php/chats/show_messages.php?q=" + user_name, true);
+	xhr.open("POST", "../php/chats/show_conversation.php?q=" + user_name, true);
 	xhr.send();
 }
-function send_new_message() {
+
+function select_images() {
+	//document.getElementById("select_images").click();
+	chats.element.getElementsByClassName("select_images")[0].click();
+	document.getElementsByClassName("sending")[0].style.visibility = "visible";
+}
+function select_videos() {
+	//document.getElementById("select_videos").click();
+	chats.element.getElementsByClassName("select_videos")[0].click();
+	document.getElementsByClassName("sending")[1].style.visibility = "visible";
+}
+function select_audios() {
+	//document.getElementById("select_audios").click();
+	chats.element.getElementsByClassName("select_audios")[0].click();
+	document.getElementsByClassName("sending")[2].style.visibility = "visible";
+}
+function select_documents() {
+	//document.getElementById("select_documents").click();
+	chats.element.getElementsByClassName("select_documents")[0].click();
+	document.getElementsByClassName("sending")[3].style.visibility = "visible";
+}
+function select_location() {
+	//document.getElementById("select_location").click();
+	chats.element.getElementsByClassName("select_location")[0].click();
+	document.getElementsByClassName("sending")[4].style.visibility = "visible";
+}
+
+function send_message() {
 	//console.log(40);
 
-	if(TNM.value == "" || TK.value == "") {
+	if(chats.tm.value == "" || chats.tk.value == "") {
 		return;
 	}
 
 	do_amazing_animation_z("55vw", "0vh", 7, "5vw", "10vh");
 
-	let EM = encryption(TNM.value);
-	//console.log(TNM.value + " " + TK.value);
+	let EM = encryption(chats.tm.value, chats.tk.value);
+	//console.log(chats.tm.value + " " + chats.tk.value);
 
 	let xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			//console.log(41);
-			ML.appendChild(create_div("messages_sent", "", "", TNM.value));
-			ML.scrollBy(0,100);
+			chats.ml.appendChild(create_div("sent messages", "", "", chats.tm.value));
+			chats.ml.scrollBy(0,100);
 		}
 	};
 	xhr.open("POST", "../php/chats/send_new_message.php?q=" + EM, true);
 	xhr.send();
 }
-
-function select_images() {
-	document.getElementById("select_images").click();
-	document.getElementsByClassName("sending")[0].style.visibility = "visible";
-}
-function select_videos() {
-	document.getElementById("select_videos").click();
-	document.getElementsByClassName("sending")[1].style.visibility = "visible";
-}
-function select_audios() {
-	document.getElementById("select_audios").click();
-}
-function select_documents() {
-	document.getElementById("select_documents").click();
-}
-function select_location() {
-	document.getElementById("select_location").click();
-}
-
 function send_images() {
+	document.getElementsByClassName("sending")[0].style.visibility = "hidden";
+
 	let xhr = new XMLHttpRequest();
 
-	let file = document.getElementById('select_images').files[0];
+	let file = chats.element.getElementsByClassName("select_images")[0].files[0];
 	
 	let fd = new FormData();
 	fd.append("select_images", file);
@@ -333,10 +321,33 @@ function send_images() {
 	//xhr.setRequestHeader("Content-type","image");
 	xhr.send(fd);
 
-	xhr.onreadystatechange = function(){
+	xhr.onreadystatechange = function() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
-			document.getElementsByClassName("sending")[0].style.visibility = "hidden";
-			ML.innerHTML += "<img src='../../data/chats/chat_between_" + this.responseText + "'>";
+			let w = Math.floor(innerWidth/5);
+			let h = Math.floor(innerHeight/5);
+			chats.ml.appendChild(create_image("sent", "", "", "../../data/chats/chat_between_" + this.responseText, w, h));
+		}
+	};
+}
+function send_videos() {
+	document.getElementsByClassName("sending")[1].style.visibility = "hidden";
+
+	let xhr = new XMLHttpRequest();
+	//let file = document.getElementById('select_videos').files[0];
+	let file = chats.element.getElementsByClassName("select_videos")[0].files[0];
+
+	let fd = new FormData();
+	fd.append("select_videos", file);
+
+	xhr.open("POST", "../php/chats/send_new_videos.php", true);
+	//xhr.setRequestHeader("Content-type","image");
+	xhr.send(fd);
+
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			let w = Math.floor(innerWidth/5);
+			let h = Math.floor(innerHeight/5);
+			chats.ml.appendChild(create_video("sent", "", "", "../../data/chats/chat_between_" + this.responseText, w, h));
 		}
 	};
 }
@@ -358,7 +369,7 @@ function close_location() {
 }
 
 function check_for_new_messages() {
-	if(TK.value == "") {
+	if(chats.tk.value == "") {
 		return;
 	}
 	//let RN = <?php echo $_SESSION['RowNumber']?>;
@@ -374,41 +385,45 @@ function check_for_new_messages() {
 			result.forEach(r => {
 				let e;
 
+				let w = Math.floor(innerWidth/5);
+				let h = Math.floor(innerHeight/5);
+
+				let first = me.user_name < chats.current ? me.user_name : chats.current;
+				let second = me.user_name > chats.current ? me.user_name : chats.current;
+
 				if (r.message) {
 					let m = decryption(r);
-					e = create_div_class_text("messages_received", m);
+					e = create_div("received messages", "", "", m);
 				} else if (r.images) {
-					let first = me.user_name < chats.current ? me.user_name : chats.current;
-					let second = me.user_name > chats.current ? me.user_name : chats.current;
-
-					e = create_image("received image", "", "", "../../data/chats/chat_between_" + first + "_" + second + "/" + r.ROWNUM + "." + r.images);
+					e = create_image("received", "", "", "../../data/chats/chat_between_" + first + "_" + second + "/" + r.ROWNUM + "." + r.images, w, h);
+				} else if (r.videos) {
+					e = create_video("received", "", "", "../../data/chats/chat_between_" + first + "_" + second + "/" + r.ROWNUM + "." + r.videos, w, h);
 				}
-				ML.appendChild(e);
+				chats.ml.appendChild(e);
 			});
-
-			ML.scrollBy(0,500);
-			/*ML.scrollBottom();
-			/*ML.scrollTo(0,500);
+			chats.ml.scrollBy(0,500);
+			/*chats.ml.scrollBottom();
+			/*chats.ml.scrollTo(0,500);
 			(last div tag in message list).scrollIntoView();*/
 		}
 	};
 	xhr.open("POST", "../php/chats/check_for_new_messages.php", true);
 	xhr.send();
 }
-function snm(e) {
+function sm(e) {
 	if(e.key == "Enter") {
-		send_new_message();
+		send_message();
 	}
 }
 function add_enter_event() {
-	document.addEventListener("keydown",snm);
+	document.addEventListener("keydown",sm);
 
-	/*let TNM = document.getElementById("TextNewMessage");
-	TNM.addEventListener("keydown",send_new_message);*/
+	/*let chats.tm = document.getElementById("TextNewMessage");
+	chats.tm.addEventListener("keydown",send_new_message);*/
 }
 function remove_enter_event() {
-	document.removeEventListener("keydown",snm);
+	document.removeEventListener("keydown",sm);
 
-	/*let TNM = document.getElementById("TextNewMessage");
-	TNM.removeEventListener("keydown",send_new_message);*/
+	/*let chats.tm = document.getElementById("TextNewMessage");
+	chats.tm.removeEventListener("keydown",send_new_message);*/
 }
