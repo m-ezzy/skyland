@@ -41,7 +41,7 @@
 
 <?php
 	require '../server.php';
-	$u = $_SESSION['user_name'];
+	$u = $_SESSION['my']['user_name'];
 
 	$dir = "../../../data/profile_pictures/";
 

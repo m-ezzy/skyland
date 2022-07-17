@@ -1,7 +1,7 @@
 <?php
 	include 'server.php';
 
-	if(!isset($_SESSION['user_name'])) {
+	if(!isset($_SESSION['my']['user_name'])) {
    		header('location: authentication.php');
 	}
 ?>
@@ -61,12 +61,70 @@
 			<div class='button' id='button_theme' onclick='toggle_theme(this)'> theme </div>
 		</div>
 		
-		<div class='content' id='content_home'></div>
-		<div class='content' id='content_chats'></div>
-		<div class='content' id='content_groups'></div>
-		<div class='content' id='content_channels'></div>
-		<div class='content' id='content_games'></div>
-		<div class='content' id='content_market'></div>
+		<div class='content' id='home'></div>
+		<div class='content' id='chats'></div>
+		<div class='content' id='groups'></div>
+		<div class='content' id='channels'></div>
+		<div class='content' id='games'></div>
+		<div class='content' id='market'></div>
+
+		<!--
+		<script>
+			let media_types = ['images', 'videos', 'audios', 'document', 'location'];
+
+			for (let i = 0 ; i < 5 ; i++) {
+				let div = document.createElement("div");
+				div.className = 'sending ' + media_types[i];
+				document.body.appendChild(s);
+				i++;
+			}
+		-->
+
+		<div class='sending'>
+			<div class='button close_sending' onclick='close_images()'> + </div>
+			<input type='file' name='select_images' class='select_images' accept='.jpg, .jpeg, .png'>
+			<div class='button send' onclick='send_images()'> send </div>
+		</div>
+
+		<div class='sending'>
+			<div class='button close_sending' onclick='close_videos()'> + </div>
+			<input type='file' name='select_videos' class='select_videos'>
+			<div class='button send' onclick='send_videos()'> send </div>
+		</div>
+
+		<div class='sending'>
+			<div class='button close_sending' onclick='close_audios()'> + </div>
+			<input type='file' name='select_audios' class='select_audios'>
+			<div class='button send' onclick='send_audios()'> send </div>
+		</div>
+
+		<div class='sending'>
+			<div class='button close_sending' onclick='close_documents()'> + </div>
+			<input type='file' name='select_documents' class='select_documents'>
+			<div class='button send' onclick='send_documents()'> send </div>
+		</div>
+
+		<div class='sending'>
+			<div class='button close_sending' onclick='close_location()'> + </div>
+			<input type='file' name='select_location' class='select_location'>
+			<div class='button send' onclick='send_location()'> send </div>
+		</div>
+
+		<div class='send_new_media'>
+			<label for='file'> image </label>
+
+			<div class='button images' onclick='select_images()'> images </div>
+			<div class='button videos' onclick='select_videos()'> videos </div>
+			<div class='button audios' onclick='select_audios()'> audios </div>
+			<div class='button documents' onclick='select_documents()'> documents </div>
+			<div class='button location' onclick='select_location()'> location </div>
+
+			<input class='text message' type='text' placeholder='type a new message' onfocus='add_enter_event()' onblur='remove_enter_event()'>
+			<div class='button message' onclick='send_message()'> send </div>
+		</div>
+
+		<!--
+		</script>-->
 
 		<div class='ba' id='ba1'></div>
 		<div class='ba' id='ba2'></div>

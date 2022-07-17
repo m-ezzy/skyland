@@ -2,24 +2,18 @@ function load_groups(t) {
 	if(groups.open) {
 		return;
 	}
-	//
-	Menu.current.open = 0;
-	Menu.current.element.style.visibility = "hidden";
 
-	Menu.current = groups;
+	Content.current.open = 0;
+	Content.current.element.style.visibility = "hidden";
+
+	Content.current = groups;
 	groups.open = 1;
 	groups.element.style.visibility = "visible";
 
 	if(groups.loaded_already) {
 		return;
 	}
-	if(common_loaded) {
-		//TS.removeEventListener("keyup", search_user);
-		//BS.removeEventListener("click", search_user);
 
-		load_groups_from_server();
-		return;
-	}
 	groups.element.innerHTML = load_common("_g");
 	groups.initialize();
 	load_groups_from_server();
@@ -30,56 +24,59 @@ function load_groups(t) {
 function load_groups_from_server() {
 	groups.loaded_already = 1;
 
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			let c = "";
 
 			let r = new Array();
 			r = JSON.parse(this.responseText);
 
+			if (r[0] == "0") {
+				return;
+			}
+
 			let i = 0;
 			//let s;
-			if(r[0] != "0") {
-			while(s = r[i]) {
+			while (s = r[i]) {
 				//s = JSON.parse(r[i]);
 
 				//let s = result['chats'][i];
 
 				//let s = r[i];
 				let path;
-				if(s.extension) {
+				if (s.extension) {
 					path = "../../data/groups/icons/" + s.names + "." + s.extension;
 				} else {
-					path = "../../media/images/place_holder3.png";
+					path = "../../media/images/place_holder_groups.png";
 				}
 
-				c += "<div onclick='show_messages_groups(this, " + s.names + ")'>";
+				c += "<div onclick='show_conversation_g(this, " + s.names + ")'>";
 				c += "<img src='" + path + "'>";
 				c += s.names;
 				c += "</div>";
 
+				groups.element.appendChild(create_div("conversation", "group_conversation_" + s.names, "", ""));
+				let e = document.getElementById("group_conversation_" + s.names);
+				groups.previous.push({names: (s.names), members: [], extension: (s.extension), rows: -1, conversation: e});
+
 				i++;
 			}
+			groups.cl.innerHTML = c;
+			groups.sr.innerHTML = "";
 
-			}
-			CL.innerHTML = c;
-			SR.innerHTML = "";
+			groups.element.appendChild(create_input_text("", "text_add_member", "", ""));
+			groups.element.appendChild(create_div("button", "button_add_member", "add_member", "add member"));
 
-			c = "<input type='text' id='text_add_member'>";
-			c += "<div class='button' id='button_add_member' onclick='add_member()'> add member </div>";
+			groups.tam = groups.element.getElementById("text_add_member");
+			groups.bam = groups.element.getElementById("button_add_member");
 
-			C.innerHTML += c;
-
-			CL.firstElementChild.click(this, r[0].names);
-
-			TAM = document.getElementById("text_add_member");
-			BAM = document.getElementById("button_add_member");
+			show_conversation_g(groups.cl.firstElementChild, r[0].names);
 		}
 	};
-	//xmlhttp.setRequestHeader("Access-Control-Allow-Origin": "*");
-	xmlhttp.open("POST", "../php/groups/load_groups2.php", true);
-	xmlhttp.send();
+	//xhr.setRequestHeader("Access-Control-Allow-Origin": "*");
+	xhr.open("POST", "../php/groups/load_groups2.php", true);
+	xhr.send();
 }
 function search_groups() {
 	if(TS.value == "") {
@@ -89,14 +86,14 @@ function search_groups() {
 
 	do_amazing_animation("35vw", "0vh", "5vw", "10vh");
 
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			SR.innerHTML = this.responseText;
 		}
 	};
-	xmlhttp.open("GET", "../php/groups/search_groups.php?q=" + TS.value, true);
-	xmlhttp.send();
+	xhr.open("GET", "../php/groups/search_groups.php?q=" + TS.value, true);
+	xhr.send();
 }
 function take_to_that_group(t, group_name) {
 	//CL.innerHTML = CLinnerHTML;
@@ -106,14 +103,14 @@ function take_to_that_group(t, group_name) {
 	show_messages_groups(t, group_name);
 }
 function send_request_to_join_group(group_name) {
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			search_results_hidden();
 		}
 	};
-	xmlhttp.open("POST", "../php/groups/send_request_to_join_group.php?q=" + group_name, true);
-	xmlhttp.send();
+	xhr.open("POST", "../php/groups/send_request_to_join_group.php?q=" + group_name, true);
+	xhr.send();
 }
 function create_new_group() {
 	//let nd = document.createElement('div');
@@ -123,8 +120,8 @@ function create_new_group() {
 
 	let group_name = TS.value;
 
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			//gl.innerHTML += "<div onclick='show_messages_groups(this, " + group_name + ")'>";
 			
@@ -135,16 +132,16 @@ function create_new_group() {
 			//show_messages_groups(group_name);
 		}
 	};
-	xmlhttp.open("POST", "../php/groups/create_new_group.php?q=" + group_name, true);
-	xmlhttp.send();
+	xhr.open("POST", "../php/groups/create_new_group.php?q=" + group_name, true);
+	xhr.send();
 }
 function show_messages_groups(t, group_name) {
 	do_amazing_animation("10vw", "10vh", "30vw", "10vh");
 
 	CH.innerHTML = t.innerHTML + " : ";
 
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			let result = Array();
 			result = JSON.parse(this.responseText);
@@ -159,15 +156,15 @@ function show_messages_groups(t, group_name) {
 			CH.innerHTML += r;
 		}
 	};
-	xmlhttp.open("POST", "../php/groups/get_members.php?q=" + group_name, true);
-	xmlhttp.send();
+	xhr.open("POST", "../php/groups/get_members.php?q=" + group_name, true);
+	xhr.send();
 
 	//console.log(this);
 	let ML = document.getElementById("messages_list");
 	ML.innerHTML = "";
 
-	xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
+	xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
 		if(this.readyState == 4 && this.status == 200) {
 			//ML.innerHTML = this.responseText;
 
@@ -204,8 +201,8 @@ function show_messages_groups(t, group_name) {
 			}
 		}
 	};
-	xmlhttp.open("POST", "../php/groups/show_messages.php?q=" + group_name, true);
-	xmlhttp.send();
+	xhr.open("POST", "../php/groups/show_messages.php?q=" + group_name, true);
+	xhr.send();
 }
 function send_message_g() {
 	groups.send_message();
@@ -214,8 +211,8 @@ function add_member() {
 	do_amazing_animation("90vw", "0vh", "10vw", "10vh");
 	//console.log(TAM);
 
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			if(this.responseText == "1") {
 				HG.innerHTML += TAM.value + " , ";
@@ -223,8 +220,8 @@ function add_member() {
 			//console.log(TAM.value);
 		}
 	};
-	xmlhttp.open("POST", "../php/groups/add_member.php?q=" + TAM.value, true);
-	xmlhttp.send();
+	xhr.open("POST", "../php/groups/add_member.php?q=" + TAM.value, true);
+	xhr.send();
 }
 
 

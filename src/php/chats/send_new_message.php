@@ -3,7 +3,7 @@
 
 	$EM = $_REQUEST['q'];
 	
-	$u = $_SESSION['user_name'];
+	$u = $_SESSION['my']['user_name'];
 	$u2 = $_SESSION['current']['chat'];
 
 	$row_number = $_SESSION['row_number'];

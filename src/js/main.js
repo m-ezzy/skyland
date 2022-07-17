@@ -8,13 +8,7 @@ ba = document.getElementsByClassName("ba");
 
 let buttons = [];
 
-let common_loaded = 0;
-
-let me = {
-	user_name: '',
-	first_name: '',
-	last_name: '',
-};
+let me;
 
 document.body.onload = function() {
 	load_home();
@@ -40,26 +34,55 @@ function attach_javascript_files() {
 	xhr.send();
 }
 */
-class Menu {
-	constructor(id, who) {
-		this.element = document.getElementById(id);
+class Content {
+	constructor(who) {
+		this.element = document.getElementById(who);
 		this.innerHTML = "";
 		this.loaded_already = 0;
 		this.open = 0;
-		this.current = {
-			name: "",
-			rows: 0,
-		};
+		this.current = 0;
 		this.previous = [];
 
 		this.who = who;
 	}
 	static current;
+	
+	hide_search_results() {
+		this.sr.style.visibility = "hidden";
+	}
+	show_search_results() {
+		this.sr.style.visibility = "visible";
+	}
 }
-class CGC extends Menu {
-	constructor(id, who) {
-		super(id, who);
-		this.list = [{}]
+class Home extends Content {
+	constructor(who) {
+		super(who);
+	}
+	upload_profile_picture() {
+		let xhr = new XMLHttpRequest();
+	
+		let file = document.getElementById('file_pp').files[0];
+
+		let fd = new FormData();
+		fd.append("file_pp", file);
+	
+		xhr.open("POST", "../php/home/upload_profile_picture.php", true);
+		//xhr.setRequestHeader("Content-type","image");
+		xhr.send(fd);
+	
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200) {
+				/*C.removeChild(document.getElementById("file_pp"));
+				C.removeChild(document.getElementById("button_pp"));*/
+
+				home.innerHTML = "<img src='../../data/profile_pictures/" + this.responseText + "' id='profile_picture'>";
+			}
+		};
+	}
+}
+class Common extends Content {
+	constructor(who) {
+		super(who);
 
 		this.bb;
 		this.ts;
@@ -70,7 +93,8 @@ class CGC extends Menu {
 		this.ch;
 		this.tk;
 		this.bed;
-		this.ml;
+		//this.conversation = [];
+		//this.ml;
 
 		this.sending;
 		this.snm;
@@ -88,7 +112,7 @@ class CGC extends Menu {
 		this.ch = this.element.getElementsByClassName("current_header")[0];
 		this.tk = this.element.getElementsByClassName("text key")[0];
 		this.bed = this.element.getElementsByClassName("button e_d")[0];
-		this.ml = this.element.getElementsByClassName("messages_list")[0];
+		//this.ml = this.element.getElementsByClassName("messages_list")[0];
 
 		this.snm = this.element.getElementsByClassName("send_new_media")[0];
 		this.tm = this.element.getElementsByClassName("text message")[0];
@@ -114,26 +138,47 @@ class CGC extends Menu {
 		xhr.send();
 	}
 }
-class Chats extends CGC {
-	constructor(id, who) {
-		super(id, who);
+class Chats extends Common {
+	constructor(who) {
+		super(who);
 	}
 }
-class Groups extends CGC {
-	constructor(id, who) {
-		super(id, who);
+class Groups extends Common {
+	constructor(who) {
+		super(who);
 
 		this.tam;
 		this.bam;
 	}
 }
+class Channels extends Common {
+	constructor(who) {
+		super(who);
+	}
+}
+class Games extends Content {
+	constructor(who) {
+		super(who);
+	}
+}
+class Market extends Content {
+	constructor(who) {
+		super(who);
+	}
+}
 
-let home = new Menu("content_home");
-let chats = new CGC("content_chats, chats");
-let groups = new CGC("content_groups, groups");
-let channels = new Menu("content_channels");
-let games = new Menu("content_games");
-let market = new Menu("content_market");
+
+
+let home = new Home("home");
+let chats = new Chats("chats");
+let groups = new Groups("groups");
+let channels = new Channels("channels");
+let games = new Games("games");
+let market = new Market("market");
+
+
+
+
 
 
 

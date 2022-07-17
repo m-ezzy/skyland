@@ -1,8 +1,9 @@
 <?php
 	require '../server.php';
 
-	$u2 = $_REQUEST['q'];
-	$u = $_SESSION['user_name'];
+	//$u2 = $_REQUEST['q'];
+	$u2 = $_POST['user_name'];
+	$u = $_SESSION['my']['user_name'];
 
 	/*
 	//check if chat already exists, by extension chat table between them

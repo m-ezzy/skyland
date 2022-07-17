@@ -17,13 +17,12 @@
 	$first_name = mysqli_real_escape_string($conn, $_POST['first_name']);
 	$last_name = mysqli_real_escape_string($conn, $_POST['last_name']);
 
-
 	//$user_name = strtolower($user_name);
 
-	$query = "INSERT INTO accounts(user_name,pass_word) VALUES('" . $user_name . "','" . $pass_word . "')";
+	$query = "INSERT INTO accounts(user_name,pass_word) VALUES('$user_name','$pass_word')";
 	$conn->query($query);
 
-	$query = "INSERT INTO user_info(user_name,first_name,last_name) VALUES('" . $user_name . "','" . $first_name . "','" . $last_name . "')";
+	$query = "INSERT INTO user_info(user_name,first_name,last_name) VALUES('$user_name','$first_name','$last_name')";
 	$conn->query($query);
 
 	$query = "CREATE TABLE chats_" . $user_name . " (user_name VARCHAR(20) DEFAULT NULL)";
@@ -39,7 +38,7 @@
 	$query = "INSERT INTO chats_$user_name(user_name) VALUES('" . $user_name . "')";
 	$conn->query($query);
 
-	$_SESSION['user_name'] = $user_name;
+	$_SESSION['my']['user_name'] = $user_name;
 
 	header('location: index.php');
 ?>

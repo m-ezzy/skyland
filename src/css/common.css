@@ -28,7 +28,9 @@
 	width: 5vw;
 	height: 10vh;
 
-	background-color: #AAFFA2;
+	/*background-color: #AAFFA2;*/
+	background-image: url('../../media/images/design/search.png');
+	background-size: contain;
 }
 .search_results {
 	position: absolute;
@@ -134,7 +136,7 @@
 	width: 10vw;
 	height: 10vh;
 }
-.messages_list {
+.conversation {
 	position: absolute;
 	top: 10vh;
 	left: 30vw;
@@ -149,9 +151,11 @@
 	overflow-y: auto;
 
 	background-color: #F5FFA2;
-	/*background-image: url(../media/images/skins/watermelon/messages_list.jpg);*/
+	/*background-image: url(../media/images/skins/watermelon/messages_list.jpg);
 	background-repeat: repeat;
-	/*background-size: cover;*/
+	background-size: cover;*/
+
+	visibility: hidden;
 
 	font-size: 2vw;
 	text-align: center;
@@ -159,7 +163,7 @@
 	object-fit: cover;
 	/*display: flex;*/
 }
-.messages_list > * {   /*#messages_list * {*/   /*.media {*/
+.conversation > * {   /*#messages_list * {*/   /*.media {*/
 	position: relative;
 	top: 1vh;
 	z-index: 7;
@@ -189,13 +193,13 @@
 
 	font-size: 1.5vw;
 }
-.messages_list img {
+.conversation img {
 	width: 20vw;
 	height: 20vh;
 	/*width: fit-content;*/
 	/*height: fit-content;*/
 }
-.messages_list video {
+.conversation video {
 	width: 20vw;
 	height: 20vh;
 }

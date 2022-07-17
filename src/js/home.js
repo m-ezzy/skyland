@@ -2,12 +2,12 @@ function load_home(t) {
 	if (home.open) {
 		return;
 	}
-	if (Menu.current) {
-		Menu.current.open = 0;
-		Menu.current.element.style.visibility = "hidden";
+	if (Content.current) {
+		Content.current.open = 0;
+		Content.current.element.style.visibility = "hidden";
 	}
 
-	Menu.current = home;
+	Content.current = home;
 	home.open = 1;
 	home.element.style.visibility = "visible";
 
@@ -43,7 +43,7 @@ function load_home_from_server() {
 				//input.addAttribute();
 
 				h = "<input type='file' name='file_pp' id='file_pp'>";
-				h += "<input type='button' value='upload picture to server' id='button_pp' onclick='upload_profile_picture()'>";
+				h += "<input type='button' value='upload picture to server' id='button_pp' onclick='home.upload_profile_picture()'>";
 			} else {
 				//create_element("img", "", "profile_picture", "");
 
@@ -51,19 +51,19 @@ function load_home_from_server() {
 			}
 			h += "<br>" + result.user_name + "<br>" + result.first_name + "<br>" + result.last_name;
 
-			me.user_name = result.user_name;
+			me = result;
 
 			//home.innerHTML = h;
 			home.element.innerHTML = h;
 
-			Menu.current = home;
+			Content.current = home;
 			home.open = 1;
 			home.loaded_already = 1;
 		}
 	};
 	xhr.open("POST", "../php/home/load_home.php", true);
 	xhr.send();
-}
+}/*
 function upload_profile_picture() {
 	let xhr = new XMLHttpRequest();
 
@@ -78,13 +78,13 @@ function upload_profile_picture() {
 
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200) {
-			/*C.removeChild(document.getElementById("file_pp"));
-			C.removeChild(document.getElementById("button_pp"));*/
+			//C.removeChild(document.getElementById("file_pp"));
+			//C.removeChild(document.getElementById("button_pp"));
 
 			home.innerHTML = "<img src='../../data/profile_pictures/" + this.responseText + "' id='profile_picture'>";
 		}
 	};
-}
+}*/
 function show_profile() {
 	let xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {

@@ -2,7 +2,7 @@
 	require '../server.php';
 
 	$s = $_REQUEST['q'];
-	$u = $_SESSION['user_name'];
+	$u = $_SESSION['my']['user_name'];
 
 	$pre = 0;
 	$new = 0;
