@@ -1,10 +1,12 @@
 function load_chats(t) {
 	if (!chats) {
 		chats = new Chats('chats');
+
+		chats.check_for_new_media();
 		
-		if (resources) {
-			cfnm = setInterval(check_for_new_media, 5000);
-		}
+		/*if (resources) {
+			cfnm = setInterval(check_for_new_media, 10000);
+		}*/
 	}
 	if (chats.element.style.visibility == 'visible') {
 		return;

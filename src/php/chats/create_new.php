@@ -45,4 +45,6 @@
 	$_SESSION['chats'] = $chats;
 	*/
 	$_SESSION['chats'][] = $u2;
+	$_SESSION['chats'][$u2]['row_up'] = 0;
+	$_SESSION['chats'][$u2]['row_down'] = 0;
 ?>

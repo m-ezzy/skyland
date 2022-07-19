@@ -5,16 +5,15 @@
 	$EM = $_REQUEST['q'];
 
 	$u = $_SESSION['user_name'];
-	$u2 = $_SESSION['current']['chat'];
 
-	$row_number = $_SESSION['row_number'];
-	$row_number += 1;
-	$_SESSION['row_number'] = $row_number;
+	$i = array_search($u2, $_SESSION['chats']['user_name']);
+	$_SESSION['chats']['row_down'][$i] += 1;
+	$rn = $_SESSION['chats']['row_down'][$i];
 
 	$first = $u < $u2 ? $u : $u2;
 	$second = $u < $u2 ? $u2 : $u;
 
-	$query = "INSERT INTO chat_between_$first" . "_" . $second . "(ROWNUM,sent_by,messages) VALUES (" . $row_number . ",'" . $u . "','" . $EM . "')";
+	$query = "INSERT INTO chat_between_$first" . "_" . $second . "(ROWNUM,sent_by,messages) VALUES (" . $rn . ",'" . $u . "','" . $EM . "')";
 	$result = $conn->query($query);
 
 	//$result->success = 's';

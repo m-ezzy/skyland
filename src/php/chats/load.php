@@ -2,10 +2,11 @@
 	require '../server.php';
 
 	$u = $_SESSION['user_name'];
-	$_SESSION['chats'] = array();
 
-	$chats = array();
-	//$i = 0;
+	$_SESSION['chats'] = array();
+	$_SESSION['chats']['user_name'] = array();
+	$_SESSION['chats']['row_up'] = array();
+	$_SESSION['chats']['row_down'] = array();
 
 	//$query = "SELECT user FROM chats_$u";
 	//user_info needs to be written first then chats_u table if we want user chat first
@@ -13,72 +14,33 @@
 	$result = $conn->query($query);
 
 	$rows = array();
-	//$ra = array();
-
-	//$i=0;
-	
 	while($row = $result->fetch_object()) {
-		//$ra['chats'][] = array('user' => $row->user, 'first_name' => $row->first_name, 'last_name' => $row->last_name);
-
-		/*
-		$ru = $row->user;
-		$rfn = $row->first_name;
-		$rln = $row->last_name;
-		$rows[] = array("user"=>$ru,"first_name"=>$rfn,"last_name"=>$rln);
-		*/
-		
-		//$rows['chats'].push($row);
+		//$_SESSION['chats'][] = array($row->user_name => ['row_up' => 0]);
+		$_SESSION['chats']['user_name'][] = $row->user_name;
+		//$_SESSION['chats'][$row->user_name] = array();
 		$rows[] = $row;
-		
-		/*
-		$ra[i]['user'] = $row["user"];
-		$ra[i]['first_name'] = $row["first_name"];
-		$ra[i]['last_name'] = $row["last_name"];
-		*/
-
-		//$i++;
-		$obj = array();
-		$obj['user_name'] = $row->user_name;
-		$obj['num_rows'] = -1;
-
-		$chats[] = $obj;
 	}
-	$_SESSION['chats'] = $chats;
 
-	//$row = mysqli_fetch_assoc($result);
+	$i = 0;
+	while($i < count($_SESSION['chats']['user_name'])) {
+	//foreach($_SESSION['chats'] as $key => $value) {
+		$u2 = $_SESSION['chats']['user_name'][$i];
+		//$u2 = $key;
+
+		$first = $u < $u2 ? $u : $u2;
+		$second = $u < $u2 ? $u2 : $u;
+
+		$query = "SELECT COUNT(*) FROM chat_between_$first" . "_" . $second;
+		$result = $conn->query($query);
+		$r = $result->fetch_all();
+		//print_r($r);
+
+		$_SESSION['chats']['row_up'][] = $r[0][0];
+		$_SESSION['chats']['row_down'][] = $r[0][0];
+
+		$i++;
+	}
 	
 	$json = json_encode($rows);
 	echo $json;
-
-	/*
-	$i=0;
-	while($row = $result->fetch_object()) {
-		$query_a[i] = "SELECT FirstName,LastName FROM accounts WHERE username=$row->user";
-		$result_a[i] = $conn->query($query);
-		$i++;
-	}
-	*/
-
-	/*
-	<!--
-	<div id="ChatList">
-		<div id="NewChat" onclick="SelectedNewChat()"></div>
-	</div>
-	<div id="MessagesList" onmouseover="showName(this)">
-	</div>
-	<form>
-		<input type='text' id='TextNewMessage'>
-		<input type='button' value='send' id='ButtonNewMessage' onclick='SendNewMessage()'>
-	</form>
-	-->
-	<!--<div class="content" id="c1"><?php echo $_SESSION['username'];?></div>-->
-	</div>
-	<script src="privacy.js"></script>*/
-
-	/*
-	while($row = $result->fetch_object()) {
-		$chats[] = $row->user;
-	}
-	$_SESSION['chats'] = $chats;
-	*/
 ?>

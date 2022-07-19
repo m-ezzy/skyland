@@ -76,11 +76,11 @@
 		this.load();
 	}
 	async load() {
-		let response = await fetch("../php/" + this.who + "/load.php", {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
-		//.then(response => response.json())
-		//.then(result => {
+		let response = await fetch("../php/" + this.who + "/load.php", {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
+		.then(response => response.json())
+		.then(result => {
 
-		let result = await response.json();
+		//let result = await response.json();
 		console.log(result);
 
 		let my_name;
@@ -115,6 +115,7 @@
 
 			if (this.who == 'chats') {
 				this.previous.push({user_name: (r.user_name), first_name: (r.first_name), last_name: (r.last_name), extension: (r.extension), rows: -1});
+				console.log(this.previous);
 			} else if (this.who == 'groups') {
 				this.previous.push({group_name: (r.group_name), display_name: (r.display_name), extension: (r.extension), rows: -1});
 			}
@@ -129,6 +130,7 @@
 		//this.pl.firstElementChild.click();
 
 		//this.check_for_new_media();
+		});
 	}
 	//can't use 'this' in function parameters, using 't' instead of 'this'
 	async show_conversation(t, who_name) {

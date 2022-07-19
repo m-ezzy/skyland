@@ -2,12 +2,9 @@
 	require '../server.php';
 	
 	$u = $_SESSION['user_name'];
-	$u2 = $_SESSION['current']['chat'];
 	$u2 = $_REQUEST['q'];
 
-	$row_number = $_SESSION['row_number'];
-	$row_number += 1;
-	$_SESSION['row_number'] = $row_number;
+	$_SESSION['chats']['row_number'] += 1;
 
 	$first = $u < $u2 ? $u : $u2;
 	$second = $u < $u2 ? $u2 : $u;

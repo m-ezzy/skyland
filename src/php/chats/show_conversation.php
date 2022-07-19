@@ -1,13 +1,22 @@
 <?php
 	require '../server.php';
 
-	$u = $_SESSION['user_name'];
 	$u2 = $_REQUEST['q'];
+	$u = $_SESSION['user_name'];
 
-	$_SESSION['current']['chat'] = $u2;
+	/*$users = array();
+	$users = $_SESSION['chats']['user_name'];*/
+	$i = array_search($u2, $_SESSION['chats']['user_name']);
 
-	//$_SESSION['row_number'] = 0;
-	$row_number = 0;
+	//$num = 10;
+	//$row_up = $_SESSION['chats']['row_up'][$i];
+	//$row_up = $row_up - $num;
+	$_SESSION['chats']['row_up'][$i] -= $limit;
+	$row_up = $_SESSION['chats']['row_up'][$i];
+
+	/*$upper = $_SESSION['chats'][$u2]['row_up'];
+	$upper = $upper - 10;
+	$_SESSION['chats'][$u2]['row_up'] = $upper;*/
 
 	$first = $u;
 	$second = $u2;
@@ -17,47 +26,13 @@
 		$second = $u;
 	}
 
-	//$query = "SELECT sent_by,message,images,videos,audios,documents,location FROM chat_between_$first" . "_" . $second";
-	$query = "SELECT * FROM chat_between_$first" . "_" . $second;
+	$query = "SELECT * FROM chat_between_$first" . "_$second WHERE ROWNUM>$row_up LIMIT $limit";
 	$result = $conn->query($query);
 	//$result = mysqli_query($conn, $query);
 
 	$rows = array();
-
-	while($r = $result->fetch_object()) {
-		$rows[] = $r;
-		$row_number++;
-	}
-	$i = array_search($u2, $_SESSION['chats']);
-	$_SESSION['chats'][$i]['num_rows'] = $row_number;
+	$rows = $result->fetch_all(MYSQLI_ASSOC);
 
 	$json = json_encode($rows);
 	echo $json;
-
-
-	/*
-	$row_number = $result->num_rows();
-	$rrr = $result->fetch_all();
-	$json = json_encode($rrr);
-	echo $json;
-	*/
-
-
-	/*
-	while($row = $result->fetch_object()) {
-
-
-		if($row->sent_by == $u) {
-			echo "<div class='MessagesSent'>";
-		} else {
-			echo "<div class='MessagesReceived'>";
-		}
-		echo $row->message;
-		echo "</div>";
-
-		$RowNumber++;
-		/*$_SESSION['RowNumber'] = $RowNumber;*//*
-	}
-	*/
-	$_SESSION['row_number'] = $row_number;
 ?>
