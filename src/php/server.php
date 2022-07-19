@@ -3,7 +3,7 @@
 $server_name = "localhost";
 $server_user_name = "root";
 $server_pass_word = "";
-$data_base = "fruits";
+$data_base = "skyland";
 
 /*
 $server_name = "sql302.epizy.com";

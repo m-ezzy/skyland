@@ -1,7 +1,7 @@
 <?php
 	include 'server.php';
 
-	if(!isset($_SESSION['my']['user_name'])) {
+	if(!isset($_SESSION['user_name'])) {
    		header('location: authentication.php');
 	}
 ?>
@@ -110,6 +110,7 @@
 			<div class='button send' onclick='send_location()'> send </div>
 		</div>
 
+		<!--
 		<div class='send_new_media'>
 			<label for='file'> image </label>
 
@@ -121,7 +122,7 @@
 
 			<input class='text message' type='text' placeholder='type a new message' onfocus='add_enter_event()' onblur='remove_enter_event()'>
 			<div class='button message' onclick='send_message()'> send </div>
-		</div>
+		</div>-->
 
 		<!--
 		</script>-->
@@ -133,7 +134,7 @@
 		<div class='ba' id='ba5'></div>
 	</div>
 
-	<script>
+	<!--<script>
 		function append_js_script_files() {
 			let xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = function() {
@@ -160,7 +161,7 @@
 			xhr.send();
 		}
 		append_js_script_files();
-	</script>
+	</script>-->
 
 	<!--
 	<script src="../js/main.js"></script>
@@ -174,7 +175,29 @@
 	<script src="../js/market.js"></script>
 
 	<script src="../js/others.js"></script>
+	<script src="../js/privacy.js"></script>-->
+
+	<script src="../js/home/home.js"></script>
+	<script src="../js/home/load.js"></script>
+	<script src="../js/chats/chats.js"></script>
+	<script src="../js/chats/load.js"></script>
+	<script src="../js/groups/groups.js"></script>
+	<script src="../js/groups/load.js"></script>
+	<script src="../js/channels/channels.js"></script>
+	<script src="../js/games/games.js"></script>
+
+	<script src="../js/classes/Content.js"></script>
+	<script src="../js/classes/Home.js"></script>
+	<script src="../js/classes/Common.js"></script>
+	<script src="../js/classes/ChatsGroups.js"></script>
+	<script src="../js/classes/Chats.js"></script>
+	<script src="../js/classes/Groups.js"></script>
+	<script src="../js/classes/Channels.js"></script>
+	<script src="../js/classes/Games.js"></script>
+	<script src="../js/classes/Market.js"></script>
+
+	<script src="../js/main.js"></script>
+	<script src="../js/others.js"></script>
 	<script src="../js/privacy.js"></script>
-	-->
 </body>
 </html>

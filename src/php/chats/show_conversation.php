@@ -1,7 +1,7 @@
 <?php
 	require '../server.php';
 
-	$u = $_SESSION['my']['user_name'];
+	$u = $_SESSION['user_name'];
 	$u2 = $_REQUEST['q'];
 
 	$_SESSION['current']['chat'] = $u2;
@@ -22,16 +22,15 @@
 	$result = $conn->query($query);
 	//$result = mysqli_query($conn, $query);
 
-	/*echo "<form><input type='text' id='NewMessage'><input type='button' value='send' onclick='TypeNewMessage()'></form>";*/
-
 	$rows = array();
 
 	while($r = $result->fetch_object()) {
 		$rows[] = $r;
-
 		$row_number++;
 	}
-	
+	$i = array_search($u2, $_SESSION['chats']);
+	$_SESSION['chats'][$i]['num_rows'] = $row_number;
+
 	$json = json_encode($rows);
 	echo $json;
 

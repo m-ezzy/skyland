@@ -29,7 +29,7 @@
 	} else {
 		//echo "2";
 		//session_start();
-		$_SESSION['my']['user_name'] = $user_name;
+		$_SESSION['user_name'] = $user_name;
 
 		printf($user_name);
 		print($user_name);

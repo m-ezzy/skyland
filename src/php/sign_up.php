@@ -28,7 +28,7 @@
 	$query = "CREATE TABLE chats_" . $user_name . " (user_name VARCHAR(20) DEFAULT NULL)";
 	$conn->query($query);
 
-	$query = "CREATE TABLE groups_$user_name (names VARCHAR(20) DEFAULT NULL,requested int(2) DEFAULT 0,PRIMARY KEY(names))";
+	$query = "CREATE TABLE groups_$user_name (group_name VARCHAR(20) DEFAULT NULL,requested int(2) DEFAULT 0,PRIMARY KEY(group_name))";
 	$conn->query($query);
 
 	//creating chat between itself
@@ -38,7 +38,7 @@
 	$query = "INSERT INTO chats_$user_name(user_name) VALUES('" . $user_name . "')";
 	$conn->query($query);
 
-	$_SESSION['my']['user_name'] = $user_name;
+	$_SESSION['user_name'] = $user_name;
 
 	header('location: index.php');
 ?>

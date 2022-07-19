@@ -17,7 +17,7 @@
 		}
 	}*/
 
-	$query = "INSERT INTO groups (names, created_by) VALUES('" . $gn . "','" . $u . "')";
+	$query = "INSERT INTO groups (group_name, created_by) VALUES('" . $gn . "','" . $u . "')";
 	$conn->query($query);
 
 	$query = "CREATE TABLE group_members_$gn (members VARCHAR(20) DEFAULT NULL,requested int(2) DEFAULT 0,joined_on DATETIME(2) DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(members))";
@@ -26,7 +26,7 @@
 	$query = "INSERT INTO group_members_$gn (members) VALUES('" . $u . "')";
 	$conn->query($query);
 
-	$query = "INSERT INTO groups_$u (names) VALUES('" . $gn . "')";
+	$query = "INSERT INTO groups_$u (group_name) VALUES('" . $gn . "')";
 	$conn->query($query);
 
 	$query = "CREATE TABLE group_messages_$gn (ROWNUM int(20),sent_by varchar(20),messages varchar(500),images varchar(10),videos varchar(10),audios varchar(10),document varchar(10),location varchar(10),sent_time DATETIME(2) DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(ROWNUM))";
@@ -38,7 +38,7 @@
 	$_SESSION['groups'] = $groups;
 
 	echo "<div onclick='show_messages_groups(this, " . $gn . ")'>";
-	echo "<img src='../../media/images/place_holder3.png'>";
+	echo "<img src='../../media/images/place_holder_groups.png'>";
 	echo $gn;
 	echo "</div>";
 ?>

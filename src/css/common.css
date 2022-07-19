@@ -30,7 +30,7 @@
 
 	/*background-color: #AAFFA2;*/
 	background-image: url('../../media/images/design/search.png');
-	background-size: contain;
+	background-size: 5vw 10vh;
 }
 .search_results {
 	position: absolute;
@@ -68,7 +68,7 @@
 #search_results:hover {
 	visibility: collapse;
 }*/
-.chat_list {
+.previous_list {
 	position: absolute;
 	top: 10vh;
 	left: 0vw;
@@ -84,7 +84,7 @@
 
 	overflow-y: visible;
 }
-.chat_list div {
+.previous_list div {
 	position: relative;
 	top: 0vh;
 	left: 0vw;
@@ -99,7 +99,7 @@
 
 	overflow: hidden;
 }
-.chat_list div img {
+.previous_list div img {
 	/*
 	position: relative;
 	top: 0vw;
@@ -110,7 +110,7 @@
 
 	overflow: hidden;
 }
-.chat_list div:hover {
+.previous_list div:hover {
 	background-color: rgb(187, 187, 187);
 }
 .current_header {
@@ -118,23 +118,74 @@
 	top: 0vw;
 	left: 30vw;
 	z-index: 6;
-	width: 40vw;
+	width: 60vw;
 	height: 10vh;
 
 	margin: 0;
 	padding: 0;
 
 	/*border: solid 0.1vw rgb(0, 0, 0);*/
-
 	background-color: #FF8B8B;
 
 	font-size: 2vw;
 	text-align: left;
+
+	/*display: flex;
+	justify-content: center;
+	justify-items: center;*/
 }
 .current_header img {
+	position: absolute;
+	left: 0;
+	top: 0;
 	z-index: 7;
 	width: 10vw;
 	height: 10vh;
+}
+.search_current_conversation {
+	position: absolute;
+	top: 0vh;
+	left: 30vw;
+	z-index: 7;
+	width: 10vw;
+	height: 10vh;
+}
+.text.key {
+	position: absolute;
+	top: 0vh;
+	left: 40vw;
+	z-index: 7;
+
+	width: 10vw;
+	height: 10vh;
+
+	margin: 0;
+	padding: 0;
+
+	border: solid 0.1vw rgb(0, 0, 0);
+
+	background-color: rgb(255, 255, 255, 0);
+
+	text-align: left;
+}
+.button.key {
+	position: absolute;
+	top: 0vh;
+	left: 50vw;
+	z-index: 7;
+
+	width: 10vw;
+	height: 10vh;
+
+	margin: 0;
+	padding: 0;
+
+	border: solid 0.1vw rgb(0, 0, 0);
+
+	/*background-color: rgb(150, 150, 150);*/
+
+	font-size: 2vw;
+	text-align: left;
 }
 .conversation {
 	position: absolute;
@@ -192,6 +243,8 @@
 	background-color: #9FD1FF;
 
 	font-size: 1.5vw;
+
+	display: flex;
 }
 .conversation img {
 	width: 20vw;
@@ -207,12 +260,17 @@
 	text-align: right;
 	padding-right: 1vw;
 
+	justify-content: right; /*x*/
+
 	/*color: rgb(0, 0, 0);
 	background-color: #9FD1FF;*/
 }
 .received.messages {
 	text-align: left;
 	padding-left: 1vw;
+
+	justify-content: left; /*x*/
+	justify-self: left;
 
 	/*color: rgb(0, 0, 0);
 	background-color: #9FD1FF;*/

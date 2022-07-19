@@ -56,7 +56,7 @@
 	$query = "UPDATE user_info SET extension = '$extension' WHERE user_name='$u'";
 	$conn->query($query);
 
-	echo $u . "." . $extension;
+	echo $extension;
 
 	/*
 	// Check file size
