@@ -8,6 +8,6 @@
 	$query = "INSERT INTO group_members_$gn (members,requested) VALUES('" . $u . "',1)";
 	$conn->query($query);
 
-    $query = "INSERT INTO groups_$u (names,requested) VALUES('" . $gn . "',1)";
+    $query = "INSERT INTO groups_$u (group_name,requested) VALUES('" . $gn . "',1)";
 	$conn->query($query);
 ?>

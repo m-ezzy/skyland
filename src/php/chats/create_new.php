@@ -33,18 +33,17 @@
 	}
 
 	//check this ' IF NOT EXISTS ' stuff in action
-	$query = "CREATE TABLE IF NOT EXISTS chat_between_$first" . "_$second (ROWNUM int(20),sent_by varchar(20),messages varchar(200) DEFAULT NULL,images varchar(10) DEFAULT NULL,videos varchar(10) DEFAULT NULL,audios varchar(10) DEFAULT NULL,document varchar(10) DEFAULT NULL,location varchar(10) DEFAULT NULL,time DATETIME(2) DEFAULT CURRENT_TIMESTAMP,delivered DATETIME(2),read DATETIME(2))";
+	$query = "CREATE TABLE IF NOT EXISTS chat_between_$first" . "_$second (ROWNUM int(20),sent_by varchar(20),messages varchar(200) DEFAULT NULL,images varchar(10) DEFAULT NULL,videos varchar(10) DEFAULT NULL,audios varchar(10) DEFAULT NULL,document varchar(10) DEFAULT NULL,location varchar(10) DEFAULT NULL,time_sent DATETIME(2) DEFAULT CURRENT_TIMESTAMP,time_delivered DATETIME(2),time_seen DATETIME(2))";
 	$conn->query($query);
 
 	mkdir("../../../data/chats/chat_between_" . $first . "_" . $second);
 
-	/*
-	$chats = array();
-	$chats = $_SESSION['chats'];
-	$chats[] = $u2;
-	$_SESSION['chats'] = $chats;
-	*/
-	$_SESSION['chats'][] = $u2;
-	$_SESSION['chats'][$u2]['row_up'] = 0;
-	$_SESSION['chats'][$u2]['row_down'] = 0;
+	$query = "SELECT COUNT(*) FROM chat_between_$first" . "_" . $second;
+	$result = $conn->query($query);
+	$r = $result->fetch_all();
+	//print_r($r);
+
+	$_SESSION['chats']['row_up'][] = $r[0][0];
+	$_SESSION['chats']['row_down'][] = $r[0][0];
+	$_SESSION['chats']['user_name'][] = $u2;
 ?>

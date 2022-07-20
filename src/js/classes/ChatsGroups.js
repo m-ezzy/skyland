@@ -31,7 +31,7 @@
 			c += "<div></div>";
 			c += "<input type='text' class='text search_current_conversation' placeholder='search this conversation' oninput='" + this.who + ".search_current_conversation()'>";
 			c += "<input type='text' class='text key' placeholder='enter key of this conversation' value='0' oninput='" + this.who + ".show_decrypted_media()'>";
-			c += "<div class='button key' onclick='" + this.who + ".e_d()'> encrypt / decrypt </div>";
+			c += "<div class='button key' onclick='" + this.who + ".e_d()'> encrypt or decrypt </div>";
 		c += "</div>";
 
 		c += "<div class='send_new_media'>";
@@ -76,7 +76,7 @@
 		this.load();
 	}
 	async load() {
-		let response = await fetch("../php/" + this.who + "/load.php", {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
+		let response = await fetch("src/php/" + this.who + "/load.php", {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
 		.then(response => response.json())
 		.then(result => {
 
@@ -91,23 +91,25 @@
 		result.forEach(r => {
 			if (this.who == 'chats') {
 				my_name = r.user_name;
-				path = "../../data/profile_pictures/";
+				path = "data/profile_pictures/";
 				text = r.user_name + " " + r.first_name + " " + r.last_name;
 			} else if (this.who == 'groups') {
 				my_name = r.group_name;
-				path = "../../data/" + this.who + "/profile_pictures/";
+				path = "data/" + this.who + "/profile_pictures/";
 				text = r.group_name + " " + r.display_name;
 			}
 
 			if(r.extension == null) {
-				path = "../../media/images/place_holder_" + this.who + ".png";
+				path = "media/images/place_holder_" + this.who + ".png";
 			} else {
 				path += my_name + "." + r.extension;
 			}
 			
 			let div = create_div("", "", this.who + ".show_conversation(this,'" + my_name + "')", text);
 			let img = create_image("", "", "", path);
+			let nmi = create_div('new_media_indicator', '', '', '');
 			div.appendChild(img);
+			div.appendChild(nmi);
 			this.pl.appendChild(div);
 
 			let e = create_div('conversation', this.who + '_' + my_name, '', '');
@@ -115,7 +117,7 @@
 
 			if (this.who == 'chats') {
 				this.previous.push({user_name: (r.user_name), first_name: (r.first_name), last_name: (r.last_name), extension: (r.extension), rows: -1});
-				console.log(this.previous);
+				//console.log(this.previous);
 			} else if (this.who == 'groups') {
 				this.previous.push({group_name: (r.group_name), display_name: (r.display_name), extension: (r.extension), rows: -1});
 			}
@@ -123,6 +125,7 @@
 			i++;
 		});
 
+		this.nmi = this.element.getElementsByClassName('new_media_indicator');
 		this.conversation = this.element.getElementsByClassName('conversation');
 
 		//this.show_conversation(this.pl.firstElementChild, result[0].group_name);
@@ -134,8 +137,8 @@
 	}
 	//can't use 'this' in function parameters, using 't' instead of 'this'
 	async show_conversation(t, who_name) {
-			console.log("1" + this.current);
-			console.log(this.conversation);
+			//console.log(this.current);
+			//console.log(this.conversation);
 			this.conversation[this.current].style.visibility = "hidden";
 
 		if (this.who == 'chats') {
@@ -146,6 +149,8 @@
 		}
 
 		this.ch.getElementsByTagName('div')[0].innerHTML = t.innerHTML;
+		this.ch.getElementsByTagName('div')[0].removeChild(this.ch.getElementsByClassName('new_media_indicator')[0]);
+
 		this.conversation[this.current].style.visibility = "visible";
 
 		if (this.previous[this.current].rows != -1) {
@@ -158,7 +163,7 @@
 		//do_amazing_animation('id',t.style.left, t.style.top, t.style.width);
 		do_amazing_animation("10vw", "10vh", "30vw", "10vh");
 	
-		let response = await fetch("../php/" + this.who + "/show_conversation.php?q=" + who_name, {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
+		let response = await fetch("src/php/" + this.who + "/show_conversation.php?q=" + who_name, {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
 		let result = await response.json();
 
 		let first;
@@ -185,9 +190,9 @@
 				let m = decryption(r.messages, this.tk.value);
 				e = create_div(class_media + " messages", "", "", m);
 			} else if(r.images) {
-				e = create_image(class_media, "", "", "../../data/" + this.who + "/" + path + "/" + r.ROWNUM + "." + r.images, Common.w, Common.h);
+				e = create_image(class_media, "", "", "data/" + this.who + "/" + path + "/" + r.ROWNUM + "." + r.images, Common.w, Common.h);
 			} else if(r.videos) {
-				e = create_video(class_media, "", "", "../../data/" + this.who + "/" + path + "/" + r.ROWNUM + "." + r.videos, Common.w, Common.h);
+				e = create_video(class_media, "", "", "data/" + this.who + "/" + path + "/" + r.ROWNUM + "." + r.videos, Common.w, Common.h);
 			}
 
 			console.log(e);
@@ -218,7 +223,7 @@
 
 		let em = encryption(this.tm.value, this.tk.value);
 
-		let response = await fetch("../php/" + this.who + "/send_message.php?q=" + em + "&uu=" + this.previous[this.current].user_name, {
+		let response = await fetch("src/php/" + this.who + "/send_message.php?q=" + em + "&uu=" + this.previous[this.current].user_name, {
 			method: 'POST', 
 			mode: 'no-cors', 
 			headers: {
@@ -241,23 +246,23 @@
 		let all_files = document.getElementsByClassName("select_images")[0];
 		fd.append("select_images", all_files.files[0]);
 
-		let text;
-		let response = await fetch("../php/" + this.who + "/send_images.php?q=" + this.previous[this.current].user_name, {
+		let text = "";
+		let response = await fetch("src/php/" + this.who + "/send_images.php?q=" + this.previous[this.current].user_name, {
 			method: 'POST',
 			body: fd
 		})
 		.then((response) => response.text())
 		.then((value) => {
 			text = value;
-		});
 		//console.log(result);
 
 		let w = Math.floor(innerWidth/5);
 		let h = Math.floor(innerHeight/5);
 
-		this.conversation[this.current].appendChild(create_image("sent", "", "", "../../data/" + this.who + "/" + text, w, h));
+		this.conversation[this.current].appendChild(create_image("sent", "", "", "data/" + this.who + "/" + text, w, h));
 		this.previous[this.current].rows += 1;
 		this.conversation[this.current].scrollBy(0,100);
+		});
 	}
 	async send_videos() {
 		document.getElementsByClassName("sending")[1].style.visibility = "hidden";
@@ -269,7 +274,7 @@
 		let fd = new FormData();
 		fd.append("select_videos", file);
 	
-		xhr.open("POST", "../php/this/send_videos.php", true);
+		xhr.open("POST", "src/php/this/send_videos.php", true);
 		//xhr.setRequestHeader("Content-type","image");
 		xhr.send(fd);
 	
@@ -277,7 +282,7 @@
 			if(xhr.readyState == 4 && xhr.status == 200) {
 				let w = Math.floor(innerWidth/5);
 				let h = Math.floor(innerHeight/5);
-				this.previous[this.current].conversation.appendChild(create_video("sent", "", "", "../../data/this/chat_between_" + this.responseText, w, h));
+				this.previous[this.current].conversation.appendChild(create_video("sent", "", "", "data/this/chat_between_" + this.responseText, w, h));
 				this.previous[this.current].rows += 1;
 				this.previous[this.current].conversation.scrollBy(0,100);
 			}

@@ -1,8 +1,8 @@
 <?php
-	include 'server.php';
+	include 'src/php/server.php';
 
 	if(!isset($_SESSION['user_name'])) {
-   		header('location: authentication.php');
+   		header('location: src/php/authentication.php');
 	}
 ?>
 
@@ -20,16 +20,16 @@
 	<link type="text/css" rel="stylesheet" href="s_home.css">
 	-->
 
-	<link type="text/css" rel="stylesheet" href="../css/style.css">
-	<link type="text/css" rel="stylesheet" href="../css/home.css">
+	<link type="text/css" rel="stylesheet" href="src/css/style.css">
+	<link type="text/css" rel="stylesheet" href="src/css/home.css">
 
-	<link type="text/css" rel="stylesheet" href="../css/common.css">
-	<link type="text/css" rel="stylesheet" href="../css/chats.css">
-	<link type="text/css" rel="stylesheet" href="../css/groups.css">
+	<link type="text/css" rel="stylesheet" href="src/css/common.css">
+	<link type="text/css" rel="stylesheet" href="src/css/chats.css">
+	<link type="text/css" rel="stylesheet" href="src/css/groups.css">
 
-	<link type="text/css" rel="stylesheet" href="../css/channels.css">
-	<link type="text/css" rel="stylesheet" href="../css/games.css">
-	<link type="text/css" rel="stylesheet" href="../css/market.css">
+	<link type="text/css" rel="stylesheet" href="src/css/channels.css">
+	<link type="text/css" rel="stylesheet" href="src/css/games.css">
+	<link type="text/css" rel="stylesheet" href="src/css/market.css">
 
 
 
@@ -46,13 +46,13 @@
 			<!--<input type="button" onclick='load_home()' value='home'>
 			<input type="button" onclick='load_frequent()' value='frequent'>-->
 
-			<div class='button' onclick='load_home(this)'> home </div>
-			<div class='button' onclick='load_chats(this)'> chats </div>
-			<div class='button' onclick='load_groups(this)'> groups </div>
-			<div class='button' onclick='load_channels(this)'> channels </div>
-			<div class='button' onclick='load_games(this)'> games </div>
-			<div class='button' onclick='load_market(this)'> market </div>
-			
+			<div class='button' onclick='display_home(this)'> home </div>
+			<div class='button' onclick='display_chats(this)'> chats </div>
+			<div class='button' onclick='display_groups(this)'> groups </div>
+			<div class='button' onclick='display_channels(this)'> channels </div>
+			<div class='button' onclick='display_games(this)'> games </div>
+			<div class='button' onclick='display_market(this)'> market </div>
+
 			<!--
 			<div class='menu' onclick='load_games()'> Games </div>
 			<div class='menu' onclick='load_market()'> Market </div>
@@ -157,7 +157,7 @@
 					}
 				}
 			};
-			xhr.open("GET", "directory_js.php", true);
+			xhr.open("GET", "src/php/directory_js.php", true);
 			xhr.send();
 		}
 		append_js_script_files();
@@ -177,27 +177,27 @@
 	<script src="../js/others.js"></script>
 	<script src="../js/privacy.js"></script>-->
 
-	<script src="../js/home/home.js"></script>
-	<script src="../js/home/load.js"></script>
-	<script src="../js/chats/chats.js"></script>
-	<script src="../js/chats/load.js"></script>
-	<script src="../js/groups/groups.js"></script>
-	<script src="../js/groups/load.js"></script>
-	<script src="../js/channels/channels.js"></script>
-	<script src="../js/games/games.js"></script>
+	<script src="src/js/home/home.js"></script>
+	<script src="src/js/home/load.js"></script>
+	<script src="src/js/chats/chats.js"></script>
+	<script src="src/js/chats/load.js"></script>
+	<script src="src/js/groups/groups.js"></script>
+	<script src="src/js/groups/load.js"></script>
+	<script src="src/js/channels/channels.js"></script>
+	<script src="src/js/games/games.js"></script>
 
-	<script src="../js/classes/Content.js"></script>
-	<script src="../js/classes/Home.js"></script>
-	<script src="../js/classes/Common.js"></script>
-	<script src="../js/classes/ChatsGroups.js"></script>
-	<script src="../js/classes/Chats.js"></script>
-	<script src="../js/classes/Groups.js"></script>
-	<script src="../js/classes/Channels.js"></script>
-	<script src="../js/classes/Games.js"></script>
-	<script src="../js/classes/Market.js"></script>
+	<script src="src/js/classes/Content.js"></script>
+	<script src="src/js/classes/Home.js"></script>
+	<script src="src/js/classes/Common.js"></script>
+	<script src="src/js/classes/ChatsGroups.js"></script>
+	<script src="src/js/classes/Chats.js"></script>
+	<script src="src/js/classes/Groups.js"></script>
+	<script src="src/js/classes/Channels.js"></script>
+	<script src="src/js/classes/Games.js"></script>
+	<script src="src/js/classes/Market.js"></script>
 
-	<script src="../js/main.js"></script>
-	<script src="../js/others.js"></script>
-	<script src="../js/privacy.js"></script>
+	<script src="src/js/main.js"></script>
+	<script src="src/js/others.js"></script>
+	<script src="src/js/privacy.js"></script>
 </body>
 </html>

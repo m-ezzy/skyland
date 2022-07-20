@@ -1,3 +1,3 @@
-function load_market() {
+function display_market() {
     
 }

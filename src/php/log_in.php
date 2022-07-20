@@ -35,6 +35,6 @@
 		print($user_name);
 		print_r($_SESSION);
 
-		header('location: index.php');
+		header('location: ../../index.php');
 	}
 ?>

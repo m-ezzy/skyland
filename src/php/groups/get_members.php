@@ -7,7 +7,6 @@
 	$result = $conn->query($query);
 
 	$rows = array();
-
 	while($r = $result->fetch_object()) {
 		$rows[] = $r;
 	}

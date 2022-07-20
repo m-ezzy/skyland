@@ -7,7 +7,7 @@ class Home extends Content {
 		this.load();
 	}
 	async load() {
-		let response = await fetch("../php/" + this.who + "/load.php", {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
+		let response = await fetch("src/php/" + this.who + "/load.php", {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
 		let result = await response.json();
 
 		let h;
@@ -19,7 +19,7 @@ class Home extends Content {
 		h += "<div class='previous_list' id='my_profile'>";
 
 		if(result.extension) {
-			h += "<img src='../../data/profile_pictures/" + result.user_name + "." + result.extension + "' id='profile_picture'>";
+			h += "<img src='data/profile_pictures/" + result.user_name + "." + result.extension + "' id='profile_picture'>";
 		} else {
 			h += "<input type='file' name='file_pp' id='file_pp'>";
 			h += "<input type='button' value='upload picture to server' id='button_pp' onclick='home.upload_profile_picture()'>";
@@ -40,26 +40,21 @@ class Home extends Content {
 		this.pl = this.element.getElementsByClassName('previous_list')[0];
 		this.ud = this.element.getElementsByClassName('updates');
 	}
-	upload_profile_picture() {
-		let xhr = new XMLHttpRequest();
-	
+	async upload_profile_picture() {
+		const fd = new FormData();
 		let file = document.getElementById('file_pp').files[0];
-
-		let fd = new FormData();
 		fd.append("file_pp", file);
-	
-		xhr.open("POST", "../php/home/upload_profile_picture.php", true);
-		//xhr.setRequestHeader("Content-type","image");
-		xhr.send(fd);
-	
-		xhr.onreadystatechange = function() {
-			if(xhr.readyState == 4 && xhr.status == 200) {
-				this.pl.removeChild(document.getElementById("file_pp"));
-				this.pl.removeChild(document.getElementById("button_pp"));
 
-				this.pl.innerHTML = "<img src='../../data/profile_pictures/" + me.user_name + "." + this.responseText + "' id='profile_picture'>";
-				me.extension = this.responseText;
-			}
-		};
+		let response = await fetch("src/php/home/upload_profile_picture.php", {
+			method: 'POST',
+			body: fd
+		});
+		let text = await response.text();
+
+		this.pl.removeChild(document.getElementById("file_pp"));
+		this.pl.removeChild(document.getElementById("button_pp"));
+
+		this.pl.innerHTML = "<img src='data/profile_pictures/" + me.user_name + "." + this.responseText + "' id='profile_picture'>";
+		me.extension = this.responseText;
 	}
 }

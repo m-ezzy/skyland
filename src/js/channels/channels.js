@@ -1,3 +1,3 @@
-function load_channels() {
+function display_channels() {
     
 }

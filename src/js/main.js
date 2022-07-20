@@ -22,7 +22,7 @@ let cfnm;
 
 
 document.body.onload = function() {
-	load_home();
+	display_home();
 }
 //document.body.addEventListener("load", load_home);
 /*

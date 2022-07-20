@@ -4,29 +4,17 @@
 	$u = $_SESSION['user_name'];
 	$gn = $_REQUEST['q'];
 
-	$_SESSION['current']['group'] = $gn;
+	$i = array_search($gn, $_SESSION['groups']['group_name']);
 
-	//$_SESSION['row_number'] = 0;
-	$row_number = 0;
+	$_SESSION['groups']['row_up'][$i] -= $limit;
+	$row_up = $_SESSION['groups']['row_up'][$i];
 
-	$query = "SELECT sent_by,messages FROM group_messages_$gn";
+	$query = "SELECT * FROM group_messages_$gn WHERE ROWNUM>$row_up LIMIT $limit";
 	$result = $conn->query($query);
 
 	$rows = array();
-	$rows[] = $u;
+	$rows = $result->fetch_all(MYSQLI_ASSOC);
 
-	/*$query = "SELECT members FROM group_members_$gn";
-	$result2 = $conn->query($query);
-
-	$rows[] = $result2->fetch_assoc();*/
-
-	while($r = $result->fetch_object()) {
-		$rows[] = $r;
-		$row_number++;
-	}
-	
 	$json = json_encode($rows);
 	echo $json;
-
-	$_SESSION['groups'][$gn]['row_number'] = $row_number;
 ?>
