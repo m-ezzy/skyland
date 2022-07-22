@@ -36,7 +36,7 @@
 	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
 
 	<script>
-		let resources = 1;
+		let resources = 1; //change to 1 when you work on localhost or when have your own domain
 	</script>
 </head>
 <body>
@@ -46,12 +46,12 @@
 			<!--<input type="button" onclick='load_home()' value='home'>
 			<input type="button" onclick='load_frequent()' value='frequent'>-->
 
-			<div class='button' onclick='display_home(this)'> home </div>
-			<div class='button' onclick='display_chats(this)'> chats </div>
-			<div class='button' onclick='display_groups(this)'> groups </div>
-			<div class='button' onclick='display_channels(this)'> channels </div>
-			<div class='button' onclick='display_games(this)'> games </div>
-			<div class='button' onclick='display_market(this)'> market </div>
+			<div class='button' onclick='home.clicked(this)'> home </div>
+			<div class='button' onclick='chats.clicked(this)'> chats </div>
+			<div class='button' onclick='groups.clicked(this)'> groups </div>
+			<div class='button' onclick='channels.clicked(this)'> channels </div>
+			<div class='button' onclick='games.clicked(this)'> games </div>
+			<div class='button' onclick='market.clicked(this)'> market </div>
 
 			<!--
 			<div class='menu' onclick='load_games()'> Games </div>
@@ -177,24 +177,15 @@
 	<script src="../js/others.js"></script>
 	<script src="../js/privacy.js"></script>-->
 
-	<script src="src/js/home/home.js"></script>
-	<script src="src/js/home/load.js"></script>
-	<script src="src/js/chats/chats.js"></script>
-	<script src="src/js/chats/load.js"></script>
-	<script src="src/js/groups/groups.js"></script>
-	<script src="src/js/groups/load.js"></script>
-	<script src="src/js/channels/channels.js"></script>
-	<script src="src/js/games/games.js"></script>
-
-	<script src="src/js/classes/Content.js"></script>
-	<script src="src/js/classes/Home.js"></script>
-	<script src="src/js/classes/Common.js"></script>
-	<script src="src/js/classes/ChatsGroups.js"></script>
-	<script src="src/js/classes/Chats.js"></script>
-	<script src="src/js/classes/Groups.js"></script>
-	<script src="src/js/classes/Channels.js"></script>
-	<script src="src/js/classes/Games.js"></script>
-	<script src="src/js/classes/Market.js"></script>
+	<script src="src/js/content/class.js"></script>
+	<script src="src/js/home/class.js"></script>
+	<script src="src/js/common/class.js"></script>
+	<script src="src/js/chats_groups/class.js"></script>
+	<script src="src/js/chats/class.js"></script>
+	<script src="src/js/groups/class.js"></script>
+	<script src="src/js/channels/class.js"></script>
+	<script src="src/js/games/class.js"></script>
+	<script src="src/js/market/class.js"></script>
 
 	<script src="src/js/main.js"></script>
 	<script src="src/js/others.js"></script>

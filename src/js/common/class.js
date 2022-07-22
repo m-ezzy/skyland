@@ -1,6 +1,7 @@
 //import {Content} from 'Content.js';
 
-/*export*/ class Common extends Content {
+/*export*/
+class Common extends Content {
 	static media_types = ['images', 'videos', 'audios', 'documents', 'location'];
 	static w = Math.floor(innerWidth/5);
 	static h = Math.floor(innerHeight/5);
@@ -15,15 +16,19 @@
 
 		//this.ml = this.element.getElementsByClassName("messages_list")[0];
 	}
-	take_to_that_conversation(t, user_name) {
+	take_to_that_conversation(t, show_name) {
 		this.sr.style.visibility = "hidden";
-		this.show_conversation(t, user_name);
+		this.show_conversation(t, show_name);
 	}
 	async check_for_new_media() {
 		/*if(this.tk.value == "") {
 			return;
 		}*/
 		//let RN = <?php echo $_SESSION['RowNumber']?>;
+
+		if (this.current == -1) {
+			return;
+		}
 
 		let response = await fetch("src/php/" + 'chats' + "/check_for_new_media.php", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
 		//let result = await response.json();

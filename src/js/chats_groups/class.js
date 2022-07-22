@@ -1,6 +1,4 @@
-//import {Common} from 'Common.js';
-
-/*export*/ class ChatsGroups extends Common {
+class Chats_Groups extends Common {
 	constructor(who) {
 		super(who);
 
@@ -18,9 +16,11 @@
 
 		this.tm;
 		this.bm;
-
-		let c;
-		c = "<div class='button back' onclick='" + this.who + ".hide_search_results()'> back </div>";
+	}
+	async load() {
+		//let c = super.load();
+	
+		c += "<div class='button back' onclick='" + this.who + ".hide_search_results()'> back </div>";
 		c += "<input type='text' class='text search' placeholder='type here to search' onfocus='" + this.who + ".show_search_results()' oninput='" + this.who + ".search()'>";
 		c += "<div class='button search' onclick='" + this.who + ".search()'> search </div>";
 
@@ -46,42 +46,16 @@
 			c += "<input class='text message' type='text' placeholder='type a new message' onfocus='add_enter_event()' onblur='remove_enter_event()'>";
 			c += "<div class='button message' onclick='" + this.who + ".send_message()'> send </div>";
 		c += "</div>";
+
 		this.element.innerHTML = c;
+		this.loaded = 1;
 
-		this.bb = this.element.getElementsByClassName("button back")[0];
-		this.ts = this.element.getElementsByClassName("text search")[0];
-		this.bs = this.element.getElementsByClassName("button search")[0];
-		this.sr = this.element.getElementsByClassName("search_results")[0];
-		this.pl = this.element.getElementsByClassName("previous_list")[0];
+		let response = await fetch("src/php/" + this.who + "/load.php", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
+		let result = await response.json();
 
-		this.ch = this.element.getElementsByClassName("current_header")[0];
-
-		this.scc = this.element.getElementsByClassName("text search_current_conversation")[0];
-		this.tk = this.element.getElementsByClassName("text key")[0];
-		this.bed = this.element.getElementsByClassName("button e_d")[0];
-
-		this.sending = document.getElementsByClassName("sending");
-
-		this.snm = document.getElementsByClassName("send_new_media")[0];
-
-		this.bi = document.getElementsByClassName("button " + Common.media_types[0])[0];
-		this.bv = document.getElementsByClassName("button " + Common.media_types[1])[0];
-		this.ba = document.getElementsByClassName("button " + Common.media_types[2])[0];
-		this.bd = document.getElementsByClassName("button " + Common.media_types[3])[0];
-		this.bl = document.getElementsByClassName("button " + Common.media_types[4])[0];
-
-		this.tm = document.getElementsByClassName("text message")[0];
-		this.bm = document.getElementsByClassName("button message")[0];
-
-		this.load();
-	}
-	async load() {
-		let response = await fetch("src/php/" + this.who + "/load.php", {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
-		.then(response => response.json())
-		.then(result => {
-
-		//let result = await response.json();
-		console.log(result);
+		if(!result) {
+			return;
+		}
 
 		let my_name;
 		let path;
@@ -95,8 +69,8 @@
 				text = r.user_name + " " + r.first_name + " " + r.last_name;
 			} else if (this.who == 'groups') {
 				my_name = r.group_name;
-				path = "data/" + this.who + "/profile_pictures/";
-				text = r.group_name + " " + r.display_name;
+				path = "data/" + this.who + "/icons/";
+				text = r.group_name; /* + " " + r.display_name;*/
 			}
 
 			if(r.extension == null) {
@@ -104,7 +78,14 @@
 			} else {
 				path += my_name + "." + r.extension;
 			}
-			
+
+			/*
+			c += "<div onclick='" + this.who + ".show_conversation(this," + i + ")'</div>";
+			c += "<img src='" + path + "' />";
+			c += "<div class='new_media_indicator'></div>";
+			c += "</div>";
+			*/
+
 			let div = create_div("", "", this.who + ".show_conversation(this,'" + my_name + "')", text);
 			let img = create_image("", "", "", path);
 			let nmi = create_div('new_media_indicator', '', '', '');
@@ -125,21 +106,51 @@
 			i++;
 		});
 
-		this.nmi = this.element.getElementsByClassName('new_media_indicator');
-		this.conversation = this.element.getElementsByClassName('conversation');
-
 		//this.show_conversation(this.pl.firstElementChild, result[0].group_name);
 		this.current = 0;
 		//this.pl.firstElementChild.click();
 
 		//this.check_for_new_media();
-		});
+	}
+	async init() {
+		//super.init();
+	
+		this.bb = this.element.getElementsByClassName("button back")[0];
+		this.ts = this.element.getElementsByClassName("text search")[0];
+		this.bs = this.element.getElementsByClassName("button search")[0];
+		this.sr = this.element.getElementsByClassName("search_results")[0];
+		this.pl = this.element.getElementsByClassName("previous_list")[0];
+	
+		this.nmi = this.element.getElementsByClassName('new_media_indicator');
+	
+		this.ch = this.element.getElementsByClassName("current_header")[0];
+	
+		this.scc = this.element.getElementsByClassName("text search_current_conversation")[0];
+		this.tk = this.element.getElementsByClassName("text key")[0];
+		this.bed = this.element.getElementsByClassName("button e_d")[0];
+	
+		this.conversation = this.element.getElementsByClassName('conversation');
+	
+		this.sending = document.getElementsByClassName("sending");
+	
+		this.snm = document.getElementsByClassName("send_new_media")[0];
+	
+		this.bi = document.getElementsByClassName("button " + common.media_types[0])[0];
+		this.bv = document.getElementsByClassName("button " + common.media_types[1])[0];
+		this.ba = document.getElementsByClassName("button " + common.media_types[2])[0];
+		this.bd = document.getElementsByClassName("button " + common.media_types[3])[0];
+		this.bl = document.getElementsByClassName("button " + common.media_types[4])[0];
+	
+		this.tm = this.element.getElementsByClassName("text message")[0];
+		this.bm = this.element.getElementsByClassName("button message")[0];
 	}
 	//can't use 'this' in function parameters, using 't' instead of 'this'
 	async show_conversation(t, who_name) {
-			//console.log(this.current);
-			//console.log(this.conversation);
+		//console.log(this.current);
+		//console.log(this.conversation);
+		if (this.current != -1) {
 			this.conversation[this.current].style.visibility = "hidden";
+		}
 
 		if (this.who == 'chats') {
 			this.current = this.previous.findIndex(u => u.user_name == who_name);
@@ -163,7 +174,7 @@
 		//do_amazing_animation('id',t.style.left, t.style.top, t.style.width);
 		do_amazing_animation("10vw", "10vh", "30vw", "10vh");
 	
-		let response = await fetch("src/php/" + this.who + "/show_conversation.php?q=" + who_name, {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
+		let response = await fetch("src/php/" + this.who + "/show_conversation.php?q=" + who_name, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
 		let result = await response.json();
 
 		let first;
@@ -221,9 +232,16 @@
 
 		do_amazing_animation_z("55vw", "0vh", 7, "5vw", "10vh");
 
+		let new_name;
+		if (this.who == 'chats') {
+			new_name = this.previous[this.current].user_name;
+		} else if (this.who == 'groups') {
+			new_name = this.previous[this.current].group_name;
+		}
+
 		let em = encryption(this.tm.value, this.tk.value);
 
-		let response = await fetch("src/php/" + this.who + "/send_message.php?q=" + em + "&uu=" + this.previous[this.current].user_name, {
+		let response = await fetch("src/php/" + this.who + "/send_message.php?n=" + new_name + "&m=" + em, {
 			method: 'POST', 
 			mode: 'no-cors', 
 			headers: {
@@ -288,6 +306,7 @@
 			}
 		};
 	}
+
 	select_images() {
 		//document.getElementById("select_images").click();
 		this.sending[0].getElementsByClassName("select_images")[0].click();
@@ -328,6 +347,24 @@
 	}
 	close_location() {
 		document.getElementsByClassName("sending")[4].style.visibility = "hidden";
+	}
+
+	sm(e) {
+		if(e.key == "Enter") {
+			send_message();
+		}
+	}
+	add_enter_event() {
+		document.addEventListener("keydown", sm);
+
+		/*let chats.tm = document.getElementById("TextNewMessage");
+		chats.tm.addEventListener("keydown",send_new_message);*/
+	}
+	remove_enter_event() {
+		document.removeEventListener("keydown", sm);
+
+		/*let chats.tm = document.getElementById("TextNewMessage");
+		chats.tm.removeEventListener("keydown",send_new_message);*/
 	}
 
 	show_decrypted_media() {

@@ -37,17 +37,18 @@
 		uploadImage('image', $image, 'images/');
 	}
 */
-?>
 
-<?php
 	require '../server.php';
-	$u = $_SESSION['my']['user_name'];
+	$u = $_SESSION['user_name'];
 
-	$dir = "../../../data/profile_pictures/";
+	$file_name = $_FILES["file_pp"]["name"];
+	$temp_name = $_FILES["file_pp"]["tmp_name"];
+
+    $dir = "../../../data/profile_pictures/";
 
 	$image = $dir . basename($_FILES["file_pp"]["name"]);
-
-	$extension = strtolower(pathinfo($image,PATHINFO_EXTENSION));
+    
+	$extension = strtolower(pathinfo($image, PATHINFO_EXTENSION));
 
 	$new_file_name = $dir . $u . "." . $extension;
 

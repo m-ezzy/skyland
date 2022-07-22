@@ -143,7 +143,7 @@ function toggle_theme(t) {
 	chats.cl.style.backgroundColor = theme_colors[theme_current][1];
 	chats.sr.style.backgroundColor = theme_colors[theme_current][2];
 	chats.ch.style.backgroundColor = theme_colors[theme_current][3];
-	chats.ml.style.backgroundColor = theme_colors[theme_current][4];
+	chats.c.style.backgroundColor = theme_colors[theme_current][4];
 	chats.snm.style.backgroundColor = theme_colors[theme_current][5];
 
 	/*

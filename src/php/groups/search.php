@@ -47,16 +47,14 @@
 		if($join_groups) {
 			echo "<div> send request to join this group </div>";
 
-			$i = 0;
-			while($row = $join_groups[$i]) {
+			foreach ($join_groups as $key => $row) {
 				echo "<div onclick='groups.send_request_to_join(" . $row->group_name . ")'>";
 				echo "<img src='data/groups/icons/'" . $row->group_name . "." . $row->extension . "'>";
 				echo $row->group_name . " " . $row->display_name;
 				echo "</div>";
-				$i++;
 			}
 		}
 	} else {
-		echo "<div onclick='groups.create_new()'> create new group </div>";
+		echo "<div onclick='groups.create_new(" . $s . ")'> create new group </div>";
 	}
 ?>

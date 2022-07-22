@@ -1,8 +1,8 @@
 <?php
 	require '../server.php';
 
-	$u2 = $_REQUEST['uu'];
-	$EM = $_REQUEST['q'];
+	$u2 = $_REQUEST['n'];
+	$m = $_REQUEST['m'];
 
 	$u = $_SESSION['user_name'];
 
@@ -13,7 +13,7 @@
 	$first = $u < $u2 ? $u : $u2;
 	$second = $u < $u2 ? $u2 : $u;
 
-	$query = "INSERT INTO chat_between_$first" . "_" . $second . "(ROWNUM,sent_by,messages) VALUES (" . $rn . ",'" . $u . "','" . $EM . "')";
+	$query = "INSERT INTO chat_between_$first" . "_" . $second . "(ROWNUM,sent_by,messages) VALUES (" . $rn . ",'" . $u . "','" . $m . "')";
 	$result = $conn->query($query);
 
 	//$result->success = 's';

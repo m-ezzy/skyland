@@ -22,8 +22,24 @@ let cfnm;
 
 
 document.body.onload = function() {
-	display_home();
+	home = new Home('home');
+	chats = new Chats('chats');
+	groups = new Groups('groups');
+	channels = new Channels('channels');
+	games = new Games('games');
+	market = new Market('market');
+
+	home.clicked();
+
+	if (resources) {
+		cfnm = setInterval(check_for_new_media, 20000);
+	}
 }
+
+function check_for_new_media() {
+	chats.check_for_new_media();
+}
+
 //document.body.addEventListener("load", load_home);
 /*
 function attach_javascript_files() {

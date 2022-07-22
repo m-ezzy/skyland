@@ -1,20 +1,20 @@
 <?php
 	require '../server.php';
 
-	$m = $_REQUEST['q'];
+	$gn = $_REQUEST['n'];
+	$m = $_REQUEST['m'];
 
 	$u = $_SESSION['user_name'];
-	$gn = $_SESSION['current']['group'];
 
-	$row_number = $_SESSION['groups'][$gn]['row_number'];
-	$row_number += 1;
-	$_SESSION['groups'][$gn]['row_number'] = $row_number;
-
-	$query = "INSERT INTO group_messages_$gn (ROWNUM,sent_by,messages) VALUES(" . $row_number . ",'" . $u . "','" . $m . "')";
-	$conn->query($query);
+	$i = array_search($gn, $_SESSION['groups']['group_name']);
+	$_SESSION['groups']['row_down'][$i] += 1;
+	$rn = $_SESSION['groups']['row_down'][$i];
 
 	/*
-	if ($conn->query($query)) {
-		echo "success";
-	}*/
+	$rn = $_SESSION['groups']['group_name']['row_down'];
+	$rn += 1;
+	$_SESSION['groups']['group_name']['row_down'] = $rn;*/
+
+	$query = "INSERT INTO group_messages_$gn (ROWNUM,sent_by,messages) VALUES(" . $rn . ",'" . $u . "','" . $m . "')";
+	$conn->query($query);
 ?>

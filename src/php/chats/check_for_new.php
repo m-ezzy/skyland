@@ -2,7 +2,7 @@
 	require '../server.php';
 
 	$u = $_SESSION['user_name'];
-    $row_number = $_SESSION['chats']->length();
+    $row_number = $_SESSION['chats']['user_name']->length();
 
 	$query = "SELECT * FROM chats_$u WHERE ROWNUM>" . $row_number;
 	$result = $conn->query($query);

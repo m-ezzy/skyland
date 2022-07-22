@@ -1,7 +1,7 @@
 <?php
 	require '../server.php';
 
-	$gn = $_REQUEST['q'];
+	$gn = $_POST['group_name'];
 	$u = $_SESSION['user_name'];
 
 	$query = "INSERT INTO groups (group_name, created_by) VALUES('" . $gn . "','" . $u . "')";
