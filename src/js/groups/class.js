@@ -7,36 +7,34 @@ class Groups extends Chats_Groups {
 	}
 	load() {
 		super.load();
-		
-		/*
-		c += "<input type='text' class='text add_member'>";
-		c += "<div class='button add_member' onclick='" + this.who + ".add_member()'> add member </div>";
-		this.element.innerHTML = c;*/
 
 		let e;
 		e = create_input_text('text add_member', '', '', '');
 		this.ch.appendChild(e);
 		e = create_div('button add_member', '', this.who + '.add_member()', 'add member');
 		this.ch.appendChild(e);
-	}
-	initialize() {
-		super.initialize();
 
 		this.tam = this.element.getElementsByClassName('text add_member')[0];
 		this.bam = this.element.getElementsByClassName('button add_member')[0];
 	}
+	load_data() {
+		super.load_data();
+	}
 	async search() {
-		if(this.ts.value == "") {
+		if(Content.ts.value == "") {
 			return;
 		}
+
+		Content.sr.innerHTML = "";
+		Content.sr.style.visibility = "visible";
 		//search_results_visible();
 	
 		do_amazing_animation("35vw", "0vh", "5vw", "10vh");
 	
-		const response = await fetch("src/php/" + this.who + "/search.php?q=" + this.ts.value, {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
+		const response = await fetch("src/php/" + this.who + "/search.php?q=" + Content.ts.value, {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
 		let data = await response.text();
 
-		this.sr.innerHTML = data;
+		Content.sr.innerHTML = data;
 	}
 	async send_request_to_join(group_name) {
 		let xhr = new XMLHttpRequest();
@@ -57,7 +55,7 @@ class Groups extends Chats_Groups {
 		this.ch.getElementsByTagName('div')[0].innerHTML += this.tam.value + " , ";
 	}
 	async create_new(group_name) {
-		this.sr.style.visibility = "hidden";
+		Content.sr.style.visibility = "hidden";
 
 		const response = await fetch("src/php/" + this.who + "/create_new_group.php", {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'group_name=' + group_name});
 		let data = await response.text();

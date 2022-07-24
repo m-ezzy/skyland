@@ -15,9 +15,12 @@ let chats;
 let groups;
 let channels;
 let games;
-let market;
 
-let cfnm;
+let cfnmc;
+let cfnmg;
+
+let running = false;
+let last_known = 5;
 
 
 
@@ -27,17 +30,29 @@ document.body.onload = function() {
 	groups = new Groups('groups');
 	channels = new Channels('channels');
 	games = new Games('games');
-	market = new Market('market');
 
 	home.clicked();
 
 	if (resources) {
-		cfnm = setInterval(check_for_new_media, 20000);
+		//setInterval(check_for_new_chats, 10000);
+		//setInterval(check_for_new_groups, 10000);
+
+		cfnmc = setInterval(check_for_new_media_chats, 10000);
+		cfnmg = setInterval(check_for_new_media_groups, 10000);
 	}
 }
 
-function check_for_new_media() {
+function check_for_new_chats() {
+	chats.check_for_new();
+}
+function check_for_new_groups() {
+	groups.check_for_new();
+}
+function check_for_new_media_chats() {
 	chats.check_for_new_media();
+}
+function check_for_new_media_groups() {
+	groups.check_for_new_media();
 }
 
 //document.body.addEventListener("load", load_home);
@@ -62,8 +77,23 @@ function attach_javascript_files() {
 }
 */
 
+function sm(e) {
+	if(e.key == "Enter") {
+		Content.current.send_message();
+	}
+}
+function add_enter_event() {
+	document.addEventListener("keydown", sm);
 
+	/*let chats.tm = document.getElementById("TextNewMessage");
+	chats.tm.addEventListener("keydown",send_new_message);*/
+}
+function remove_enter_event() {
+	document.removeEventListener("keydown", sm);
 
+	/*let chats.tm = document.getElementById("TextNewMessage");
+	chats.tm.removeEventListener("keydown",send_new_message);*/
+}
 
 
 

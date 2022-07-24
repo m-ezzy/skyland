@@ -1,54 +1,37 @@
 class Chats_Groups extends Common {
+	static sending = document.getElementsByClassName("sending");
+
+	static snm = document.getElementsByClassName("send_new_media")[0];
+	
+	static bi = document.getElementsByClassName("button " + Common.media_types[0])[0];
+	static bv = document.getElementsByClassName("button " + Common.media_types[1])[0];
+	static ba = document.getElementsByClassName("button " + Common.media_types[2])[0];
+	static bd = document.getElementsByClassName("button " + Common.media_types[3])[0];
+	static bl = document.getElementsByClassName("button " + Common.media_types[4])[0];
+
+	static tm = document.getElementsByClassName("text message")[0];
+	static bm = document.getElementsByClassName("button message")[0];
+
 	constructor(who) {
 		super(who);
 
 		this.tk;
 		this.bed;
-
-		this.sending;
-		this.snm;
-
-		this.bi;
-		this.bv;
-		this.ba;
-		this.bd;
-		this.bl;
-
-		this.tm;
-		this.bm;
 	}
-	async load() {
-		//let c = super.load();
-	
-		c += "<div class='button back' onclick='" + this.who + ".hide_search_results()'> back </div>";
-		c += "<input type='text' class='text search' placeholder='type here to search' onfocus='" + this.who + ".show_search_results()' oninput='" + this.who + ".search()'>";
-		c += "<div class='button search' onclick='" + this.who + ".search()'> search </div>";
+	load() {
+		super.load();
 
-		c += "<div class='search_results'></div>";
-		c += "<div class='previous_list'></div>";
+		let c = "";
+		c += "<input type='text' class='text key' placeholder='enter key of this conversation' value='0' oninput='" + this.who + ".show_decrypted_media()'>";
+		c += "<div class='button key' onclick='" + this.who + ".e_d()'> encrypt or decrypt </div>";
 
-		c += "<div class='current_header'>";
-			c += "<div></div>";
-			c += "<input type='text' class='text search_current_conversation' placeholder='search this conversation' oninput='" + this.who + ".search_current_conversation()'>";
-			c += "<input type='text' class='text key' placeholder='enter key of this conversation' value='0' oninput='" + this.who + ".show_decrypted_media()'>";
-			c += "<div class='button key' onclick='" + this.who + ".e_d()'> encrypt or decrypt </div>";
-		c += "</div>";
+		this.ch.innerHTML += c;
 
-		c += "<div class='send_new_media'>";
-			//<!--<label for='file'> image </label>-->
-
-			c += "<div class='button images' onclick='" + this.who + ".select_images()'> images </div>";
-			c += "<div class='button videos' onclick='" + this.who + ".select_videos()'> videos </div>";
-			c += "<div class='button audios' onclick='" + this.who + ".select_audios()'> audios </div>";
-			c += "<div class='button documents' onclick='" + this.who + ".select_documents()'> documents </div>";
-			c += "<div class='button location' onclick='" + this.who + ".select_location()'> location </div>";
-
-			c += "<input class='text message' type='text' placeholder='type a new message' onfocus='add_enter_event()' onblur='remove_enter_event()'>";
-			c += "<div class='button message' onclick='" + this.who + ".send_message()'> send </div>";
-		c += "</div>";
-
-		this.element.innerHTML = c;
-		this.loaded = 1;
+		this.tk = this.element.getElementsByClassName("text key")[0];
+		this.bed = this.element.getElementsByClassName("button e_d")[0];
+	}
+	async load_data() {
+		super.load_data();
 
 		let response = await fetch("src/php/" + this.who + "/load.php", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
 		let result = await response.json();
@@ -63,14 +46,20 @@ class Chats_Groups extends Common {
 
 		let i = 0;
 		result.forEach(r => {
+			path = "data/";
+
 			if (this.who == 'chats') {
 				my_name = r.user_name;
-				path = "data/profile_pictures/";
+				path += "profile_pictures/";
 				text = r.user_name + " " + r.first_name + " " + r.last_name;
 			} else if (this.who == 'groups') {
 				my_name = r.group_name;
-				path = "data/" + this.who + "/icons/";
-				text = r.group_name; /* + " " + r.display_name;*/
+				path += this.who + "/icons/";
+				text = r.group_name + " " + r.display_name;
+			} else if (this.who == 'channels') {
+				my_name = r.channel_name;
+				path += this.who + "/icons/";
+				text = r.channel_name + " " + r.display_name;
 			}
 
 			if(r.extension == null) {
@@ -91,9 +80,11 @@ class Chats_Groups extends Common {
 			let nmi = create_div('new_media_indicator', '', '', '');
 			div.appendChild(img);
 			div.appendChild(nmi);
+			//this.element.appendChild(nmi);
 			this.pl.appendChild(div);
 
 			let e = create_div('conversation', this.who + '_' + my_name, '', '');
+			e.setAttribute('onscroll', this.who + ".on_scroll_event('" + my_name + "')");
 			this.element.appendChild(e);
 
 			if (this.who == 'chats') {
@@ -101,48 +92,23 @@ class Chats_Groups extends Common {
 				//console.log(this.previous);
 			} else if (this.who == 'groups') {
 				this.previous.push({group_name: (r.group_name), display_name: (r.display_name), extension: (r.extension), rows: -1});
+			} else if (this.who == 'channels') {
+				this.previous.push({channel_name: (r.channel_name), display_name: (r.display_name), extension: (r.extension), rows: -1});
 			}
 			
 			i++;
 		});
 
-		//this.show_conversation(this.pl.firstElementChild, result[0].group_name);
+		this.nmi = this.element.getElementsByClassName('new_media_indicator');
+		this.conversation = this.element.getElementsByClassName('conversation');
+
+		this.show_conversation(this.pl.getElementsByTagName('div')[0], result[0].user_name); //this.pl.firstElementChild
 		this.current = 0;
+
+		this.loaded = 1;
 		//this.pl.firstElementChild.click();
 
 		//this.check_for_new_media();
-	}
-	async init() {
-		//super.init();
-	
-		this.bb = this.element.getElementsByClassName("button back")[0];
-		this.ts = this.element.getElementsByClassName("text search")[0];
-		this.bs = this.element.getElementsByClassName("button search")[0];
-		this.sr = this.element.getElementsByClassName("search_results")[0];
-		this.pl = this.element.getElementsByClassName("previous_list")[0];
-	
-		this.nmi = this.element.getElementsByClassName('new_media_indicator');
-	
-		this.ch = this.element.getElementsByClassName("current_header")[0];
-	
-		this.scc = this.element.getElementsByClassName("text search_current_conversation")[0];
-		this.tk = this.element.getElementsByClassName("text key")[0];
-		this.bed = this.element.getElementsByClassName("button e_d")[0];
-	
-		this.conversation = this.element.getElementsByClassName('conversation');
-	
-		this.sending = document.getElementsByClassName("sending");
-	
-		this.snm = document.getElementsByClassName("send_new_media")[0];
-	
-		this.bi = document.getElementsByClassName("button " + common.media_types[0])[0];
-		this.bv = document.getElementsByClassName("button " + common.media_types[1])[0];
-		this.ba = document.getElementsByClassName("button " + common.media_types[2])[0];
-		this.bd = document.getElementsByClassName("button " + common.media_types[3])[0];
-		this.bl = document.getElementsByClassName("button " + common.media_types[4])[0];
-	
-		this.tm = this.element.getElementsByClassName("text message")[0];
-		this.bm = this.element.getElementsByClassName("button message")[0];
 	}
 	//can't use 'this' in function parameters, using 't' instead of 'this'
 	async show_conversation(t, who_name) {
@@ -159,6 +125,9 @@ class Chats_Groups extends Common {
 			this.current = this.previous.findIndex(g => g.group_name == who_name);
 		}
 
+		this.nmi[this.current].style.backgroundColor = 'rgb(0, 0, 0, 0)';
+		this.nmi[this.current].innerHTML = '';
+
 		this.ch.getElementsByTagName('div')[0].innerHTML = t.innerHTML;
 		this.ch.getElementsByTagName('div')[0].removeChild(this.ch.getElementsByClassName('new_media_indicator')[0]);
 
@@ -167,15 +136,31 @@ class Chats_Groups extends Common {
 		if (this.previous[this.current].rows != -1) {
 			return;
 		}
+		this.previous[this.current].rows = 0;
 	
 		//this.current = this.previous.indexOf(user_name = who_name);
 		//this.previous[this.current].conversation.innerHTML = "";
 
+		add_enter_event();
+
 		//do_amazing_animation('id',t.style.left, t.style.top, t.style.width);
 		do_amazing_animation("10vw", "10vh", "30vw", "10vh");
-	
+
+		this.show_conversation_previous(who_name);
+	}
+	async show_conversation_previous(who_name) {
+		console.log(this.conversation[this.current].scroll);
+		console.log(this.conversation[this.current].scrollTop);
+		console.log(this.conversation[this.current].scrollTop.toFixed());
+
 		let response = await fetch("src/php/" + this.who + "/show_conversation.php?q=" + who_name, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
 		let result = await response.json();
+
+		console.log('lllllllllllllllllll');
+		console.log(result[0]);
+		if (result[0] == 0) {
+			return;
+		}
 
 		let first;
 		let second;
@@ -190,12 +175,14 @@ class Chats_Groups extends Common {
 			path = "group_" + who_name;
 		}
 
+		let ddd = this.conversation[this.current].innerHTML;
+		this.conversation[this.current].innerHTML = '';
+
 		let i = 0;
 		let r;
-		//result.forEach(r => {
 		while (r = result[i]) {
 			let e;
-			let class_media = ((r.sent_by == me.user_name) ? "sent" : "received");
+			let class_media = (r.sent_by == me.user_name) ? "sent" : "received";
 
 			if(r.messages) {
 				let m = decryption(r.messages, this.tk.value);
@@ -206,27 +193,37 @@ class Chats_Groups extends Common {
 				e = create_video(class_media, "", "", "data/" + this.who + "/" + path + "/" + r.ROWNUM + "." + r.videos, Common.w, Common.h);
 			}
 
-			console.log(e);
-
 			this.conversation[this.current].append(e);
 			i++;
-			//let mlh = this.previous[this.current].conversation.style.height;
-			this.conversation[this.current].scrollTo(0,99999);
-
-			//MS = document.getElementsByClassName("sent messages");
-			//MR = document.getElementsByClassName("received messages");
-
-			/*
-			if(resources) {
-				let ci = setInterval(check_for_new_messages, 1000);
-		
-			}*/
 		}
-		//});
-		this.previous[this.current].rows = i;
+		this.conversation[this.current].innerHTML += ddd;
+
+		this.conversation[this.current].scrollTop += 10*i;
+		last_known = 10*i;
+
+		this.previous[this.current].rows += i;
+	}
+	on_scroll_event(who_name) {
+		if (this.conversation[this.current].scrollTop != 0) {
+			return;
+		}
+		if (last_known == 0) {
+			return;
+		}
+		last_known = 0;
+
+		this.show_conversation_previous(who_name);
+		/*
+		if (!running) {
+			window.requestAnimationFrame(function() {
+				chats.show_conversation_previous(who_name);
+				running = false;
+			});
+			running = true;
+		}*/
 	}
 	async send_message() {
-		if(this.tm.value == "" || this.tk.value == "") {
+		if(Chats_Groups.tm.value == "" || this.tk.value == "") {
 			return;
 		}
 
@@ -239,7 +236,7 @@ class Chats_Groups extends Common {
 			new_name = this.previous[this.current].group_name;
 		}
 
-		let em = encryption(this.tm.value, this.tk.value);
+		let em = encryption(Chats_Groups.tm.value, this.tk.value);
 
 		let response = await fetch("src/php/" + this.who + "/send_message.php?n=" + new_name + "&m=" + em, {
 			method: 'POST', 
@@ -254,7 +251,7 @@ class Chats_Groups extends Common {
 		let result = await response.text();
 		console.log(result);
 
-		this.conversation[this.current].appendChild(create_div("sent messages", "", "", this.tm.value));
+		this.conversation[this.current].appendChild(create_div("sent messages", "", "", Chats_Groups.tm.value));
 		this.conversation[this.current].scrollBy(0,100);
 	}
 	async send_images() {
@@ -347,24 +344,6 @@ class Chats_Groups extends Common {
 	}
 	close_location() {
 		document.getElementsByClassName("sending")[4].style.visibility = "hidden";
-	}
-
-	sm(e) {
-		if(e.key == "Enter") {
-			send_message();
-		}
-	}
-	add_enter_event() {
-		document.addEventListener("keydown", sm);
-
-		/*let chats.tm = document.getElementById("TextNewMessage");
-		chats.tm.addEventListener("keydown",send_new_message);*/
-	}
-	remove_enter_event() {
-		document.removeEventListener("keydown", sm);
-
-		/*let chats.tm = document.getElementById("TextNewMessage");
-		chats.tm.removeEventListener("keydown",send_new_message);*/
 	}
 
 	show_decrypted_media() {

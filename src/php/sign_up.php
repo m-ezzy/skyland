@@ -40,5 +40,5 @@
 
 	$_SESSION['user_name'] = $user_name;
 
-	header('location: index.php');
+	header('location: ../../index.php');
 ?>

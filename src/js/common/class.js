@@ -16,59 +16,61 @@ class Common extends Content {
 
 		//this.ml = this.element.getElementsByClassName("messages_list")[0];
 	}
+	load() {
+		super.load();
+
+		let c = "";
+		c += "<div class='previous_list'></div>";
+
+		c += "<div class='current_header'>";
+			c += "<div></div>";
+			c += "<input type='text' class='text search_current_conversation' placeholder='search this conversation' oninput='" + this.who + ".search_current_conversation()'>";
+		c += "</div>";
+
+		this.element.innerHTML = c;
+
+		this.pl = this.element.getElementsByClassName("previous_list")[0];
+		this.ch = this.element.getElementsByClassName("current_header")[0];
+		this.scc = this.element.getElementsByClassName("text search_current_conversation")[0];
+	}
+	async load_data() {
+		super.load_data();
+	}
 	take_to_that_conversation(t, show_name) {
-		this.sr.style.visibility = "hidden";
+		Content.sr.style.visibility = "hidden";
 		this.show_conversation(t, show_name);
 	}
 	async check_for_new_media() {
-		/*if(this.tk.value == "") {
-			return;
-		}*/
-		//let RN = <?php echo $_SESSION['RowNumber']?>;
-
 		if (this.current == -1) {
 			return;
 		}
 
-		let response = await fetch("src/php/" + 'chats' + "/check_for_new_media.php", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
-		//let result = await response.json();
-		.then(response => response.json())
-		.then(result => {
-
-		console.log('8888888888888888888888888888888');
-		console.log(result);
-
-		/*if(result == "") {
-			return;
-		}*/
-		console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
-		console.log(this.previous);
-		console.log(this.sr);
+		let response = await fetch("src/php/" + this.who + "/check_for_new_media.php", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
+		let result = await response.json();
 
 		for(let i = 0 ; i < this.previous.length ; i++) {
-			let u2 = this.previous[i].user_name;
-			console.log('ggggggggggggggggggggggggggggggggggggggggggggggg');
-			console.log(result[u2]);
-
-			//if(result[i]) {
-			if (result[u2][0] == 0) {
-				continue;
-			}
-
+			let w;
+			let path;
 			let first;
 			let second;
-			let path;
 
 			if (this.who == 'chats') {
-				first = me.user_name < this.previous[i].user_name ? me.user_name : this.previous[i].user_name;
-				second = me.user_name > this.previous[i].user_name ? me.user_name : this.previous[i].user_name;
+				w = this.previous[i].user_name;
+
+				first = me.user_name < w ? me.user_name : w;
+				second = me.user_name > w ? me.user_name : w;
 
 				path = "chat_between_" + first + "_" + second;
 			} else if (this.who == 'groups') {
-				path = "group_" + "something_here";
+				w = this.previous[i].group_name;
+				path = "group_" + w;
 			}
 
-			result[u2].forEach(r => {
+			if (result[w][0] == 0) {
+				continue;
+			}
+
+			result[w].forEach(r => {
 				let e;
 
 				if(r.messages) {
@@ -84,8 +86,10 @@ class Common extends Content {
 				this.previous[i].rows += 1;
 			});
 
-			this.nmi[i].style.backgroundColor = 'yellow';
-			this.nmi[i].innerHTML = result[u2].length;
+			if (this.current != i) {
+				this.nmi[i].style.backgroundColor = 'yellow';
+				this.nmi[i].innerHTML = (Number(this.nmi[i].innerText) + result[w].length);
+			}
 			this.conversation[i].scrollBy(0,500);
 
 			/*this.previous[this.current].conversation.scrollBottom();
@@ -97,6 +101,8 @@ class Common extends Content {
 			// set timeot not working, caused a lot of trouble
 			cfnm = setTimeout(chats.check_for_new_media, 5000);
 		}*/
-		});
+		//});
+	}
+	search_messages() {
 	}
 }

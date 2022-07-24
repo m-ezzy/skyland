@@ -19,6 +19,7 @@
 	<link type="text/css" rel="stylesheet" href="authentication.css">
 	<link type="text/css" rel="stylesheet" href="s_home.css">
 	-->
+	<!--<link type="text/css" rel="stylesheet" href="libraries\bootstrap-5.2.0-dist/css/bootstrap.css">-->
 
 	<link type="text/css" rel="stylesheet" href="src/css/style.css">
 	<link type="text/css" rel="stylesheet" href="src/css/home.css">
@@ -29,7 +30,6 @@
 
 	<link type="text/css" rel="stylesheet" href="src/css/channels.css">
 	<link type="text/css" rel="stylesheet" href="src/css/games.css">
-	<link type="text/css" rel="stylesheet" href="src/css/market.css">
 
 
 
@@ -51,7 +51,6 @@
 			<div class='button' onclick='groups.clicked(this)'> groups </div>
 			<div class='button' onclick='channels.clicked(this)'> channels </div>
 			<div class='button' onclick='games.clicked(this)'> games </div>
-			<div class='button' onclick='market.clicked(this)'> market </div>
 
 			<!--
 			<div class='menu' onclick='load_games()'> Games </div>
@@ -66,7 +65,12 @@
 		<div class='content' id='groups'></div>
 		<div class='content' id='channels'></div>
 		<div class='content' id='games'></div>
-		<div class='content' id='market'></div>
+
+		<div class='button back' onclick='Content.current.hide_search_results()'> back </div>
+		<input type='text' class='text search' placeholder='type here to search' onfocus='Content.current.show_search_results()' oninput='Content.current.search()'>
+		<div class='button search' onclick='Content.current.search()'> search </div>
+
+		<div class='search_results'></div>
 
 		<!--
 		<script>
@@ -110,19 +114,18 @@
 			<div class='button send' onclick='send_location()'> send </div>
 		</div>
 
-		<!--
 		<div class='send_new_media'>
-			<label for='file'> image </label>
+			<!--<label for='file'> image </label>-->
 
-			<div class='button images' onclick='select_images()'> images </div>
-			<div class='button videos' onclick='select_videos()'> videos </div>
-			<div class='button audios' onclick='select_audios()'> audios </div>
-			<div class='button documents' onclick='select_documents()'> documents </div>
-			<div class='button location' onclick='select_location()'> location </div>
+			<div class='button images' onclick='Content.current.select_images()'> images </div>
+			<div class='button videos' onclick='Content.current.select_videos()'> videos </div>
+			<div class='button audios' onclick='Content.current.select_audios()'> audios </div>
+			<div class='button documents' onclick='Content.current.select_documents()'> documents </div>
+			<div class='button location' onclick='Content.current.select_location()'> location </div>
 
-			<input class='text message' type='text' placeholder='type a new message' onfocus='add_enter_event()' onblur='remove_enter_event()'>
-			<div class='button message' onclick='send_message()'> send </div>
-		</div>-->
+			<input class='text message' type='text' placeholder='type a new message' value='hola' onfocus='Content.current.add_enter_event()' onblur='Content.current.remove_enter_event()'>
+			<div class='button message' onclick='Content.current.send_message()'> send </div>
+		</div>
 
 		<!--
 		</script>-->
@@ -172,10 +175,11 @@
 	<script src="../js/groups.js"></script>
 	<script src="../js/channels.js"></script>
 	<script src="../js/games.js"></script>
-	<script src="../js/market.js"></script>
 
 	<script src="../js/others.js"></script>
 	<script src="../js/privacy.js"></script>-->
+
+	<!--<script src="libraries/bootstrap-5.2.0-dist/js/bootstrap.js"></script>-->
 
 	<script src="src/js/content/class.js"></script>
 	<script src="src/js/home/class.js"></script>
@@ -185,7 +189,6 @@
 	<script src="src/js/groups/class.js"></script>
 	<script src="src/js/channels/class.js"></script>
 	<script src="src/js/games/class.js"></script>
-	<script src="src/js/market/class.js"></script>
 
 	<script src="src/js/main.js"></script>
 	<script src="src/js/others.js"></script>

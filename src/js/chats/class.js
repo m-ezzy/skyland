@@ -2,18 +2,23 @@ class Chats extends Chats_Groups {
 	constructor(who) {
 		super(who);
 	}
+	load() {
+		super.load();
+	}
+	load_data() {
+		super.load_data();
+	}
 	async search() {
-		let s = this.ts.value;
+		let s = Content.ts.value;
 		if(s == "") {
-			console.log(s + "23");
 			return;
 		}
 		console.log(s);
 	
 		do_amazing_animation("35vw", "0vh", "5vw", "10vh");
 	
-		this.sr.innerHTML = "";
-		this.sr.style.visibility = "visible";
+		Content.sr.innerHTML = "";
+		Content.sr.style.visibility = "visible";
 	
 		let pre = [];
 		for (let i=0 ; i<this.previous.length ; i++) {
@@ -29,7 +34,7 @@ class Chats extends Chats_Groups {
 		}
 		if (pre.length) {
 			//add banner showing already created chats
-			this.sr.appendChild(create_div("chat", "", "", "your previous " + this.who));
+			Content.sr.appendChild(create_div("chat", "", "", "your previous " + this.who));
 		}
 		for (let i = 0 ; i < pre.length ; i++) {
 			let img = document.createElement("img");
@@ -40,7 +45,7 @@ class Chats extends Chats_Groups {
 			let temp = create_div("chat", "", oc, text);
 	
 			temp.appendChild(img);
-			this.sr.appendChild(temp);
+			Content.sr.appendChild(temp);
 		}
 	
 		console.log("503");
@@ -53,7 +58,7 @@ class Chats extends Chats_Groups {
 	
 		if (result.length) {
 			//add banner showing chats with whom no previous communication
-			this.sr.appendChild(create_div("chat", "", "", "start a new chat"));
+			Content.sr.appendChild(create_div("chat", "", "", "start a new chat"));
 		}
 		result.forEach(r => {
 			let img = document.createElement("img");
@@ -65,16 +70,16 @@ class Chats extends Chats_Groups {
 			//temp.onclick = oc;
 	
 			temp.appendChild(img);
-			this.sr.appendChild(temp);
+			Content.sr.appendChild(temp);
 		});
 	
 		if (pre.length == 0 && result.length == 0) {
 			//SR.innerHTML = "<div class='chat'> no such user found </div>";
-			this.sr.appendChild(create_div("chat", "", "", "no such user found"));
+			Content.sr.appendChild(create_div("chat", "", "", "no such user found"));
 		}
 	}
 	async create_new(user_name, first_name, last_name, extension) {
-		this.sr.style.visibility = "hidden";
+		Content.sr.style.visibility = "hidden";
 	
 		const response = await fetch("src/php/" + this.who + "/create_new.php", {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'user_name=' + user_name});
 		let data = await response.text();
@@ -101,5 +106,18 @@ class Chats extends Chats_Groups {
 	
 		this.show_conversation(this.pl.lastElementChild, user_name);
 	}
-	
+	async check_for_new() {
+		if (this.loaded == 0) {
+			return;
+		}
+
+		const response = await fetch("src/php/" + this.who + "/check_for_new.php", {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
+		let data = await response.json();
+
+		if (data[0] == 0) {
+			return;
+		}
+
+		this.create_new(data.user_name, data.first_name, data.last_name, data.extension);
+	}
 }

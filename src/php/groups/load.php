@@ -10,8 +10,8 @@
 
 
 
-	$query = "SELECT * FROM groups_$u";
-	//$query = "SELECT groups_$u.group_name,groups.display_name,groups.extension FROM groups INNER JOIN groups_$u ON groups.group_name=groups_$u.group_name";
+	//$query = "SELECT * FROM groups_$u";
+	$query = "SELECT groups_$u.group_name,groups.display_name,groups.extension FROM groups_$u INNER JOIN groups ON groups_$u.group_name=groups.group_name";
 	$result = $conn->query($query);
 
 	$rows = array();

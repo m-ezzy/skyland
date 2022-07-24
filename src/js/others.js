@@ -140,10 +140,10 @@ function toggle_theme(t) {
 	}
 
 	MB.style.backgroundColor = theme_colors[theme_current][0];
-	chats.cl.style.backgroundColor = theme_colors[theme_current][1];
+	chats.pl.style.backgroundColor = theme_colors[theme_current][1];
 	chats.sr.style.backgroundColor = theme_colors[theme_current][2];
 	chats.ch.style.backgroundColor = theme_colors[theme_current][3];
-	chats.c.style.backgroundColor = theme_colors[theme_current][4];
+	chats.tk.style.backgroundColor = theme_colors[theme_current][4];
 	chats.snm.style.backgroundColor = theme_colors[theme_current][5];
 
 	/*

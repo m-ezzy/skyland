@@ -1,6 +1,11 @@
 class Content {
-	static menus = ['home', 'chats', 'groups', 'channels', 'games', 'market'];
+	static menus = ['home', 'chats', 'groups', 'channels', 'games'];
 	static current;
+
+	static bb = document.getElementsByClassName('button back')[0];
+	static ts = document.getElementsByClassName('text search')[0];
+	static bs = document.getElementsByClassName('button search')[0];
+	static sr = document.getElementsByClassName('search_results')[0];
 
 	constructor(who) {
 		this.who = who;
@@ -13,32 +18,34 @@ class Content {
 
 		this.place_holder =  "media/images/place_holder_" + this.who + ".png";
 
-		this.bb;
-		this.ts;
-		this.bs;
-		this.sr;
 		this.pl;
+	}
+	load() {
+		this.loaded = 1;
+	}
+	async load_data() {
 	}
 	clicked() {
 		if (this.loaded == 0) {
-			Content.current = home;
-
 			this.load();
-			//this.init();
-			console.log(this.sr);
+			this.load_data();
+
+			console.log(Content.sr);
 		}
 		if (this.element.style.visibility == "visible") {
 			return;
 		}
 
-		console.log(this.sr);
+		console.log(Content.sr);
 
-		Content.current.sr.style.visibility = 'hidden';
-		Content.current.element.style.visibility = 'hidden';
+		if (Content.current) {
+			Content.sr.style.visibility = 'hidden';
+			Content.current.element.style.visibility = 'hidden';
 
-		if (Content.current == chats || Content.current == groups || Content.current == channels) {
-			if (Content.current.current != -1) {
-				Content.current.conversation[Content.current.current].style.visibility = 'hidden';
+			if (Content.current == chats || Content.current == groups || Content.current == channels) {
+				if (Content.current.current != -1) {
+					Content.current.conversation[Content.current.current].style.visibility = 'hidden';
+				}
 			}
 		}
 
@@ -50,9 +57,26 @@ class Content {
 		}
 	}
 	hide_search_results() {
-		this.sr.style.visibility = "hidden";
+		Content.sr.style.visibility = "hidden";
 	}
 	show_search_results() {
-		this.sr.style.visibility = "visible";
+		Content.sr.style.visibility = "visible";
+	}
+	search() {
+		Content.sr.style.visibility = 'visible';
+		/*
+		let w = Content.current.who;
+		if (w == 'home') {
+			home.search();
+		} else if (w == 'chats') {
+			chats.search();
+		} else if (w == 'groups') {
+			groups.search();
+		} else if (w == 'channels') {
+			channels.search();
+		} else if (w == 'games') {
+			games.search();
+		}
+		*/
 	}
 }
