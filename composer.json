@@ -1,5 +1,5 @@
 {
-    "name": "skyland",
+    "name": "murtaza/skyland",
     "repositories": [
         {
             "type": "vcs",
