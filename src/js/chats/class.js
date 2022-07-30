@@ -1,6 +1,7 @@
 class Chats extends Chats_Groups {
 	constructor(who) {
 		super(who);
+		//this.who == 'chats'; you dont need to pass it in constructor who they are. we know who they are
 	}
 	load() {
 		super.load();
@@ -81,7 +82,7 @@ class Chats extends Chats_Groups {
 	async create_new(user_name, first_name, last_name, extension) {
 		Content.sr.style.visibility = "hidden";
 	
-		const response = await fetch("src/php/" + this.who + "/create_new.php", {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'user_name=' + user_name});
+		const response = await fetch("src/php/" + this.who + "/create_new.php", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'user_name=' + user_name});
 		let data = await response.text();
 	
 		this.previous.push({user_name: (user_name), first_name: (first_name), last_name: (last_name), extension: (extension), rows: -1});
@@ -111,7 +112,7 @@ class Chats extends Chats_Groups {
 			return;
 		}
 
-		const response = await fetch("src/php/" + this.who + "/check_for_new.php", {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
+		const response = await fetch("src/php/" + this.who + "/check_for_new.php", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
 		let data = await response.json();
 
 		if (data[0] == 0) {

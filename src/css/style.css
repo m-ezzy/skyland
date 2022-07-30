@@ -169,11 +169,11 @@ input {
 
 	visibility: hidden;
 	/*transition: visibility 5s ease-out;*/
-	transition-property: visibility;
+	/*transition-property: visibility;
 	transition-duration: 5s;
-	transition-timing-function: ease-out;
+	transition-timing-function: linear;*/
 }
-#content_home {
+#home {
 	visibility: visible;
 }
 

@@ -11,6 +11,7 @@ let buttons = [];
 let me;
 
 let home;
+let calls;
 let chats;
 let groups;
 let channels;
@@ -26,12 +27,15 @@ let last_known = 5;
 
 document.body.onload = function() {
 	home = new Home('home');
+	calls = new Calls('calls');
 	chats = new Chats('chats');
 	groups = new Groups('groups');
 	channels = new Channels('channels');
 	games = new Games('games');
 
 	home.clicked();
+	
+	calls.send_my_peer_id();
 
 	if (resources) {
 		//setInterval(check_for_new_chats, 10000);

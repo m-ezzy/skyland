@@ -71,6 +71,6 @@ class Home extends Content {
 		this.fpp.style.visibility = 'hidden';
 		this.bpp.style.visibility = 'hidden';
 
-		this.pp.src = "data/profile_pictures/" + me.user_name + "." + text;
+		document.getElementById('profile_picture').src = "data/profile_pictures/" + me.user_name + "." + text;
 	}
 }

@@ -24,7 +24,10 @@
 	<link type="text/css" rel="stylesheet" href="src/css/style.css">
 	<link type="text/css" rel="stylesheet" href="src/css/home.css">
 
+	<!--<link type="text/css" rel="stylesheet" href="src/css/calls.css">-->
+
 	<link type="text/css" rel="stylesheet" href="src/css/common.css">
+	<link type="text/css" rel="stylesheet" href="src/css/chats_groups.css">
 	<link type="text/css" rel="stylesheet" href="src/css/chats.css">
 	<link type="text/css" rel="stylesheet" href="src/css/groups.css">
 
@@ -33,10 +36,18 @@
 
 
 
+
+
+	<link rel="manifest" href="src/nodejs/expressjs/phone/manifest.json">
+
+
+
+
+
 	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
 
 	<script>
-		let resources = 1; //change to 1 when you work on localhost or when have your own domain
+		let resources = 0; //change to 1 when you work on localhost or when have your own domain
 	</script>
 </head>
 <body>
@@ -47,6 +58,7 @@
 			<input type="button" onclick='load_frequent()' value='frequent'>-->
 
 			<div class='button' onclick='home.clicked(this)'> home </div>
+			<div class='button' onclick='calls.clicked(this)'> calls </div>
 			<div class='button' onclick='chats.clicked(this)'> chats </div>
 			<div class='button' onclick='groups.clicked(this)'> groups </div>
 			<div class='button' onclick='channels.clicked(this)'> channels </div>
@@ -61,10 +73,60 @@
 		</div>
 		
 		<div class='content' id='home'></div>
+		<div class='content' id='calls'>
+			<div class='call-audio'>
+			<h1>Phone a friend</h1>
+			<p id="caststatus" class="big">
+				Connecting...
+			</p>
+			<p>
+				Please use headphones!
+			</p>
+			<button class="call-btn">
+				Call
+			</button>
+			<section class="call-container" hidden>
+				<div class="audio-container">
+					<p>You're automatically muted, unmute yourself!</p>
+					<audio controls id="remoteAudio" muted="true"></audio>
+					<audio controls id="localAudio" muted="true"></audio>
+				</div>
+				<button class="hangup-btn">
+					Hang up
+				</button>
+			</section>
+		</div>
+
+		<!--
+		<section class="modal" hidden>
+			<div id="close">
+				close
+			</div>
+			<div class="inner-modal">
+				<label>Give us your friend's device ID</label>
+				<input placeholder="Enter your friend's device ID" aria-colcount="10">
+				<button class="connect-btn"></button>
+					Connect
+				</button>
+			</div>
+		</section>
+		-->
+
+		</div>
 		<div class='content' id='chats'></div>
 		<div class='content' id='groups'></div>
 		<div class='content' id='channels'></div>
 		<div class='content' id='games'></div>
+
+
+
+
+		<script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/davidshimjs-qrcodejs@0.0.2/qrcode.min.js"></script>
+		<script src="src/js/script_calls.js"></script>
+
+
+
 
 		<div class='button back' onclick='Content.current.hide_search_results()'> back </div>
 		<input type='text' class='text search' placeholder='type here to search' onfocus='Content.current.show_search_results()' oninput='Content.current.search()'>
@@ -82,36 +144,37 @@
 				document.body.appendChild(s);
 				i++;
 			}
+		</script>
 		-->
 
 		<div class='sending'>
 			<div class='button close_sending' onclick='close_images()'> + </div>
 			<input type='file' name='select_images' class='select_images' accept='.jpg, .jpeg, .png'>
-			<div class='button send' onclick='send_images()'> send </div>
+			<div class='button send' onclick='Content.current.send_images()'> send </div>
 		</div>
 
 		<div class='sending'>
 			<div class='button close_sending' onclick='close_videos()'> + </div>
 			<input type='file' name='select_videos' class='select_videos'>
-			<div class='button send' onclick='send_videos()'> send </div>
+			<div class='button send' onclick='Content.current.send_videos()'> send </div>
 		</div>
 
 		<div class='sending'>
 			<div class='button close_sending' onclick='close_audios()'> + </div>
 			<input type='file' name='select_audios' class='select_audios'>
-			<div class='button send' onclick='send_audios()'> send </div>
+			<div class='button send' onclick='Content.current.send_audios()'> send </div>
 		</div>
 
 		<div class='sending'>
 			<div class='button close_sending' onclick='close_documents()'> + </div>
 			<input type='file' name='select_documents' class='select_documents'>
-			<div class='button send' onclick='send_documents()'> send </div>
+			<div class='button send' onclick='Content.current.send_documents()'> send </div>
 		</div>
 
 		<div class='sending'>
 			<div class='button close_sending' onclick='close_location()'> + </div>
 			<input type='file' name='select_location' class='select_location'>
-			<div class='button send' onclick='send_location()'> send </div>
+			<div class='button send' onclick='Content.current.send_location()'> send </div>
 		</div>
 
 		<div class='send_new_media'>
@@ -127,8 +190,6 @@
 			<div class='button message' onclick='Content.current.send_message()'> send </div>
 		</div>
 
-		<!--
-		</script>-->
 
 		<div class='ba' id='ba1'></div>
 		<div class='ba' id='ba2'></div>
@@ -183,6 +244,7 @@
 
 	<script src="src/js/content/class.js"></script>
 	<script src="src/js/home/class.js"></script>
+	<script src="src/js/calls/class.js"></script>
 	<script src="src/js/common/class.js"></script>
 	<script src="src/js/chats_groups/class.js"></script>
 	<script src="src/js/chats/class.js"></script>

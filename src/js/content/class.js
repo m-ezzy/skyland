@@ -39,6 +39,9 @@ class Content {
 		console.log(Content.sr);
 
 		if (Content.current) {
+			Content.bb.style.visibility = 'hidden';
+			Content.ts.style.visibility = 'hidden';
+			Content.bs.style.visibility = 'hidden';
 			Content.sr.style.visibility = 'hidden';
 			Content.current.element.style.visibility = 'hidden';
 

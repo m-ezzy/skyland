@@ -22,6 +22,7 @@ class Chats_Groups extends Common {
 		super.load();
 
 		let c = "";
+		c += "<div class='button voice-call' onclick='" + this.who + ".create_new_voice_call()'> voice call </div>";
 		c += "<input type='text' class='text key' placeholder='enter key of this conversation' value='0' oninput='" + this.who + ".show_decrypted_media()'>";
 		c += "<div class='button key' onclick='" + this.who + ".e_d()'> encrypt or decrypt </div>";
 
@@ -102,7 +103,7 @@ class Chats_Groups extends Common {
 		this.nmi = this.element.getElementsByClassName('new_media_indicator');
 		this.conversation = this.element.getElementsByClassName('conversation');
 
-		this.show_conversation(this.pl.getElementsByTagName('div')[0], result[0].user_name); //this.pl.firstElementChild
+		//this.show_conversation(this.pl.getElementsByTagName('div')[0], result[0].user_name); //this.pl.firstElementChild
 		this.current = 0;
 
 		this.loaded = 1;
@@ -178,6 +179,7 @@ class Chats_Groups extends Common {
 		let ddd = this.conversation[this.current].innerHTML;
 		this.conversation[this.current].innerHTML = '';
 
+		//let st = 0;
 		let i = 0;
 		let r;
 		while (r = result[i]) {
@@ -194,12 +196,14 @@ class Chats_Groups extends Common {
 			}
 
 			this.conversation[this.current].append(e);
+			//st += this.conversation[this.current].lastElementChild.style.height;
+			//console.log(st);
 			i++;
 		}
 		this.conversation[this.current].innerHTML += ddd;
 
-		this.conversation[this.current].scrollTop += 10*i;
-		last_known = 10*i;
+		this.conversation[this.current].scrollTop = i*50;
+		last_known = i*50;
 
 		this.previous[this.current].rows += i;
 	}
@@ -252,10 +256,10 @@ class Chats_Groups extends Common {
 		console.log(result);
 
 		this.conversation[this.current].appendChild(create_div("sent messages", "", "", Chats_Groups.tm.value));
-		this.conversation[this.current].scrollBy(0,100);
+		this.conversation[this.current].scrollBy(0, 200);
 	}
 	async send_images() {
-		this.sending[0].style.visibility = "hidden";
+		Chats_Groups.sending[0].style.visibility = "hidden";
 
 		const fd = new FormData();
 		let all_files = document.getElementsByClassName("select_images")[0];
@@ -269,18 +273,14 @@ class Chats_Groups extends Common {
 		.then((response) => response.text())
 		.then((value) => {
 			text = value;
-		//console.log(result);
 
-		let w = Math.floor(innerWidth/5);
-		let h = Math.floor(innerHeight/5);
-
-		this.conversation[this.current].appendChild(create_image("sent", "", "", "data/" + this.who + "/" + text, w, h));
-		this.previous[this.current].rows += 1;
-		this.conversation[this.current].scrollBy(0,100);
+			this.conversation[this.current].appendChild(create_image("sent", "", "", "data/" + this.who + "/" + text, Common.w, Common.h));
+			this.previous[this.current].rows += 1;
+			this.conversation[this.current].scrollBy(0, 200);
 		});
 	}
 	async send_videos() {
-		document.getElementsByClassName("sending")[1].style.visibility = "hidden";
+		Chats_Groups.sending[1].style.visibility = "hidden";
 	
 		let xhr = new XMLHttpRequest();
 		//let file = document.getElementById('select_videos').files[0];
@@ -297,36 +297,36 @@ class Chats_Groups extends Common {
 			if(xhr.readyState == 4 && xhr.status == 200) {
 				let w = Math.floor(innerWidth/5);
 				let h = Math.floor(innerHeight/5);
-				this.previous[this.current].conversation.appendChild(create_video("sent", "", "", "data/this/chat_between_" + this.responseText, w, h));
+				this.previous[this.current].conversation.appendChild(create_video("sent", "", "", "data/this/chat_between_" + this.responseText, Common.w, Common.h));
 				this.previous[this.current].rows += 1;
-				this.previous[this.current].conversation.scrollBy(0,100);
+				this.previous[this.current].conversation.scrollBy(0, 200);
 			}
 		};
 	}
 
 	select_images() {
 		//document.getElementById("select_images").click();
-		this.sending[0].getElementsByClassName("select_images")[0].click();
+		Chats_Groups.sending[0].getElementsByClassName("select_images")[0].click();
 		document.getElementsByClassName("sending")[0].style.visibility = "visible";
 	}
 	select_videos() {
 		//document.getElementById("select_videos").click();
-		this.element.getElementsByClassName("select_videos")[0].click();
+		Chats_Groups.element.getElementsByClassName("select_videos")[0].click();
 		document.getElementsByClassName("sending")[1].style.visibility = "visible";
 	}
 	select_audios() {
 		//document.getElementById("select_audios").click();
-		this.element.getElementsByClassName("select_audios")[0].click();
+		Chats_Groups.element.getElementsByClassName("select_audios")[0].click();
 		document.getElementsByClassName("sending")[2].style.visibility = "visible";
 	}
 	select_documents() {
 		//document.getElementById("select_documents").click();
-		this.element.getElementsByClassName("select_documents")[0].click();
+		Chats_Groups.element.getElementsByClassName("select_documents")[0].click();
 		document.getElementsByClassName("sending")[3].style.visibility = "visible";
 	}
 	select_location() {
 		//document.getElementById("select_location").click();
-		this.element.getElementsByClassName("select_location")[0].click();
+		Chats_Groups.element.getElementsByClassName("select_location")[0].click();
 		document.getElementsByClassName("sending")[4].style.visibility = "visible";
 	}
 

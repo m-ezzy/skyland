@@ -25,6 +25,9 @@
 	$query = "INSERT INTO user_info(user_name,first_name,last_name) VALUES('$user_name','$first_name','$last_name')";
 	$conn->query($query);
 
+	$query = "INSERT INTO peer_ids(user_name) VALUES('$user_name')";
+	$conn->query($query);
+
 	$query = "CREATE TABLE chats_" . $user_name . " (user_name VARCHAR(20) DEFAULT NULL)";
 	$conn->query($query);
 

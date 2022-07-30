@@ -4,23 +4,21 @@
 	$u2 = $_REQUEST['q'];
 	$u = $_SESSION['user_name'];
 
-	/*$users = array();
-	$users = $_SESSION['chats']['user_name'];*/
 	$i = array_search($u2, $_SESSION['chats']['user_name']);
+	$row_up = $_SESSION['chats']['row_up'][$i];
 
-	$row_up = $_SESSION['chats']['row_up'][$i] - $limit;
-	//$_SESSION['chats']['row_up'][$i] -= $limit;
-	//$row_up = $_SESSION['chats']['row_up'][$i];
-
-	/*$upper = $_SESSION['chats'][$u2]['row_up'];
-	$upper = $upper - 10;
-	$_SESSION['chats'][$u2]['row_up'] = $upper;*/
-
-	if ($row_up <= -4) {
+	if ($row_up <= 0) {
 		$num = array();
-		$num[0] = 0;
+		$num[] = 0;
 		echo json_encode($num);
 		return;
+	}
+
+	$row_up -= $limit;
+
+	$l = $limit;
+	if ($row_up < 0) {
+		$l = $limit + $row_up;
 	}
 
 	$first = $u;
@@ -31,21 +29,15 @@
 		$second = $u;
 	}
 
-	$query = "SELECT * FROM chat_between_$first" . "_$second WHERE ROWNUM>$row_up LIMIT $limit";
+	$query = "SELECT * FROM chat_between_$first" . "_$second WHERE ROWNUM>$row_up LIMIT $l";
 	$result = $conn->query($query);
 	//$result = mysqli_query($conn, $query);
 
-	if ($result->num_rows > 0) {
-		$rows = array();
-		$rows = $result->fetch_all(MYSQLI_ASSOC);
+	$rows = array();
+	$rows = $result->fetch_all(MYSQLI_ASSOC);
 
-		$_SESSION['chats']['row_up'][$i] -= count($rows);
+	$_SESSION['chats']['row_up'][$i] -= count($rows);
 
-		$json = json_encode($rows);
-		echo $json;
-	} else {
-		$num = array();
-		$num[0] = 0;
-		echo json_encode($num);
-	}
+	$json = json_encode($rows);
+	echo $json;
 ?>

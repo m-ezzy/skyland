@@ -33,6 +33,7 @@
 	}
 
 	//check this ' IF NOT EXISTS ' stuff in action
+	//$query = "CREATE TABLE IF NOT EXISTS chat_between_$first" . "_$second (ROWNUM int(20),sent_by varchar(20),messages varchar(200) DEFAULT NULL,images varchar(10) DEFAULT NULL,videos varchar(10) DEFAULT NULL,audios varchar(10) DEFAULT NULL,document varchar(10) DEFAULT NULL,location varchar(10) DEFAULT NULL,time_sent DATETIME(2) DEFAULT CURRENT_TIMESTAMP,time_delivered DATETIME(2),time_seen DATETIME(2))";
 	$query = "CREATE TABLE IF NOT EXISTS chat_between_$first" . "_$second (ROWNUM int(20),sent_by varchar(20),messages varchar(200) DEFAULT NULL,images varchar(10) DEFAULT NULL,videos varchar(10) DEFAULT NULL,audios varchar(10) DEFAULT NULL,document varchar(10) DEFAULT NULL,location varchar(10) DEFAULT NULL,time_sent DATETIME(2) DEFAULT CURRENT_TIMESTAMP,time_delivered DATETIME(2),time_seen DATETIME(2))";
 	$conn->query($query);
 

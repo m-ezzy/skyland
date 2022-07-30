@@ -232,7 +232,7 @@
 	padding: 0;
 
 	overflow-x: hidden;
-	overflow-y: scroll;
+	overflow-y: visible;
 
 	background-color: #F5FFA2;
 	/*background-image: url(../media/images/skins/watermelon/messages_list.jpg);
@@ -246,6 +246,8 @@
 
 	object-fit: cover;
 	/*display: flex;*/
+	/*display: grid;
+	grid-row: auto;*/
 }
 .conversation > * {   /*#messages_list * {*/   /*.media {*/
 	position: relative;
@@ -254,16 +256,21 @@
 }
 .received {
 	left: 1vw;
+	justify-content: left;
+	justify-self: left;
 }
 .sent {
 	left: 30vw;
+	justify-content: right;
+	justify-self: right;
 	/*right: 1vw;
 	margin-right: 1vw;*/
 }
 .messages {
 	min-width: 5vw;
 	width: fit-content;
-	height: fit-content;
+	min-height: 20vh;
+	/*height: fit-content;*/
 	/*height: 20vh;*/
 
 	/*margin-bottom: 1vh;*/
@@ -308,122 +315,4 @@
 
 	/*color: rgb(0, 0, 0);
 	background-color: #9FD1FF;*/
-}
-.send_new_media {
-	position: absolute;
-	left: 40vw;
-	top: 90vh;
-	z-index: 6;
-	width: 60vw;
-	height: 10vh;
-
-	display: flex;
-
-	background-color: #ffa860;
-}
-.send_new_media div {
-	background-color: rgb(255, 255, 255, 0);
-}
-.sending {
-	position: absolute;
-	left: 45vw;
-	top: 45vh;
-	z-index: 7;
-	width: 50vw;
-	height: 40vh;
-
-	background-color: rgb(216, 124, 255);
-
-	visibility: hidden;
-}
-.button.close_sending {
-	position: absolute;
-	left: -1vw;
-	top: -2vh;
-	z-index: 8;
-	width: 5vw;
-	height: 5vw;
-
-	font-size: 3vw;
-
-	background-color: rgb(255, 255, 255, 0);
-
-	border: 0vw;
-
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-	transform-origin: 50% 50%;
-	transform: rotate(45deg);
-}
-.sending input {
-	position: relative;
-	left: 0vw;
-	top: 33vh;
-	z-index: 8;
-	width: 45vw;
-}
-.button.send {
-	position: absolute;
-	left: 45vw;
-	top: 33vh;
-	z-index: 8;
-	width: 5vw;
-	height: 10vh;
-}
-.upload {
-	position: relative;
-	top: 0vh;
-	left: 0vw;
-	z-index: 7;
-
-	width: 5vw;
-	height: 10vh;
-
-	font-size: 1vw;
-
-	word-break: break-all;
-
-	background-color: rgb(255, 255, 255, 0);
-
-	/*display: flex;*/
-}/*
-.upload input {
-	height: 10vh;
-	background-color: black;
-}*/
-.text.message {
-	position: relative;
-	top: 0vh;
-	left: 0vw;
-	z-index: 7;
-
-	width: 30vw;
-	height: 10vh;
-
-	/*margin-top: 95vh;
-	margin-left: 50vw;*/
-	
-	background-color: rgb(255, 255, 255);
-
-	/*display: flex;*/
-}
-.button.message {
-	position: absolute;
-	left: 55vw;
-	top: 0vh;
-	z-index: 7;
-	width: 5vw;
-	height: 10vh;
-
-	font-size: 2vw;
-
-	/*margin-top: 95vh;
-	margin-left: 90vw;*/
-
-	/*background-color: rgb(150, 150, 150);*/
-	/*background-color: rgb(255, 255, 255, 0);*/
-
-	/*display: flex;*/
 }
