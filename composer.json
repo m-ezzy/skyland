@@ -1,1 +1,11 @@
-
+{
+    "name": "skyland",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/m-ezzy/skyland"
+        }
+    ],
+    "require": {
+    }
+}
