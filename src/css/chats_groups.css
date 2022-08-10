@@ -1,14 +1,28 @@
-.send_new_media {
-	position: absolute;
-	left: 40vw;
-	top: 90vh;
+.call.voice {
+	position: relative;
+	left: 20vw;
+	top: 0vh;
 	z-index: 6;
-	width: 60vw;
+	width: 5vw;
 	height: 10vh;
-
-	display: flex;
-
+}
+.call.video {
+	position: relative;
+	left: 20vw;
+	top: 0vh;
+	z-index: 6;
+	width: 5vw;
+	height: 10vh;
+}
+.send_new_media {
 	background-color: #ffa860;
+
+	z-index: 6;
+
+	grid-area: 19 / 1 / 21 / 21;
+
+	display: grid;
+	grid-template-columns: repeat(20, auto);
 }
 .send_new_media div {
 	background-color: rgb(255, 255, 255, 0);
@@ -83,36 +97,31 @@
 	background-color: black;
 }*/
 .text.message {
-	position: relative;
-	top: 0vh;
-	left: 0vw;
-	z-index: 7;
+	background-color: #ffa860;
 
-	width: 30vw;
-	height: 10vh;
-
-	/*margin-top: 95vh;
-	margin-left: 50vw;*/
-	
-	background-color: rgb(255, 255, 255);
-
-	/*display: flex;*/
+	/*grid-area: 1 / 16 / 2 / 19;*/
 }
 .button.message {
-	position: absolute;
-	left: 55vw;
-	top: 0vh;
 	z-index: 7;
-	width: 5vw;
-	height: 10vh;
+}
 
-	font-size: 2vw;
+@media only screen and (min-width: 400px) {
+	.send_new_media {
+		z-index: 20;
 
-	/*margin-top: 95vh;
-	margin-left: 90vw;*/
+		grid-area: 19 / 9 / 21 / 21;
 
-	/*background-color: rgb(150, 150, 150);*/
-	/*background-color: rgb(255, 255, 255, 0);*/
+		display: grid;
+		grid-template-columns: repeat(12, 5vw);
+	}
+	.text.message {
+		z-index: 7;
 
-	/*display: flex;*/
+		grid-column: 6 / 12;
+	}
+	.button.message {
+		z-index: 7;
+
+		grid-column: 12 / 13;
+	}
 }

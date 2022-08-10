@@ -1,4 +1,4 @@
-class Home extends Content {
+class Profiles extends Content {
 	constructor(who) {
 		super(who);
 
@@ -60,7 +60,7 @@ class Home extends Content {
 		console.log(file);
 		fd.append("file_pp", file);
 		console.log(fd);
-		let response = await fetch("src/php/home/upload_profile_picture.php", {
+		let response = await fetch("src/php/profiles/upload_profile_picture.php", {
 			method: 'POST',
 			body: fd
 		});

@@ -6,6 +6,49 @@ class Calls extends Content {
 	}
 	load() {
 		super.load();
+
+		let c = "";
+		c += "<div class='previous_list'></div>";
+
+		this.element.innerHTML = c;
+
+		/*
+		<div class='call-audio'>
+			<h1>Phone a friend</h1>
+			<p id="caststatus" class="big">
+				Connecting...
+			</p>
+			<p>
+				Please use headphones!
+			</p>
+			<button class="call-btn">
+				Call
+			</button>
+			<section class="call-container" hidden>
+				<div class="audio-container">
+					<p>You're automatically muted, unmute yourself!</p>
+					<audio controls id="remoteAudio" muted="true"></audio>
+					<audio controls id="localAudio" muted="true"></audio>
+				</div>
+				<button class="hangup-btn">
+					Hang up
+				</button>
+			</section>
+		</div>
+
+		<section class="modal" hidden>
+			<div id="close">
+				close
+			</div>
+			<div class="inner-modal">
+				<label>Give us your friend's device ID</label>
+				<input placeholder="Enter your friend's device ID" aria-colcount="10">
+				<button class="connect-btn"></button>
+					Connect
+				</button>
+			</div>
+		</section>
+		*/
 	}
 	async load_data() {
 		super.load_data();

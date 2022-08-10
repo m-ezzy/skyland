@@ -206,6 +206,10 @@ class Chats_Groups extends Common {
 		last_known = i*50;
 
 		this.previous[this.current].rows += i;
+
+		if(innerWidth <= 400) {
+			document.getElementById("menu_bar").style.display = "none";
+		}
 	}
 	on_scroll_event(who_name) {
 		if (this.conversation[this.current].scrollTop != 0) {

@@ -16,6 +16,15 @@ class Common extends Content {
 
 		//this.ml = this.element.getElementsByClassName("messages_list")[0];
 	}
+	clicked() {
+		if (Content.current && Content.current.current != -1) {
+			Content.current.conversation[Content.current.current].style.visibility = 'hidden';
+		}
+
+		console.log(Content.current);
+
+		super.clicked();
+	}
 	load() {
 		super.load();
 

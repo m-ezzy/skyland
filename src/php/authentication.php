@@ -17,7 +17,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
 
-		<link style="text/css" rel="stylesheet" href="../css/a_grid.css">
+		<link type="text/css" rel="stylesheet" href="../css/a_grid.css">
 
 		<script>
 			let resources = 1;

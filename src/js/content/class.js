@@ -31,42 +31,37 @@ class Content {
 			this.load_data();
 
 			console.log(Content.sr);
-		}
-		if (this.element.style.visibility == "visible") {
+		}/*
+		if (this.element.style.display != "none") {
 			return;
-		}
+		}*/
 
 		console.log(Content.sr);
 
 		if (Content.current) {
+			/*
 			Content.bb.style.visibility = 'hidden';
 			Content.ts.style.visibility = 'hidden';
-			Content.bs.style.visibility = 'hidden';
-			Content.sr.style.visibility = 'hidden';
-			Content.current.element.style.visibility = 'hidden';
-
-			if (Content.current == chats || Content.current == groups || Content.current == channels) {
-				if (Content.current.current != -1) {
-					Content.current.conversation[Content.current.current].style.visibility = 'hidden';
-				}
-			}
+			Content.bs.style.visibility = 'hidden';*/
+			Content.sr.style.display = "none";
+			Content.current.element.style.display = "none";
 		}
 
 		Content.current = this;
-		this.element.style.visibility = "visible";
+		this.element.style.display = "grid";
 
 		if (Content.current.current != -1) {
-			Content.current.conversation[Content.current.current].style.visibility = 'visible';
+			Content.current.conversation[Content.current.current].style.display = "grid";
 		}
 	}
 	hide_search_results() {
-		Content.sr.style.visibility = "hidden";
+		Content.sr.style.display = "none";
 	}
 	show_search_results() {
-		Content.sr.style.visibility = "visible";
+		Content.sr.style.display = "grid";
 	}
 	search() {
-		Content.sr.style.visibility = 'visible';
+		Content.sr.style.display = 'grid';
 		/*
 		let w = Content.current.who;
 		if (w == 'home') {

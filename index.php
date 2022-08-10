@@ -6,133 +6,75 @@
 	}
 ?>
 
-<!--<!DOCTYPE html>-->
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title> skyland! </title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title> skyland-php! </title>
 
 	<!--<link rel="icon" href="../../media/images/icon2.ico">-->
 
-	<!--
-	<link type="text/css" rel="stylesheet" href="common.css">
-	<link type="text/css" rel="stylesheet" href="authentication.css">
-	<link type="text/css" rel="stylesheet" href="s_home.css">
-	-->
-	<!--<link type="text/css" rel="stylesheet" href="libraries\bootstrap-5.2.0-dist/css/bootstrap.css">-->
+	<!--<link type="text/css" rel="stylesheet" href="authentication.css">-->
 
 	<link type="text/css" rel="stylesheet" href="src/css/style.css">
-	<link type="text/css" rel="stylesheet" href="src/css/home.css">
+	<link type="text/css" rel="stylesheet" href="src/css/universal.css">
 
-	<!--<link type="text/css" rel="stylesheet" href="src/css/calls.css">-->
+	<link type="text/css" rel="stylesheet" href="src/css/menu_bar.css">
+
+	<link type="text/css" rel="stylesheet" href="src/css/calls.css">
 
 	<link type="text/css" rel="stylesheet" href="src/css/common.css">
 	<link type="text/css" rel="stylesheet" href="src/css/chats_groups.css">
 	<link type="text/css" rel="stylesheet" href="src/css/chats.css">
 	<link type="text/css" rel="stylesheet" href="src/css/groups.css">
-
 	<link type="text/css" rel="stylesheet" href="src/css/channels.css">
+
 	<link type="text/css" rel="stylesheet" href="src/css/games.css">
 
+	<link type="text/css" rel="stylesheet" href="src/css/profiles.css">
 
-
-
-
-	<link rel="manifest" href="src/nodejs/expressjs/phone/manifest.json">
-
-
-
-
-
-	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+	<!--<link type="text/css" rel="stylesheet" href="src/css/responsive_design.css">-->
 
 	<script>
-		let resources = 0; //change to 1 when you work on localhost or when have your own domain
+		let resources = 1; //change to 1 when you work on localhost or when have your own domain
 	</script>
 </head>
 <body>
-	<div id='container'>
-		<div id='menu_bar'>
+	<div class="col-10" id='container'>
+		<div class="col-1" id='menu_bar'>
 			<!-- all of this can be div tags instead of input button -->
-			<!--<input type="button" onclick='load_home()' value='home'>
-			<input type="button" onclick='load_frequent()' value='frequent'>-->
+			<!--<button onclick='load_home()' value='home'>-->
+			<!--<input type="button" onclick='load_frequent()' value='frequent'>-->
 
-			<div class='button' onclick='home.clicked(this)'> home </div>
-			<div class='button' onclick='calls.clicked(this)'> calls </div>
-			<div class='button' onclick='chats.clicked(this)'> chats </div>
-			<div class='button' onclick='groups.clicked(this)'> groups </div>
-			<div class='button' onclick='channels.clicked(this)'> channels </div>
-			<div class='button' onclick='games.clicked(this)'> games </div>
+			<div class='col-8 button' onclick='calls.clicked(this)'> calls </div>
+			<div class='col-8 button' onclick='chats.clicked(this)'> chats </div>
+			<div class='col-8 button' onclick='groups.clicked(this)'> groups </div>
+			<div class='col-8 button' onclick='channels.clicked(this)'> channels </div>
+			<div class='col-8 button' onclick='games.clicked(this)'> games </div>
+			<div class='col-8 button' onclick='profiles.clicked(this)'> profiles </div>
 
-			<!--
-			<div class='menu' onclick='load_games()'> Games </div>
-			<div class='menu' onclick='load_market()'> Market </div>
-			<button id='theme' onclick='toggle_theme()'> theme </button>
-			-->
-			<div class='button' id='button_theme' onclick='toggle_theme(this)'> theme </div>
+			<div class='col-8 button' id='button_theme' onclick='toggle_theme(this)'> theme </div>
 		</div>
 		
-		<div class='content' id='home'></div>
-		<div class='content' id='calls'>
-			<div class='call-audio'>
-			<h1>Phone a friend</h1>
-			<p id="caststatus" class="big">
-				Connecting...
-			</p>
-			<p>
-				Please use headphones!
-			</p>
-			<button class="call-btn">
-				Call
-			</button>
-			<section class="call-container" hidden>
-				<div class="audio-container">
-					<p>You're automatically muted, unmute yourself!</p>
-					<audio controls id="remoteAudio" muted="true"></audio>
-					<audio controls id="localAudio" muted="true"></audio>
-				</div>
-				<button class="hangup-btn">
-					Hang up
-				</button>
-			</section>
-		</div>
-
-		<!--
-		<section class="modal" hidden>
-			<div id="close">
-				close
-			</div>
-			<div class="inner-modal">
-				<label>Give us your friend's device ID</label>
-				<input placeholder="Enter your friend's device ID" aria-colcount="10">
-				<button class="connect-btn"></button>
-					Connect
-				</button>
-			</div>
-		</section>
-		-->
-
-		</div>
-		<div class='content' id='chats'></div>
-		<div class='content' id='groups'></div>
-		<div class='content' id='channels'></div>
-		<div class='content' id='games'></div>
+		<div class='col-9 content' id='calls'></div>
+		<div class='col-9 content' id='chats'></div>
+		<div class='col-9 content' id='groups'></div>
+		<div class='col-9 content' id='channels'></div>
+		<div class='col-9 content' id='games'></div>
+		<div class='col-9 content' id='profiles'></div>
 
 
 
 
-		<script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/davidshimjs-qrcodejs@0.0.2/qrcode.min.js"></script>
-		<script src="src/js/script_calls.js"></script>
 
+		<div class='col-1 button back' onclick='Content.current.hide_search_results()'> back </div>
+		<input type='text' class='col-1 text search' placeholder='type here to search' onfocus='Content.current.show_search_results()' oninput='Content.current.search()'>
+		<div class='col-1 button search' onclick='Content.current.search()'> search </div>
 
-
-
-		<div class='button back' onclick='Content.current.hide_search_results()'> back </div>
-		<input type='text' class='text search' placeholder='type here to search' onfocus='Content.current.show_search_results()' oninput='Content.current.search()'>
-		<div class='button search' onclick='Content.current.search()'> search </div>
-
-		<div class='search_results'></div>
+		<div class='col-3 search_results'></div>
 
 		<!--
 		<script>
@@ -177,7 +119,7 @@
 			<div class='button send' onclick='Content.current.send_location()'> send </div>
 		</div>
 
-		<div class='send_new_media'>
+		<div class='col-6 send_new_media'>
 			<!--<label for='file'> image </label>-->
 
 			<div class='button images' onclick='Content.current.select_images()'> images </div>
@@ -189,6 +131,7 @@
 			<input class='text message' type='text' placeholder='type a new message' value='hola' onfocus='Content.current.add_enter_event()' onblur='Content.current.remove_enter_event()'>
 			<div class='button message' onclick='Content.current.send_message()'> send </div>
 		</div>
+
 
 
 		<div class='ba' id='ba1'></div>
@@ -227,30 +170,19 @@
 		append_js_script_files();
 	</script>-->
 
-	<!--
-	<script src="../js/main.js"></script>
-
-	<script src="../js/home.js"></script>
-	<script src="../js/common.js"></script>
-	<script src="../js/chats.js"></script>
-	<script src="../js/groups.js"></script>
-	<script src="../js/channels.js"></script>
-	<script src="../js/games.js"></script>
-
-	<script src="../js/others.js"></script>
-	<script src="../js/privacy.js"></script>-->
-
-	<!--<script src="libraries/bootstrap-5.2.0-dist/js/bootstrap.js"></script>-->
-
 	<script src="src/js/content/class.js"></script>
-	<script src="src/js/home/class.js"></script>
+
 	<script src="src/js/calls/class.js"></script>
+
 	<script src="src/js/common/class.js"></script>
 	<script src="src/js/chats_groups/class.js"></script>
 	<script src="src/js/chats/class.js"></script>
 	<script src="src/js/groups/class.js"></script>
 	<script src="src/js/channels/class.js"></script>
+
 	<script src="src/js/games/class.js"></script>
+
+	<script src="src/js/profiles/class.js"></script>
 
 	<script src="src/js/main.js"></script>
 	<script src="src/js/others.js"></script>
