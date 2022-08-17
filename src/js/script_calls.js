@@ -22,10 +22,11 @@ let call_outgoing;
 let call_incoming;
 
 peer.on('open', function () {
+	/*
 	if (calls.loaded) {
 		calls.ch.getElementsByClassName('peer_id_local')[0].innerHTML = `local peer id : ${peer.id}`;
 		calls.send_my_peer_id();
-	}
+	}*/
 });
 
 peer.on('connection', function(connection) {

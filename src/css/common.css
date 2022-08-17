@@ -82,8 +82,6 @@
 @media only screen and (min-width: 400px) {
 	.new_media_indicator { /*.previous_list div div*/
 		text-indent: 0;
-
-		transition: background-color 3s linear;
 	}
 	
 	.text.search_conversation {

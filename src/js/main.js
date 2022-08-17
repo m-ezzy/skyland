@@ -25,6 +25,7 @@ let cfnmg;
 let running = false;
 let last_known = 5;
 
+let resources = 1; //change to 1 when you work on localhost or when have your own domain
 
 
 document.body.onload = function() {
@@ -36,7 +37,7 @@ document.body.onload = function() {
 	profiles = new Profiles('profiles');
 
 	profiles.clicked();
-	chats.clicked();
+	//chats.clicked();
 	//calls.clicked();
 
 	calls.send_my_peer_id();
@@ -103,5 +104,16 @@ function remove_enter_event() {
 	chats.tm.removeEventListener("keydown",send_new_message);*/
 }
 
-
+function getCookie(cookie_key) {
+	const name = cookie_key + "=";
+	const cDecoded = decodeURIComponent(document.cookie); //to be careful
+	const cArr = cDecoded.split('; ');
+	let res;
+	cArr.forEach(val => {
+		if (val.indexOf(name) === 0) {
+			res = val.substring(name.length);
+		}
+	});
+	return res
+}
 

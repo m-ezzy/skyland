@@ -51,14 +51,15 @@ class Calls extends Content {
 
 		console.log(this.ch);
 
-		let stream = new MediaStream();
+		let stream_a = new MediaStream();
+		let stream_v = new MediaStream();
 
-		stream = get_stream_local_audio();
-		this.al.srcObject = stream;
+		stream_a = get_stream_local_audio();
+		this.al.srcObject = stream_a;
 		this.al.autoplay = true;
 
-		stream = get_stream_local_video();
-		this.vl.srcObject = stream;
+		stream_v = get_stream_local_video();
+		this.vl.srcObject = stream_v;
 		this.vl.autoplay = true;
 
 		//get_stream_local_audio();
@@ -67,7 +68,7 @@ class Calls extends Content {
 	async load_data() {
 		super.load_data();
 
-		let response = await fetch("src/php/" + this.who + "/load.php", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
+		let response = await fetch(this.who + "/load", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
 		let result = await response.json();
 
 		this.previous = result;
@@ -105,6 +106,7 @@ class Calls extends Content {
 		});
 
 		this.ch.getElementsByClassName('peer_id_local')[0].innerHTML = `local peer id : ${peer.id}`;
+
 		this.send_my_peer_id();
 	}
 	clicked() {
@@ -117,19 +119,19 @@ class Calls extends Content {
 		}
 	}
 	async send_my_peer_id() {
-		const response = await fetch("src/php/" + this.who + "/send_my_peer_id.php", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'peer_id=' + peer.id});
+		const response = await fetch(this.who + "/send_my_peer_id", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'peer_id=' + peer.id});
 		let data = await response.text();
 
 		console.log(data);
 	}
 	async create_new_call_audio(user_id, chat_id) {
 		// adding call log and getting remote peer id
-		const response = await fetch("src/php/" + this.who + "/create_new_call.php", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'user_id=' + user_id + '&chat_id=' + chat_id + '&type=6'});
-		let result = await response.text();
+		const response = await fetch(this.who + "/create_new_call", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'user_id=' + user_id + '&chat_id=' + chat_id + '&type=6'});
+		let result = await response.json();
 
 		console.log(result);
 
-		peer_id_remote = result;
+		peer_id_remote = result.peer_id;
 
 		this.ch.getElementsByClassName('peer_id_remote')[0].innerHTML = `remote peer id : ${peer_id_remote}`;
 
@@ -163,10 +165,10 @@ class Calls extends Content {
 	}
 	async create_new_call_video(user_id, chat_id) {
 		// adding call log and getting remote peer id
-		const response = await fetch("src/php/" + this.who + "/create_new_call.php", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'user_id=' + user_id + '&chat_id=' + chat_id + '&type=7'});
-		let result = await response.text();
+		const response = await fetch(this.who + "/create_new_call", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'user_id=' + user_id + '&chat_id=' + chat_id + '&type=7'});
+		let result = await response.json();
 
-		peer_id_remote = result;
+		peer_id_remote = result.peer_id;
 
 		this.ch.getElementsByClassName('peer_id_remote')[0].innerHTML = `remote peer id : ${peer_id_remote}`;
 
@@ -195,7 +197,7 @@ class Calls extends Content {
 		this.dc.style.display = 'none';
 		this.ec.style.display = 'grid';
 
-		call_incoming.answer(stream_local_audio);
+		//call_incoming.answer(stream_local_audio);
 		call_incoming.answer(stream_local_video);
 
 	   	call_incoming.on('stream', function(stream) {

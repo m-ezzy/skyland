@@ -21,7 +21,7 @@ class Common extends Content {
 	async load_data() {
 		await super.load_data();
 
-		let response = await fetch("src/php/" + this.who + "/load.php", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
+		let response = await fetch(this.who + "/load", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
 		let result = await response.json();
 
 		console.log(result, !result);
