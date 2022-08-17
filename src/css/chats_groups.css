@@ -1,44 +1,33 @@
-.call.voice {
-	position: relative;
-	left: 20vw;
-	top: 0vh;
-	z-index: 6;
-	width: 5vw;
-	height: 10vh;
+.current_header .button.call.audio {
+	grid-area: 1 / 7 / 3 / 8;
 }
-.call.video {
-	position: relative;
-	left: 20vw;
-	top: 0vh;
-	z-index: 6;
-	width: 5vw;
-	height: 10vh;
+.current_header .button.call.video {
+	grid-area: 1 / 8 / 3 / 9;
 }
-.send_new_media {
-	background-color: #ffa860;
 
-	z-index: 6;
+.send_new_media {
+	z-index: 9;
 
 	grid-area: 19 / 1 / 21 / 21;
 
-	display: grid;
-	grid-template-columns: repeat(20, auto);
+	display: none;
+	grid-template-rows: 10vh;
+	grid-template-columns: repeat(auto, 5vw);
 }
-.send_new_media div {
-	background-color: rgb(255, 255, 255, 0);
+.text.message {
+	grid-area: 1 / 9 / 3 / 12;
 }
+.button.message {
+	grid-area: 1 / 12 / 3 / 13;
+}
+
 .sending {
-	position: absolute;
-	left: 45vw;
-	top: 45vh;
+	background-color: crimson;
 	z-index: 7;
-	width: 50vw;
-	height: 40vh;
 
-	background-color: rgb(216, 124, 255);
-
-	visibility: hidden;
+	display: none;
 }
+
 .button.close_sending {
 	position: absolute;
 	left: -1vw;
@@ -96,32 +85,21 @@
 	height: 10vh;
 	background-color: black;
 }*/
-.text.message {
-	background-color: #ffa860;
-
-	/*grid-area: 1 / 16 / 2 / 19;*/
-}
-.button.message {
-	z-index: 7;
-}
 
 @media only screen and (min-width: 400px) {
 	.send_new_media {
-		z-index: 20;
+		z-index: 10;
 
 		grid-area: 19 / 9 / 21 / 21;
 
-		display: grid;
+		display: none;
+		grid-template-rows: 10vh;
 		grid-template-columns: repeat(12, 5vw);
 	}
 	.text.message {
-		z-index: 7;
-
-		grid-column: 6 / 12;
+		grid-area: 1 / 6 / 3 / 12;
 	}
 	.button.message {
-		z-index: 7;
-
-		grid-column: 12 / 13;
+		grid-area: 1 / 12 / 3 / 13;
 	}
 }

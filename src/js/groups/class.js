@@ -20,13 +20,16 @@ class Groups extends Chats_Groups {
 	load_data() {
 		super.load_data();
 	}
+	clicked() {
+		super.clicked();
+	}
 	async search() {
 		if(Content.ts.value == "") {
 			return;
 		}
 
-		Content.sr.innerHTML = "";
-		Content.sr.style.visibility = "visible";
+		this.sr.innerHTML = "";
+		this.sr.style.visibility = "visible";
 		//search_results_visible();
 	
 		do_amazing_animation("35vw", "0vh", "5vw", "10vh");
@@ -34,7 +37,7 @@ class Groups extends Chats_Groups {
 		const response = await fetch("src/php/" + this.who + "/search.php?q=" + Content.ts.value, {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
 		let data = await response.text();
 
-		Content.sr.innerHTML = data;
+		this.sr.innerHTML = data;
 	}
 	async send_request_to_join(group_name) {
 		let xhr = new XMLHttpRequest();
@@ -55,7 +58,7 @@ class Groups extends Chats_Groups {
 		this.ch.getElementsByTagName('div')[0].innerHTML += this.tam.value + " , ";
 	}
 	async create_new(group_name) {
-		Content.sr.style.visibility = "hidden";
+		this.sr.style.display = "none";
 
 		const response = await fetch("src/php/" + this.who + "/create_new_group.php", {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'group_name=' + group_name});
 		let data = await response.text();

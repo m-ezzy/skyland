@@ -44,13 +44,15 @@
 			-->
 
 			<form method="POST" action="log_in.php" id="fli">
-				user name   : <input type="text" name="user_name" class="text"><br>
-				pass word : <input type="text" name="pass_word" class="text"><br>
+				<div> user name : </div>
+				<input type="text" name="user_name" class="text">
+				<div> pass word : </div>
+				<input type="text" name="pass_word" class="text">
 				<input type="submit" name="log_in" value="log in" class="submit">
 			</form>
 			<form method="POST" action="sign_up.php" id="fsu">
 				<div id="r"></div><br>
-	
+
 				user name : <input type="text" name="user_name" class="text" id="suun"><br>
 				pass word : <input type="text" name="pass_word" class="text"><br>
 				first name : <input type="text" name="first_name" class="text"><br>

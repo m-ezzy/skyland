@@ -1,100 +1,52 @@
-.search_current_conversation {
-	position: absolute;
-	top: 0vh;
-	left: 40vw;
-	z-index: 7;
-	width: 10vw;
-	height: 10vh;
+.new_media_indicator { /*.previous_list div div*/
+	grid-area: 1 / 6 / 3 / 7;
 
-	background-color: rgb(255, 255, 255, 0);
+	text-indent: 0;
+
+	transition: background-color 3s linear;
+}
+
+.text.search_conversation {
+	grid-area: 1 / 9 / 3 / 11;
 }
 .text.key {
-	position: absolute;
-	top: 0vh;
-	left: 50vw;
-	z-index: 7;
-
-	width: 5vw;
-	height: 10vh;
-
-	margin: 0;
-	padding: 0;
-
-	border: solid 0.1vw rgb(0, 0, 0);
-
-	background-color: rgb(255, 255, 255, 0);
-
-	text-align: left;
+	grid-area: 1 / 11 / 3 / 12;
 }
 .button.key {
-	position: absolute;
-	top: 0vh;
-	left: 55vw;
-	z-index: 7;
-
-	width: 5vw;
-	height: 10vh;
-
-	margin: 0;
-	padding: 0;
-
-	border: solid 0.1vw rgb(0, 0, 0);
-
-	/*background-color: rgb(150, 150, 150);*/
-
-	font-size: 1.5vw;
-	text-align: right;
+	grid-area: 1 / 12 / 3 / 13;
 }
+
 .conversation {
-	position: absolute;
-	top: 10vh;
-	left: 30vw;
-	z-index: 6;
-	width: 60vw;
-	height: 80vh;
-
-	margin: 0;
-	padding: 0;
-
-	overflow-x: hidden;
 	overflow-y: visible;
 
-	background-color: #F5FFA2;
-	/*background-image: url(../media/images/skins/watermelon/messages_list.jpg);
-	background-repeat: repeat;
-	background-size: cover;*/
+	grid-area: 3 / 1 / 19 / 13;
 
-	visibility: hidden;
+	display: grid;
+	grid-template-rows: repeat(auto-fill, 5vh);
+	grid-template-columns: auto;
 
-	font-size: 2vw;
 	text-align: center;
 
-	object-fit: cover;
-	/*display: flex;*/
-	/*display: grid;
-	grid-row: auto;*/
-}
-.conversation > * {   /*#messages_list * {*/   /*.media {*/
-	position: relative;
-	top: 1vh;
-	z-index: 7;
+	/*object-fit: cover;*/
 }
 .received {
-	left: 1vw;
-	justify-content: left;
+	float: left;
+
+	justify-content: left; /* x */
 	justify-self: left;
 }
 .sent {
-	left: 30vw;
+	float: right;
+
 	justify-content: right;
 	justify-self: right;
-	/*right: 1vw;
-	margin-right: 1vw;*/
 }
 .messages {
-	min-width: 5vw;
-	width: fit-content;
-	min-height: 20vh;
+	min-width: 10vw;
+	/*width: fit-content;*/
+	min-height: 5vh;
+
+	/*position: relative;*/
 	/*height: fit-content;*/
 	/*height: 20vh;*/
 
@@ -105,12 +57,8 @@
 	/*text-align: right;*/
 	/*padding-right: 1vw;*/
 
-	color: rgb(0, 0, 0);
-	background-color: #9FD1FF;
-
-	font-size: 1.5vw;
-
-	display: flex;
+	color: rgb(255, 255, 255);
+	background-color: #000000;
 }
 .conversation img {
 	width: 20vw;
@@ -124,24 +72,31 @@
 }
 .sent.messages {
 	text-align: right;
-	padding-right: 1vw;
-
-	justify-content: right; /*x*/
-
-	/*color: rgb(0, 0, 0);
-	background-color: #9FD1FF;*/
+	/*padding-right: 1vw;*/
 }
 .received.messages {
 	text-align: left;
-	padding-left: 1vw;
-
-	justify-content: left; /*x*/
-	justify-self: left;
-
-	/*color: rgb(0, 0, 0);
-	background-color: #9FD1FF;*/
+	/*padding-left: 1vw;*/
 }
 
 @media only screen and (min-width: 400px) {
+	.new_media_indicator { /*.previous_list div div*/
+		text-indent: 0;
+
+		transition: background-color 3s linear;
+	}
 	
+	.text.search_conversation {
+		grid-area: 1 / 9 / 3 / 11;
+	}
+	.text.key {
+		grid-area: 1 / 11 / 3 / 12;
+	}
+	.button.key {
+		grid-area: 1 / 12 / 3 / 13;
+	}
+
+	.conversation {
+		grid-area: 3 / 1 / 19 / 13;
+	}
 }

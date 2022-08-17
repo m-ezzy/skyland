@@ -1,0 +1,24 @@
+:root {
+	--bg: #184A45FF;
+	--text: #b2d8d8;
+    --input-text-bg: white;
+    --input-text-text: black;
+
+	--mb-bg: #184A45FF;
+    --mb-text: #B0B8B4FF;
+
+	--bgcolor2: #808080;
+	--textcolor2: #00ff99;
+
+	--bgcolor3: #808080;
+	--textcolor3: #00ffff;
+
+    --bgcolor4: #101820FF;
+	--textcolor4: #F2AA4CFF;
+
+	--bgcolor5: #F96167;
+	--textcolor5: #FCE77D;
+
+	--bgcolor6: #CCF381;
+	--textcolor6: #4831D4;
+}

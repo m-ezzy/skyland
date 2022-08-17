@@ -5,23 +5,42 @@ class Content {
 	static bb = document.getElementsByClassName('button back')[0];
 	static ts = document.getElementsByClassName('text search')[0];
 	static bs = document.getElementsByClassName('button search')[0];
-	static sr = document.getElementsByClassName('search_results')[0];
 
 	constructor(who) {
 		this.who = who;
 		this.element = document.getElementById(this.who);
-		this.innerHTML = "";
 		this.loaded = 0;
 		this.open = 0;
 		this.current = -1;
 		this.previous = [];
 
-		this.place_holder =  "media/images/place_holder_" + this.who + ".png";
+		this.place_holder =  "media/images/place_holder/" + this.who + ".png";
 
+		this.sr;
 		this.pl;
+
+		this.cb;
+		this.ch;
 	}
 	load() {
 		this.loaded = 1;
+
+		let c = "";
+		c += "<div class='search_results'></div>";
+		c += "<div class='previous_list'></div>";
+		
+		c += "<div class='conversation_bar'>";
+			c += "<div class='current_header'>";
+				c += "<div class='details'></div>"
+			c += "</div>";
+		c += "</div>";
+		this.element.innerHTML = c;
+
+		this.sr = this.element.getElementsByClassName("search_results")[0];
+		this.pl = this.element.getElementsByClassName("previous_list")[0];
+
+		this.cb = this.element.getElementsByClassName("conversation_bar")[0];
+		this.ch = this.element.getElementsByClassName("current_header")[0];
 	}
 	async load_data() {
 	}
@@ -29,39 +48,44 @@ class Content {
 		if (this.loaded == 0) {
 			this.load();
 			this.load_data();
-
-			console.log(Content.sr);
-		}/*
+		}
+		
+		this.element.style.display = "grid";
+		/*
 		if (this.element.style.display != "none") {
+			console.log(this.element.style.display);
 			return;
 		}*/
 
-		console.log(Content.sr);
-
 		if (Content.current) {
-			/*
-			Content.bb.style.visibility = 'hidden';
-			Content.ts.style.visibility = 'hidden';
-			Content.bs.style.visibility = 'hidden';*/
-			Content.sr.style.display = "none";
-			Content.current.element.style.display = "none";
+			if (Content.current.who == 'chats' || Content.current.who == 'groups' || Content.current.who == 'channels') {
+				if (Content.current.current != -1) {
+					Content.current.conversation[Content.current.current].style.display = 'none';
+				}
+				if (['chats', 'groups'].includes(Content.current.who)) {
+					Chats_Groups.snm.style.display = 'none';
+				}
+			}
+
+			MB.getElementsByTagName('div')[menus.indexOf(Content.current.who)].style.backgroundColor = 'var(--bg)';
+			
+			Content.current.sr.style.display = 'none';
+			Content.current.element.style.display = 'none';
 		}
 
 		Content.current = this;
 		this.element.style.display = "grid";
 
-		if (Content.current.current != -1) {
-			Content.current.conversation[Content.current.current].style.display = "grid";
-		}
+		MB.getElementsByTagName('div')[menus.indexOf(this.who)].style.backgroundColor = 'black';
 	}
 	hide_search_results() {
-		Content.sr.style.display = "none";
+		this.sr.style.display = "none";
 	}
 	show_search_results() {
-		Content.sr.style.display = "grid";
+		this.sr.style.display = "grid";
 	}
 	search() {
-		Content.sr.style.display = 'grid';
+		this.sr.style.display = "grid";
 		/*
 		let w = Content.current.who;
 		if (w == 'home') {

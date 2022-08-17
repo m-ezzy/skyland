@@ -1,10 +1,11 @@
 <?php
 	require '../server.php';
 
-	$u2 = $_REQUEST['q'];
-	$u = $_SESSION['user_name'];
+	$chat_id = $_REQUEST['id'];
+	$row_up = $_REQUEST['row_up'];
+	$u = $_SESSION['user_id'];
 
-	$i = array_search($u2, $_SESSION['chats']['user_name']);
+	$i = array_search($chat_id, $_SESSION['chats']['chat_id']);
 	$row_up = $_SESSION['chats']['row_up'][$i];
 
 	if ($row_up <= 0) {
@@ -21,15 +22,7 @@
 		$l = $limit + $row_up;
 	}
 
-	$first = $u;
-	$second = $u2;
-
-	if($u > $u2) {
-		$first = $u2;
-		$second = $u;
-	}
-
-	$query = "SELECT * FROM chat_between_$first" . "_$second WHERE ROWNUM>$row_up LIMIT $l";
+	$query = "SELECT * FROM chat_media WHERE chat_id=$chat_id AND chat_media_id>$row_up LIMIT $l";
 	$result = $conn->query($query);
 	//$result = mysqli_query($conn, $query);
 

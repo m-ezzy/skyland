@@ -1,76 +1,57 @@
-*, *:before, *:after {
-    box-sizing: border-box;
+.previous_list .button.call {
+	grid-area: 1 / 6 / 3 / 7;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.previous_list .button.call.audio {
+	background-image: url('../../media/images/design/call_audio.png');
+}
+.previous_list .button.call.video {
+	background-image: url('../../media/images/design/call_video.png');
 }
 
-body {
-    color: darkslategrey;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: antiquewhite;
+.peer_id_local {
+	background-color: rgb(44, 44, 44);
+	grid-area: 1 / 5 / 3 / 9;
+}
+.peer_id_remote {
+	background-color: rgb(44, 44, 44);
+	grid-area: 1 / 9 / 3 / 13;
 }
 
-h1 {
-    font-size: 6rem;
-    letter-spacing: 0.2rem;
-    margin-bottom: auto;
+.audio.local {
+	grid-area: 4 / 1 / 5 / 13;
+	display: grid;
+}
+.audio.remote {
+	grid-area: 6 / 1 / 7 / 13;
+	display: grid;
 }
 
-p {
-    text-align: center;
-    font-size: 2rem;
+.video.local {
+	grid-area: 8 / 1 / 12 / 13;
+	display: grid;
+}
+.video.remote {
+	grid-area: 13 / 1 / 17 / 13;
+	display: grid;
 }
 
-button {
-    background-color: -internal-light-dark(white, black);
-    padding: 1rem 10rem;
-    border-radius: 3rem;
-    border: none;
-    cursor: pointer;
+.accept_call {
+	background-color: darkgreen;
+	grid-area: 19 / 1 / 21 / 7;
+	display: none;
+}
+.decline_call {
+	background-color: darkred;
+	grid-area: 19 / 7 / 21 / 13;
+	display: none;
+}
+.end_call {
+	background-color: darkred;
+	grid-area: 19 / 1 / 21 / 13;
+	display: none;
 }
 
-.call-btn {
-    background-color: darkslategrey;
-    color: antiquewhite;
-    font-size: 3rem;
-    margin-left: 7rem;
-}
-
-.hangup-btn {
-    background-color: darkred;
-    color: white;
-    font-size: 1.5rem;
-    margin-left: 6rem;
-    margin-top: 4rem;
-}
-
-.modal {
-    padding: 5rem;
-    background-color: whitesmoke;
-    border-radius: 2rem;
-    width: 40rem;
-    height: 20rem;
-}
-
-.inner-modal {
-    text-align: center;
-}
-
-.modal label {
-    font-size: 1.5rem;
-}
-.modal input {
-    margin: 1rem 7rem 3rem;
-    display: block;
-    padding: 1rem;
-    border-radius: 3rem;
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.19);
-    border: none;
-    width:50%;
-}
-
-.connect-btn {
-    background-color: #0c1d1d;
-    color: whitesmoke;
-    font-size: 1.5rem;
+@media only screen and (min-width: 400px) {
 }

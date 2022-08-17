@@ -1,6 +1,3 @@
-//import {Content} from 'Content.js';
-
-/*export*/
 class Common extends Content {
 	static media_types = ['images', 'videos', 'audios', 'documents', 'location'];
 	static w = Math.floor(innerWidth/5);
@@ -9,44 +6,105 @@ class Common extends Content {
 	constructor(who) {
 		super(who);
 		this.nmi = [];
-		this.ch;
-		this.scc;
+		this.sc;
 		this.conversation = [];
-		//this.ml;
-
-		//this.ml = this.element.getElementsByClassName("messages_list")[0];
-	}
-	clicked() {
-		if (Content.current && Content.current.current != -1) {
-			Content.current.conversation[Content.current.current].style.visibility = 'hidden';
-		}
-
-		console.log(Content.current);
-
-		super.clicked();
 	}
 	load() {
 		super.load();
 
 		let c = "";
-		c += "<div class='previous_list'></div>";
+		c += "<input type='text' class='text search_conversation' placeholder='search conversation' oninput='" + this.who + ".search_conversation()'>";
+		this.ch.innerHTML += c;
 
-		c += "<div class='current_header'>";
-			c += "<div></div>";
-			c += "<input type='text' class='text search_current_conversation' placeholder='search this conversation' oninput='" + this.who + ".search_current_conversation()'>";
-		c += "</div>";
-
-		this.element.innerHTML = c;
-
-		this.pl = this.element.getElementsByClassName("previous_list")[0];
-		this.ch = this.element.getElementsByClassName("current_header")[0];
-		this.scc = this.element.getElementsByClassName("text search_current_conversation")[0];
+		this.sc = this.element.getElementsByClassName("text search_conversation")[0];
 	}
 	async load_data() {
-		super.load_data();
+		await super.load_data();
+
+		let response = await fetch("src/php/" + this.who + "/load.php", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
+		let result = await response.json();
+
+		console.log(result, !result);
+		if(!result) {
+			return;
+		}
+
+		this.previous = result;
+
+		let my_id;
+		let my_name;
+		let path;
+		let text;
+
+		let c = "";
+		let i = 0;
+		result.forEach(r => {
+			path = "data/";
+
+			if (this.who == 'chats') {
+				my_id = r.chat_id;
+				path += "profile_pictures/";
+				text = r.user_id + " " + r.user_name + " " + r.first_name + " " + r.last_name;
+			} else if (this.who == 'groups') {
+				my_id = r.group_id;
+				path += this.who + "/icons/";
+				text = r.id + " " + r.name + " " + r.title;
+			} else if (this.who == 'channels') {
+				my_id = r.channel_id;
+				path += this.who + "/icons/";
+				text = r.id + " " + r.name + " " + r.title;
+			}
+
+			if(r.extension == null) {
+				path = "media/images/place_holder/" + this.who + ".png";
+			} else {
+				path += my_id + "." + r.extension;
+			}
+			
+			/*
+			c += "<div class='pre' onclick='" + this.who + ".show_conversation(this," + my_id + ")'";
+			c += "<img src='" + path + "' />";
+			c += text;
+			c += "<div class='new_media_indicator'></div>";
+			c += "</div>";
+			*/
+
+			let div = create_div('pre', '', this.who + ".show_conversation(this," + my_id + ")", text);
+			let img = create_image('', '', '', path);
+			let nmi = create_div('new_media_indicator', '', '', '');
+			div.appendChild(img);
+			div.appendChild(nmi);
+			this.pl.appendChild(div);
+
+			this.nmi[i] = this.pl.lastElementChild.getElementsByClassName('new_media_indicator')[0];
+
+			let e = create_div('conversation', this.who + '_' + my_id, '', '');
+			e.setAttribute('onscroll', this.who + ".on_scroll_event(" + my_id + ")");
+			this.cb.appendChild(e);
+			
+			i++;
+		});
+
+		//this.nmi = this.element.getElementsByClassName('new_media_indicator');
+		this.conversation = this.cb.getElementsByClassName('conversation');
+
+		//this.show_conversation(this.pl.getElementsByTagName('div')[0], result[0].user_name); //this.pl.firstElementChild
+		//this.pl.firstElementChild.click();
+		//this.current = 0;
+
+		this.loaded = 1;
+
+		//this.check_for_new_media();
+	}
+	clicked() {
+		super.clicked();
+
+		if (this.current != -1) {
+			this.conversation[this.current].style.display = "grid";
+		}
 	}
 	take_to_that_conversation(t, show_name) {
-		Content.sr.style.visibility = "hidden";
+		this.sr.style.display = "none";
 		this.show_conversation(t, show_name);
 	}
 	async check_for_new_media() {

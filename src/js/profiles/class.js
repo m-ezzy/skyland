@@ -5,17 +5,12 @@ class Profiles extends Content {
 		this.pp;
 		this.fpp;
 		this.bpp;
-		this.ud;
 	}
 	load() {
 		super.load();
 
-		let div = create_div('previous_list', 'my_profile', '', '');
-		let img = create_image('', 'profile_picture', '', this.place_holder, Common.w, Common.h);
-		div.appendChild(img);
-		this.element.appendChild(div);
+		this.pl.appendChild(create_image('', 'profile_picture', '', this.place_holder, Common.w, Common.h));
 
-		this.pl = this.element.getElementsByClassName('previous_list')[0];
 		this.pp = document.getElementById('profile_picture');
 
 		let f = document.createElement('input');
@@ -26,33 +21,39 @@ class Profiles extends Content {
 		
 		this.fpp = document.getElementById('file_pp');
 
-		div = create_div('button', 'button_pp', this.who + '.upload_profile_picture()', 'upload profile picture');
+		let div = create_div('button', 'button_pp', this.who + '.upload_profile_picture()', 'upload profile picture');
 		this.pl.appendChild(div);
 		
 		this.bpp = document.getElementById('button_pp');
-
-		for (let i = 0 ; i < Content.menus.length ; i++) {
-			let div = create_div('updates', '', '', '');
-			this.element.appendChild(div);
-		}
-		this.ud = this.element.getElementsByClassName('updates');
 	}
 	async load_data() {
-		super.load_data();
+		await super.load_data();
 
 		let response = await fetch("src/php/" + this.who + "/load.php", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
 		let result = await response.json();
+
+		console.log(result);
+
+		sessionStorage.setItem('user_id', result.user_id);
+
+		console.log(localStorage.getItem('user_id'));
+		console.log(sessionStorage.getItem('user_id'));
 
 		let path;
 		if (result.extension) {
 			this.pp.src = 'data/profile_pictures/' + result.user_name + "." + result.extension;
 		}
-		
-		this.pl.innerHTML += "<br>" + result.user_name + "<br>" + result.first_name + "<br>" + result.last_name;
+
+		console.log(this.pl.innerHTML);
+		this.pl.innerHTML += "<br> user id : " + result.user_id + "<br> user name : " + result.user_name + "<br> first name : " + result.first_name + "<br> last name : " + result.last_name;
+		console.log(this.pl.innerHTML);
 
 		this.loaded = 1;
 
 		me = result;
+	}
+	clicked() {
+		super.clicked();
 	}
 	async upload_profile_picture() {
 		const fd = new FormData();

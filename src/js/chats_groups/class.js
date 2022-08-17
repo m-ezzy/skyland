@@ -15,6 +15,8 @@ class Chats_Groups extends Common {
 	constructor(who) {
 		super(who);
 
+		this.ca;
+		this.cv;
 		this.tk;
 		this.bed;
 	}
@@ -22,123 +24,74 @@ class Chats_Groups extends Common {
 		super.load();
 
 		let c = "";
-		c += "<div class='button voice-call' onclick='" + this.who + ".create_new_voice_call()'> voice call </div>";
+		c += "<div class='button call audio' onclick='" + this.who + ".create_new_call_audio()'> audio call </div>";
+		c += "<div class='button call video' onclick='" + this.who + ".create_new_call_video()'> video call </div>";
 		c += "<input type='text' class='text key' placeholder='enter key of this conversation' value='0' oninput='" + this.who + ".show_decrypted_media()'>";
 		c += "<div class='button key' onclick='" + this.who + ".e_d()'> encrypt or decrypt </div>";
-
 		this.ch.innerHTML += c;
+
+		this.ca = this.element.getElementsByClassName("button call audio")[0];
+		this.cv = this.element.getElementsByClassName("button call video")[0];
 
 		this.tk = this.element.getElementsByClassName("text key")[0];
 		this.bed = this.element.getElementsByClassName("button e_d")[0];
 	}
 	async load_data() {
 		super.load_data();
+	}
+	clicked() {
+		super.clicked();
 
-		let response = await fetch("src/php/" + this.who + "/load.php", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
-		let result = await response.json();
-
-		if(!result) {
-			return;
+		if (this.current != -1) {
+			Chats_Groups.snm.style.display = 'grid';
 		}
-
-		let my_name;
-		let path;
-		let text;
-
-		let i = 0;
-		result.forEach(r => {
-			path = "data/";
-
-			if (this.who == 'chats') {
-				my_name = r.user_name;
-				path += "profile_pictures/";
-				text = r.user_name + " " + r.first_name + " " + r.last_name;
-			} else if (this.who == 'groups') {
-				my_name = r.group_name;
-				path += this.who + "/icons/";
-				text = r.group_name + " " + r.display_name;
-			} else if (this.who == 'channels') {
-				my_name = r.channel_name;
-				path += this.who + "/icons/";
-				text = r.channel_name + " " + r.display_name;
-			}
-
-			if(r.extension == null) {
-				path = "media/images/place_holder_" + this.who + ".png";
-			} else {
-				path += my_name + "." + r.extension;
-			}
-
-			/*
-			c += "<div onclick='" + this.who + ".show_conversation(this," + i + ")'</div>";
-			c += "<img src='" + path + "' />";
-			c += "<div class='new_media_indicator'></div>";
-			c += "</div>";
-			*/
-
-			let div = create_div("", "", this.who + ".show_conversation(this,'" + my_name + "')", text);
-			let img = create_image("", "", "", path);
-			let nmi = create_div('new_media_indicator', '', '', '');
-			div.appendChild(img);
-			div.appendChild(nmi);
-			//this.element.appendChild(nmi);
-			this.pl.appendChild(div);
-
-			let e = create_div('conversation', this.who + '_' + my_name, '', '');
-			e.setAttribute('onscroll', this.who + ".on_scroll_event('" + my_name + "')");
-			this.element.appendChild(e);
-
-			if (this.who == 'chats') {
-				this.previous.push({user_name: (r.user_name), first_name: (r.first_name), last_name: (r.last_name), extension: (r.extension), rows: -1});
-				//console.log(this.previous);
-			} else if (this.who == 'groups') {
-				this.previous.push({group_name: (r.group_name), display_name: (r.display_name), extension: (r.extension), rows: -1});
-			} else if (this.who == 'channels') {
-				this.previous.push({channel_name: (r.channel_name), display_name: (r.display_name), extension: (r.extension), rows: -1});
-			}
-			
-			i++;
-		});
-
-		this.nmi = this.element.getElementsByClassName('new_media_indicator');
-		this.conversation = this.element.getElementsByClassName('conversation');
-
-		//this.show_conversation(this.pl.getElementsByTagName('div')[0], result[0].user_name); //this.pl.firstElementChild
-		this.current = 0;
-
-		this.loaded = 1;
-		//this.pl.firstElementChild.click();
-
-		//this.check_for_new_media();
 	}
 	//can't use 'this' in function parameters, using 't' instead of 'this'
 	async show_conversation(t, who_name) {
 		//console.log(this.current);
 		//console.log(this.conversation);
 		if (this.current != -1) {
-			this.conversation[this.current].style.visibility = "hidden";
+			this.conversation[this.current].style.display = 'none';
 		}
 
 		if (this.who == 'chats') {
-			this.current = this.previous.findIndex(u => u.user_name == who_name);
+			this.current = this.previous.findIndex(u => u.chat_id == who_name);
 			console.log(this.current);
 		} else if (this.who == 'groups') {
-			this.current = this.previous.findIndex(g => g.group_name == who_name);
+			this.current = this.previous.findIndex(g => g.group_id == who_name);
 		}
 
-		this.nmi[this.current].style.backgroundColor = 'rgb(0, 0, 0, 0)';
-		this.nmi[this.current].innerHTML = '';
+		Chats_Groups.snm.style.display = 'grid';
+		if (innerWidth <= 400) {
+			MB.style.display = 'none';
+			this.pl.style.display = 'none';
+
+			Content.bb.style.display = 'none';
+			Content.ts.style.display = 'none';
+			Content.bs.style.display = 'none';
+			this.sr.style.display = 'none';
+
+			this.cb.style.display = 'grid';
+			this.conversation[this.current].style.display = 'grid';
+		}
+
+		//this.nmi[this.current].style.backgroundColor = 'rgb(0, 0, 0, 0)';
+		//this.nmi[this.current].innerHTML = '';
 
 		this.ch.getElementsByTagName('div')[0].innerHTML = t.innerHTML;
 		this.ch.getElementsByTagName('div')[0].removeChild(this.ch.getElementsByClassName('new_media_indicator')[0]);
 
-		this.conversation[this.current].style.visibility = "visible";
+		console.log(this.conversation);
+		console.log(this.conversation[this.current]);
+		this.conversation[this.current].style.display = 'grid';
 
-		if (this.previous[this.current].rows != -1) {
+		/*
+		if (this.previous[this.current].row_up != -1) {
 			return;
 		}
-		this.previous[this.current].rows = 0;
-	
+		this.previous[this.current].row_up = 0;
+		*/
+
 		//this.current = this.previous.indexOf(user_name = who_name);
 		//this.previous[this.current].conversation.innerHTML = "";
 
@@ -147,6 +100,8 @@ class Chats_Groups extends Common {
 		//do_amazing_animation('id',t.style.left, t.style.top, t.style.width);
 		do_amazing_animation("10vw", "10vh", "30vw", "10vh");
 
+		console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
+
 		this.show_conversation_previous(who_name);
 	}
 	async show_conversation_previous(who_name) {
@@ -154,26 +109,14 @@ class Chats_Groups extends Common {
 		console.log(this.conversation[this.current].scrollTop);
 		console.log(this.conversation[this.current].scrollTop.toFixed());
 
-		let response = await fetch("src/php/" + this.who + "/show_conversation.php?q=" + who_name, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
+		let row_up = this.previous[this.current].row_up;
+
+		let response = await fetch("src/php/" + this.who + "/show_conversation.php?id=" + who_name + "&row_up=" + row_up, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
 		let result = await response.json();
 
-		console.log('lllllllllllllllllll');
 		console.log(result[0]);
 		if (result[0] == 0) {
 			return;
-		}
-
-		let first;
-		let second;
-		let path;
-
-		if (this.who == 'chats') {
-			first = me.user_name < who_name ? me.user_name : who_name;
-			second = me.user_name > who_name ? me.user_name : who_name;
-
-			path = "chat_between_" + first + "_" + second;
-		} else if (this.who == 'groups') {
-			path = "group_" + who_name;
 		}
 
 		let ddd = this.conversation[this.current].innerHTML;
@@ -184,18 +127,20 @@ class Chats_Groups extends Common {
 		let r;
 		while (r = result[i]) {
 			let e;
-			let class_media = (r.sent_by == me.user_name) ? "sent" : "received";
+			let class_media = (r.sender_id == me.user_id) ? "sent" : "received";
 
-			if(r.messages) {
-				let m = decryption(r.messages, this.tk.value);
+			if(r.media_type == 0) {
+				let m = decryption(r.text, this.tk.value);
 				e = create_div(class_media + " messages", "", "", m);
-			} else if(r.images) {
-				e = create_image(class_media, "", "", "data/" + this.who + "/" + path + "/" + r.ROWNUM + "." + r.images, Common.w, Common.h);
-			} else if(r.videos) {
-				e = create_video(class_media, "", "", "data/" + this.who + "/" + path + "/" + r.ROWNUM + "." + r.videos, Common.w, Common.h);
+			} else if(r.media_type == 1) {
+				e = create_image(class_media, "", "", "data/" + this.who + "/" + who_name + "/" + r.ROWNUM + "." + r.text, Common.w, Common.h);
+			} else if(r.media_type == 2) {
+				e = create_video(class_media, "", "", "data/" + this.who + "/" + who_name + "/" + r.ROWNUM + "." + r.text, Common.w, Common.h);
 			}
 
 			this.conversation[this.current].append(e);
+
+			console.log(r);
 			//st += this.conversation[this.current].lastElementChild.style.height;
 			//console.log(st);
 			i++;
@@ -205,11 +150,7 @@ class Chats_Groups extends Common {
 		this.conversation[this.current].scrollTop = i*50;
 		last_known = i*50;
 
-		this.previous[this.current].rows += i;
-
-		if(innerWidth <= 400) {
-			document.getElementById("menu_bar").style.display = "none";
-		}
+		this.previous[this.current].row_up -= i;
 	}
 	on_scroll_event(who_name) {
 		if (this.conversation[this.current].scrollTop != 0) {
@@ -237,16 +178,16 @@ class Chats_Groups extends Common {
 
 		do_amazing_animation_z("55vw", "0vh", 7, "5vw", "10vh");
 
-		let new_name;
+		let id;
 		if (this.who == 'chats') {
-			new_name = this.previous[this.current].user_name;
+			id = this.previous[this.current].chat_id;
 		} else if (this.who == 'groups') {
-			new_name = this.previous[this.current].group_name;
+			id = this.previous[this.current].group_id;
 		}
 
 		let em = encryption(Chats_Groups.tm.value, this.tk.value);
 
-		let response = await fetch("src/php/" + this.who + "/send_message.php?n=" + new_name + "&m=" + em, {
+		let response = await fetch("src/php/" + this.who + "/send_message.php?id=" + id + "&m=" + em, {
 			method: 'POST', 
 			mode: 'no-cors', 
 			headers: {
@@ -358,5 +299,14 @@ class Chats_Groups extends Common {
 		this.conversation[this.current].getElementsByClassName('received message').forEach(m => {
 			m.innerHTML = decryption(m.innerHTML, key);
 		});
+	}
+	
+	create_new_call_audio() {
+		calls.clicked();
+		calls.create_new_call_audio(this.previous[this.current].user_id, this.previous[this.current].chat_id);
+	}
+	create_new_call_video() {
+		calls.clicked();
+		calls.create_new_call_video(this.previous[this.current].user_id, this.previous[this.current].chat_id);
 	}
 }

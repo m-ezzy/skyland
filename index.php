@@ -1,7 +1,7 @@
 <?php
 	include 'src/php/server.php';
 
-	if(!isset($_SESSION['user_name'])) {
+	if (!isset($_SESSION['user_id'])) {
    		header('location: src/php/authentication.php');
 	}
 ?>
@@ -9,6 +9,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<!--
+	<script>
+		let cookie = JSON.parse(document.cookie);
+		if(cookie.user_id == null) {
+	   		header('location: src/php/authentication.php');
+		}
+	</script>
+	-->
+
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,10 +28,12 @@
 
 	<!--<link type="text/css" rel="stylesheet" href="authentication.css">-->
 
+	<link type="text/css" rel="stylesheet" href="src/css/variables.css">
+	<link type="text/css" rel="stylesheet" href="src/css/animations.css">
 	<link type="text/css" rel="stylesheet" href="src/css/style.css">
-	<link type="text/css" rel="stylesheet" href="src/css/universal.css">
 
 	<link type="text/css" rel="stylesheet" href="src/css/menu_bar.css">
+	<link type="text/css" rel="stylesheet" href="src/css/content.css">
 
 	<link type="text/css" rel="stylesheet" href="src/css/calls.css">
 
@@ -40,6 +51,8 @@
 
 	<script>
 		let resources = 1; //change to 1 when you work on localhost or when have your own domain
+
+		console.log(document.cookie);
 	</script>
 </head>
 <body>
@@ -70,11 +83,9 @@
 
 
 
-		<div class='col-1 button back' onclick='Content.current.hide_search_results()'> back </div>
-		<input type='text' class='col-1 text search' placeholder='type here to search' onfocus='Content.current.show_search_results()' oninput='Content.current.search()'>
-		<div class='col-1 button search' onclick='Content.current.search()'> search </div>
-
-		<div class='col-3 search_results'></div>
+		<div class='button back' onclick='Content.current.hide_search_results()'> back </div>
+		<input type='text' class='col-1 text search' placeholder='type here to search' oninput='Content.current.search()'>
+		<div class='button search' onclick='Content.current.search()'> search </div>
 
 		<!--
 		<script>
@@ -187,5 +198,13 @@
 	<script src="src/js/main.js"></script>
 	<script src="src/js/others.js"></script>
 	<script src="src/js/privacy.js"></script>
+
+	<!--
+	<script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/davidshimjs-qrcodejs@0.0.2/qrcode.min.js"></script>
+	-->
+	<script src="libraries/peerjs.min.js"></script>
+
+	<script src="src/js/script_calls.js"></script>
 </body>
 </html>

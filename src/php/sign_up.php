@@ -1,46 +1,25 @@
 <?php
 	require 'server.php';
 
-	$user_name = '';
-	$pass_word = '';
+	$user_name = $_POST['user_name'];
+	$pass_word = $_POST['pass_word'];
 
-	$first_name = '';
-	$last_name = '';
+	$first_name = $_POST['first_name'];
+	$last_name = $_POST['last_name'];
 
-	$errors = array();
-	$_SESSION['success'] = '';
-
-	// Data sanitization to prevent SQL injection
-	$user_name = mysqli_real_escape_string($conn, $_POST['user_name']);
-	$pass_word = mysqli_real_escape_string($conn, $_POST['pass_word']);
-
-	$first_name = mysqli_real_escape_string($conn, $_POST['first_name']);
-	$last_name = mysqli_real_escape_string($conn, $_POST['last_name']);
-
-	//$user_name = strtolower($user_name);
-
-	$query = "INSERT INTO accounts(user_name,pass_word) VALUES('$user_name','$pass_word')";
+	$query = "INSERT INTO accounts(user_name,pass_word,first_name,last_name) VALUES('$user_name','$pass_word','$first_name','$last_name')";
 	$conn->query($query);
 
-	$query = "INSERT INTO user_info(user_name,first_name,last_name) VALUES('$user_name','$first_name','$last_name')";
-	$conn->query($query);
+	$user_id = $conn->insert_id;
 
-	$query = "INSERT INTO peer_ids(user_name) VALUES('$user_name')";
-	$conn->query($query);
-
-	$query = "CREATE TABLE chats_" . $user_name . " (user_name VARCHAR(20) DEFAULT NULL)";
-	$conn->query($query);
-
-	$query = "CREATE TABLE groups_$user_name (group_name VARCHAR(20) DEFAULT NULL,requested int(2) DEFAULT 0,PRIMARY KEY(group_name))";
+	$query = "INSERT INTO peer_id(user_id) VALUES($user_id)";
 	$conn->query($query);
 
 	//creating chat between itself
-	$query = "CREATE TABLE chat_between_$user_name" . "_$user_name (ROWNUM int(20),sent_by varchar(20),message varchar(500),images varchar(10),videos varchar(10),audios varchar(10),document varchar(10),location varchar(10),time DATETIME(2) DEFAULT CURRENT_TIMESTAMP)";
+	$query = "INSERT INTO chats(user_id1,user_id2) VALUES($user_id,$user_id)";
 	$conn->query($query);
 
-	$query = "INSERT INTO chats_$user_name(user_name) VALUES('" . $user_name . "')";
-	$conn->query($query);
-
+	$_SESSION['user_id'] = $user_id;
 	$_SESSION['user_name'] = $user_name;
 
 	header('location: ../../index.php');

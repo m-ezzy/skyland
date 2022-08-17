@@ -1,23 +1,9 @@
 .text.add_member {
-	position: absolute;
-	top: 0vh;
-	left: 30vw;
-	z-index: 8;
-	width: 5vw;
-	height: 10vh;
-
-	background-color: rgb(0, 0, 0, 0);
-	/*border: 0.5vw solid rgb(0, 0, 0);*/
-
-	text-overflow: ellipsis;
+	grid-area: 1 / 5 / 3 / 6;
 }
 .button.add_member {
-	position: absolute;
-	top: 0vh;
-	left: 35vw;
-	z-index: 8;
-	width: 5vw;
-	height: 10vh;
+	grid-area: 1 / 6 / 3 / 7;
+}
 
-	background-color: rgb(0, 0, 0, 0);
+@media only screen and (min-width: 400px) {
 }

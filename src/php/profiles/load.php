@@ -2,12 +2,13 @@
 	require '../server.php';
 	//session_start();
 
-	$u = $_SESSION['user_name'];
+	$u = (int)$_SESSION['user_id'];
 
-	$query = "SELECT user_name,first_name,last_name,extension FROM user_info WHERE user_name=" . $u;
+	$query = "SELECT user_id,user_name,first_name,last_name,extension FROM accounts WHERE user_id=$u";
 	$result = $conn->query($query);
-	
-	$row = $result->fetch_object();
+
+	//$row = array();
+	$row = $result->fetch_assoc();
 
 	$json = json_encode($row);
 	echo $json;

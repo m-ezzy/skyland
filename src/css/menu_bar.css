@@ -1,6 +1,4 @@
 #menu_bar {
-	background-color: #FFAEF7;
-
 	position: fixed;
 	left: 0vw;
 	top: 90vh;
@@ -8,7 +6,7 @@
 	width: 100vw;
 	height: 10vh;
 
-	grid-area: 1 / 1 / 20 / 3;
+	grid-area: 19 / 1 / 21 / 21;
 
 	display: grid;
 	grid-template-rows: 10vh;
@@ -25,6 +23,21 @@
 .menu_bar button:hover {
 	box-shadow: 0px 0px 40px rgba(0, 0, 0, 1);
 }*/
+#menu_bar :nth-child(1) {
+	animation-duration: 1s;
+	animation-timing-function: ease-in-out;
+	animation-delay: 0s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate-reverse;
+}
+@keyframes call-indicator {
+	0% {
+		background-color: lightgreen;
+	}
+	100% {
+		background-color: darkgreen;
+	}
+}
 #button_theme {
 	background-color: rgb(255, 255, 255, 0);
 }
@@ -51,9 +64,6 @@
 	}
 	#menu_bar>div {
 		z-index: 4;
-
-		background-color: darkmagenta;
-		color: antiquewhite;
 
 		text-align: center;
 		font-size: 2vw;

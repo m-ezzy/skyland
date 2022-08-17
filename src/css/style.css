@@ -14,28 +14,16 @@
 	margin: 0;
 	padding: 0;
 
-	position: absolute;
+	position: absolute;*/
 
-	overflow: hidden;*/
-}
-:root {
-	-bgcolor: #184A45FF;
-	-textcolor: #B0B8B4FF;
+	overflow: hidden;
 
-	-bgcolor2: #808080;
-	-textcolor2: #00ff99;
+	background-color: var(--bg);
+	color: var(--text);
 
-	-bgcolor3: #808080;
-	-textcolor3: #00ffff;
+	border: 1px solid var(--text);
 
-	-bgcolor4: #101820FF;
-	-textcolor4: #F2AA4CFF;
-
-	-bgcolor5: #F96167;
-	-textcolor5: #FCE77D;
-
-	-bgcolor6: #CCF381;
-	-textcolor6: #4831D4;
+	box-sizing: border-box;
 }
 body {
 	background-image: linear-gradient(to bottom,rgb(40, 90, 50),rgb(200, 200, 35));
@@ -59,8 +47,6 @@ body {
 
 	box-sizing: border-box;
 
-	color: black;
-
 	/*font-family: 'Courier New', Courier, monospace;*/
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	/*font-size: 50px;*/ /*can't use vw since when zooming text, size will adjust according to viewport*/
@@ -71,69 +57,14 @@ body {
 	grid-template-rows: repeat(20, 5vh);
 	grid-template-columns: repeat(20, 5vw);
 }
-.button {
-	box-shadow: 0px 0px 40px rgba(255, 255, 255, 0);
-	/*background-color: #9FD1FF;*/
-
-	/*background-image: linear-gradient(red, green, blue);*/
-
-	border: 0.2vw solid black;
-
-	/*transition-delay: 0s;
-	transition-duration: 1s;
-	transition-property: background-color;
-	transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);*/
-
-	/*animation: example 5s linear infinite;*/
-}
-input {
-	border: 0.2vw solid black;
-}
-/*@keyframes example {
-	0% {
-		background-color: red;
-	}
-	50% {
-		background-color: aqua;
-	}
-	100% {
-		background-color: yellow;
-	}
-}*/
-.ba { /*button_animations*/
-	position: absolute;
-	left: 0vw;
-	top: 95vh;
-	z-index: 5.5;
-	width: 0vw;
-	height: 10vh;
-
-	transition-duration: 0.2s;
-	transition-property: width;
-	/*transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);*/
-}
-#ba1 {
-	background-color: #FF8B8B;
-	transition-delay: 0s;
-}
-#ba2 {
-	background-color: #F5FFA2;
-	transition-delay: 0.2s;
-}
-#ba3 {
-	background-color: #AAFFA2;
-	transition-delay: 0.4s;
-}
-#ba4 {
-	background-color: #9FD1FF;
-	transition-delay: 0.6s;
-}
-#ba5 {
-	background-color: #FFAEF7;
-	transition-delay: 0.8s;
-}
 
 @media only screen and (min-width: 400px) {
-	#container {
+}
+
+@media (orientation: portrait) {
+	/*
+	.previous_list {
+		position: relative;
 	}
+	*/
 }

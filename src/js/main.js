@@ -3,6 +3,8 @@ let container = document.getElementById("container");
 let MB = document.getElementById("menu_bar");
 let BT = document.getElementById("button_theme");
 
+let menus = ['calls', 'chats', 'groups', 'channels', 'games', 'profiles'];
+
 let ba = [];
 ba = document.getElementsByClassName("ba");
 
@@ -34,15 +36,17 @@ document.body.onload = function() {
 	profiles = new Profiles('profiles');
 
 	profiles.clicked();
-	
-	//calls.send_my_peer_id();
+	chats.clicked();
+	//calls.clicked();
+
+	calls.send_my_peer_id();
 
 	if (resources) {
 		//setInterval(check_for_new_chats, 10000);
 		//setInterval(check_for_new_groups, 10000);
 
-		cfnmc = setInterval(check_for_new_media_chats, 10000);
-		cfnmg = setInterval(check_for_new_media_groups, 10000);
+		//cfnmc = setInterval(check_for_new_media_chats, 10000);
+		//cfnmg = setInterval(check_for_new_media_groups, 10000);
 	}
 }
 

@@ -11,26 +11,24 @@
 }
 #profile_picture {
 	position: absolute;
-	left: 0vw;
-	top: 0vh;
-	width: 30vh;
-	height: 30vh;
+	left: 15vw;
+	top: 30vh;
+	width: 20vw;
+	height: 20vh;
 
 	border-radius: 50vw;
-
-	display: grid;
 }
 #file_pp {
 	position: absolute;
-	left: 0vw;
-	top: 30vh;
+	left: 10vw;
+	top: 60vh;
 	width: 15vw;
 	height: 10vh;
 }
 #button_pp {
 	position: absolute;
-	left: 15vw;
-	top: 30vh;
+	left: 25vw;
+	top: 60vh;
 	width: 15vw;
 	height: 10vh;
 }
@@ -47,4 +45,8 @@
 	margin: 1vw;
 
 	background-color: rgb(255, 60, 60);
+}
+
+@media only screen and (min-width: 400px) {
+
 }

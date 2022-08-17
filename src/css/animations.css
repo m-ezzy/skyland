@@ -1,0 +1,61 @@
+.button {
+	box-shadow: 0px 0px 40px rgba(255, 255, 255, 0);
+	/*background-color: #9FD1FF;*/
+
+	/*background-image: linear-gradient(red, green, blue);*/
+
+	/*transition-delay: 0s;
+	transition-duration: 1s;
+	transition-property: background-color;
+	transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);*/
+
+	/*animation: example 5s linear infinite;*/
+}
+.text{
+	background-color: gray;
+	color: rgb(0, 0, 0);
+	font-size: 2vw;
+}
+/*@keyframes example {
+	0% {
+		background-color: red;
+	}
+	50% {
+		background-color: aqua;
+	}
+	100% {
+		background-color: yellow;
+	}
+}*/
+.ba { /*button_animations*/
+	position: absolute;
+	left: 0vw;
+	top: 95vh;
+	z-index: 5.5;
+	width: 0vw;
+	height: 10vh;
+
+	transition-duration: 0.2s;
+	transition-property: width;
+	/*transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);*/
+}
+#ba1 {
+	background-color: #FF8B8B;
+	transition-delay: 0s;
+}
+#ba2 {
+	background-color: #F5FFA2;
+	transition-delay: 0.2s;
+}
+#ba3 {
+	background-color: #AAFFA2;
+	transition-delay: 0.4s;
+}
+#ba4 {
+	background-color: #9FD1FF;
+	transition-delay: 0.6s;
+}
+#ba5 {
+	background-color: #FFAEF7;
+	transition-delay: 0.8s;
+}
