@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
 		res.redirect('../../index.html');
 	} else {
 		let query = `SELECT * FROM accounts WHERE user_name='${user_name}'`;
-		rows = await con.query(query);
+		rows = await con.query(query).catch(err => { console.log(err); });
 
 		if ( rows.length == 0 ) {
 			res.send("user name $user_name is incorrect !");
