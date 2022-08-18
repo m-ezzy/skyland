@@ -1,8 +1,7 @@
 class Calls extends Content {
 	constructor(who) {
 		super(who);
-		
-		this.al;
+
 		this.ar;
 		this.vl;
 		this.vr;
@@ -23,11 +22,10 @@ class Calls extends Content {
 		console.log(this.ch);
 
 		c = "";
-		c += "<audio controls class='audio local' id='stream_local_audio' muted='true'></audio>";
-		c += "<audio controls class='audio remote' id='stream_remote_audio'></audio>";
+		c += "<audio controls class='audio remote' id='stream_remote_audio' width='60%' height='auto'></audio>";
 
-		c += "<video controls class='video local' id='stream_local_video' muted='true'></video>";
-		c += "<video controls class='video remote' id='stream_remote_video'></video>";
+		c += "<video controls class='video local' id='stream_local_video' width='60%' height='auto' muted='true'></video>";
+		c += "<video controls class='video remote' id='stream_remote_video' width='60%' height='auto'></video>";
 
 		c += "<div class='accept_call' onclick='calls.accept_call()'> accept call </div>";
 		c += "<div class='decline_call' onclick='calls.decline_call()'> decline call </div>";
@@ -36,7 +34,6 @@ class Calls extends Content {
 
 		console.log(this.ch);
 
-		this.al = this.cb.getElementsByClassName('audio local')[0];
 		this.ar = this.cb.getElementsByClassName('audio remote')[0];
 		this.vl = this.cb.getElementsByClassName('video local')[0];
 		this.vr = this.cb.getElementsByClassName('video remote')[0];
@@ -51,24 +48,13 @@ class Calls extends Content {
 
 		console.log(this.ch);
 
-		let stream_a = new MediaStream();
-		let stream_v = new MediaStream();
-
-		stream_a = get_stream_local_audio();
-		this.al.srcObject = stream_a;
-		this.al.autoplay = true;
-
-		stream_v = get_stream_local_video();
-		this.vl.srcObject = stream_v;
-		this.vl.autoplay = true;
-
-		//get_stream_local_audio();
-		//get_stream_local_video();
+		get_stream_local_audio();
+		get_stream_local_video();
 	}
 	async load_data() {
 		super.load_data();
 
-		let response = await fetch(this.who + "/load", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
+		let response = await fetch(backEnd.pre + this.who + '/load' + backEnd.suf, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
 		let result = await response.json();
 
 		this.previous = result;
@@ -106,8 +92,6 @@ class Calls extends Content {
 		});
 
 		this.ch.getElementsByClassName('peer_id_local')[0].innerHTML = `local peer id : ${peer.id}`;
-
-		this.send_my_peer_id();
 	}
 	clicked() {
 		super.clicked();
@@ -118,41 +102,30 @@ class Calls extends Content {
 			this.cb.style.display = 'grid';
 		}
 	}
-	async send_my_peer_id() {
-		const response = await fetch(this.who + "/send_my_peer_id", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'peer_id=' + peer.id});
-		let data = await response.text();
-
-		console.log(data);
-	}
 	async create_new_call_audio(user_id, chat_id) {
 		// adding call log and getting remote peer id
-		const response = await fetch(this.who + "/create_new_call", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'user_id=' + user_id + '&chat_id=' + chat_id + '&type=6'});
+		const response = await fetch(backEnd.pre + this.who + "/create_new_call" + backEnd.suf, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'user_id=' + user_id + '&chat_id=' + chat_id + '&type=6'});
 		let result = await response.json();
 
 		console.log(result);
 
 		peer_id_remote = result.peer_id;
 
-		this.ch.getElementsByClassName('peer_id_remote')[0].innerHTML = `remote peer id : ${peer_id_remote}`;
-
 		connect_peers();
 
-		call_outgoing = peer.call(peer_id_remote, stream_local_audio);
+		call_outgoing = peer.call(peer_id_remote, stream_local_audio, {metadata: {'user_id': user_id, 'call_type': 6}});
 
 		call_outgoing.on('stream', function(stream) {
-			calls.ar.srcObject = stream;
-			calls.ar.autoplay = true;
 			stream_remote_audio = stream;
-
-			console.log('8844444488888888844444444448888888888444444444');
-			console.log(calls.ar);
-			console.log(calls.ar.src);
-			console.log(calls.ar.srcObject);
-			console.log(stream);
-			console.log(stream_remote_audio);
+			calls.ar.srcObject = stream;
 		});
 
 		document.getElementById('menu_bar').getElementsByTagName('div')[0].style.animationName = 'call-indicator';
+		this.ch.getElementsByClassName('details')[0].innerHTML = `remote user id : ${user_id}`;
+		this.ch.getElementsByClassName('peer_id_remote')[0].innerHTML = `remote peer id : ${peer_id_remote}`;
+		this.ar.autoplay = true;
+		this.ar.muted = false;
+		this.ar.style.display = 'grid';
 		this.vl.style.display = 'none';
 		this.vr.style.display = 'none';
 		this.ec.style.display = 'grid';
@@ -165,51 +138,66 @@ class Calls extends Content {
 	}
 	async create_new_call_video(user_id, chat_id) {
 		// adding call log and getting remote peer id
-		const response = await fetch(this.who + "/create_new_call", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'user_id=' + user_id + '&chat_id=' + chat_id + '&type=7'});
+		const response = await fetch(backEnd.pre + this.who + "/create_new_call" + backEnd.suf, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'user_id=' + user_id + '&chat_id=' + chat_id + '&type=7'});
 		let result = await response.json();
 
 		peer_id_remote = result.peer_id;
 
-		this.ch.getElementsByClassName('peer_id_remote')[0].innerHTML = `remote peer id : ${peer_id_remote}`;
-
 		connect_peers();
 
-		call_outgoing = peer.call(peer_id_remote, stream_local_video);
+		call_outgoing = peer.call(peer_id_remote, stream_local_video, {metadata: {'user_id': user_id, 'call_type': 7}});
 
 		call_outgoing.on('stream', function(stream) {
-			calls.vr.srcObject = stream;
-			calls.vr.autoplay = true;
 			stream_remote_video = stream;
+			calls.vr.srcObject = stream;
 		});
 
 		document.getElementById('menu_bar').getElementsByTagName('div')[0].style.animationName = 'call-indicator';
-		this.al.style.display = 'none';
+		this.ch.getElementsByClassName('details')[0].innerHTML = `remote user id : ${user_id}`;
+		this.ch.getElementsByClassName('peer_id_remote')[0].innerHTML = `remote peer id : ${peer_id_remote}`;
+		this.vr.autoplay = true;
+		this.vr.muted = false;
 		this.ar.style.display = 'none';
+		this.vl.style.display = 'grid';
+		this.vr.style.display = 'grid';
 		this.ec.style.display = 'grid';
 
 		if (innerWidth <= 400) {
+			MB.style.display = 'none';
 			this.pl.style.display = 'none';
 			this.cb.style.display = 'grid';
 		}
 	}
 	accept_call() {
+		switch (call_incoming.metadata.call_type) {
+		case 6 : 
+			call_incoming.answer(stream_local_audio);
+			break;
+		case 7 : 
+			call_incoming.answer(stream_local_video);
+			break;
+		}
+		/*
+		call_incoming.on('open', function() {
+			//on call open
+		});
+		*/
+	   	call_incoming.on('stream', function(stream) {
+			switch (call_incoming.metadata.call_type) {
+			case 6 : 
+				stream_remote_audio = stream;
+				calls.ar.srcObject = stream;
+				break;
+			case 7 : 
+				stream_remote_video = stream;
+				calls.vr.srcObject = stream;
+				break;
+			}
+		});
+
 		this.ac.style.display = 'none';
 		this.dc.style.display = 'none';
 		this.ec.style.display = 'grid';
-
-		//call_incoming.answer(stream_local_audio);
-		call_incoming.answer(stream_local_video);
-
-	   	call_incoming.on('stream', function(stream) {
-			stream_remote_audio = stream;
-			stream_remote_video = stream;
-
-			calls.ar.srcObject = stream;
-			calls.vr.srcObject = stream;
-
-			calls.ar.autoplay = true;
-			calls.vr.autoplay = true;
-		});
 	}
 	decline_call() {
 		this.ac.style.display = 'none';

@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 var auth = require("./routes/auth/auth");
+var user_name_available = require("./routes/auth/user_name_available");
 var sign_up = require("./routes/auth/sign_up");
 var log_in = require("./routes/auth/log_in");
 
@@ -59,6 +60,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use("/", auth);
+app.use("/auth/user_name_available", user_name_available);
 app.use("/auth/sign_up", sign_up);
 app.use("/auth/log_in", log_in);
 

@@ -68,9 +68,18 @@ class Chats extends Chats_Groups {
 	
 		do_amazing_animation("25vw", "0vh", "5vw", "10vh");
 
-		let response = await fetch("src/php/" + this.who + "/search.php?q=" + s, {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
+		let response = await fetch(backEnd.pre + this.who + '/search' + backEnd.suf, {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'q=' + s});
 		let result = await response.json();
-	
+
+		/*
+		while ($row = $result->fetch_object()) {
+			$match = array_search($row->user_id, $_SESSION['chats']['user_id']);
+			if ($match == false) {
+				$rows[] = $row;
+			}
+		}
+		*/
+
 		if (result.length) {
 			//add banner showing chats with whom no previous communication
 			this.sr.appendChild(create_div('pre', "", "", "start a new chat"));

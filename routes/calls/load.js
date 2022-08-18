@@ -8,6 +8,10 @@ router.post("/", async (req, res) => {
 	let query = `SELECT * FROM calls_chats WHERE chat_id in (SELECT chat_id FROM chats WHERE user_id1=${user_id} OR user_id2=${user_id})`;
 	let rows = await con.query(query).catch(err => { throw err });
 
+	res.contentType('json');
+	res.json(JSON.parse(JSON.stringify(rows)));
+
+	/*
 	let a = [];
 	for (let i = 0 ; i < rows.length ; i++) {
 		a[i] = {chat_id: 0, called_by: 0, called_at: '', type: 0, length: 0};
@@ -22,6 +26,7 @@ router.post("/", async (req, res) => {
 	//res.json(rows);
 	res.contentType('json');
     res.send(JSON.stringify(a));
+	*/
 });
 
 module.exports = router;

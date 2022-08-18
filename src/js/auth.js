@@ -1,8 +1,11 @@
+let backEnd = {
+	lang: 'nodejs',
+	pre: '',
+	suf: '',
+};
+
 //let bli = document.getElementById("button_log_in");
 //let bsu = document.getElementById("button_sign_up");
-
-//bli.addEventListener("click", button_log_in)
-//bsu.addEventListener("click",button_sign_up);
 
 async function log_in() {
 	let un = document.getElementById("log_in_user_name").value;
@@ -33,6 +36,7 @@ function sign_up() {
 	xmlhttp.send();
 }
 
+/*
 let ev;
 if(resources) {
 	ev = "input";
@@ -41,30 +45,24 @@ if(resources) {
 }
 let suun = document.getElementById("suun");
 suun.addEventListener(ev, user_name_available);
+*/
 
-function user_name_available() {
-	let sunn = document.getElementById("suun");
-	let r = document.getElementById("r");
+async function user_name_available(user_name) {
+	let vr = document.getElementsByClassName('validate')[2];
 
-	if(sunn.value == "") {
-		r.innerHTML = "";
+	if (user_name == "") {
 		return;
 	}
+	vr.style.display = 'grid';
 
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			if(this.responseText == 1) {
-				r.style.color = "black";
-				r.innerHTML = "user name is available !";
-			} else {
-				r.style.color = "red";
-				r.innerHTML = "user name is not available !";
-			}
-		}
-	};
-	xmlhttp.open("POST", "user_name_available.php?s=" + sunn.value, true);
-	xmlhttp.send();
+	let response = await fetch(backEnd.pre + '/auth/user_name_available' + backEnd.suf, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'user_name=' + user_name});
+	let result = await response.json();
+
+	console.log(result);
+
+	if (result) {
+		vr.innerHTML = "user name is available !";
+	} else {
+		vr.innerHTML = "user name is not available !";
+	}
 }
-
-

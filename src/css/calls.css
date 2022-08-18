@@ -19,13 +19,9 @@
 	grid-area: 1 / 9 / 3 / 13;
 }
 
-.audio.local {
-	grid-area: 4 / 1 / 5 / 13;
-	display: grid;
-}
 .audio.remote {
 	grid-area: 6 / 1 / 7 / 13;
-	display: grid;
+	display: none;
 }
 
 .video.local {
@@ -34,7 +30,7 @@
 }
 .video.remote {
 	grid-area: 13 / 1 / 17 / 13;
-	display: grid;
+	display: none;
 }
 
 .accept_call {

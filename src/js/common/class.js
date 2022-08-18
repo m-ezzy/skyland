@@ -21,7 +21,7 @@ class Common extends Content {
 	async load_data() {
 		await super.load_data();
 
-		let response = await fetch(this.who + "/load", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
+		let response = await fetch(backEnd.pre + this.who + '/load' + backEnd.suf, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
 		let result = await response.json();
 
 		console.log(result, !result);
@@ -112,7 +112,7 @@ class Common extends Content {
 			return;
 		}
 
-		let response = await fetch("src/php/" + this.who + "/check_for_new_media.php", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
+		let response = await fetch("src/php/" + this.who + "/check_for_new_media.php", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
 		let result = await response.json();
 
 		for(let i = 0 ; i < this.previous.length ; i++) {

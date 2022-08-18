@@ -16,21 +16,23 @@ let stream_remote_video = new MediaStream();
 let peer_id_local = peer.id;
 let peer_id_remote;
 
+let user_id_remote;
+
+let call_type_remote;
+
 let conn;
 
 let call_outgoing;
 let call_incoming;
 
 peer.on('open', function () {
-	/*
-	if (calls.loaded) {
-		calls.ch.getElementsByClassName('peer_id_local')[0].innerHTML = `local peer id : ${peer.id}`;
-		calls.send_my_peer_id();
-	}*/
+	send_my_peer_id();
 });
 
 peer.on('connection', function(connection) {
 	conn = connection;
+
+	peer_id_remote = conn.peer;
 
 	conn.on('close', function() {
 		if (calls.ar.srcObject) {
@@ -52,23 +54,44 @@ peer.on('connection', function(connection) {
 
 // incoming call
 peer.on('call', function(call) {
-	console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu');
 	console.log(call);
+	console.log(call.metadata);
 
 	call_incoming = call;
 
+	user_id_remote = call_incoming.metadata.user_id;
+	call_type_remote = call_incoming.metadata.call_type;
+
+	calls.ch.getElementsByClassName('details')[0].innerHTML = `remote user id : ${call_incoming.metadata.user_id}`;
 	calls.ch.getElementsByClassName('peer_id_remote')[0].innerHTML = `remote peer id : ${call.peer}`;
 
 	document.getElementById('menu_bar').getElementsByTagName('div')[0].style.animationName = 'call-indicator';
+
 	calls.ac.style.display = 'grid';
 	calls.dc.style.display = 'grid';
+
+	switch (call_incoming.metadata.call_type) {
+	case 6 : 
+		calls.ar.autoplay = true;
+		calls.ar.style.display = 'grid';
+		calls.vl.style.display = 'none';
+		calls.vr.style.display = 'none';
+		break;
+	case 7 : 
+		calls.vl.autoplay = true;
+		calls.vr.autoplay = true;
+		calls.ar.style.display = 'none';
+		calls.vl.style.display = 'grid';
+		calls.vr.style.display = 'grid';
+		break;
+	}
 });
 
 function get_stream_local_audio() {
 	navigator.mediaDevices.getUserMedia({video: false, audio: true})
 	.then((stream) => {
 		stream_local_audio = stream;
-		return stream;
+		//return stream;
 	})
 	.catch((err) => {
 		console.error(`you got an error: ${err}`)
@@ -78,15 +101,22 @@ function get_stream_local_video() {
 	navigator.mediaDevices.getUserMedia({video: true, audio: true})
 	.then((stream) => {
 		stream_local_video = stream;
-		return stream;
+		calls.vl.srcObject = stream;
+		calls.vl.autoplay = true;
 	})
 	.catch((err) => {
 		console.error(`you got an error: ${err}`)
 	});
 }
-
 function connect_peers() {
 	conn = peer.connect(peer_id_remote);
 	console.log(conn);
-}
 
+
+}
+async function send_my_peer_id() {
+	const response = await fetch(backEnd.pre + 'calls/send_my_peer_id' + backEnd.suf, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'peer_id=' + peer.id});
+	let data = await response.text();
+
+	console.log(data);
+}

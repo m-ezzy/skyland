@@ -26,7 +26,17 @@ let running = false;
 let last_known = 5;
 
 let resources = 1; //change to 1 when you work on localhost or when have your own domain
-
+/*
+let backEnd = {
+	lang: 'php',
+	pre: '../php/routes/',
+	suf: '.php',
+};*/
+let backEnd = {
+	lang: 'nodejs',
+	pre: '/',
+	suf: '',
+};
 
 document.body.onload = function() {
 	calls = new Calls('calls');
@@ -37,10 +47,8 @@ document.body.onload = function() {
 	profiles = new Profiles('profiles');
 
 	profiles.clicked();
-	//chats.clicked();
+	chats.clicked();
 	//calls.clicked();
-
-	calls.send_my_peer_id();
 
 	if (resources) {
 		//setInterval(check_for_new_chats, 10000);
@@ -102,18 +110,5 @@ function remove_enter_event() {
 
 	/*let chats.tm = document.getElementById("TextNewMessage");
 	chats.tm.removeEventListener("keydown",send_new_message);*/
-}
-
-function getCookie(cookie_key) {
-	const name = cookie_key + "=";
-	const cDecoded = decodeURIComponent(document.cookie); //to be careful
-	const cArr = cDecoded.split('; ');
-	let res;
-	cArr.forEach(val => {
-		if (val.indexOf(name) === 0) {
-			res = val.substring(name.length);
-		}
-	});
-	return res
 }
 

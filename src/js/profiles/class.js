@@ -29,7 +29,7 @@ class Profiles extends Content {
 	async load_data() {
 		await super.load_data();
 
-		let response = await fetch("/" + this.who + "/load", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
+		let response = await fetch(backEnd.pre + this.who + '/load' + backEnd.suf, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
 		let result = await response.json();
 
 		console.log(result);

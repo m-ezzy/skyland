@@ -13,8 +13,26 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
 
-		<link type="text/css" rel="stylesheet" href="css/a_grid.css">
+		<link type="text/css" rel="stylesheet" href="css/auth_grid.css">
 
+		<script>
+			function getCookie(cookie_key) {
+				const name = cookie_key + "=";
+				const cDecoded = decodeURIComponent(document.cookie); //to be careful
+				const cArr = cDecoded.split('; ');
+				let res = '';
+				cArr.forEach(val => {
+					if (val.indexOf(name) === 0) {
+						res = val.substring(name.length);
+					}
+				});
+				return res;
+			}
+			if(getCookie('user_id')) {
+				//console.log(cookie);
+			   location.href = 'index.html';
+			}
+		</script>
 		<script>
 			let resources = 1;
 		</script>
@@ -39,19 +57,27 @@
 			-->
 
 			<form method="POST" action="auth/log_in" id="fli">
-				<div> user name : </div>
-				<input type="text" name="user_name" class="text" id="log_in_user_name">
-				<div> pass word : </div>
-				<input type="text" name="pass_word" class="text" id="log_in_pass_word">
+				user name : <input type="text" name="user_name" class="text" id="log_in_user_name">
+				<div class='validate'></div>
+
+				pass word : <input type="text" name="pass_word" class="text" id="log_in_pass_word">
+				<div class='validate'></div>
+
 				<input type="submit" name="log_in" value="log in" class="submit">
 			</form>
 			<form method="POST" action="auth/sign_up" id="fsu">
-				<div id="r"></div><br>
+				user name : <input type="text" name="user_name" class="text" id="suun" oninput="user_name_available(this.value)"><br>
+				<div class='validate'></div>
 
-				user name : <input type="text" name="user_name" class="text" id="suun"><br>
 				pass word : <input type="text" name="pass_word" class="text"><br>
+				<div class='validate'></div>
+
 				first name : <input type="text" name="first_name" class="text"><br>
+				<div class='validate'></div>
+
 				last name : <input type="text" name="last_name" class="text"><br>
+				<div class='validate'></div>
+
 				<input type="submit" name="sign_up" value="sign up" class="submit">
 			</form>
 		</div>
