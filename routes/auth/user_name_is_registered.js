@@ -19,10 +19,10 @@ router.post("/", async (req, res) => {
 	console.log(JSON.stringify('result=1'));
 
 	if (rows.length) {
-		console.log(JSON.stringify(0));
-		res.send(JSON.stringify(0));
-	} else {
+		console.log(JSON.stringify(1));
 		res.send(JSON.stringify(1));
+	} else {
+		res.send(JSON.stringify(0));
 	}
 });
 

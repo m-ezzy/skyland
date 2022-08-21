@@ -5,6 +5,15 @@
 	grid-area: 1 / 8 / 3 / 9;
 }
 
+.text.key {
+	grid-area: 1 / 11 / 3 / 12;
+}
+.button.key {
+	grid-area: 1 / 12 / 3 / 13;
+
+	text-indent: 0;
+}
+
 .send_new_media {
 	z-index: 9;
 
@@ -87,6 +96,13 @@
 }*/
 
 @media only screen and (min-width: 400px) {
+	.text.key {
+		grid-area: 1 / 11 / 3 / 12;
+	}
+	.button.key {
+		grid-area: 1 / 12 / 3 / 13;
+	}
+
 	.send_new_media {
 		z-index: 10;
 

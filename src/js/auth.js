@@ -1,6 +1,6 @@
 let backEnd = {
 	lang: 'nodejs',
-	pre: '',
+	pre: '/',
 	suf: '',
 };
 
@@ -47,22 +47,21 @@ let suun = document.getElementById("suun");
 suun.addEventListener(ev, user_name_available);
 */
 
-async function user_name_available(user_name) {
-	let vr = document.getElementsByClassName('validate')[2];
-
+async function check_user_name(user_name, num) {
 	if (user_name == "") {
 		return;
 	}
+
+	let vr = document.getElementsByClassName('validate')[num];
 	vr.style.display = 'grid';
 
-	let response = await fetch(backEnd.pre + '/auth/user_name_available' + backEnd.suf, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'user_name=' + user_name});
+	let response = await fetch(backEnd.pre + 'auth/user_name_is_registered' + backEnd.suf, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'user_name=' + user_name});
 	let result = await response.json();
-
 	console.log(result);
 
 	if (result) {
-		vr.innerHTML = "user name is available !";
+		vr.innerHTML = "user name is registered !";
 	} else {
-		vr.innerHTML = "user name is not available !";
+		vr.innerHTML = "user name is not registered !";
 	}
 }

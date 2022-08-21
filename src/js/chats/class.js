@@ -31,104 +31,110 @@ class Chats extends Chats_Groups {
 		this.sr.innerHTML = "";
 		this.sr.style.display = "grid";
 
-		console.log(s);
-
 		do_amazing_animation("35vw", "0vh", "5vw", "10vh");
 	
 		let pre = [];
 		for (let i=0 ; i<this.previous.length ; i++) {
+			//let ui = this.previous[i].user_id.search(s);
 			let un = this.previous[i].user_name.search(s);
 			let fn = this.previous[i].first_name.search(s);
 			let ln = this.previous[i].last_name.search(s);
-	
-			console.log(un + fn + ln);
-	
+
 			if (un != -1 || fn != -1 || ln != -1) {
 				pre.push(this.previous[i]);
 			}
 		}
 		if (pre.length) {
 			//add banner showing already created chats
-			this.sr.appendChild(create_div("chat", "", "", "your previous " + this.who));
+			this.sr.appendChild(create_div("pre", "", "", "your previous " + this.who));
 		}
 		for (let i = 0 ; i < pre.length ; i++) {
 			let img = document.createElement("img");
-			img.src = pre[i].extension ? "data/profile_pictures/" + pre[i].user_name + "." + pre[i].extension : this.place_holder;
+			img.src = pre[i].extension ? "../data/profile_pictures/" + pre[i].user_id + "." + pre[i].extension : this.place_holder;
 	
-			let oc = this.who + ".take_to_that_conversation(this,'" + pre[i].user_name + "')";
-			let text = pre[i].user_name + " " + pre[i].first_name + " " + pre[i].last_name;
-			let temp = create_div("chat", "", oc, text);
-	
+			let oc = this.who + ".take_to_that_conversation(this,'" + pre[i].user_id + "')";
+			let text = pre[i].user_id + " " + pre[i].user_name + " " + pre[i].first_name + " " + pre[i].last_name;
+			let temp = create_div('pre', '', oc, text);
+
 			temp.appendChild(img);
 			this.sr.appendChild(temp);
 		}
-
-		console.log("503");
-		console.log(s);
 	
 		do_amazing_animation("25vw", "0vh", "5vw", "10vh");
 
 		let response = await fetch(backEnd.pre + this.who + '/search' + backEnd.suf, {method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'q=' + s});
 		let result = await response.json();
 
-		/*
-		while ($row = $result->fetch_object()) {
-			$match = array_search($row->user_id, $_SESSION['chats']['user_id']);
-			if ($match == false) {
-				$rows[] = $row;
+		let create = [];
+		if (pre.length) {
+			for (let i = 0 ; i < result.length ; i++) {
+				let match = 0;
+				for (let j = 0 ; j < pre.length ; j++) {
+					if (pre[j].user_id == result[i].user_id) {
+						
+						match = 1;
+						break;
+					}
+				}
+				if (!match) {
+					create.push(result[i]);
+				}
 			}
+		} else {
+			create = result;
 		}
-		*/
 
-		if (result.length) {
+		if (create.length) {
 			//add banner showing chats with whom no previous communication
-			this.sr.appendChild(create_div('pre', "", "", "start a new chat"));
+			this.sr.appendChild(create_div('pre', '', '', 'start a new ' + this.who));
 		}
-		result.forEach(r => {
+		create.forEach(r => {
 			let img = document.createElement("img");
-			img.src = r.extension ? "data/profile_pictures/" + r.user_name + "." + r.extension : this.place_holder;
+			img.src = r.extension ? "../data/profile_pictures/" + r.user_name + "." + r.extension : this.place_holder;
 
 			let oc = "chats.create_new(" + r.user_id + ",'" + r.user_name + "','" + r.first_name + "','" + r.last_name + "','" + r.extension + "')";
-			let text = r.user_name + " " + r.first_name + " " + r.last_name;
-			let temp = create_div("chat", "", oc, text);
+			let text = r.user_id + ' ' + r.user_name + " " + r.first_name + " " + r.last_name;
+			let temp = create_div('pre', "", oc, text);
 			//temp.onclick = oc;
 
 			temp.appendChild(img);
 			this.sr.appendChild(temp);
 		});
 	
-		if (pre.length == 0 && result.length == 0) {
+		if (pre.length == 0 && create.length == 0) {
 			//SR.innerHTML = "<div class='chat'> no such user found </div>";
-			this.sr.appendChild(create_div("chat", "", "", "no such user found"));
+			this.sr.appendChild(create_div("pre", "", "", "no such user found"));
 		}
 	}
 	async create_new(user_id, user_name, first_name, last_name, extension) {
-		this.sr.style.visibility = "hidden";
+		this.sr.style.display = 'none';
 	
-		const response = await fetch("src/php/" + this.who + "/create_new.php", {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'user_id=' + user_id});
-		let data = await response.text();
-	
-		this.previous.push({user_id: user_id, user_name: user_name, first_name: first_name, last_name: last_name, extension: extension, rows: -1});
+		const response = await fetch(backEnd.pre + this.who + "/create_new" + backEnd.suf, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'user_id2=' + user_id});
+		let data = await response.json();
+
+		console.log(data);
+
+		this.previous.push({chat_id: data.chat_id, user_id: user_id, user_name: user_name, first_name: first_name, last_name: last_name, extension: extension, row_up: 0, row_down: data.row_down});
 
 		let src = extension != 'null' ? "data/profile_pictures/" + user_id + "." + extension : this.place_holder;
 		let img = create_image('', '', '', src, Common.w, Common.h);
 		let div = create_div("new_media_indicator", "", "", "");
-	
+
 		let oc = this.who + ".show_conversation(this, '" + user_id + "')";
 		let text = user_id + " " + user_name + " " + first_name + " " + last_name;
-		let temp = create_div("chat", "", oc, text);
+		let temp = create_div('pre', '', oc, text);
 
 		temp.appendChild(img);
 		temp.appendChild(div);
 		this.pl.appendChild(temp);
-	
-		this.element.appendChild(create_div("conversation", this.who + "_" + user_id, "", ""));
+
+		this.cb.appendChild(create_div('conversation', this.who + '_' + user_id, '', ''));
 		//let e = document.getElementById(this.who + "_" + user_name);
 		//this.conversation.push(e);
-		this.conversation = this.element.getElementsByClassName('conversation');
+		this.conversation = this.cb.getElementsByClassName('conversation');
 		//let y = chats.element.getElementsByClassName("conversation")[chats.previous.length];
 	
-		this.show_conversation(this.pl.lastElementChild, user_id);
+		//this.show_conversation(this.pl.lastElementChild, user_id);
 	}
 	async check_for_new() {
 		if (this.loaded == 0) {

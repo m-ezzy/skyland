@@ -7,13 +7,12 @@
 	grid-template-rows: repeat(20, 5vh);
 	grid-template-columns: repeat(18, 5vw);
 
-	overflow: hidden;
-
 	/*transition: visibility 5s ease-out;*/
 	/*transition-property: visibility;
 	transition-duration: 5s;
 	transition-timing-function: linear;*/
 }
+
 .button.back {
 	z-index: 4;
 	grid-area: 1 / 1 / 3 / 4;
@@ -26,10 +25,15 @@
 	z-index: 4;
 	grid-area: 1 / 18 / 3 / 21;
 
-	background-image: url('../../media/images/design/search.png');
+	background-image: url('../media/images/design/search.png');
 	background-size: contain;
 	background-clip: content-box;
 	background-repeat: no-repeat;
+}
+
+.search_results,.previous_list {
+	grid-template-rows: repeat(auto-fill, 10vh);
+	grid-template-columns: auto;
 }
 .search_results {
 	background-color: gray;
@@ -39,44 +43,20 @@
 	grid-area: 3 / 1 / 21 / 21;
 
 	display: none;
-	grid-template-rows: repeat(auto-fill, 10vh);
-	grid-template-columns: auto;
 
-	transition: display 2s linear;
+	/*transition: display 2s linear;*/
 }
-.search_results>div {
-	z-index: 8;
-
-	overflow: hidden;
-
-	text-indent: 10vw;
-}
-.search_results div img {
-	position: absolute;
-	top: 0vw;
-	left: 0vw;
-	z-index: 9;
-	width: 10vw;
-	height: 10vh;
-
-	overflow: hidden;
-}
-/*
-#search_results:hover {
-	visibility: collapse;
-}*/
 .previous_list {
 	z-index: 6;
 
 	grid-area: 3 / 1 / 19 / 21;
 
 	display: grid;
-	grid-template-rows: repeat(auto-fill, 10vh);
-	grid-template-columns: auto;
 
 	overflow-y: visible;
 }
-.previous_list>div {
+
+.search_results>div,.previous_list>div {
 	height: 10vh;
 
 	display: grid;
@@ -84,14 +64,21 @@
 	grid-template-columns: repeat(6, 1fr);
 
 	text-align: left;
-	text-indent: 10%;
 }
-.previous_list div img {
-	width: 30vw;
+.search_results>div {
+	z-index: 8;
+}
+
+.search_results div img,.previous_list div img {
+	width: 10vw;
 	height: 10vh;
 
 	grid-area: 1 / 1 / 3 / 3;
 }
+.search_results div img {
+	z-index: 9;
+}
+
 .previous_list div:hover {
 	background-color: rgb(187, 187, 187);
 }
@@ -109,13 +96,12 @@
 	display: grid;
 	grid-template-rows: repeat(2, 5vh);
 	grid-template-columns: repeat(12, 1fr);
-
-	text-indent: 10vw;
 }
 .current_header .details {
 	grid-area: 1 / 1 / 3 / 5;
 
 	text-indent: 10vw;
+	text-align: left;
 }
 .current_header .details img {
 	width: 10vw;
@@ -126,126 +112,34 @@
 @media only screen and (min-width: 400px) { /* 1152 px = 12 inch */
 	.content {
 		grid-area: 1 / 3 / 21 / 21;
-
-		display: none;
-		grid-template-rows: repeat(18, 5vh);
-		grid-template-columns: repeat(18, 5vw);
 	}
 	.button.back {
 		z-index: 6;
-
 		grid-area: 1 / 3 / 3 / 4;
 	}
 	.text.search {
 		z-index: 6;
-
 		grid-area: 1 / 4 / 3 / 8;
 	}
 	.button.search {
 		z-index: 6;
-
 		grid-area: 1 / 8 / 3 / 9;
 	}
-	.search_results {
-		z-index: 7;
-
+	.search_results,.previous_list {
 		grid-area: 3 / 1 / 21 / 7;
 
-		display: none;
-		grid-template-rows: repeat(auto-fill, 10vh);
-		grid-template-columns: 30vw;
-		transition: display 1s linear;
+		overflow-y: visible;
+
+		/*transition: display 1s linear;*/
 	}
 	.search_results>div {
 		z-index: 8;
-
-		text-align: left;
-		text-indent: 10vw;
-
-		overflow: hidden;
 	}
 	.search_results div img {
-		position: absolute;
-		top: 0vw;
-		left: 0vw;
 		z-index: 9;
-		width: 10vw;
-		height: 10vh;
-	
-		overflow: hidden;
 	}
-	/*
-	#search_results:hover {
-		visibility: collapse;
-	}*/
-	.previous_list {
-		grid-area: 3 / 1 / 21 / 7;
-
-		display: grid;
-		grid-template-rows: repeat(auto-fill, 10vh);
-		grid-template-columns: 30vw;
-		/*transition: visibility 2s linear;*/
-	
-		overflow-y: visible;
-	}
-	.previous_list>div { /* pre */
-		z-index: 7;
-
-		text-align: left;
-		text-indent: 10vw;
-	
-		overflow: hidden;
-
-		display: grid;
-		grid-template-rows: 5vh 5vh;
-		grid-template-columns: repeat(6, 5vw);
-	}
-	.previous_list div img {
-		z-index: 8;
-
-		width: 10vw;
-		height: 10vh;
-
-		grid-area: 1 / 1 / 3 / 3;
-	
-		overflow: hidden;
-	}
-	.previous_list div:hover {
-		background-color: rgb(187, 187, 187);
-	}
-	.new_media_indicator { /*.previous_list div div*/
-		text-indent: 0;
-
-		grid-area: 1 / 6 / 3 / 7;
-	
-		transition: background-color 3s linear;
-	}
-	
 	.conversation_bar {
-		z-index: 5;
-	
 		grid-area: 1 / 7 / 21 / 19;
-
 		display: grid;
-		grid-template-rows: repeat(20, 5vh);
-		grid-template-columns: repeat(12, 1fr);
-	}
-	.current_header {
-		text-indent: 10vw;
-
-		grid-area: 1 / 1 / 3 / 13;
-
-		display: grid;
-		grid-template-rows: repeat(2, 5vh);
-		grid-template-columns: repeat(12, 5vw);
-	}
-	.current_header.details {
-		grid-area: 1 / 1 / 3 / 5;
-	}
-	.current_header.details img {
-		width: 10vw;
-		height: 10vh;
-
-		grid-area: 1 / 1 / 3 / 3;
 	}
 }

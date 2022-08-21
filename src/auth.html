@@ -57,7 +57,7 @@
 			-->
 
 			<form method="POST" action="auth/log_in" id="fli">
-				user name : <input type="text" name="user_name" class="text" id="log_in_user_name">
+				user name : <input type="text" name="user_name" class="text" id="log_in_user_name" oninput="check_user_name(this.value, 0)">
 				<div class='validate'></div>
 
 				pass word : <input type="text" name="pass_word" class="text" id="log_in_pass_word">
@@ -66,7 +66,7 @@
 				<input type="submit" name="log_in" value="log in" class="submit">
 			</form>
 			<form method="POST" action="auth/sign_up" id="fsu">
-				user name : <input type="text" name="user_name" class="text" id="suun" oninput="user_name_available(this.value)"><br>
+				user name : <input type="text" name="user_name" class="text" id="suun" oninput="check_user_name(this.value, 2)"><br>
 				<div class='validate'></div>
 
 				pass word : <input type="text" name="pass_word" class="text"><br>

@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 var auth = require("./routes/auth/auth");
-var user_name_available = require("./routes/auth/user_name_available");
+var user_name_is_registered = require("./routes/auth/user_name_is_registered");
 var sign_up = require("./routes/auth/sign_up");
 var log_in = require("./routes/auth/log_in");
 
@@ -18,6 +18,8 @@ var calls = {
 
 var chats = {
 	load: require("./routes/chats/load"),
+	search: require("./routes/chats/search"),
+	create_new: require("./routes/chats/create_new"),
 };
 
 //var groups = require("./routes/groups");
@@ -60,7 +62,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use("/", auth);
-app.use("/auth/user_name_available", user_name_available);
+app.use("/auth/user_name_is_registered", user_name_is_registered);
 app.use("/auth/sign_up", sign_up);
 app.use("/auth/log_in", log_in);
 
@@ -69,6 +71,10 @@ app.use("/calls/send_my_peer_id", calls.send_my_peer_id);
 app.use("/calls/create_new_call", calls.create_new_call);
 
 app.use("/chats/load", chats.load);
+app.use("/chats/search", chats.search);
+app.use("/chats/create_new", chats.create_new);
+app.use('/chats/show_conversation', require('./routes/chats/show_conversation'));
+app.use('/chats/send_message', require('./routes/chats/send_message'));
 
 //app.use("/groups", groups);
 

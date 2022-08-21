@@ -28,7 +28,7 @@
 	grid-template-rows: repeat(20, 5vh);
 	grid-template-columns: repeat(20, 5vw);
 
-	overflow-y: auto;
+	overflow-y: scroll;
 }
 #container form {
 	background-color: rgb(41, 169, 255);

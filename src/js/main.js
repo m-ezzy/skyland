@@ -38,6 +38,9 @@ let backEnd = {
 	suf: '',
 };
 
+//innerwidth <= 400 is mobile UI
+let screen_mobile = 400;
+
 document.body.onload = function() {
 	calls = new Calls('calls');
 	chats = new Chats('chats');

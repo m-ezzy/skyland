@@ -24,8 +24,8 @@ class Chats_Groups extends Common {
 		super.load();
 
 		let c = "";
-		c += "<div class='button call audio' onclick='" + this.who + ".create_new_call_audio()'> audio call </div>";
-		c += "<div class='button call video' onclick='" + this.who + ".create_new_call_video()'> video call </div>";
+		c += "<div class='button call audio' onclick='" + this.who + ".make_new_call(6)'></div>";
+		c += "<div class='button call video' onclick='" + this.who + ".make_new_call(7)'></div>";
 		c += "<input type='text' class='text key' placeholder='enter key of this conversation' value='0' oninput='" + this.who + ".show_decrypted_media()'>";
 		c += "<div class='button key' onclick='" + this.who + ".e_d()'> encrypt or decrypt </div>";
 		this.ch.innerHTML += c;
@@ -47,9 +47,12 @@ class Chats_Groups extends Common {
 		}
 	}
 	//can't use 'this' in function parameters, using 't' instead of 'this'
-	async show_conversation(t, who_name) {
+	show_conversation(t, who_name) {
 		//console.log(this.current);
 		//console.log(this.conversation);
+
+		console.log(this.previous);
+
 		if (this.current != -1) {
 			this.conversation[this.current].style.display = 'none';
 		}
@@ -85,6 +88,8 @@ class Chats_Groups extends Common {
 		console.log(this.conversation[this.current]);
 		this.conversation[this.current].style.display = 'grid';
 
+		console.log(this.previous);
+
 		/*
 		if (this.previous[this.current].row_up != -1) {
 			return;
@@ -110,19 +115,19 @@ class Chats_Groups extends Common {
 		console.log(this.conversation[this.current].scrollTop.toFixed());
 
 		let row_up = this.previous[this.current].row_up;
-
-		let response = await fetch("src/php/" + this.who + "/show_conversation.php?id=" + who_name + "&row_up=" + row_up, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
-		let result = await response.json();
-
-		console.log(result[0]);
-		if (result[0] == 0) {
+		if (row_up <= 0) {
 			return;
 		}
+
+		let response = await fetch(backEnd.pre + this.who + '/show_conversation' + backEnd.suf, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'chat_id=' + who_name + '&row_up=' + row_up});
+		let result = await response.json();
+		console.log(result);
+
+		this.previous[this.current].row_up = result[0].chat_media_id - 1;
 
 		let ddd = this.conversation[this.current].innerHTML;
 		this.conversation[this.current].innerHTML = '';
 
-		//let st = 0;
 		let i = 0;
 		let r;
 		while (r = result[i]) {
@@ -133,24 +138,18 @@ class Chats_Groups extends Common {
 				let m = decryption(r.text, this.tk.value);
 				e = create_div(class_media + " messages", "", "", m);
 			} else if(r.media_type == 1) {
-				e = create_image(class_media, "", "", "data/" + this.who + "/" + who_name + "/" + r.ROWNUM + "." + r.text, Common.w, Common.h);
+				e = create_image(class_media, "", "", "data/" + this.who + "/" + who_name + "/" + r.chat_media_id + "." + r.text, Common.w, Common.h);
 			} else if(r.media_type == 2) {
-				e = create_video(class_media, "", "", "data/" + this.who + "/" + who_name + "/" + r.ROWNUM + "." + r.text, Common.w, Common.h);
+				e = create_video(class_media, "", "", "data/" + this.who + "/" + who_name + "/" + r.chat_media_id + "." + r.text, Common.w, Common.h);
 			}
 
 			this.conversation[this.current].append(e);
-
-			console.log(r);
-			//st += this.conversation[this.current].lastElementChild.style.height;
-			//console.log(st);
 			i++;
 		}
 		this.conversation[this.current].innerHTML += ddd;
 
-		this.conversation[this.current].scrollTop = i*50;
-		last_known = i*50;
-
-		this.previous[this.current].row_up -= i;
+		this.conversation[this.current].scrollTop = (innerHeight / 20) * i;
+		last_known = (innerHeight / 20) * i;
 	}
 	on_scroll_event(who_name) {
 		if (this.conversation[this.current].scrollTop != 0) {
@@ -187,18 +186,18 @@ class Chats_Groups extends Common {
 
 		let em = encryption(Chats_Groups.tm.value, this.tk.value);
 
-		let response = await fetch("src/php/" + this.who + "/send_message.php?id=" + id + "&m=" + em, {
+		let response = await fetch(backEnd.pre + this.who + '/send_message' + backEnd.suf, {
 			method: 'POST', 
-			mode: 'no-cors', 
+			mode: 'cors', 
 			headers: {
 				'Content-Type':'application/x-www-form-urlencoded' 
 			}, 
-			body: '' 
+			body: 'chat_id=' + id + '&message=' + em
 		});
 		console.log(response);
+		let result = await response.json();
 
-		let result = await response.text();
-		console.log(result);
+		this.previous[this.current].row_down = result;
 
 		this.conversation[this.current].appendChild(create_div("sent messages", "", "", Chats_Groups.tm.value));
 		this.conversation[this.current].scrollBy(0, 200);
@@ -300,13 +299,8 @@ class Chats_Groups extends Common {
 			m.innerHTML = decryption(m.innerHTML, key);
 		});
 	}
-	
-	create_new_call_audio() {
+	make_new_call(type) {
 		calls.clicked();
-		calls.create_new_call_audio(this.previous[this.current].user_id, this.previous[this.current].chat_id);
-	}
-	create_new_call_video() {
-		calls.clicked();
-		calls.create_new_call_video(this.previous[this.current].user_id, this.previous[this.current].chat_id);
+		calls.make_new_call(type, this.previous[this.current].user_id, this.previous[this.current].chat_id);
 	}
 }

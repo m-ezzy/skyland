@@ -9,19 +9,13 @@
 .text.search_conversation {
 	grid-area: 1 / 9 / 3 / 11;
 }
-.text.key {
-	grid-area: 1 / 11 / 3 / 12;
-}
-.button.key {
-	grid-area: 1 / 12 / 3 / 13;
-}
 
 .conversation {
 	overflow-y: visible;
 
 	grid-area: 3 / 1 / 19 / 13;
 
-	display: grid;
+	display: none;
 	grid-template-rows: repeat(auto-fill, 5vh);
 	grid-template-columns: auto;
 
@@ -45,6 +39,7 @@
 	min-width: 10vw;
 	/*width: fit-content;*/
 	min-height: 5vh;
+	height: fit-content;
 
 	/*position: relative;*/
 	/*height: fit-content;*/
@@ -86,12 +81,6 @@
 	
 	.text.search_conversation {
 		grid-area: 1 / 9 / 3 / 11;
-	}
-	.text.key {
-		grid-area: 1 / 11 / 3 / 12;
-	}
-	.button.key {
-		grid-area: 1 / 12 / 3 / 13;
 	}
 
 	.conversation {

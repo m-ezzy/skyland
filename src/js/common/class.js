@@ -24,12 +24,14 @@ class Common extends Content {
 		let response = await fetch(backEnd.pre + this.who + '/load' + backEnd.suf, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''})
 		let result = await response.json();
 
-		console.log(result, !result);
-		if(!result) {
+		console.log(result);
+		if(result.length == 0) {
 			return;
 		}
 
 		this.previous = result;
+
+		console.log(this.previous);
 
 		let my_id;
 		let my_name;
@@ -69,7 +71,7 @@ class Common extends Content {
 			c += "</div>";
 			*/
 
-			let div = create_div('pre', '', this.who + ".show_conversation(this," + my_id + ")", text);
+			let div = create_div('pre', 'previous_' + this.who + '_' + my_id, this.who + '.show_conversation(this, ' + my_id + ')', text);
 			let img = create_image('', '', '', path);
 			let nmi = create_div('new_media_indicator', '', '', '');
 			div.appendChild(img);
@@ -91,8 +93,6 @@ class Common extends Content {
 		//this.show_conversation(this.pl.getElementsByTagName('div')[0], result[0].user_name); //this.pl.firstElementChild
 		//this.pl.firstElementChild.click();
 		//this.current = 0;
-
-		this.loaded = 1;
 
 		//this.check_for_new_media();
 	}

@@ -20,30 +20,31 @@ router.post("/", async (req, res) => {
 		//aaa = Object.values(JSON.parse(JSON.stringify(rows)));
 		//a[i] = JSON.parse(JSON.stringify(r));
 
-		a[i] = {chat_id: 0, user_id: 0, user_name: '', first_name: '', last_name: '', extension: ''};
+		a[i] = {chat_id: 0, user_id: 0, user_name: '', first_name: '', last_name: '', extension: '', row_up: 0, row_down: 0};
 
-		a[i]['chat_id'] = r.chat_id;
-		a[i]['user_id'] = (r.user_id1 == user_id) ? r.user_id2 : r.user_id1;
+		a[i].chat_id = r.chat_id;
+		a[i].user_id = (r.user_id1 == user_id) ? r.user_id2 : r.user_id1;
 
 		let query2 = `SELECT user_name,first_name,last_name,extension FROM accounts WHERE user_id=${a[i]['user_id']}`;
 		let rows2 = await con.query(query2).catch(err => { throw err });
 
 		a[i].user_name = rows2[0].user_name;
 		a[i].first_name = rows2[0].first_name;
-		a[i]['last_name'] = rows2[0].last_name;
-		a[i]['extension'] = rows2[0].extension;
+		a[i].last_name = rows2[0].last_name;
+		a[i].extension = rows2[0].extension;
 	}
 
-	query = `SELECT COUNT(*) FROM chat_media`;
-	let rows3 = await con.query(query);
+	let query3 = `SELECT COUNT(*) FROM chat_media`;
+	let rows3 = await con.query(query3).catch(err => { throw err });
+	let row_num = rows3[0]['COUNT(*)'];
 
 	for (let i = 0 ; i < a.length ; i++) {
-		a[i]['row_up'] = rows3[0][0];
-		a[i]['row_down'] = rows3[0][0];
-		i++;
+		a[i].row_up = row_num;
+		a[i].row_down = row_num;
 	}
 
-	res.send(JSON.stringify(a));
+	res.contentType('text/json');
+	res.send(JSON.parse(JSON.stringify(a)));
 });
 
 module.exports = router;

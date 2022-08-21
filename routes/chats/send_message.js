@@ -2,19 +2,16 @@ let express = require("express");
 let router = express.Router();
 let con = require('../database.js');
 
-let path = require("path");
-
 router.post("/", async (req, res) => {
 	let user_id = req.cookies.user_id;
-	let q = req.body.q;
+	let chat_id = req.body.chat_id;
+	let message = req.body.message;
 
-	let query = `SELECT * FROM accounts WHERE user_id LIKE '${q}%' OR user_name LIKE '${q}%' OR first_name LIKE '${q}%' OR last_name LIKE '${q}%'`;
+	let query = `INSERT INTO chat_media(chat_id,sender_id,media_type,text) VALUES (${chat_id},${user_id},0,'${message}')`;
 	let rows = await con.query(query).catch(err => { throw err });
 
-	console.log(rows);
-
 	res.contentType('text/json');
-	res.send(JSON.parse(JSON.stringify(rows)));
+	res.send(JSON.stringify(rows.insertId));
 });
 
 module.exports = router;

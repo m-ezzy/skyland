@@ -54,37 +54,7 @@ peer.on('connection', function(connection) {
 
 // incoming call
 peer.on('call', function(call) {
-	console.log(call);
-	console.log(call.metadata);
-
-	call_incoming = call;
-
-	user_id_remote = call_incoming.metadata.user_id;
-	call_type_remote = call_incoming.metadata.call_type;
-
-	calls.ch.getElementsByClassName('details')[0].innerHTML = `remote user id : ${call_incoming.metadata.user_id}`;
-	calls.ch.getElementsByClassName('peer_id_remote')[0].innerHTML = `remote peer id : ${call.peer}`;
-
-	document.getElementById('menu_bar').getElementsByTagName('div')[0].style.animationName = 'call-indicator';
-
-	calls.ac.style.display = 'grid';
-	calls.dc.style.display = 'grid';
-
-	switch (call_incoming.metadata.call_type) {
-	case 6 : 
-		calls.ar.autoplay = true;
-		calls.ar.style.display = 'grid';
-		calls.vl.style.display = 'none';
-		calls.vr.style.display = 'none';
-		break;
-	case 7 : 
-		calls.vl.autoplay = true;
-		calls.vr.autoplay = true;
-		calls.ar.style.display = 'none';
-		calls.vl.style.display = 'grid';
-		calls.vr.style.display = 'grid';
-		break;
-	}
+	calls.incoming_new_call(call);
 });
 
 function get_stream_local_audio() {
