@@ -12,10 +12,9 @@ router.post("/", async (req, res) => {
 	res.contentType('text/json');
 
 	console.log(rows);
-	console.log(rows.length);
 	console.log(JSON.stringify('result=1'));
 
-	if (rows.length) {
+	if (rows) {
 		console.log(JSON.stringify(1));
 		res.send(JSON.stringify(1));
 	} else {

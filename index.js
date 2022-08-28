@@ -11,7 +11,10 @@ const port = process.env.PORT || "8000";
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-const io = require('socket.io')(server);
+import { Server } from "socket.io";
+const io = new Server(server, {
+	serveClient: true,
+});
 
 //Whenever someone connects this gets executed
 io.on('connection', function(socket) {
