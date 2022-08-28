@@ -1,6 +1,7 @@
 //`${Math.floor(Math.random() * 2 ** 18).toString(36).padStart(4, 0)}`
-const peer = new Peer(me.user_id, {
-	host: location.hostname,
+//undefined
+const peer = new Peer(`${Math.floor(Math.random() * 2 ** 18).toString(36).padStart(4, 0)}`, {
+	host: window.location.hostname,
 	debug: 1,
 	path: '/internet-phone',
 	port: 443,

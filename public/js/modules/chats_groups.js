@@ -57,7 +57,8 @@ class Chats_Groups extends Common {
 		this.current = id;
 
 		if (innerWidth <= 400) {
-			menu_bar.element.style.display = 'none';
+			//menu_bar.element.style.display = 'none';
+			MB.style.display = 'none';
 			this.pl.style.display = 'none';
 
 			Content.bb.style.display = 'none';
