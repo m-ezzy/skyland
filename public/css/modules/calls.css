@@ -1,0 +1,70 @@
+.called_by_indicator {
+	grid-area: 1 / 5 / 3 / 6;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.call_made {
+	background-image: url('../../media/images/design/call_made.png');
+}
+.call_received {
+	background-image: url('../../media/images/design/call_received.png');
+}
+
+.previous_list .button.call {
+	grid-area: 1 / 6 / 3 / 7;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.button.call {
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.button.call.audio {
+	background-image: url('../../media/images/design/call_audio.png');
+}
+.button.call.video {
+	background-image: url('../../media/images/design/call_video.png');
+}
+
+.peer_id_local {
+	background-color: rgb(44, 44, 44);
+	grid-area: 1 / 5 / 3 / 9;
+}
+.peer_id_remote {
+	background-color: rgb(44, 44, 44);
+	grid-area: 1 / 9 / 3 / 13;
+}
+
+.audio.remote {
+	grid-area: 4 / 1 / 5 / 13;
+	display: none;
+}
+
+.video.local {
+	grid-area: 6 / 1 / 12 / 13;
+	display: grid;
+}
+.video.remote {
+	grid-area: 12 / 1 / 17 / 13;
+	display: none;
+}
+
+.accept_call {
+	background-color: darkgreen;
+	grid-area: 19 / 1 / 21 / 7;
+	display: none;
+}
+.decline_call {
+	background-color: darkred;
+	grid-area: 19 / 7 / 21 / 13;
+	display: none;
+}
+.end_call {
+	background-color: darkred;
+	grid-area: 19 / 1 / 21 / 13;
+	display: none;
+}
+
+@media only screen and (min-width: 400px) {
+}
