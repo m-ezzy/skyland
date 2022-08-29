@@ -48,9 +48,16 @@ class Chats_Groups extends Common {
 	}
 	//can't use 'this' in function parameters, using 't' instead of 'this'
 	show_conversation(t, id) {
-		if ( this.current == id ) { return; }
+		console.log(this.current, id);
+		if ( this.current == id ) {
+			console.log(this.current, id);
+			return;
+		}
 
+		console.log(this.current, id);
+		
 		if (this.current != -1) {
+			console.log(this.current, id);
 			document.getElementById(`conversation_${this.who}_${id}`).style.display = 'none';
 		}
 

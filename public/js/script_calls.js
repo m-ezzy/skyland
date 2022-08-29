@@ -1,11 +1,15 @@
 //`${Math.floor(Math.random() * 2 ** 18).toString(36).padStart(4, 0)}`
 //undefined
-const peer = new Peer(`${Math.floor(Math.random() * 2 ** 18).toString(36).padStart(4, 0)}`, {
+/*
+const peer = new Peer(getCookie('user_id'), {
 	host: window.location.hostname,
 	debug: 1,
 	path: '/internet-phone',
-	port: 443,
+	//port: 443,
 });
+*/
+const peer = new Peer(getCookie('user_id'));
+console.log(peer);
 
 window.peer = peer;
 

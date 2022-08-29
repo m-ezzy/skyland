@@ -16,8 +16,10 @@
 	grid-area: 3 / 1 / 19 / 13;
 
 	display: grid;
+	/*
 	grid-template-rows: repeat(auto-fill, 5vh);
 	grid-template-columns: auto;
+	*/
 
 	text-align: center;
 

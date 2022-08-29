@@ -72,10 +72,10 @@ console.log(__dirname);
 
 const { PeerServer } = require('peer');
 const peerServer = PeerServer({
-	proxied: true,
+	//proxied: true,
 	debug: true,
-	path: '/internet-phone',
-	ssl: {}
+	//path: '/internet-phone',
+	//ssl: {}
 });
 app.use(peerServer);
 
