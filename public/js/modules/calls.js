@@ -94,8 +94,8 @@ class Calls extends Content {
 
 		this.ch.getElementsByClassName('peer_id_local')[0].innerHTML = `local peer id : ${peer.id}`;
 	}
-	clicked() {
-		super.clicked();
+	handleClick() {
+		super.handleClick();
 
 		if (innerWidth <= screen_mobile && (call_outgoing || call_incoming)) {
 			MB.style.display = 'none';

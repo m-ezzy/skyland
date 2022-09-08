@@ -39,8 +39,8 @@ class Chats_Groups extends Common {
 	async load_data() {
 		await super.load_data();
 	}
-	clicked() {
-		super.clicked();
+	handleClick() {
+		super.handleClick();
 
 		if (this.current != -1) {
 			Chats_Groups.snm.style.display = 'grid';
@@ -53,14 +53,11 @@ class Chats_Groups extends Common {
 			console.log(this.current, id);
 			return;
 		}
-
 		console.log(this.current, id);
-		
 		if (this.current != -1) {
 			console.log(this.current, id);
 			document.getElementById(`conversation_${this.who}_${id}`).style.display = 'none';
 		}
-
 		this.current = id;
 
 		if (innerWidth <= 400) {
@@ -113,7 +110,7 @@ class Chats_Groups extends Common {
 			return;
 		}
 
-		let response = await fetch(backEnd.pre + this.who + '/show_conversation' + backEnd.suf, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'chat_id=' + id + '&row_up=' + row_up});
+		let response = await fetch(backEnd.pre + this.who + '/show_conversation' + backEnd.suf, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: `${this.who1}_id=${id}&row_up=${row_up}`});
 		let result = await response.json();
 		console.log(result);
 
@@ -127,8 +124,7 @@ class Chats_Groups extends Common {
 		document.getElementById(`conversation_${this.who}_${id}`).innerHTML = '';
 
 		let i = 0;
-		let r;
-		while (r = result[i]) {
+		result.forEach(r => {
 			let e;
 			let class_media = (r.sender_id == me.user_id) ? "sent" : "received";
 
@@ -142,9 +138,9 @@ class Chats_Groups extends Common {
 				e = create_video(class_media, "", "", "data/" + this.who + "/" + id + "/" + r.id + "." + r.text, Common.w, Common.h);
 			}
 
-			document.getElementById(`conversation_${this.who}_${id}`).append(e);
+			document.getElementById(`conversation_${this.who}_${id}`).appendChild(e);
 			i++;
-		}
+		});
 		document.getElementById(`conversation_${this.who}_${id}`).innerHTML += ddd;
 
 		document.getElementById(`conversation_${this.who}_${id}`).scrollTop = (innerHeight / 20) * i;
@@ -173,29 +169,26 @@ class Chats_Groups extends Common {
 		if(Chats_Groups.tm.value == "" || this.tk.value == "") {
 			return;
 		}
-
 		do_amazing_animation_z("55vw", "0vh", 7, "5vw", "10vh");
 
-		let id = this.current;
-
 		let em = encryption(Chats_Groups.tm.value, this.tk.value);
+
+		console.log(this.who1);
 
 		let response = await fetch(backEnd.pre + this.who + '/send_message' + backEnd.suf, {
 			method: 'POST', 
 			mode: 'cors', 
 			headers: {
-				'Content-Type':'application/x-www-form-urlencoded' 
+				'Content-Type':'application/x-www-form-urlencoded'
 			}, 
-			body: 'chat_id=' + id + '&message=' + em
+			body: `${this.who1}_id=${this.current}&message=${em}`
 		});
-		console.log(response);
 		let result = await response.json();
 
-		this.previous[this.current].row_down = result;
+		this.previous[this.current].row_down = result[`${this.who1}_media_id`];
 
-		document.getElementById(`conversation_${this.who}_${id}`).appendChild(create_div("sent messages", "", "", Chats_Groups.tm.value));
-
-		document.getElementById(`conversation_${this.who}_${id}`).scrollBy(0, 200);
+		document.getElementById(`conversation_${this.who}_${this.current}`).appendChild(create_div("sent messages", "", "", Chats_Groups.tm.value));
+		document.getElementById(`conversation_${this.who}_${this.current}`).scrollBy(0, 200);
 	}
 	async send_images() {
 		Chats_Groups.sending[0].style.visibility = "hidden";
@@ -203,9 +196,10 @@ class Chats_Groups extends Common {
 		const fd = new FormData();
 		let all_files = document.getElementsByClassName("select_images")[0];
 		fd.append("select_images", all_files.files[0]);
+		fd.append("id", this.current);
 
 		let text = "";
-		let response = await fetch("src/php/" + this.who + "/send_images.php?q=" + this.previous[this.current].user_name, {
+		let response = await fetch(backEnd.pre + this.who + "/send_images" + backEnd.suf, {
 			method: 'POST',
 			body: fd
 		})

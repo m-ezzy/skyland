@@ -8,6 +8,8 @@ class Content {
 
 	constructor(who) {
 		this.who = who;
+		console.log(who.length);
+		this.who1 = who.substring(0, who.length - 1);
 		this.element = document.getElementById(this.who);
 		this.loaded = 0;
 		this.open = 0;
@@ -44,7 +46,7 @@ class Content {
 	}
 	async load_data() {
 	}
-	clicked() {
+	handleClick() {
 		if (this.loaded == 0) {
 			this.load();
 			this.load_data();
@@ -86,20 +88,16 @@ class Content {
 		this.sr.style.display = "grid";
 	}
 	search() {
-		this.sr.style.display = "grid";
 		/*
-		let w = Content.current.who;
-		if (w == 'home') {
-			home.search();
-		} else if (w == 'chats') {
-			chats.search();
-		} else if (w == 'groups') {
-			groups.search();
-		} else if (w == 'channels') {
-			channels.search();
-		} else if (w == 'games') {
-			games.search();
+		if(Content.ts.value == "") {
+			this.sr.style.display = "none";
+			return;
 		}
-		*/
+		this.sr.innerHTML = "";
+		this.sr.style.display = "grid";
+
+		do_amazing_animation("25vw", "0vh", "5vw", "10vh");
+
+		let pre = this.search_previous();*/
 	}
 }

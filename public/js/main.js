@@ -51,8 +51,8 @@ document.body.onload = function() {
 	games = new Games('games');
 	profiles = new Profiles('profiles');
 
-	profiles.clicked();
-	chats.clicked();
+	profiles.handleClick();
+	chats.handleClick();
 	//calls.clicked();
 
 	if (resources) {

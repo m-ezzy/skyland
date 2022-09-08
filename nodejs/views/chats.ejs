@@ -1,0 +1,30 @@
+<div class="content chats">
+	<div class="search_results"></div>
+	<div class="previous_list">
+		<% Object.entries(data).forEach([key, value] => { %>
+			<div class="pre" id="previous_chats_">
+				<img
+			</div>
+
+			c += "<div class='pre' onclick='" + this.who + ".show_conversation(this," + my_id + ")'";
+		c += "<img src='" + path + "' />";
+		c += text;
+		c += "<div class='new_media_indicator'></div>";
+		c += "</div>";
+		<% } %>
+		
+		let div = create_div('pre', `previous_${this.who}_${id}`, `${this.who}.show_conversation(this, ${id})`, names);
+		let img = create_image('', '', '', img_src);
+		let nmi = create_div('new_media_indicator', '', '', '');
+		div.appendChild(img);
+		div.appendChild(nmi);
+		this.pl.appendChild(div);
+	</div>
+
+	<div class='conversation_bar'>
+		<div class='current_header'>
+			<div class='details'></div>
+			<input type='text' class='text search_conversation' placeholder='search conversation' oninput='chats.search_conversation()'>
+		</div>
+	</div>
+</div>

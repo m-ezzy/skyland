@@ -8,7 +8,7 @@ class Channels extends Common {
 	load_data() {
 		super.load_data();
 	}
-	clicked() {
-		super.clicked();
+	handleClick() {
+		super.handleClick();
 	}
 }

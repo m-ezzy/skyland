@@ -31,7 +31,6 @@ class Profiles extends Content {
 
 		let response = await fetch(backEnd.pre + this.who + '/load' + backEnd.suf, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: ''});
 		let result = await response.json();
-
 		console.log(result);
 
 		localStorage.setItem('user_id', result.user_id);
@@ -45,16 +44,14 @@ class Profiles extends Content {
 			this.pp.src = 'data/profile_pictures/' + result.user_name + "." + result.extension;
 		}
 
-		console.log(this.pl.innerHTML);
 		this.pl.innerHTML += "<br> user id : " + result.user_id + "<br> user name : " + result.user_name + "<br> first name : " + result.first_name + "<br> last name : " + result.last_name;
-		console.log(this.pl.innerHTML);
 
 		this.loaded = 1;
 
 		me = result;
 	}
-	clicked() {
-		super.clicked();
+	handleClick() {
+		super.handleClick();
 	}
 	async upload_profile_picture() {
 		const fd = new FormData();
