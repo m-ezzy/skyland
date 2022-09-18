@@ -31,12 +31,15 @@ let server_user_name = "GmbQ2TG1CF";
 let server_pass_word = "qDNomQOxm6";
 let data_base = "GmbQ2TG1CF";
 */
-
 /*
-let server_pass_word = "88^EJl@=05E\F[A`";
+let socketPath = "/cloudsql/skyland-362206:us-central1:mysql-db-1";
+let server_user_name = "admin1";
+let server_pass_word = "r^hx81{F-%75&Naa";
+let data_base = "skyland";
 */
 
 var db = mysql.createConnection({
+	//socketPath: socketPath,
 	host: server_name,
 	user: server_user_name,
 	password: server_pass_word,

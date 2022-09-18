@@ -10,6 +10,6 @@ router.post("/", async (req, res) => {
 	let rows = await db.query(query).catch(err => { throw err });
 
 	res.contentType('text/json');
-	res.send(JSON.stringify({'result': 1}));
+	res.send(JSON.stringify({"row_number": rows.insertId}));
 });
 module.exports = router;

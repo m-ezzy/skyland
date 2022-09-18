@@ -1,0 +1,31 @@
+<!--<div class="content groups">-->
+	<div class="bar list">
+		<%- include ('partials/search_elements', {names: 'groups'}) %>
+
+		<div class="list previous">
+			<% Object.entries(data).forEach(([group_id, v]) => { %>
+				<div class="prev" id="prev_groups_<%= group_id %>" onclick="groups.handle_click_prev(this, '<%= group_id %>')">
+					<% let src = ((v.extension == null) ? 'media/images/place_holder/groups.png' : `data/icons/groups/${group_id}.${v.extension}`); %>
+					<div class="images"><img src='<%= src %>' /></div>
+					<% let text = `gid: ${group_id} , gn: ${v.group_name} , title: ${v.title}`; %>
+					<span><%= text %></span>
+					<div class='new_media_indicator' id="nmi_groups_<%= group_id %>"></div>
+				</div>
+			<% }); %>
+		</div>
+	</div>
+	<div class='bar conversation'>
+		<div class='current_header'>
+			<div class='details' onclick="handle_click_header()"></div>
+			<input type="text" class='text add_member' />
+			<div class='button add_member' onclick='groups.handle_click_add_member()'> add member </div>
+			<div class='button call audio' onclick='groups.handle_click_call(6)'></div>
+			<div class='button call video' onclick='groups.handle_click_call(7)'></div>
+			<input class='text key' type='text' placeholder='enter key of this conversation' value='0' oninput='groups.decrypt_messages()' />
+			<div class='button key' onclick='groups.toggle_en_de_crypt_messages()'> encrypt or decrypt </div>
+			<input class='text search_conversation' type='text' placeholder='search conversation' oninput='groups.search_conversation()' />
+		</div>
+		
+		<%- include ('partials/send_new_media', {names: 'groups'}) %>
+	</div>
+<!--</div>-->

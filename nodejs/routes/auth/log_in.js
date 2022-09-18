@@ -22,9 +22,8 @@ router.post("/", async (req, res) => {
 
 	let query = `SELECT user_id,user_name,pass_word FROM users WHERE user_name='${user_name}' AND pass_word='${pass_word}'`;
 	let rows = await db.query(query).catch(err => { console.log(err); });
-	console.log(JSON.stringify(rows));
 
-	if (rows) {
+	if (rows.length) {
 		res.cookie('user_id', rows[0].user_id, {maxAge: '3600000'}); //1 hour
 
 		//res.contentType('text/html');

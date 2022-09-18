@@ -6,8 +6,8 @@ router.get("/", async (req, res) => {
 });*/
 
 router.use('/load', require('./load'));
-router.use('/search', require('./search'));
-router.use('/create_new', require('./create_new'));
+//router.use('/search', require('./search'));
+//router.use('/create_new', require('./create_new'));
 //router.use('/show_conversation', require('./show_conversation'));
 //router.use('/send_message', require('./send_message'));
 

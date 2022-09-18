@@ -1,0 +1,29 @@
+<div class="bar list">
+	<%- include ('partials/search_elements', {names: 'calls'}) %>
+
+	<div class="list previous"></div>
+</div>
+<div class="bar conversation">
+	<div class="current_header">
+		<div class="details"></div>
+		<div class="button call audio" onclick='calls.handle_click_call(6)'></div>
+		<div class="button call video" onclick='calls.handle_click_call(7)'></div>
+	</div>
+	<div class="conv calls">
+		<div class="container_audio">
+			<audio controls class='audio remote' width="50%" height="auto"></audio>
+		</div>
+		<div class="container_video">
+			<video controls class='video local' width="50%" height="auto" muted='true'></video>
+		</div>
+		<div class="container_video">
+			<video controls class='video remote' width="50%" height="auto"></video>
+		</div>
+	</div>
+
+	<!--<div class="controller">-->
+		<div class='button call_accept' onclick='calls.call_accept()'> accept call </div>
+		<div class='button call_decline' onclick='calls.call_decline()'> decline call </div>
+		<div class='button call_end' onclick='calls.call_end()'> end call </div>
+	<!--</div>-->
+</div>

@@ -1,6 +1,8 @@
 let express = require("express");
 let router = express.Router();
 
+//router.use('/data/icons/users', require('./get_data_image'));
+
 router.get("/", (req, res) => {
 	if (req.cookies.user_id) {
 		res.redirect(`localhost:8000/index.html`);
@@ -19,8 +21,8 @@ router.use('/auth', require('./auth/all'));
 router.use('/calls', require('./calls/all'));
 router.use('/chats', require('./chats/all'));
 router.use('/groups', require('./groups/all'));
-//router.use('/channels', require('.//all'));
+router.use('/channels', require('./channels/all'));
 //router.use('/games', require('.//all'));
-router.use('/profiles', require('./profiles/all'));
+router.use('/settings', require('./settings/all'));
 
 module.exports = router;

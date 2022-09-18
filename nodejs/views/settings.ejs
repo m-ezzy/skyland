@@ -1,0 +1,20 @@
+<div class="bar list">
+	<div class="list previous">
+		<div class="prev" onclick="settings.handle_click_prev(0)"> account </div>
+		<div class="prev" onclick="settings.handle_click_prev(1)"> theme </div>
+		<div class="prev" onclick="settings.handle_click_prev(2)"> storage </div>
+	</div>
+</div>
+<div class='bar conversation'>
+	<div class="conv">
+		<% let src = ((data.extension == null) ? 'media/images/place_holder/user.png' : `data/icons/users/${data.user_id}.${data.extension}`); %>
+		<img class="image pp" src='<%= src %>' width="200" height="200" />
+		<input class='file pp' type='file' name="file_pp">
+		<div class='button pp' onclick='profiles.upload_profile_picture()'> upload </div>
+	</div>
+	<div class="conv">
+		<div class='button' id='button_theme' onclick='toggle_theme(this)'> change theme </div>
+	</div>
+	<div class="conv">
+	</div>
+</div>

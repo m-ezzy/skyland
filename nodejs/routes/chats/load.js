@@ -1,6 +1,7 @@
 let express = require("express");
 let router = express.Router();
-let db = require('../../database.js');
+let db = require('../../database');
+let model = require('../../models/chats');
 
 router.post("/", async (req, res) => {
 	let user_id = req.cookies.user_id;
@@ -28,14 +29,14 @@ router.post("/", async (req, res) => {
 		p[r.chat_id].last_name = rows2[0].last_name;
 		p[r.chat_id].extension = rows2[0].extension;
 	}
-
+	/*
 	res.contentType('text/json');
 	res.send(JSON.stringify(p));
 	//res.json(p);
-	
-	/*
-	res.render('chats', {
-		data: p,
-	});*/
+	*/
+	res.render('chats', {data: p}, (err, html) => {
+		res.contentType('text/json');
+		res.send({"data": p, "html": html});
+	});
 });
 module.exports = router;

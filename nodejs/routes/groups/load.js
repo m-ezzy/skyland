@@ -28,7 +28,9 @@ router.post("/", async (req, res) => {
 		});
 	}
 
-	res.contentType('text/json');
-	res.send(JSON.parse(JSON.stringify(p)));
+	res.render('groups', {data: p}, (err, html) => {
+		res.contentType('text/json');
+		res.send({"data": p, "html": html});
+	});
 });
 module.exports = router;

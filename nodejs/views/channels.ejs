@@ -1,0 +1,23 @@
+<div class="bar list">
+	<%- include ('partials/search_elements', {names: 'channels'}) %>
+
+	<div class="list previous">
+		<% Object.entries(data).forEach(([channel_id, v]) => { %>
+			<div class="prev" id="prev_channels_<%= channel_id %>" onclick="channels.handle_click_prev(this, '<%= channel_id %>')">
+				<% let src = ((v.extension == null) ? 'media/images/place_holder/channels.png' : `data/icons/channels/${v.channel_id}.${v.extension}`); %>
+				<div class="images"><img src='<%= src %>' /></div>
+				<span><%= `cid: ${channel_id} , cn: ${v.channel_name} , title: ${v.title}` %></span>
+				<div class='new_media_indicator' id="nmi_channels_<%= channel_id %>"></div>
+			</div>
+		<% }); %>
+	</div>
+</div>
+<div class='bar conversation'>
+	<div class='current_header'>
+		<div class='details'></div>
+		<input type="text" class='text add_member' />
+		<div class='button add_member' onclick='channels.handle_click_add_member()'></div>
+
+		<input class='text search_conversation' type='text' placeholder='search conversation' oninput='channels.search_conversation()' />
+	</div>
+</div>

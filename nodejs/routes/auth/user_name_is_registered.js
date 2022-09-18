@@ -12,14 +12,11 @@ router.post("/", async (req, res) => {
 	res.contentType('text/json');
 
 	console.log(rows);
-	console.log(JSON.stringify('result=1'));
 
-	if (rows) {
-		console.log(JSON.stringify(1));
+	if (rows.length) {
 		res.send(JSON.stringify(1));
 	} else {
 		res.send(JSON.stringify(0));
 	}
 });
-
 module.exports = router;

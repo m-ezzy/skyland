@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser');
 
 const express = require("express");
 const http = require('http');
+const https = require('https');
 const path = require('path');
 const socketio = require('socket.io');
 
@@ -17,6 +18,8 @@ const io = new Server(server, {
 	serveClient: true,
 });
 */
+
+//let sio = require('./nodejs/sockets/handleSockets')(io);
 
 //Whenever someone connects this gets executed
 io.on('connection', function(socket) {
@@ -35,10 +38,8 @@ io.on('connection', function(socket) {
 
 io.of('/chats').on('connection', (socket) => {
 	socket.on('join-all-my-rooms', (data) => {
-		console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
 		console.log(data);
 		data.forEach(chat_id => {
-			console.log(chat_id);
 			socket.join(chat_id);
 		});
 	});
@@ -49,8 +50,8 @@ io.of('/chats').on('connection', (socket) => {
 });
 io.of('/groups').on('connection', (socket) => {
 	socket.on('join-all-my-rooms', (data) => {
+		console.log(data);
 		data.forEach(group_id => {
-			console.log(group_id);
 			socket.join(group_id);
 		});
 	});
@@ -84,10 +85,10 @@ console.log(__dirname);
 /*
 const { PeerServer } = require('peer');
 const peerServer = PeerServer({
-	//proxied: true,
+	proxied: true,
 	debug: true,
 	path: '/internet-phone',
-	port: 9000,
+	port: 443,
 	//ssl: {}
 });
 app.use(peerServer);
@@ -95,11 +96,11 @@ app.use(peerServer);
 /*
 const { ExpressPeerServer } = require('peer');
 const peerServer = ExpressPeerServer(server, {
-	proxied: true,
+	//proxied: true,
 	debug: true,
 	path: '/internet-phone',
-	//port: 443,
-	ssl: {}
+	port: 443,
+	//ssl: {}
 });
 app.use(peerServer);
 */
@@ -122,63 +123,6 @@ app.set('views', path.join(__dirname, 'nodejs/views'));
 app.set('view engine', 'ejs')
 
 app.use('/', require('./nodejs/routes/all'));
-
-/*
-var auth = require("./nodejs/auth/auth");
-var user_name_is_registered = require("./nodejs/auth/user_name_is_registered");
-var sign_up = require("./nodejs/auth/sign_up");
-var log_in = require("./nodejs/auth/log_in");
-
-let calls = {
-	load: require("./nodejs/calls/load"),
-	send_my_peer_id: require("./nodejs/calls/send_my_peer_id"),
-};
-let chats = {
-	load: require("./nodejs/chats/load"),
-	search: require("./nodejs/chats/search"),
-	create_new: require("./nodejs/chats/create_new"),
-};
-let groups = {
-	load: require("./nodejs/groups/load"),
-	search: require("./nodejs/groups/search"),
-	create_new: require("./nodejs/groups/create_new"),
-}
-
-//var groups = require("./nodejs/groups");
-
-//var channels = require("./nodejs/channels");
-
-//var games = require("./nodejs/games");
-
-var profiles = {
-	load: require("./nodejs/profiles/load"),
-};
-
-app.use("/", auth);
-app.use("/auth/user_name_is_registered", user_name_is_registered);
-app.use("/auth/sign_up", sign_up);
-app.use("/auth/log_in", log_in);
-
-app.use("/calls/load", calls.load);
-app.use("/calls/send_my_peer_id", calls.send_my_peer_id);
-app.use("/calls/make_new_call", require("./nodejs/calls/make_new_call"));
-
-app.use("/chats/load", chats.load);
-app.use("/chats/search", chats.search);
-app.use("/chats/create_new", chats.create_new);
-app.use('/chats/show_conversation', require('./nodejs/chats/show_conversation'));
-app.use('/chats/send_message', require('./nodejs/chats/send_message'));
-
-app.use("/groups/load", groups.load);
-app.use("/groups/search", groups.search);
-app.use("/groups/create_new", groups.create_new);
-
-//app.use("/channels", channels);
-
-//app.use("/games", games);
-
-app.use("/profiles/load", profiles.load);
-*/
 
 server.listen(port, () => {
 	console.log(`server is listening on port ${port}`);

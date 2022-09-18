@@ -1,4 +1,2 @@
-
 exports.getPreviousList = () => {
-    
 }

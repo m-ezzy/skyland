@@ -3,7 +3,9 @@
 	/*background-color: #9FD1FF;*/
 
 	/*background-image: linear-gradient(red, green, blue);*/
-
+	background-size: contain;
+	background-repeat: no-repeat;
+	
 	/*transition-delay: 0s;
 	transition-duration: 1s;
 	transition-property: background-color;

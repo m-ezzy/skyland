@@ -5,9 +5,9 @@ let db = require('../../database.js');
 router.post("/", async (req, res) => {
 	let user_id = req.cookies.user_id;
 	let group_id = req.body.group_id;
-	let message = req.body.message;
+	let encrypted_message = req.body.encrypted_message;
 
-	let query = `INSERT INTO group_media(group_id,sender_id,media_type,text) VALUES(${group_id},${user_id},0,'${message}')`;
+	let query = `INSERT INTO group_media(group_id,sender_id,media_type,text) VALUES(${group_id},${user_id},0,'${encrypted_message}')`;
 	let rows = await db.query(query).catch(err => { throw err });
 	console.log(rows);
 	

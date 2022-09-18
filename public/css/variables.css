@@ -1,12 +1,14 @@
 :root {
 	--bg: #184A45FF;
 	--text: #b2d8d8;
-    --input-text-bg: white;
-    --input-text-text: black;
+    --input-text-bg: #ffffff;
+    --input-text-text: #000000;
 
 	--mb-bg: #184A45FF;
     --mb-text: #B0B8B4FF;
 
+	--menu-selected-bg: #000000;
+	--menu-selected-text: #B0B8B4FF;
 	/*
 	--bgcolor2: #808080;
 	--textcolor2: #00ff99;

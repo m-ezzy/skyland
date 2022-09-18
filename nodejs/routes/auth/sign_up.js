@@ -7,7 +7,6 @@ router.post("/", async (req, res) => {
 
 	let user_name = req.body.user_name;
 	let pass_word = req.body.pass_word;
-
 	let first_name = req.body.first_name;
 	let last_name = req.body.last_name;
 
@@ -25,7 +24,6 @@ router.post("/", async (req, res) => {
 	rows = await db.query(query).catch(err => { throw err });
 
 	res.cookie('user_id', user_id, {maxAge: '3600000'});
-
 	res.redirect('../../index.html');
 });
 
