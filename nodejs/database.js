@@ -61,3 +61,15 @@ db.connect(function(err) {
 
 module.exports = db;
 //module.exports.limit = 5;
+/*
+let executeQuery = async (query) => {
+	let rows = await db.query(query)
+        .catch(err => {
+            console.log(err)
+            throw err
+        }
+    )
+	return JSON.parse(JSON.stringify(rows))
+}
+exports.default = {}
+*/

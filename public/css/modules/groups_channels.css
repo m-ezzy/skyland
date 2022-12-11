@@ -1,0 +1,20 @@
+.bar.members {   /* members, details, side */
+	grid-area: 1 / 13 / 21 / 21;
+	grid-template-rows: repeat(auto-fill, 10vh);
+	grid-template-columns: repeat(4, 1fr);
+	display: none;
+
+	overflow-y: visible;
+	border: 0px;
+}
+.bar.members input {
+	grid-area: 1 / 1 / 2 / 4;
+}
+.bar.members .button {
+	grid-area: 1 / 4 / 2 / 5;
+	background-image: url("../../media/images/design/add.png");
+}
+.bar.members .prev {
+	grid-column: 1 / 5;
+	grid-template-columns: 1fr 1fr 4fr;
+}

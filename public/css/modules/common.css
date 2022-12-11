@@ -1,91 +1,71 @@
-.new_media_indicator { /*.previous_list div div*/
-	grid-area: 1 / 6 / 3 / 7;
-	text-indent: 0;
-	transition: background-color 3s linear;
-	color: rgb(110, 0, 0);
+.wrapper {
+	height: 70px;
+	display: flex;
+	padding: 5px;
+	column-gap: 5px;
+}
+.current_header {
+	/*grid-area: 1 / 1 / 2 / 2;*/
+	display: grid;
+	grid-template-rows: 1fr;   /* 1fr 20fr 1fr */
+	grid-template-columns: 8fr repeat(5, 1fr);
+	padding: 5px;
+	column-gap: 5px;
+}
+.current_header .details {
+	/*grid-area: 1 / 1 / 3 / 7;*/
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: 70px auto;
+	padding: 5px;
+	column-gap: 5px;
+	/*text-indent: 10vw;
+	text-align: left;*/
+	position: relative;
+	top: 0;
+	left: 0;
+	height: 100%;
+}
+.current_header .details .images {
+	/*grid-area: 1 / 1 / 3 / 12;*/
+}
+.current_header .details :nth-child(2) {
+	/*grid-area: 1 / 13 / 3 / 41;*/
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
 }
 .text.search_conversation {
-	grid-area: 1 / 9 / 3 / 11;
+	/*grid-area: 1 / 9 / 3 / 11;*/
 }
 .conv {
 	overflow-y: visible;
 
-	grid-area: 3 / 1 / 19 / 13;
+	grid-area: 2 / 1 / 3 / 2;
 	display: none;
 	/*grid-template-rows: repeat(auto-fill, 5vh);*/
-	grid-template-columns: auto;
+	/*grid-template-rows: repeat(auto-fill, 70px);*/
+	/*grid-template-columns: auto;*/
 	/*grid-auto-flow: row;*/
-	grid-auto-rows: 10vh;
+	/*grid-auto-rows: 100px;*/
 
-	row-gap: 10vh;
-	text-align: center;
-	/*object-fit: cover;*/
+	position: relative;
+
+	padding: 10px;
 }
 .conv div {
 	position: relative;
-	/*margin-bottom: 5vh;*/
+	margin-bottom: 10px;
+	display: grid;
+	/*grid-template-rows: 10px auto;*/
 }
-.conv div div {
+.sender_specifier {
 	position: relative;
-	width: inherit;
-	height: 5vh;
-}
-.received {
-	left: 0;
-	/*float: left;*/
-
-	justify-content: left; /* x */
-	justify-self: left;
-}
-.sent {
-	left: auto;
-	right: 0;
-	/*float: right;*/
-
-	justify-content: right;
-	justify-self: right;
-}
-.messages {
-	min-width: 10vw;
-	max-width: 40vw;
-	width: fit-content;
-	min-height: 10vh;
-	height: fit-content;
-
-	/*position: relative;*/
-	/*height: fit-content;*/
-	/*height: 20vh;*/
-
-	/*margin-bottom: 1vh;*/
-	/*margin-left: 24vw;*/
-	/*margin-right: 5vw;*/
-
-	/*text-align: right;*/
-	/*padding-right: 1vw;*/
-}
-.conv .images,.conv .videos {
-	width: 20vw;
-	height: 20vh;
-}
-.sent.messages {
-	text-align: right;
-	/*padding-right: 1vw;*/
-
-	color: rgb(255, 255, 255);
-	background-color: #000000;
-}
-.received.messages {
-	text-align: left;
-	/*padding-left: 1vw;*/
-
-	color: rgb(0, 0, 0);
-	background-color: #ffffff;
+	width: 100%;
+	height: 30px;
 }
 
-@media only screen and (min-width: 400px) {
-	.new_media_indicator { /*.previous_list div div*/
-		text-indent: 0;
-	}
+@media only screen and (max-width: 400px) {
 	.text.search_conversation {
 		grid-area: 1 / 9 / 3 / 11;
 	}

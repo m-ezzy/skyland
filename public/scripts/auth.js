@@ -1,9 +1,3 @@
-let backEnd = {
-	lang: 'nodejs',
-	pre: '/',
-	suf: '',
-};
-
 //let bli = document.getElementById("button_log_in");
 //let bsu = document.getElementById("button_sign_up");
 
@@ -52,20 +46,20 @@ async function check_user_name(user_name, num) {
 		return;
 	}
 
-	let response = await fetch(backEnd.pre + 'auth/user_name_is_registered' + backEnd.suf, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'user_name=' + user_name});
-	let result = await response.json();
-	console.log(result);
+	let response = await fetch(backEnd.pre + 'account/user_name_available' + backEnd.suf, {method: 'POST', mode: 'cors', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: 'user_name=' + user_name});
+	let data = await response.json();
+	console.log(data);
 
 	let colors = ['green', 'red', 'green'];
 
 	let vr = document.getElementsByClassName('validate')[num];
-	vr.style.display = 'grid';
+	vr.style.visibility = 'visible';
 
-	if (result) {
-		vr.style.backgroundColor = colors[num/2];
-		vr.innerHTML = "user name is registered !";
-	} else {
+	if (data.answer) {
 		vr.style.backgroundColor = colors[num/2 + 1];
 		vr.innerHTML = "user name is not registered !";
+	} else {
+		vr.style.backgroundColor = colors[num/2];
+		vr.innerHTML = "user name is registered !";
 	}
 }

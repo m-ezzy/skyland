@@ -1,47 +1,53 @@
-class Calls {
-	constructor() {
+class Calls extends Common {
+	constructor(number, name) {
 	//let Calls = function() {
-		//super();
+		super(number, name);
 
-		this.number = 0;
-		//this.name = menu_bar.menus[this.number].split("s");
-		this.name = "call";
-		this.names = this.name + "s";
-		this.menu = document.getElementsByClassName("menu_bar")[0].getElementsByTagName("div")[this.number];
-		this.element = document.getElementsByClassName("content")[this.number];
+		this.lic;
 
-		this.loaded = 0;
-		this.is_open = 0;
-		this.current = 0;
-
-		this.previous = {};
-
-		this.place_holder =  "media/images/place_holder/" + this.names + ".png";
-
-		this.bl;
-		this.bb;
-		this.ts;
-		this.bs;
-		this.ls;
-		this.lp;
-		
-		this.bc;
-		this.ch;
-
-		this.conv;
-		this.ar;
+		this.alc;
+		this.vlc;
+		this.al;
 		this.vl;
-		this.vr;
 
-		this.bca;
-		this.bcd;
-		this.bce;
+		//this.controller //controller //snm
+		this.bmic
+		this.bce
+		//this.bcanvas
 
-		this.peer_id_local;
-		this.peer_id_remote;
-		this.call_incoming;
-		this.call_outgoing;
+		//this.peer_is_open = 0
+		this.current = {
+			chat_id: 0,
+			group_id: 0
+		}/*
+		this.current = {
+			chats: {
+				chat_id: 0,
+				user_id: 0,
+				user_name: ""
+			},
+			groups: {
+				group_id: 0,
+				group_name: "",
+				title: ""
+			}
+		}*/
 
-		this.conn;
+		this.peer = {}
+		this.conn = {}
+		this.calls = {}   //this.call_incoming //this.call_outgoing
+
+		this.connInterval = ''
+		this.callInterval = ''
 	}
+	initialize() {
+        super.initialize()
+
+		this.lic = this.element.getElementsByClassName("list incoming_call")[0]
+		this.alc = this.element.getElementsByClassName('local item_media_calls_audio')[0]
+		this.vlc = this.element.getElementsByClassName('local item_media_calls_video')[0]
+		this.al = this.element.getElementsByClassName('audio local')[0]
+		this.vl = this.element.getElementsByClassName('video local')[0]
+		this.bce = this.element.getElementsByClassName('button call_end')[0]
+    }
 }

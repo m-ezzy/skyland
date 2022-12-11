@@ -1,5 +1,5 @@
 class Container {
-	static menus = ['home', 'chats', 'groups', 'channels', 'games'];
+	static menus = ['home', 'chats', 'groups', 'channels', 'profiles', 'games'];
 	static current;
 
 	constructor(who) {

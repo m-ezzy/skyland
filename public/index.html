@@ -12,41 +12,49 @@
 	<!--link rel="manifest" href="/manifest.json">-->
 	<!--<link rel="icon" href="../../media/images/icon2.ico">-->
 	<!--<link type="text/css" rel="stylesheet" href="authentication.css">-->
+	
+	<link type="text/css" rel="stylesheet" href="css_flex/variables.css">
+	<link type="text/css" rel="stylesheet" href="css_flex/animations.css">
+	<link type="text/css" rel="stylesheet" href="css_flex/index.css">
 
-	<link type="text/css" rel="stylesheet" href="css/variables.css">
-	<link type="text/css" rel="stylesheet" href="css/animations.css">
-	<link type="text/css" rel="stylesheet" href="css/style.css">
+	<link type="text/css" rel="stylesheet" href="css_flex/menu_bar.css">
 
-	<link type="text/css" rel="stylesheet" href="css/menu_bar.css">
+	<link type="text/css" rel="stylesheet" href="css_flex/modules/content.css">
+	<link type="text/css" rel="stylesheet" href="css_flex/modules/common.css">
+	<link type="text/css" rel="stylesheet" href="css_flex/modules/trio.css">
+	<link type="text/css" rel="stylesheet" href="css_flex/modules/chats_groups.css">
+	<link type="text/css" rel="stylesheet" href="css_flex/modules/groups_channels.css">
+	<link type="text/css" rel="stylesheet" href="css_flex/modules/calls.css">
+	<link type="text/css" rel="stylesheet" href="css_flex/modules/chats.css">
+	<link type="text/css" rel="stylesheet" href="css_flex/modules/groups.css">
+	<link type="text/css" rel="stylesheet" href="css_flex/modules/channels.css">
+	<link type="text/css" rel="stylesheet" href="css_flex/modules/account.css">
 
-	<link type="text/css" rel="stylesheet" href="css/modules/content.css">
-	<link type="text/css" rel="stylesheet" href="css/modules/calls.css">
-	<link type="text/css" rel="stylesheet" href="css/modules/common.css">
-	<link type="text/css" rel="stylesheet" href="css/modules/chats_groups.css">
-	<link type="text/css" rel="stylesheet" href="css/modules/chats.css">
-	<link type="text/css" rel="stylesheet" href="css/modules/groups.css">
-	<link type="text/css" rel="stylesheet" href="css/modules/channels.css">
-	<link type="text/css" rel="stylesheet" href="css/modules/settings.css">
+	<!--
+	<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin></script>-->
 </head>
 <body>
 	<div id='container'>
-		<div class='menu_bar'>
+		<div class="bar menu bg-mb">
 			<!-- all of this can be div tags instead of input button -->
 			<!--<button onclick='load_home()' value='home'>-->
 			<!--<input type="button" onclick='load_frequent()' value='frequent'>-->
 
-			<div class='button' onclick='calls.handle_click_menu(this)'> calls </div>
-			<div class='button' onclick='chats.handle_click_menu(this)'> chats </div>
-			<div class='button' onclick='groups.handle_click_menu(this)'> groups </div>
-			<div class='button' onclick='channels.handle_click_menu(this)'> channels </div>
-			<div class='button' onclick='settings.handle_click_menu(this)'> settings </div>
+			<div class='button square border' onclick='calls.handle_click_menu()' data-tooltip="make calls"> calls </div>
+			<div class='button square border' onclick='chats.handle_click_menu()'> chats </div>
+			<div class='button square border' onclick='groups.handle_click_menu()'> groups </div>
+			<div class='button square border' onclick='channels.handle_click_menu()'> channels </div>
+			<div class='button square border' onclick='account.handle_click_menu()'> account </div>
+			<div class='button square border' onclick='theme.change()'> theme </div>
 		</div>
-		
+
 		<div class='content calls'></div>
 		<div class='content chats'></div>
 		<div class='content groups'></div>
 		<div class='content channels'></div>
-		<div class='content settings'></div>
+		<div class='content account'></div>
 
 
 
@@ -173,71 +181,95 @@
 	<!--<script src="js/script_games.js"></script>-->
 
 	<!--<script type="module" src="js/script_messaging.js"></script>-->
+	<!--
+	<script defer src="scripts/fetchs/all.js"></script>
+	<script defer src="scripts/fetchs/calls.js"></script>
+	<script defer src="scripts/fetchs/chats.js"></script>
+	<script defer src="scripts/fetchs/groups.js"></script>
+	-->
 
-	<script defer src="scripts/main.js"></script>
-	<script defer src="scripts/others.js"></script>
-	<script defer src="scripts/privacy.js"></script>
+	<script defer src="scripts/content/properties.js"></script>
+	<script defer src="scripts/content/handle_click_menu.js"></script>
+	<script defer src="scripts/content/initialize.js"></script>
 
-	<script defer src="scripts/menu_bar/menu_bar.js"></script>
+	<script defer src="scripts/account/properties.js"></script>
+	<script defer src="scripts/account/handle_events.js"></script>
+	<script defer src="scripts/account/initialize.js"></script>
+	<script defer src="scripts/account/load.js"></script>
+	<script defer src="scripts/account/upload_profile_picture.js"></script>
+
+	<script defer src="scripts/common/properties.js"></script>
+	<script defer src="scripts/common/initialize.js"></script>
 
 	<script defer src="scripts/calls/properties.js"></script>
-	<script defer src="scripts/calls/add_to_previous.js"></script>
-	<script defer src="scripts/calls/call_accept.js"></script>
+	<script defer src="scripts/calls/add_item_incoming_call_chats.js"></script>
+	<script defer src="scripts/calls/add_item_incoming_call_groups.js"></script>
+	<script defer src="scripts/calls/add_item_media_audio.js"></script>
+	<script defer src="scripts/calls/add_item_media_video.js"></script>
+	<script defer src="scripts/calls/add_item_previous_chats.js"></script>
+	<script defer src="scripts/calls/call_accept_chats.js"></script>
+	<script defer src="scripts/calls/call_accept_groups.js"></script>
 	<script defer src="scripts/calls/call_decline.js"></script>
 	<script defer src="scripts/calls/call_end.js"></script>
 	<script defer src="scripts/calls/event_handlers.js"></script>
-	<script defer src="scripts/calls/incoming_new_call.js"></script>
+	<script defer src="scripts/calls/events.js"></script>
+	<script defer src="scripts/calls/get_audio_video_permissions.js"></script>
+	<script defer src="scripts/calls/get_previous.js"></script>
 	<script defer src="scripts/calls/initialize.js"></script>
-	<script defer src="scripts/calls/load.js"></script>
-	<script defer src="scripts/calls/make_new_call.js"></script>
-	<script defer src="scripts/calls/send_my_peer_id.js"></script>
+	<script defer src="scripts/calls/make_call_chats.js"></script>
+	<script defer src="scripts/calls/make_call_groups.js"></script>
+	<!--<script defer src="scripts/calls/send_my_peer_id.js"></script>-->
 	<script defer src="scripts/calls/script_calls.js"></script>
 
-	<script defer src="scripts/chats/properties.js"></script>
-	<script defer src="scripts/chats/load.js"></script>
-	<script defer src="scripts/chats/event_handlers.js"></script>
-	<script defer src="scripts/chats/handle_click_menu.js"></script>
-	<script defer src="scripts/chats/add_to_conv.js"></script>
-	<script defer src="scripts/chats/add_to_previous.js"></script>
-	<script defer src="scripts/chats/add_to_search.js"></script>
-	<script defer src="scripts/chats/check_for_new.js"></script>
-	<script defer src="scripts/chats/check_for_new_media.js"></script>
-	<script defer src="scripts/chats/create_new.js"></script>
-	<script defer src="scripts/chats/history_conv.js"></script>
-	<script defer src="scripts/chats/initialize.js"></script>
-	<script defer src="scripts/chats/search_new.js"></script>
-	<script defer src="scripts/chats/search_previous.js"></script>
-	<script defer src="scripts/chats/send_images.js"></script>
-	<script defer src="scripts/chats/send_message.js"></script>
-	<script defer src="scripts/chats/send_videos.js"></script>
-	<script defer src="scripts/chats/show_conversation.js"></script>
-	<script defer src="scripts/chats/socket.js"></script>
-	<script defer src="scripts/chats/toggle_en_de_crypt_messages.js"></script>
+	<script defer src="scripts/trio/properties.js"></script>
+	<script defer src="scripts/trio/check_for_new_media.js"></script>
+	<script defer src="scripts/trio/initialize.js"></script>
+	<script defer src="scripts/trio/send_images.js"></script>
+	<script defer src="scripts/trio/send_videos.js"></script>
+
+	<script defer src="scripts/channels/properties.js"></script>
+	<script defer src="scripts/channels/initialize.js"></script>
+
+	<script defer src="scripts/duo/properties.js"></script>
+	<script defer src="scripts/duo/check_for_new.js"></script>
+	<script defer src="scripts/duo/decrypt_messages.js"></script>
+	<script defer src="scripts/duo/initialize.js"></script>
+	<script defer src="scripts/duo/toggle_en_de_crypt_messages.js"></script>
 
 	<script defer src="scripts/groups/properties.js"></script>
-	<script defer src="scripts/groups/load.js"></script>
+	<script defer src="scripts/groups/add_item_conv.js"></script>
+	<script defer src="scripts/groups/add_item_media.js"></script>
+	<script defer src="scripts/groups/add_item_member.js"></script>
+	<script defer src="scripts/groups/add_item_previous.js"></script>
+	<script defer src="scripts/groups/add_item_search_previous.js"></script>
 	<script defer src="scripts/groups/event_handlers.js"></script>
-	<script defer src="scripts/groups/handle_click_menu.js"></script>
-	<script defer src="scripts/groups/add_member.js"></script>
-	<script defer src="scripts/groups/add_to_conv.js"></script>
-	<script defer src="scripts/groups/add_to_previous.js"></script>
-	<script defer src="scripts/groups/add_to_search.js"></script>
-	<script defer src="scripts/groups/check_for_new.js"></script>
-	<script defer src="scripts/groups/check_for_new_media.js"></script>
-	<script defer src="scripts/groups/create_new.js"></script>
+	<script defer src="scripts/groups/get_previous.js"></script>
 	<script defer src="scripts/groups/history_conv.js"></script>
-	<script defer src="scripts/groups/search_new.js"></script>
-	<script defer src="scripts/groups/search_previous.js"></script>
-	<script defer src="scripts/groups/send_images.js"></script>
-	<script defer src="scripts/groups/send_message.js"></script>
-	<script defer src="scripts/groups/send_videos.js"></script>
-	<script defer src="scripts/groups/show_conversation.js"></script>
-	<script defer src="scripts/groups/socket.js"></script>
-	<script defer src="scripts/groups/toggle_en_de_crypt_messages.js"></script>
+	<script defer src="scripts/groups/search.js"></script>
+	<!--<script defer src="scripts/groups/socket.js"></script>-->
 
-	<script defer src="scripts/settings/properties.js"></script>
-	<script defer src="scripts/settings/handle_events.js"></script>
-	<script defer src="scripts/settings/load.js"></script>
-	<script defer src="scripts/settings/upload_profile_picture.js"></script>
+	<script defer src="scripts/chats/properties.js"></script>
+	<script defer src="scripts/chats/add_item_conv.js"></script>   <!-- type="text/babel" -->
+	<script defer src="scripts/chats/add_item_media.js"></script>
+	<script defer src="scripts/chats/add_item_previous.js"></script>
+	<script defer src="scripts/chats/add_item_search_new.js"></script>
+	<script defer src="scripts/chats/add_item_search_previous.js"></script>
+	<script defer src="scripts/chats/event_handlers.js"></script>
+	<script defer src="scripts/chats/get_previous.js"></script>
+	<script defer src="scripts/chats/history_conv.js"></script>
+	<script defer src="scripts/chats/initialize.js"></script>
+	<script defer src="scripts/chats/search.js"></script>
+	<!--<script defer src="scripts/chats/socket.js"></script>-->
+
+	<script defer src="scripts/menu_bar.js"></script>
+
+	<script defer src="scripts/sockets_instant_messaging.js"></script>
+
+	<script defer src="scripts/configs.js"></script>
+	<script defer src="scripts/tools.js"></script>
+	<script defer src="scripts/privacy.js"></script>
+	<script defer src="scripts/themes.js"></script>
+	<script defer src="scripts/main.js"></script>
+	<script defer src="scripts/index.js"></script>
 </body>
 </html>

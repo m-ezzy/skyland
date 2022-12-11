@@ -10,8 +10,7 @@ function getCookie(cookie_key) {
 	});
 	return res;
 }
-
 if(getCookie('user_id') == '') {
 	//console.log(cookie);
-	location.href = 'auth.html';
+	location.href = "auth.html";
 }

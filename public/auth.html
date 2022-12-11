@@ -13,7 +13,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
 
-		<link type="text/css" rel="stylesheet" href="css/auth_grid.css">
+		<link type="text/css" rel="stylesheet" href="css_flex/auth_position.css">
 
 		<script>
 			function getCookie(cookie_key) {
@@ -56,12 +56,13 @@
 			<script src="a_js.js"></script>
 			-->
 
+			<div class="company_info"> skyland! </div>
 			<form method="POST" action="auth/log_in" id="fli">
-				user name : <input type="text" name="user_name" class="text" id="log_in_user_name" oninput="check_user_name(this.value, 0)">
-				<div class='validate'></div>
+				user name : <div class='validate'></div>
+				<input type="text" name="user_name" class="text" id="log_in_user_name" oninput="check_user_name(this.value, 0)">
 
-				pass word : <input type="text" name="pass_word" class="text" id="log_in_pass_word">
-				<div class='validate'></div>
+				pass word : <div class='validate'></div>
+				<input type="text" name="pass_word" class="text" id="log_in_pass_word">
 
 				<input type="submit" name="log_in" value="log in" class="submit">
 			</form>
@@ -82,6 +83,7 @@
 			</form>
 		</div>
 
-		<script src="js/auth.js"></script>
+		<script defer src="scripts/configs.js"></script>
+		<script defer src="scripts/auth.js"></script>
 	</body>
 </html>

@@ -1,4 +1,5 @@
-Calls.prototype.handle_click_menu = async function(t) {
+/*
+Calls.prototype.handle_click_menu = async function() {
 	if (this.is_open) {
 		return;
 	}
@@ -19,11 +20,11 @@ Calls.prototype.handle_click_menu = async function(t) {
 	this.element.style.display = "grid";
 	this.menu.style.backgroundColor = 'var(--menu-selected-bg)';
 
-	if (innerWidth <= screen_mobile && (this.call_outgoing || this.call_incoming)) {
+	if (innerWidth <= configs.screen.mobile && (this.call_outgoing || this.call_incoming)) {
 		menu_bar.element.style.display = 'none';
 		this.bl.style.display = 'none';
 		this.bc.style.display = 'grid';
 	}
-}
+}*/
 Calls.prototype.handle_click_call = async function(call_type) {
 }

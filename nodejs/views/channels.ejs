@@ -1,4 +1,4 @@
-<div class="bar list">
+<div class="bar explore">
 	<%- include ('partials/search_elements', {names: 'channels'}) %>
 
 	<div class="list previous">
@@ -15,9 +15,6 @@
 <div class='bar conversation'>
 	<div class='current_header'>
 		<div class='details'></div>
-		<input type="text" class='text add_member' />
-		<div class='button add_member' onclick='channels.handle_click_add_member()'></div>
-
-		<input class='text search_conversation' type='text' placeholder='search conversation' oninput='channels.search_conversation()' />
+		<div class='button delete_exit_leave' onclick='channels.leave()'> leave </div>
 	</div>
 </div>

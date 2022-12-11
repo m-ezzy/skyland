@@ -1,91 +1,48 @@
-let calls = new Calls();
-
-//`${Math.floor(Math.random() * 2 ** 18).toString(36).padStart(4, 0)}`
-//undefined
-//getCookie('user_id')
-
-const peer = new Peer(`${Math.floor(Math.random() * 2 ** 18).toString(36).padStart(4, 0)}`, {
-	host: "localhost", //"peer-server-1.herokuapp.com", //window.location.hostname,
+const peer = new Peer('murtaza-skyland-' + getCookie("user_id") + '', { //`${Math.floor(Math.random() * 2 ** 18).toString(36).padStart(4, 0)}` //getCookie('user_id') //undefined
+	//host: "3kxygyk88v.us-west-2.awsapprunner.com", //"localhost", //"peer-server-1.herokuapp.com", //window.location.hostname, //3kxygyk88v.us-west-2.awsapprunner.com
 	debug: 1,
-	proxied: true,
-	path: '/',
-	port: 80, //window.location.port || (window.location.protocol === 'https:' ? 443 : 80),
+	//proxied: true,
+	//path: "/p",
+	//port: 443, //window.location.port || (window.location.protocol === 'https:' ? 443 : 80), //80 //9000
 	//secure: true
-});
-
+})
 //const peer = new Peer(getCookie('user_id'));
-console.log(peer);
-//calls.send_my_peer_id(peer.id);
+console.log(peer)
+console.log(window)
+console.log(window.peer)
+window.peer = peer
+console.log(window)
+console.log(window.peer)
 
-console.log(window);
-console.log(window.peer);
-window.peer = peer;
-console.log(window);
-console.log(window.peer);
+peer.on("open", function () {
+	console.log(`peer on open. peer.open = ${peer.open}`)
+})
+// new connection by someone
+peer.on("connection", function(DataConnection) {
+	calls.event_on_connection(DataConnection);
 
-let stream_local_audio = new MediaStream();
-let stream_local_video = new MediaStream();
-
-let stream_remote_audio = new MediaStream();
-let stream_remote_video = new MediaStream();
-
-let user_id_remote;
-
-let call_type_remote;
-
-let peer_open = 0;
-peer.on('open', function () {
-	peer_open = 1;
-	calls.peer_id_local = peer.id;
-	calls.send_my_peer_id(peer.id);
-	console.log(peer.id);
-});
-
-peer.on('connection', function(connection) {
-	calls.conn = connection;
-	calls.peer_id_remote = calls.conn.peer;
-
-	calls.conn.on('close', function() {
-		if (calls.ar.srcObject) {
-			calls.ar.srcObject = new MediaStream();
-			calls.ar.srcObject.autoplay = false;
-			calls.ar.srcObject.muted = true;
-		}
-		if (calls.vr.srcObject) {
-			calls.vr.srcObject = new MediaStream();
-			calls.vr.srcObject.autoplay = false;
-			calls.vr.srcObject.muted = true;
-		}
-
-		menu_bar.element.getElementsByTagName('div')[0].style.animationName = '';
-		calls.bce.style.display = 'none';
-	});
-});
-
+	conn.on("data", function(data) {
+		calls.event_on_data(JSON.parse(data));
+	})
+	conn.on("close", function() {
+		calls.event_on_connection_close(this.peer.substring(16))
+	})
+})
 // incoming call
-peer.on('call', function(call) {
-	console.log(call);
-	calls.incoming_new_call(call);
-});
-
-function get_stream_local_audio() {
-	navigator.mediaDevices.getUserMedia({video: false, audio: true})
-	.then((stream) => {
-		stream_local_audio = stream;
-		//return stream;
+peer.on("call", function(MediaConnection) {
+	calls.event_on_call(MediaConnection);
+	
+	call.on('close', function() {
+		console.log(this)
+		calls.event_on_call_close(this.peer.substring(16))
 	})
-	.catch((err) => {
-		console.error(`you got an error: ${err}`)
-	});
-}
-function get_stream_local_video() {
-	navigator.mediaDevices.getUserMedia({video: true, audio: true})
-	.then((stream) => {
-		stream_local_video = stream;
-		calls.vl.srcObject = stream;
-		calls.vl.autoplay = true;
-	})
-	.catch((err) => {
-		console.error(`you got an error: ${err}`)
-	});
-}
+})
+peer.on('close', function() {
+	console.log('peer on close')
+})
+peer.on('disconnected', function() {
+	console.log('peer on disconnected. internet gone')
+})
+peer.on('error', function(err) {
+	console.log(err.type, err)
+})

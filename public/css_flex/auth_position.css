@@ -1,0 +1,128 @@
+* {
+	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	color: #00203FFF;
+	overflow: hidden;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+#container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	/*background-color: #787CB5; php */
+	background-color: #ADEFD1FF;
+
+	background-image: url("../media/images/bg2.png");
+	/*background-repeat: no-repeat;*/
+	background-size: 100% auto;
+}
+.company_info {
+	position: absolute;
+	left: 0vh;
+	top: 0vh;
+	width: 50vw;
+	height: 100vh;
+	padding: 5vh;
+	font-size: 25vmin;
+	animation: sliding-info 1s cubic-bezier(0.23, 1, 0.320, 1) 0s;
+	/*transition-property: left;
+	transition-delay: 1s;
+	transition-duration: 10s;
+	transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);*/
+}
+@keyframes sliding-info {
+	0% {
+		left: -50vw;
+	}
+	100% {
+		left: 0vw;
+	}
+}
+#container form {
+	position: absolute;
+	left: auto;
+	right: 5vh;
+	width: 45vw;
+	padding: 1vh;
+	background-color: rgb(204, 204, 204);
+	font-size: 4vh;
+	animation: newspaper 1s cubic-bezier(0.23, 1, 0.320, 1) 0s;
+}
+@keyframes sliding-form {
+	0% {
+		right: -50vw;
+		/*left: 100vw;*/
+	}
+	100% {
+		right: 5vh;
+		/*left: calc(50vw + 5vh);*/
+	}
+}
+@keyframes newspaper {
+	0% {
+		opacity: 0;
+		width: 0;
+		transform: rotateZ(0deg);
+	}
+	100% {
+		opacity: 1;
+		width: 45vw;
+		transform: rotateZ(720deg);
+	}
+}
+#container form:nth-child(2) {
+	top: 5vh;
+	height: 30vh;
+}
+#container form:nth-child(3) {
+	top: 45vh;
+	height: 50vh;
+}
+form * {
+	height: 5vh;
+}
+form input {
+	width: 100%;
+	font-size: 4vh;
+}
+.validate {
+	position: absolute;
+	right: 1vh;
+	width: fit-content;
+
+	background-color: red;
+	visibility: hidden;
+	display: inline;
+}
+.submit {
+	margin-top: 3vh;
+}
+@media only screen and (min-width: 400px) {
+	* {
+	}
+	#container {
+	}
+	#container form {
+	}
+	#container form:nth-child(1) {
+	}
+	#container form:nth-child(2) {
+	}
+	form * {
+	}
+	.validate {
+	}
+	.submit {
+	}
+}
+/*
+body::before {
+	width: 10vw;
+}
+body::after {
+	width: 60vw;
+}
+*/

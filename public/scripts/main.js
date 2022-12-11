@@ -5,60 +5,34 @@ ba = document.getElementsByClassName("ba");
 
 let buttons = [];
 
-let me;
-/*
-let calls;
-let chats;
-let groups;
-let channels;
-let games;
-let profiles;
-*/
-let content1 = {};
-
-let Common = {
-	limit: 20
-}
-
 let cfnmc;
 let cfnmg;
 
 let running = false;
 let last_known = 5;
 
-let resources = 1; //change to 1 when you work on localhost or when have your own domain
 /*
-let backEnd = {
-	lang: 'php',
-	pre: '../php/routes/',
-	suf: '.php',
-};*/
-let backEnd = {
-	lang: 'nodejs',
-	pre: '/',
-	suf: '',
-};
-
-//innerwidth <= 400 is mobile UI
-let screen_mobile = 400;
-
-let Content = {
-	current: ''
-};
-
+Object.values(document.getElementsByClassName("prev")).forEach(e => {
+	e.addEventListener("mouseover", () => {
+		e.style.backgroundColor = "red";
+	});
+})*/
 document.body.onload = async function() {
+	//just bring user data. no need to load account module
+	//await account.handle_click_menu();
+	//no need to load chats since calls will bring all info it needs with it
+	//await chats.handle_click_menu();
+	// doesnt make sense that calls is using chats data. it should bring data from server itself
+	//await calls.handle_click_menu(); //wait for getting local video stream
+
 	/*
-	calls = new Calls();
-	chats = new Chats('chats');
-	groups = new Groups('groups');
-	channels = new Channels('channels');
-	games = new Games('games');
-	profiles = new Profiles('profiles');
+	await calls.load();
+	calls.is_open = 1;
+	calls.loaded = 1;
+	Content.current = calls;
+	calls.element.style.display = "grid";
+	calls.menu.style.backgroundColor = 'var(--menu-selected-bg)';
 	*/
-
-	await chats.handle_click_menu();
-	await calls.handle_click_menu();
-
 	console.log(window.location);
 	/*
 	if (resources) {
@@ -76,7 +50,25 @@ document.body.onload = async function() {
 	console.log(window.location);
 	*/
 }
+/*
+Object.entries(result).forEach(([id, row]) => {
+//for(const row in result) {
+	//const { id, text, src } = this.interprete_result_of_load_data(result[i]);
 
+	let path = "data/icons/";
+	let text = `${id} , `;
+	path += "users/";
+	text += `${row.user_id} , ${row.user_name} , ${row.first_name} , ${row.last_name}`;
+*/
+/*
+	let testArray = ["Shirt", "Bottom", "Shoes"];
+	window.sessionStorage.setItem("items", JSON.stringify(testArray));
+	var storedArray = JSON.parse(sessionStorage.getItem("items"));//no brackets
+	var i;
+	for (i = 0; i < storedArray.length; i++) {
+		alert(storedArray[i]);
+	}
+*/
 function check_for_new_chats() {
 	chats.check_for_new();
 }

@@ -114,14 +114,43 @@ function create_input_text(class_name, id, ph, value) {
 	return e;
 }
 
-let theme = {
-	current: 0,
-	colors: {
-		bg: ['#184A45FF', '#808080', '#808080', '#101820FF', '#F96167', '#CCF381', '#000000'],
-		text: ['#b2d8d8', '#00ff99', '#00ffff', '#F2AA4CFF', '#FCE77D', '#4831D4', '#ffffff'],
+//3
+/*
+class Theme {
+	constructor(a) {
+		this.bg = a[0];
+		this.text = a[1];
+
+		this.bm_bg = a[0];
+		//this.bm_text = a[1];
+		this.bl_bg = a[2];
+		//this.bl_text = a[3];
+		this.bc_bg = a[4];
+		//this.bc_text = a[5];
+
+		this.item_hover_bg = a[6];
+		this.item_hover_text = a[7];
+		this.item_selected_bg = a[8];
+		this.item_selected_text = a[9];
+
+		this.text_box_bg = a[9];   //input_text_bg
+		this.text_box_text = a[9];
+
+		this.border = a[9];
+	}
+	static current = 0;
+	static changeTheme() {
+		let r = document.querySelector(':root');
+		r.style.setProperty('--bm-bg', themes[this.current].bm_bg);
+		r.style.setProperty('--bm-text', themes[this.current].bm_text);
 	}
 }
-
+let themes = [];
+themes.push(new Theme(['#ADEFD1FF', '#00203FFF']));
+themes.push(new Theme(['#184A45FF', '#b2d8d8']));
+*/
+/*
+//1
 let theme_colors = [
 	["#FFAEF7", "#AAFFA2", "rgb(180, 180, 180)", "#FF8B8B", "#F5FFA2", "#ffa860"],
 	["rgb(25, 25, 25)", "rgb(90, 90, 90)", "rgb(200, 200, 35)", "rgb(40, 90, 50)","rgb(255, 255, 255)","rgb(25, 25, 25)"],
@@ -130,7 +159,6 @@ let theme_colors = [
 	["rgb(30, 100, 200)", "rgb(255, 255, 255)", "rgb(255, 255, 200)", "rgb(30, 200, 60)","rgb(100, 50, 0)","rgb(5, 25, 85)"],
 ];
 let theme_names = ["apple","cherry","grapes","mango","orange","pineapple","pumpkin","strawberry","watermelon"];
-
 
 function toggle_theme(t) {
 	do_amazing_animation("0vw", "95vh", "10vw", "5vh");
@@ -146,6 +174,8 @@ function toggle_theme(t) {
 	r.style.setProperty('--bg', theme.colors.bg[theme.current]);
 	r.style.setProperty('--text', theme.colors.text[theme.current]);
 }
+*/
+
 function do_amazing_animation(left, top, width, height) {
 	/*t.style.backgroundColor = 'rgb(255, 255, 255, 0)';*/
 

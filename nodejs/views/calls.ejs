@@ -1,29 +1,55 @@
-<div class="bar list">
+<!--<div class="content calls">-->
+<div class="bar explore bg-eb">
 	<%- include ('partials/search_elements', {names: 'calls'}) %>
 
-	<div class="list previous"></div>
-</div>
-<div class="bar conversation">
-	<div class="current_header">
-		<div class="details"></div>
-		<div class="button call audio" onclick='calls.handle_click_call(6)'></div>
-		<div class="button call video" onclick='calls.handle_click_call(7)'></div>
+	<div class="list previous border-top bg-eb">
+		<!--<%- /* include ('calls/list_previous', {data: data, user_id: user_id}) */ %>-->
 	</div>
-	<div class="conv calls">
+</div>
+<div class="bg-cb bar conversation">
+	<div class='flex wrapper current_header'>
+		<div class='flex details'>
+			<div class="border square images"><img src="" /></div>
+			<div></div>
+		</div>
+		<!--
+		<div class="flex button border square call audio" onclick='calls.handle_click_call(6)'> audio call </div>
+		<div class="flex button border square call video" onclick='calls.handle_click_call(7)'> video call </div>
+		-->
+	</div>
+	<div class="flex padding row-gap col-gap border-top border-bottom list conv calls">
+		<!--
 		<div class="container_audio">
 			<audio controls class='audio remote' width="50%" height="auto"></audio>
 		</div>
-		<div class="container_video">
-			<video controls class='video local' width="50%" height="auto" muted='true'></video>
+		<div class="container_audio">
+			<audio controls class='audio remote' width="50%" height="auto"></audio>
 		</div>
-		<div class="container_video">
-			<video controls class='video remote' width="50%" height="auto"></video>
+		-->
+		<div class="flex border local item_media_calls_audio">
+			you
+			<audio controls class='audio local' width="auto" height="100%" autoplay muted='true'></audio>
+		</div>
+		<div class="flex border local item_media_calls_video">
+			<div class="border-bottom sender_specifier"> you </div>
+			<video controls class='video local' width="100%" height="auto" autoplay muted='true'></video>
 		</div>
 	</div>
-
-	<!--<div class="controller">-->
-		<div class='button call_accept' onclick='calls.call_accept()'> accept call </div>
-		<div class='button call_decline' onclick='calls.call_decline()'> decline call </div>
-		<div class='button call_end' onclick='calls.call_end()'> end call </div>
-	<!--</div>-->
+	<div class="flex wrapper calls send_new_media">
+		<!--<div class='button call_toggle_speaker' onclick='calls.call_speaker_toggle()'> speaker off </div>-->
+		<div class='border square button call_toggle_mic' onclick='calls.call_mic_toggle()'> mic off </div>
+		<div class='border square button call_toggle_video' onclick='calls.call_video_toggle()'> video off </div>
+		<div class='border square button red call_end' onclick='calls.call_end()'> end </div>
+		<!--<div class='box square button call_canvas' onclick='calls.handle_click_canvas()'> canvas </div>-->
+	</div>
 </div>
+<!--
+<div class="incoming_call_indicator">
+	<div class="images"><img src="" /></div>
+	<div></div>
+	<div class='button call_accept' onclick='calls.call_accept()'> accept call </div>
+	<div class='button call_decline' onclick='calls.call_decline()'> decline call </div>
+</div>
+-->
+<div class="flex padding row-gap border list incoming_call bg-eb"></div>
+<!--</div>-->
