@@ -18,21 +18,21 @@ peer.on("open", function () {
 	console.log(`peer on open. peer.open = ${peer.open}`)
 })
 // new connection by someone
-peer.on("connection", function(DataConnection) {
-	calls.event_on_connection(DataConnection);
+peer.on("connection", function(dataConnection) {
+	calls.event_on_connection(dataConnection)
 
-	conn.on("data", function(data) {
-		calls.event_on_data(JSON.parse(data));
+	dataConnection.on("data", function(data) {
+		calls.event_on_data(JSON.parse(data))
 	})
-	conn.on("close", function() {
+	dataConnection.on("close", function() {
 		calls.event_on_connection_close(this.peer.substring(16))
 	})
 })
 // incoming call
-peer.on("call", function(MediaConnection) {
-	calls.event_on_call(MediaConnection);
-	
-	call.on('close', function() {
+peer.on("call", function(mediaConnection) {
+	calls.event_on_call(mediaConnection)
+
+	mediaConnection.on('close', function() {
 		console.log(this)
 		calls.event_on_call_close(this.peer.substring(16))
 	})

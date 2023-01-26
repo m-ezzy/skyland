@@ -7,7 +7,7 @@ Trio.prototype.initialize2 = async function() {
 
 	console.log("trio");
 
-    this.snm = this.element.getElementsByClassName('send_new_media')[0];
+  this.snm = this.element.getElementsByClassName('send_new_media')[0];
 	this.tm = this.element.getElementsByClassName('text message')[0];
 	this.bm = this.element.getElementsByClassName('button message')[0];
 }

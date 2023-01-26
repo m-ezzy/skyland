@@ -1,0 +1,31 @@
+* {
+	box-sizing: border-box;
+	overflow: hidden;
+}
+body {
+	margin: 0;
+}
+#container {
+	width: 100vw;   /* 100vw 100% 1fr */
+	height: 100vh;
+	z-index: 1;
+	display: flex;
+	overflow: hidden;
+
+	background-color: rgb(170, 170, 170);
+	font-size: 20px;   /* 1.5rem */
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+/*
+lists :
+bar - menu, explore, conversation
+list previous   item prev
+list search     item search
+list conv       item conv   //no need of this. only one media list at a time
+list media      item media
+list member     item member
+*/
+@media only screen and (max-width: 400px) {
+}
+@media (orientation: portrait) {
+}

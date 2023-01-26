@@ -1,4 +1,5 @@
 Chats.prototype.initialize2 = async function() {
+	console.trace(this)
 	console.log("chats")
 	console.log(this)
 	console.log(Object.getPrototypeOf(this))

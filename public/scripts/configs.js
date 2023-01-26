@@ -13,4 +13,6 @@ let backEnd = {
 	pre: '/',   //"../php/routes/" //"/"
 	suf: '',   //".php" //""
 }
-let me = {}
+let me = {
+	user_id: getCookie('user_id')
+}

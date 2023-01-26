@@ -1,24 +1,17 @@
 class Trio extends Common {
 	constructor(number, name) {
 		super(number, name)
-
-		this.tm
-		this.bm
-
-		this.barm
-    	this.tam
-	    this.bam
-		this.lm;
 	}
 	initialize() {
 		super.initialize()
+		this.button_files = this.element.getElementsByClassName('button files')[0]
+		this.input_files = this.element.getElementsByClassName('input files')[0]
+		this.tm = this.element.getElementsByClassName('text textbox_message')[0]
+		this.bm = this.element.getElementsByClassName('button send')[0]
+    this.bari = this.element.getElementsByClassName('bar info')[0]
 
-		this.tm = this.element.getElementsByClassName('text message')[0]
-		this.bm = this.element.getElementsByClassName('button message')[0]
-
-		this.barm = this.element.getElementsByClassName('bar member')[0]
-    	this.tam = this.element.getElementsByClassName('text add_member')[0]
-	    this.bam = this.element.getElementsByClassName('button add_member')[0]
-		this.lm = this.element.getElementsByClassName('list member')[0]
+		this.i_i = this.bari.getElementsByClassName('image icon')[0]
+		this.i_n = this.bari.getElementsByClassName('conv_name')[0]
+		this.i_t = this.bari.getElementsByClassName('title')[0]
 	}
 }

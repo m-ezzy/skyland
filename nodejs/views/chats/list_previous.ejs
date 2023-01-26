@@ -1,9 +1,0 @@
-<% Object.entries(data).forEach(([chat_id, v]) => { %>
-    <div class="flex wrapper border-bottom prev" id="prev_chats_<%= chat_id %>" onclick="chats.handle_click_prev(this, '<%= chat_id %>')">
-        <% let src = ((v.extension == null) ? 'media/images/place_holder/chats.png' : `data/icons/users/${v.user_id}.${v.extension}`); %>
-        <div class="border square images"><img src='<%= src %>' /></div>
-        <!--<% let text = `${v.first_name} ${v.last_name}`; %>-->
-        <%= `${v.first_name} ${v.last_name}` %>
-        <div class='border square new_media_indicator' id="nmi_chats_<%= chat_id %>"></div>
-    </div>
-<% }); %>

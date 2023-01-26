@@ -1,8 +1,8 @@
 class Common extends Content {
-    constructor(number, name) {
-        super(number, name)
+  constructor(number, name) {
+    super(number, name)
 
-        this.bare
+    this.bare
 		this.bb
 		this.ts
 		this.bs
@@ -15,7 +15,7 @@ class Common extends Content {
 		this.snm   //send_new_media //controller (for calls)
 
 		this.last_known = 1 //to check if history still loading
-    }
+  }
 	initialize() {
 		super.initialize()
 
@@ -27,9 +27,13 @@ class Common extends Content {
 		this.lp = this.element.getElementsByClassName('list previous')[0]
 	
 		this.barc = this.element.getElementsByClassName('bar conversation')[0]
-		this.ch = this.element.getElementsByClassName('current_header')[0]
+		this.ch = this.element.getElementsByClassName('header')[0]
+
+		this.h_i = this.ch.getElementsByClassName("image icon")[0]
+		this.h_t = this.ch.getElementsByClassName("title")[0]
+		this.h_n = this.ch.getElementsByClassName("conv_name")[0]
+
 		this.lc = this.element.getElementsByClassName('list conv')[0]
-		this.snm = this.element.getElementsByClassName('send_new_media')[0]
+		this.snm = this.element.getElementsByClassName('sender')[0]
 	}
-	
 }

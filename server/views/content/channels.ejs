@@ -1,0 +1,80 @@
+<div class="bg-eb bar explore">
+	<%- include ('../partials/search_elements', {names: 'channels'}) %>
+
+	<div class="hidden bg-eb border-top list search">
+		<div class="hidden section">
+			<div class="flex center banner">exact match in your channels</div>
+			<div class="list"></div>
+		</div>
+		<div class="hidden section">
+			<div class="flex center banner">match in your channels</div>
+			<div class="list"></div>
+		</div>
+		<div class="hidden section">
+			<div class="flex center banner">exact match in join channels</div>
+			<div class="list"></div>
+		</div>
+		<div class="hidden section">
+			<div class="flex center banner">match in join channels</div>
+			<div class="list"></div>
+		</div>
+		<div class="hidden section">
+			<div class="flex center banner">create a new channel</div>
+			<div class="padding flex col-gap">
+				<input class="border flex-grow-2 text title" type="text" placeholder="type channel title here" />
+				<button class="flex border square bg-green button create" onclick="channels.handle_click_create()" data-tooltip="create">create</button>
+			</div>
+		</div>
+	</div>
+	<div class="list previous">
+		<div class="hidden section">
+			<div class="border-b flex center banner bg-founder">founder</div>
+		</div>
+		<div class="hidden section">
+			<div class="border-b flex center banner bg-manager">manager</div>
+		</div>
+		<div class="hidden section">
+			<div class="border-b flex center banner bg-regular">regular</div>
+		</div>
+	</div>
+</div>
+<div class='hidden grid bg-cb bar conversation'>
+	<div class='header'>
+		<div class='padding flex center-y col-gap info' onclick='channels.handle_click_info()'>
+			<img class="border square image icon icon-channel" src="" />
+			<div>
+				<div class="title"></div>
+				<div class="name"></div>
+			</div>
+		</div>
+		<!-- <div class='button border square info' onclick='channels.handle_click_info()'>info</div> -->
+	</div>
+
+	<div class="border-t border-b list conv"></div>
+
+	<%- include ('../partials/sender', {names: 'channels'}) %>
+</div>
+<div class="hidden border-l bg-cb bar info">
+	<div class="flex flex-dir-col padding row-gap">
+		<img class="border profile-picture pp_channels" src="" />
+		<input class="hidden file" type="file" />
+		<label for="channel_name">channel name :</label>
+		<input class="border text channel_name" type="text" placeholder="type new channel name here" readonly />
+		<label for="channel_title">channel title :</label>
+		<input class="border text title" type="text" placeholder="type new channel title here" readonly />
+		<div class="flex col-gap update_controls">
+			<div class='flex border button square edit' onclick=''>edit</div>
+			<div class='flex border button square submit' onclick=''>submit</div>
+			<div class='flex border button square cancel' onclick=''>cancel</div>
+		</div>
+	</div>
+	<div class="flex center border-t border-b banner">channel members</div>
+	<div class='list member'>
+		<div class="section"></div>
+		<div class="section"></div>
+		<div class="section"></div>
+	</div>
+	<div class="padding">
+		<div class='button border square bg-red delete_exit_leave' onclick='channels.handle_click_leave()'>leave</div>
+	</div>
+</div>

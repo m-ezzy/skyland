@@ -1,0 +1,25 @@
+/*
+founder : pink / purple / violet / yellow
+manager : light green
+user    : light brown
+*/
+.channels .images.profile, .channels .bar.info img {
+    /* octagon */
+	/*clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%, 25% 0%);*/
+}
+.designation {
+    min-width: 70px;
+    width: 70px;
+    height: 30px;
+    font-size: 1.1rem;
+    margin-left: auto;
+}
+.bg-founder {
+    background-color: rgb(255, 98, 150);
+}
+.bg-manager {
+    background-color: rgb(166, 58, 255);
+}
+.bg-regular {
+    background-color: rgb(179, 65, 65);
+}

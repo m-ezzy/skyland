@@ -1,0 +1,25 @@
+.bar.info > :nth-child(1) > :nth-child(1) {
+	position: relative;
+	justify-content: center;
+}
+.bar.info .icon_upload {
+	position: absolute;
+	/* top: 0; */
+	width: 200px;
+	height: 200px;
+	/* margin: auto; */
+	background-color: rgb(150, 75, 75, 0.500);
+	background-image: url("../../media/images/design/add_a_photo.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: 30% 30%;
+}
+.button.add_member {   /* add_member join */
+	background-image: url("../../media/images/design/person_add.png");
+	/* margin-left: auto; */
+}/*
+.list.bar.member {
+	overflow-y: visible;
+}
+.list.member .prev {
+}*/

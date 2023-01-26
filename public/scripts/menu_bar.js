@@ -45,8 +45,8 @@ class MenuBar {
 		if (Content.current.number == Content.instances[number]) {return;} //OR
 		if (Content.instances[number].is_open) {return;}
 		if (Content.instances[number].loaded == 0) {
-			//fetchs[this.names].load()
-			Content.instances[number].element.innerHTML = await fetchs('chats/load', '');
+			//fetch_data[this.names].load()
+			Content.instances[number].element.innerHTML = await fetch_data('chats/load', '');
 			Content.instances[number].loaded = 1;
 		}
 		if (Content.current) {

@@ -41,7 +41,7 @@ class Calls extends Common {
 		this.callInterval = ''
 	}
 	initialize() {
-        super.initialize()
+    super.initialize()
 
 		this.lic = this.element.getElementsByClassName("list incoming_call")[0]
 		this.alc = this.element.getElementsByClassName('local item_media_calls_audio')[0]
@@ -49,5 +49,5 @@ class Calls extends Common {
 		this.al = this.element.getElementsByClassName('audio local')[0]
 		this.vl = this.element.getElementsByClassName('video local')[0]
 		this.bce = this.element.getElementsByClassName('button call_end')[0]
-    }
+  }
 }

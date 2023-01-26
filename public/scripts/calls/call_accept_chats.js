@@ -1,5 +1,5 @@
 Calls.prototype.call_accept_chats = async function(chat_id, user_id, call_type) {
-	//let data = await fetchs.calls.change_call_length_chats(chat_id, user_id, call_type, time);
+	//let data = await fetch_data.calls.change_call_length_chats(chat_id, user_id, call_type, time);
 	this.current.chat_id = chat_id
 
 	if (call_type == "audio") {

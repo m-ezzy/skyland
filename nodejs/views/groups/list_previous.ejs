@@ -1,9 +1,0 @@
-<% Object.entries(data).forEach(([group_id, v]) => { %>
-    <div class="flex wrapper border-bottom prev" id="prev_groups_<%= group_id %>" onclick="groups.handle_click_prev(this, '<%= group_id %>')">
-        <% let src = ((v.extension == null) ? 'media/images/place_holder/groups.png' : `data/icons/groups/${group_id}.${v.extension}`); %>
-        <div class="border square images"><img src='<%= src %>' /></div>
-        <!--<% let text = `${v.title}`; %>-->
-        <%= `${v.title}` %>
-        <div class='flex border square new_media_indicator' id="nmi_groups_<%= group_id %>"></div>
-    </div>
-<% }); %>

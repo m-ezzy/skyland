@@ -1,0 +1,14 @@
+.chats .images.profile {
+    border-radius: 100%;
+}
+.chats .bar.info {
+    /* place-content: space-between; */
+    justify-content: space-between;
+}
+.chats .delete_exit_leave {
+    /* position: absolute; */
+    /* top: auto; */
+    /* bottom: 0; */
+    /* margin-top: 172px; */
+    /* align-self: flex-end; */
+}

@@ -1,0 +1,9 @@
+<div class="padding flex col-gap sender">
+	<label class='blur button border square files' for='file_<%= names %>' data-tooltip='files' onclick=<%= names %>.handle_click_files()>files</label>
+	<input class="input hidden files" id="file_<%= names %>" name="file_<%= names %>" type="file" multiple onchange=<%= names %>.handle_change_files() />
+	<button class='blur button border square location' data-tooltip='location' onclick=<%= names %>.handle_click_location()>location</button>
+	<button class='blur button border square voice' data-tooltip='voice' onclick=<%= names %>.handle_click_voice()>voice</button>
+	<button class='blur button border square canvas' data-tooltip='canvas' onclick=<%= names %>.handle_click_canvas()>canvas</button>
+	<input class='blur border flex-grow-2 text textbox_message' type='text' placeholder='type a new message here' value='hello there !' onfocus=<%= names %>.handle_focus_text_message() onblur=<%= names %>.handle_blur_text_message() />
+	<button class='blur button border square send' data-tooltip='send' onclick=<%= names %>.handle_click_send()>send</button>
+</div>

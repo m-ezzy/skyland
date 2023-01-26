@@ -1,5 +1,7 @@
+data
+documentation
 node_modules
+dist
+public\data
 public\libraries
 public\media
-public\data
-data
