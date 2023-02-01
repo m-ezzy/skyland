@@ -4,11 +4,6 @@ import groupsModel from "../models/groups.js"
 
 const callsController = {}
 
-callsController.load = async (req, res) => {
-	res.render('content/calls', {data: ''}, (err, html) => {
-		res.send({html: html})
-	})
-}
 callsController.get_history = async (req, res) => {
 	let user_id = req.cookies.user_id
 

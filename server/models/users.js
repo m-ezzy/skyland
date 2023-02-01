@@ -19,10 +19,16 @@ usersModel.select = async (user_id) => {
 	return rows[0]
 }
 usersModel.select_basic = async (user_id) => {
-	let query = `SELECT user_name,first_name,last_name,extension FROM users WHERE user_id=${user_id}`
+	let query = `SELECT user_id,user_name,first_name,last_name,extension FROM users WHERE user_id=${user_id}`
 	let rows = await execute_query(query)
 	return rows[0]
 }
+usersModel.select_basic_from_user_name = async (user_name) => {
+	let query = `SELECT user_id,user_name,first_name,last_name,extension FROM users WHERE user_name='${user_name}'`
+	let rows = await execute_query(query)
+	return rows[0]
+}
+
 //insert
 usersModel.insert = async (user_name, pass_word, first_name, last_name) => {
 	let query = `INSERT INTO users(user_name,pass_word,first_name,last_name) VALUES('${user_name}','${pass_word}','${first_name}','${last_name}')`

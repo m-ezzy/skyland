@@ -12,14 +12,14 @@ groupsModel.select_info = async (group_id) => {
 	return rows
 }
 groupsModel.select_previous = async (user_id) => { //selectPrevious //selectPreviousGroups
-  let query = `SELECT groups.group_id,groups.group_name,groups.title,groups.extension FROM groups INNER JOIN group_members ON groups.group_id=group_members.group_id WHERE group_members.user_id=${user_id}`
+  let query = `SELECT groups.group_id AS conv_id,groups.group_name AS conv_name,groups.title,groups.extension FROM groups INNER JOIN group_members ON groups.group_id=group_members.group_id WHERE group_members.user_id=${user_id}`
 	let rows = await execute_query(query)
 	return rows
 }
-groupsModel.selectSearchCreateNew = async (user_id, q) => {
+groupsModel.select_new = async (user_id, q) => {
 	//let query = `SELECT * FROM groups WHERE group_name LIKE '${q}%' OR title LIKE '${q}%'`
-	//let query = `SELECT groups.group_id,groups.group_name,groups.title,groups.extension FROM groups INNER JOIN group_members ON groups.group_id=group_members.group_id WHERE (groups.group_name LIKE '${q}%' OR groups.title LIKE '${q}%') AND group_members.user_id!=${user_id}`
-	let query = `SELECT groups.group_id,groups.group_name,groups.title,groups.extension FROM groups INNER JOIN group_members ON groups.group_id=group_members.group_id WHERE groups.group_name='${q}'`
+	let query = `SELECT groups.group_id,groups.group_name,groups.title,groups.extension FROM groups INNER JOIN group_members ON groups.group_id=group_members.group_id WHERE group_members.user_id!=${user_id} AND (groups.group_name LIKE '%${q}%' OR groups.title LIKE '%${q}%')`
+	// let query = `SELECT groups.group_id,groups.group_name,groups.title,groups.extension FROM groups INNER JOIN group_members ON groups.group_id=group_members.group_id WHERE groups.group_name='${q}'`
 	let rows = await execute_query(query)
 	return rows
 }
@@ -65,11 +65,20 @@ groupsModel.media.count = async () => {
 	let rows = await execute_query(query)
 	return rows[0]['COUNT(*)']
 }
-groupsModel.media.select = async (group_id, row_up) => {
+groupsModel.media.last_id = async () => {
+	let query = `SELECT * FROM group_media`
+	let rows = await execute_query(query)
+	return rows[rows.length - 1].group_media_id
+}
+groupsModel.media.select = async (group_id, row_up, select_all) => {
 	// let query = `SELECT * FROM group_media WHERE group_id=${group_id} AND group_media_id<=${row_up}`
 	let query = `SELECT group_media.group_media_id AS media_id,group_media.group_id AS conv_id,group_media.user_id,group_media.time_sent,media_types.type AS media_type,group_media.text FROM group_media INNER JOIN media_types ON group_media.media_type=media_types.media_type_id WHERE group_media.group_id=${group_id} AND group_media.group_media_id<=${row_up}`
 	let rows = await execute_query(query)
-	
+
+	if(select_all) {
+		return rows
+	}
+
 	let limit = configs.limit
 	if (rows.length < limit) {
 		limit = rows.length

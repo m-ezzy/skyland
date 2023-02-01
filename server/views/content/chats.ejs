@@ -1,5 +1,5 @@
-<!--<div class="content chats">-->
-	<div class="bar explore">
+<!-- <div class="flex hidden blur item content chats"> -->
+	<div class="flex flex-dir-col bar explore">
 		<%- include ('../partials/search_elements', {names: 'chats'}) %>
 
 		<div class="hidden list search">
@@ -17,6 +17,10 @@
 			</div>
 			<div class="hidden section">
 				<div class="flex center banner">match in create/new chats</div>
+				<div class="list"></div>
+			</div>
+			<div class="hidden section">
+				<div class="flex center banner">unblock a user</div>
 				<div class="list"></div>
 			</div>
 			<div class="hidden section">
@@ -38,7 +42,7 @@
 			<div class="margin-l-a padding flex col-gap">
 				<div class='blur button square border call audio' onclick="chats.handle_click_call('audio')" data-tooltip='audio call'>audio call</div>
 				<div class='blur button square border call video' onclick='chats.handle_click_call("video")' data-tooltip='video call'>video call</div>
-				<input class='blur border text key' type='text' placeholder='enter key of this conversation' value='0' oninput='chats.handle_input_key()'>
+				<input class='blur border text key' type='text' placeholder='enter key of this conversation' oninput='chats.handle_input_key()'>
 				<div class='blur button border square key' onclick='chats.handle_click_key()' data-tooltip="encrypt">encrypt</div>
 				<!--<input class='text search_conversation' type='text' placeholder='search conversation' oninput='chats.search_conversation()'>-->
 				<div class='blur button border square info' onclick='chats.handle_click_info()' data-tooltip="info">info</div>
@@ -51,14 +55,14 @@
 
 		<%- include ('../partials/sender', {names: 'chats'}) %>
 	</div>
-	<div class="border-l padding hidden flex flex-dir-col bar info">
-		<div>
-			<img class="border flex image icon icon-users" src="" /><br />
+	<div class="hidden border-l padding grid bar info">
+		<div class="grid row-gap">
+			<img class="border image icon icon-users" src="" />
 			<div>user name :</div>
-			<input class="blur border text conv_name" type="text" readonly /><br />
+			<input class="blur border text conv_name" type="text" readonly />
 			<div>full name :</div>
 			<input class="blur border text title" type="text" readonly />
 		</div>
-		<div class='button square border bg-red delete_exit_leave' onclick='chats.handle_click_delete()' data-tooltip="delete">delete</div>
+		<div class='square border bg-red button delete_exit_leave' onclick='chats.handle_click_delete()' data-tooltip="delete">delete</div>
 	</div>
-<!--</div>-->
+<!-- </div> -->

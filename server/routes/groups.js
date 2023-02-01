@@ -4,9 +4,9 @@ import upload_file from '../controllers/upload_file.js'
 
 const groupsRouter = Router()
 
-groupsRouter.post("/load", (req, res) => groupsController.load(req, res))
+// groupsRouter.post("/load", (req, res) => groupsController.load(req, res))
 groupsRouter.post("/previous_conv", (req, res) => groupsController.previous_conv(req, res))
-groupsRouter.post("/search_create_new", (req, res) => groupsController.search_create_new(req, res))
+groupsRouter.post("/search_new", (req, res) => groupsController.search_new(req, res))
 groupsRouter.post("/create", (req, res) => groupsController.create(req, res))
 groupsRouter.post("/previous_media", (req, res) => groupsController.previous_media(req, res))
 groupsRouter.post("/send_media/message", (req, res) => groupsController.send_media_message(req, res))

@@ -4,13 +4,13 @@ import configs from '../configs.js'
 export let members = {}
 export let media = {}
 
-export async function selectChannelInfo(channel_id) {
+export async function select_info(channel_id) {
 	let query = `SELECT * FROM channels WHERE channel_id=${channel_id}`
 	let rows = await execute_query(query)
 	return rows
 }
 export async function select_previous(user_id) {   //selectPreviousChannels
-  let query = `SELECT channels.channel_id,channels.channel_name,channels.title,channels.user_id,channels.extension FROM channels INNER JOIN channel_members ON channels.channel_id=channel_members.channel_id WHERE channel_members.user_id=${user_id}`
+  let query = `SELECT channels.channel_id AS conv_id,channels.channel_name AS conv_name,channels.title,channels.user_id,channels.extension FROM channels INNER JOIN channel_members ON channels.channel_id=channel_members.channel_id WHERE channel_members.user_id=${user_id}`
 	//,channel_members.member_type
 	let rows = await execute_query(query)
 	return rows
@@ -83,11 +83,19 @@ media.count = async () => {
 	let rows = await execute_query(query)
 	return rows[0]['COUNT(*)']
 }
-media.select = async (channel_id, row_up) => {
-	//let query = `SELECT * FROM chat_media WHERE chat_id=${chat_id} AND chat_media_id>${row_up} LIMIT ${limit}`;
-	let query = `SELECT * FROM channel_media WHERE channel_id=${channel_id} AND channel_media_id<=${row_up}`
+media.last_id = async () => {
+	let query = `SELECT * FROM channel_media`
 	let rows = await execute_query(query)
-	console.log(rows)
+	return rows[rows.length - 1]?.channel_media_id
+}
+media.select = async (channel_id, row_up, select_all) => {
+	//let query = `SELECT * FROM chat_media WHERE chat_id=${chat_id} AND chat_media_id>${row_up} LIMIT ${limit}`;
+	let query = `SELECT channel_media.channel_media_id AS media_id,channel_media.channel_id AS conv_id,channel_media.user_id,channel_media.time_sent,media_types.type AS media_type,channel_media.text FROM channel_media INNER JOIN media_types ON channel_media.media_type=media_types.media_type_id WHERE channel_media.channel_id=${channel_id} AND channel_media.channel_media_id<=${row_up}`
+	let rows = await execute_query(query)
+
+	if(select_all) {
+		return rows
+	}
 
 	let limit = configs.limit
 	if (rows.length < limit) {
@@ -102,7 +110,7 @@ media.insert = async (channel_id, user_id, media_type, text) => {
 	let rows = await execute_query(query)
 	return rows.insertId
 }
-media.delete = async (channel_id) => { //delete_by_founder
+media.delete_all = async (channel_id) => { //delete_by_founder
 	let query = `DELETE FROM channel_media WHERE channel_id=${channel_id}`
 	let rows = await execute_query(query)
 	return "success"

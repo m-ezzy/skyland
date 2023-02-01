@@ -4,7 +4,7 @@ import upload_file from '../controllers/upload_file.js'
 
 const chatsRouter = Router()
 
-chatsRouter.post("/load", (req, res) => chatsController.load(req, res)) //structure //skeleton //load //template
+// chatsRouter.post("/load", (req, res) => chatsController.load(req, res)) //structure //skeleton //load //template
 chatsRouter.post("/previous_conv", (req, res) => chatsController.previous_conv(req, res)) //get_previous //previous_conv
 chatsRouter.post("/search_new", (req, res) => chatsController.search_new(req, res))
 chatsRouter.post("/create", (req, res) => chatsController.create(req, res))

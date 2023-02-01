@@ -4,6 +4,7 @@ import express from "express"
 import { createServer } from 'http'
 // const https = require('https')
 //import process from 'process'
+import cors from 'cors'
 
 import socket_server from './socket-server.js'
 import allRouter from './routes/all.js'
@@ -11,6 +12,8 @@ import allRouter from './routes/all.js'
 const port = process.env.PORT || "8000"
 const app = express()
 const http_server = createServer(app)
+
+app.use(cors())
 
 socket_server(http_server)
 
@@ -49,10 +52,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.set('views', process.cwd() + '/server/views')
+app.set('views', process.cwd() + '/views')
 app.set('view engine', 'ejs')
 
-app.use(express.static(process.cwd() + '/public'))
+// console.log(process.cwd())
+// app.use(express.static(process.cwd() + '\public'))
 app.use('/', allRouter)
 
 http_server.listen(port, () => {

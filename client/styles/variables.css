@@ -1,0 +1,21 @@
+:root {   /* same as defining all variables to the container tag */
+	--bg-mb: rgb(255, 36, 91);
+	--bg-eb: rgb(255, 106, 155);
+	--bg-cb: rgb(255, 183, 201);
+	--text: rgb(0, 0, 0);
+	--item-bg: rgb(190, 190, 190);
+	--item-text: rgb(0, 0, 0);
+	--text-box-bg: rgb(255, 255, 255);
+	--text-box-text: rgb(0, 0, 0);
+	/* text-box text-box item-hover item-selected */
+}
+.bg-mb {
+	background-color: var(--bg-mb);
+}
+
+:root {   /* same as defining all variables to the container tag */
+	--gap-less: 5px;
+	--gap: 10px;
+	--gap-more: 15px;
+	--color-border: rgb(0, 0, 0);
+}

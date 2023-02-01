@@ -7,8 +7,15 @@ import chatsRouter from './chats.js'
 import groupsRouter from './groups.js'
 import channelsRouter from './channels.js'
 
+let templateRouter = express.Router()
 let apiRouter = express.Router()
 let allRouter = express.Router()
+
+apiRouter.post('/template/:container/:menu', (req, res) => {
+	res.render(`${req.params.container}/${req.params.menu}`, {data: ''}, (err, html) => {
+		res.send({html: html})
+	})
+})
 
 apiRouter.use('/auth', authRouter)
 apiRouter.use('/users', usersRouter)
@@ -19,6 +26,10 @@ apiRouter.use('/channels', channelsRouter)
 
 allRouter.use('/api', apiRouter)
 
+allRouter.get("/", (req, res) => {
+	res.send('hi from server!')
+})
+/*
 allRouter.get("/", (req, res) => {   //get //all
 	res.contentType('text/html')
 	console.log('555555555555555555555')
@@ -31,12 +42,12 @@ allRouter.get("/", (req, res) => {   //get //all
 		// res.contentType('text/html');
 		// res.sendFile(`C:/xampp/htdocs/all/nodejs/expressjs/skyland-nodejs/index.html`);
 		// res.sendFile(path.resolve(__dirname, "../../public/index.html"))
-		res.sendFile(process.cwd() + "\\server\\views\\index.html")
+		res.sendFile(process.cwd() + "\\views\\index.html")
 	} else {
 		console.log('auth sign up or log in')
-		res.sendFile(process.cwd() + "\\server\\views\\auth\\auth.html")
+		res.sendFile(process.cwd() + "\\views\\auth\\auth.html")
 	}
-})
+})*/
 /*
 allRouter.get("/chats", (req, res) => {
 	res.cookie('menu', 'chats', {maxAge: '3600000000000'})
@@ -46,6 +57,7 @@ allRouter.get("/groups", (req, res) => {
 	res.cookie('menu', 'groups', {maxAge: '3600000000000'})
 	res.redirect("/")
 })*/
+/*
 allRouter.get("/:menu/:conv/info", (req, res) => {
 	let menu = null
 	let conv = null
@@ -88,11 +100,9 @@ allRouter.get("/:menu", (req, res) => {
 		res.cookie('menu', menu, {maxAge: '36000000000'})
 		res.clearCookie('conv')
 		res.clearCookie('info')
-	}/* else {
-		menu = "chats"
-	}*/
+	}
 	res.redirect('/')
-})
+})*/
 /*allRouter.get("/*", (req, res) => {
 	// res.redirect('/')
 	// res.redirect('/page_not_found')

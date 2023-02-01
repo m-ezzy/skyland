@@ -6,12 +6,12 @@ const chatsModel = {
 }
 
 chatsModel.select_previous = async (user_id) => {   //getPreviousChats //selectPreviousList //selectPrevious
-	let query = `SELECT chat_id,user_id1,user_id2,created_on,deleted_by FROM chats WHERE user_id1=${user_id} OR user_id2=${user_id} ORDER BY created_on DESC`
+	let query = `SELECT chat_id AS conv_id,user_id1,user_id2,created_on,deleted_by FROM chats WHERE user_id1=${user_id} OR user_id2=${user_id} ORDER BY created_on DESC`
 	let rows = await execute_query(query)
 	return rows
 	//return db.execute_query(query)
 }
-chatsModel.selectSearchNew = async (user_id, q) => { //this should be in users model
+chatsModel.select_new = async (user_id, q) => { //select_search_new //this should be in users model or not
 	let query = `SELECT user_id,user_name,first_name,last_name,extension FROM users WHERE user_name LIKE '%${q}%' OR first_name LIKE '%${q}%' OR last_name LIKE '%${q}%'`
 	//let query = `SELECT users.user_id,users.user_name,users.first_name,users.last_name,users.extension FROM users INNER JOIN chats ON users.user_id=chats.user_id1 WHERE (chats.user_id1<>${user_id} AND chats.user_id2<>${user_id}) AND (users.user_name LIKE '%${q}%' OR users.first_name LIKE '%${q}%' OR users.last_name LIKE '%${q}%')`
 	let rows = await execute_query(query)
@@ -39,6 +39,11 @@ chatsModel.media.count = async () => {
 	return rows[0]['COUNT(*)']
 	//return db.execute_query(query)
 }
+chatsModel.media.last_id = async () => {
+	let query = `SELECT * FROM chat_media`
+	let rows = await execute_query(query)
+	return rows[rows.length - 1].chat_media_id
+}
 chatsModel.media.select = async (chat_id, row_up) => {
 	// let query = `SELECT * FROM chat_media WHERE chat_id=${chat_id} AND chat_media_id>${row_up} LIMIT ${limit}`
 	// let query = `SELECT * FROM chat_media WHERE chat_id=${chat_id} AND chat_media_id<=${row_up}`
@@ -52,7 +57,6 @@ chatsModel.media.select = async (chat_id, row_up) => {
 		limit = rows.length
 	}
 	console.log(limit)
-
 	return rows.splice(rows.length - limit, limit)
 }
 chatsModel.media.insert = async (chat_id, user_id, media_type, text) => {

@@ -54,7 +54,7 @@ const execute_query = async (query) => new Promise(async (resolve, reject) => {
 			console.log(error)
 			reject(error)
 		} else {
-			console.log(rows)
+			console.log(rows.length)
 			resolve(JSON.parse(JSON.stringify(rows)))
 		}
 		connection.end()
