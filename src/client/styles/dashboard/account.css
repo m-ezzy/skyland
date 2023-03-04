@@ -1,0 +1,73 @@
+.button.logout {
+	background-image: url("../../media/images/design/logout.png");
+	min-width: 100%;
+}
+.accounts .button.delete {
+	min-width: 100%;
+}
+.account > .bar.explore {
+	overflow-y: visible;
+	flex-direction: column;
+	/*height: auto;*/
+}
+.accounts .textbox {
+	width: 360px;
+}
+.account img {
+	width: 200px;
+	height: 200px;
+}
+#my_profile {
+	grid-area: 1 / 1 / 20 / 20;
+
+	display: grid;
+
+	justify-content: center; /*x*/ /*text*/
+	/*justify-items: center;*/
+
+	/*align-content: center;*/
+	align-items: center; /*y*/ /*text*/
+}
+#profile_picture {
+	position: absolute;
+	left: 15vw;
+	top: 30vh;
+	width: 20vw;
+	height: 20vh;
+
+	border-radius: 50vw;
+}
+.file.pp {
+	position: absolute;
+	left: 10vw;
+	top: 10vh;
+	width: 30vw;
+	height: 20vh;
+	z-index: 20;
+}
+.button.pp {
+	position: absolute;
+	left: 10vw;
+	top: 30vh;
+	width: 30vw;
+	height: 10vh;
+	z-index: 20;
+}
+.updates {
+	position: relative;
+	left: 30vw;
+	top: 0;
+	width: 20vw;
+	height: 30vh;
+	
+	display: grid;
+	grid-row: auto auto;
+	grid-template-rows: auto auto;
+	margin: 1vw;
+
+	background-color: rgb(255, 60, 60);
+}
+
+@media only screen and (max-width: 400px) {
+
+}

@@ -1,0 +1,23 @@
+{
+  "name": "peer-server",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "murtaza-ezzy",
+  "license": "ISC",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "prod": "node index.js",
+    "start": "node index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "peer": "^0.6.1",
+    "peerjs": "^1.4.7"
+  }
+}

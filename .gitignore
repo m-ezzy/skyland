@@ -1,6 +1,9 @@
-data
 documentation
+
 node_modules
+build
 dist
-public/libraries
-/client/public/*
+
+data
+media
+libraries
