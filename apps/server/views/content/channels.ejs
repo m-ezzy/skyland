@@ -1,0 +1,107 @@
+<!-- <div class='flex hidden item content channels'> -->
+	<div class="border-r grid bar explore">
+		<%- include ('../partials/search_elements', {names: 'channels'}) %>
+
+		<div class="hidden modal-create">
+			<div class="border-b flex center banner">create a new channel</div>
+			<div class="border-b padding flex flex-dir-col row-gap col-gap">
+				<label>channel name :</label>
+				<input class="height border flex-grow-2 textbox create_conv_name" type="text" placeholder="type your channel name here" oninput=channels.handle_change_conv_name(this) />
+				<div class="border padding grid row-gap validation">
+					<div class="border padding bg-red">channel name should be more than 0 characters</div>
+					<div class="border padding bg-red">channel name should be less than 21 characters</div>
+					<div class="border padding bg-red">channel name should not have space</div>
+					<div class="border padding bg-red">channel name should be available</div>
+				</div>
+				<label>channel title :</label>
+				<input class="height border flex-grow-2 textbox create_title" type="text" placeholder="type your channel title here" oninput=channels.handle_change_title(this) />
+				<div class="border padding grid row-gap validation">
+					<div class="border padding bg-red">channel title should be more than 0 characters</div>
+					<div class="border padding bg-red">channel title should be less than 41 characters</div>
+				</div>
+				<button class="flex border square bg-green button create" onclick="channels.handle_click_create()" data-tooltip="create">create</button>
+			</div>
+		</div>
+
+		<div class="hidden border-top list search">
+			<div class="hidden section">
+				<div class="border-b flex center banner">exact match in your channels</div>
+				<div class="list"></div>
+			</div>
+			<div class="hidden section">
+				<div class="border-b flex center banner">match in your channels</div>
+				<div class="list"></div>
+			</div>
+			<div class="hidden section">
+				<div class="border-b flex center banner">exact match in join channels</div>
+				<div class="list"></div>
+			</div>
+			<div class="hidden section">
+				<div class="border-b flex center banner">match in join channels</div>
+				<div class="list"></div>
+			</div>
+			<div class="hidden section">
+				<div class="border-b flex center banner">no match found</div>
+			</div>
+		</div>
+
+		<div class="list previous">
+			<div class="hidden section">
+				<div class="border-b flex center bg-founder">founder</div>
+			</div>
+			<div class="hidden section">
+				<div class="border-b flex center bg-manager">manager</div>
+			</div>
+			<div class="hidden section">
+				<div class="border-b flex center bg-regular">regular</div>
+			</div>
+		</div>
+
+	</div>
+	<div class='hidden grid bar conversation'>
+		<div class='border-b flex header'>
+			<div class='padding flex center-y col-gap hover detail' onclick='channels.handle_click_detail()'>
+				<img class="border square image icon icon-channels" src="" />
+				<div>
+					<div class="title"></div>
+					<div class="conv_name"></div>
+				</div>
+			</div>
+			<!-- <div class='button border square info' onclick='channels.handle_click_info()'>info</div> -->
+		</div>
+
+		<div class="border-b padding grid row-gap list media" onscroll='channels.handle_scroll_conv()'></div>
+
+		<%- include ('../partials/sender', {names: 'channels'}) %>
+	</div>
+	<div class="hidden border-l bar info">
+		<div class="padding flex flex-dir-col row-gap">
+			<div class="flex">
+				<img class="border image icon icon-channels" src="" />
+				<label class="hidden border-radius flex center-x icon-channels icon_upload" for="channel_icon_upload">update icon</label>
+				<input class="hidden file" id="channel_icon_upload" name="channel_icon_upload" type="file" onchange="channels.handle_change_icon()" />
+			</div>
+			<label for="channel_name">channel name :</label>
+			<input class="border textbox conv_name" type="text" placeholder="type new channel name here" readonly />
+			<label for="channel_title">channel title :</label>
+			<input class="border textbox title" type="text" placeholder="type new channel title here" readonly />
+			
+			<div class="flex col-gap update_controls">
+				<div class='flex border button square edit' onclick='channels.handle_click_edit()' data-tooltip="edit">edit</div>
+				<div class='flex border button square bg-green submit' onclick='channels.handle_click_submit()' data-tooltip="submit">submit</div>
+				<div class='flex border button square cancel' onclick='channels.handle_click_cancel()' data-tooltip="cancel">cancel</div>
+			</div>
+		</div>
+		<div class="flex center border-t border-b banner">channel members</div>
+		<div class='list member'>
+			<div class="section"></div>
+			<div class="section"></div>
+			<div class="section"></div>
+		</div>
+		<div class="padding">
+			<div class='button border square bg-red exit leave' onclick='channels.handle_click_leave_delete()' data-tooltip="leave">leave</div>
+		</div>
+	</div>
+
+	<!-- <div class="shape shape-diamond bg-founder"></div> -->
+<!-- </div> -->

@@ -5,5 +5,5 @@ build
 dist
 
 data
-media
+src/client/public/media
 libraries

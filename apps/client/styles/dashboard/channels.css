@@ -1,0 +1,27 @@
+/*
+founder : pink / purple / violet / yellow
+manager : light green
+user    : light brown
+*/
+.designation {
+    width: 80px;
+    min-width: 80px;
+    height: 30px;
+    font-size: 1.1rem;
+    margin-left: auto;
+	color: rgb(0, 0, 0);
+	/* color: rgb(255, 255, 255); */
+}
+.bg-founder {
+    background-color: rgb(255, 98, 150);
+}
+.bg-manager {
+    background-color: rgb(166, 58, 255);
+}
+.bg-regular {
+    background-color: rgb(61, 185, 169);
+}
+/*
+.button.demote, .button.promote {
+    margin-left: 20px;
+}*/

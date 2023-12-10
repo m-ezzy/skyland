@@ -1,0 +1,106 @@
+<!-- <div class="flex hidden item content groups"> -->
+	<div class="border-r grid bar explore">
+		<%- include ('../partials/search_elements', {names: 'groups'}) %>
+
+		<div class="hidden modal-create">
+			<div class="border-b flex center banner">create a new group</div>
+			<div class="border-b padding flex flex-dir-col row-gap col-gap center-x">
+				<label>group name :</label>
+				<input class="height border-radius border flex-grow-2 textbox create_conv_name" type="text" placeholder="type your group name here" oninput=groups.handle_change_conv_name(this) />
+				<div class="border-radius grid border validation">
+					<div class="border-radius border padding bg-red">group name should be more than 0 characters</div>
+					<div class="border-radius border padding bg-red">group name should be less than 21 characters</div>
+					<div class="border-radius border padding bg-red">group name should not have space</div>
+					<div class="border-radius border padding bg-red">group name should be available</div>
+				</div>
+				<label>group title :</label>
+				<input class="height border-radius border flex-grow-2 textbox create_title" type="text" placeholder="type your group title here" oninput=groups.handle_change_title(this) />
+				<div class="border-radius border padding grid row-gap validation">
+					<div class="border-radius border padding bg-red">group title should be more than 0 characters</div>
+					<div class="border-radius border padding bg-red">group title should be less than 41 characters</div>
+				</div>
+				<button class="flex border-radius border square bg-green button create" onclick="groups.handle_click_create()" data-tooltip="create">create</button>
+			</div>
+		</div>
+
+		<div class="hidden list search">
+			<div class="hidden section">
+				<div class="border-b flex center banner">exact match in your previous groups</div>
+				<div class="list"></div>
+			</div>
+			<div class="hidden section">
+				<div class="border-b flex center banner">match in your previous groups</div>
+				<div class="list"></div>
+			</div>
+			<div class="hidden section">
+				<div class="border-b flex center banner">exact match in send request to join</div>
+				<div class="list"></div>
+			</div>
+			<div class="hidden section">
+				<div class="border-b flex center banner">match in send request to join</div>
+				<div class="list"></div>
+			</div>
+			<div class="hidden section">
+				<div class="border-b flex center banner">no match found</div>
+			</div>
+		</div>
+
+		<div class="list previous"></div>
+
+	</div>
+	<div class='hidden grid bar conversation'> <!-- interaction / talk -->
+		<div class='border-b flex header'>
+			<div class='padding flex center-y col-gap hover detail' onclick="groups.handle_click_detail()">
+				<img class="border square image icon icon-groups" src=""></img>
+				<div>
+					<div class="title"></div>
+					<div class="conv_name"></div>
+				</div>
+			</div>
+			<div class="margin-l-a padding flex col-gap">
+				<div class='button border square call audio' onclick='groups.handle_click_call("audio")' data-tooltip='audio call'>audio call</div>
+				<div class='button border square call video' onclick='groups.handle_click_call("video")' data-tooltip='video call'>video call</div>
+				<input class='border textbox key' type='text' placeholder='type key of this conversation here' oninput='groups.handle_input_key()' />
+				<div class='button border square key' onclick='groups.handle_click_key()' data-tooltip='encrypt'>encrypt</div>
+				<!-- <div class='button border square info' onclick='groups.handle_click_info()' data-tooltip='info'>info</div> -->
+			</div>
+		</div>
+
+		<div class="border-b padding grid row-gap list media" onscroll='groups.handle_scroll_conv()'></div>
+
+		<%- include ('../partials/sender', {names: 'groups'}) %>
+	</div>
+	<div class="hidden border-l bar info">
+		<div class="padding flex flex-dir-col row-gap">
+			<div class="flex">
+				<img class="border image icon icon-groups" src="" />
+				<label class="hidden border-radius flex center-x icon-groups icon_upload" for="group_icon_upload">update icon</label>
+				<input class="hidden file" id="group_icon_upload" name="group_icon_upload" type="file" onchange="groups.handle_change_icon()" />
+			</div>
+			<div>group name :</div>
+			<input class="border textbox conv_name" type="text" placeholder="type new group name here" readonly />
+			<div>group title :</div>
+			<input class="border textbox title" type="text" placeholder="type new group title here" readonly />
+
+			<div class="flex col-gap update_controls">
+				<div class='border button square edit' onclick='groups.handle_click_edit()' data-tooltip="edit">edit</div>
+				<!-- <div class="flex col-gap hidden submit_cancel"> -->
+					<div class='hidden border button square bg-green submit' onclick='groups.handle_click_submit()' data-tooltip="submit">submit</div>
+					<div class='hidden border button square cancel' onclick='groups.handle_click_cancel()' data-tooltip="cancel">cancel</div>
+				<!-- </div> -->
+			</div>
+		</div>
+		<div class="flex center border-t border-b banner">group members</div>
+		<div class='list member'></div>
+		<div class="border-b padding flex col-gap">
+			<input class='border flex-grow-2 textbox add_member' type="text" placeholder='type user name to add' />
+			<button class='flex border button square bg-green add_member' onclick='groups.handle_click_add_member()' data-tooltip="add member">add member</button>
+		</div>
+		<div class="padding">
+			<div class='button border square bg-red exit leave' onclick='groups.handle_click_leave_delete()' data-tooltip="leave">leave</div>
+		</div>
+	</div>
+
+	<!-- <div class="shape icon-groups"></div> -->
+
+<!-- </div> -->

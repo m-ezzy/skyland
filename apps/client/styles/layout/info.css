@@ -1,0 +1,48 @@
+/* info bar - card member-list edit delete */
+
+.bar.info {   /* members, details, side, info */
+	/*flex-grow: 2;*/
+	/* display: flex; */
+	width: max-content;
+	/* min-width: 300px; */
+	min-width: fit-content;
+	/* flex-direction: column; */
+	/* flex-wrap: wrap; */
+	overflow-y: auto;
+	/* grid-auto-rows: auto; */
+	background-color: var(--color-ib);
+}
+.icon {
+	width: 200px;
+	height: 200px;
+}
+.accounts .icon-users, .bar.info .icon-users, .bar.info .icon-groups, .bar.info .icon-channels, .icon_upload {
+	/* position: relative; */
+	/* left: 0; */
+	/* right: 0; */
+	/* width: 200px; */
+	/* height: 200px; */
+	margin: auto;
+	/* align-self: center; */
+}
+.bar.info .text {
+	width: 100%;
+	/* flex-grow: 2; */
+}
+
+.chats .create-menu {
+	display: none;
+}
+.chats .bar.info {
+	grid-auto-rows: max-content;
+	place-content: space-between;
+	/* justify-content: space-between; */
+}
+.chats .delete_exit_leave {
+	/* position: absolute; */
+	/* top: auto; */
+	/* bottom: 0; */
+	/* margin-top: auto; */
+	/* align-self: flex-end; */
+	margin-top: 10px;
+}

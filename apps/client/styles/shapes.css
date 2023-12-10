@@ -1,0 +1,66 @@
+.bg-eb {
+	background-color: var(--bg-eb);
+}
+.bg-cb {
+	background-color: var(--bg-cb);
+}
+
+.shape {
+	position: absolute;
+	left: 30vw;
+	top: 5vh;
+	z-index: -1;
+	width: 90vh;
+	height: 90vh;
+	/* transition: 10s; */
+	/* border-radius: 1000vw; */
+	/* animation: hypnosis 10s linear 0s infinite alternate-reverse; */
+	animation: rotate 100s linear 0s infinite reverse;
+	/* background-color: rgb(54, 255, 221); */
+	background-image: url("../../media/images/4-water-drops-png-image.png");
+}
+.calls .shape {
+	background-color: rgb(245, 255, 152);
+}
+.chats .shape {
+	/* border-radius: 50%; */
+	/* width: 60vh; */
+	background-color: rgb(100, 255, 152);
+}
+.groups .shape {
+	/* border-radius: 5%; */
+	background-color: rgb(255, 201, 100);
+}
+.channels .shape {
+	/* border-radius: 5%; */
+	/* background-color: rgb(255, 100, 172); */
+}
+.accounts .shape {
+	background-color: rgb(54, 255, 221);
+}
+@keyframes hypnosis {
+	0% {
+		clip-path: circle(300px);
+		transform: rotate(0deg);
+		filter: hue-rotate(-720deg);
+		/* border-radius: 1vw; */
+	}
+	50% {
+		clip-path: polygon(0% 0%, 100% 50%, 0% 100%, 0% 0%);
+		filter: hue-rotate(0deg);
+		/* border-radius: 20vw; */
+	}
+	100% {
+		transform: rotate(360deg);
+		filter: hue-rotate(720deg);
+		/* border-radius: 500vw; */
+	}
+}
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

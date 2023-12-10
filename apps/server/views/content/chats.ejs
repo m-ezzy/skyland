@@ -1,0 +1,79 @@
+<!-- <div class="flex hidden item content chats"> -->
+	<div class="border-r grid bar explore">
+		<%- include ('../partials/search_elements', {names: 'chats'}) %>
+
+		<div class="hidden list search">
+			<div class="hidden section">
+				<div class="border-b flex center banner">exact match in your previous chats</div>
+				<div class="list"></div>
+			</div>
+			<div class="hidden section">
+				<div class="border-b flex center banner">match in your previous chats</div>
+				<div class="list"></div>
+			</div>
+			<div class="hidden section">
+				<div class="border-b flex center banner">exact match in create chats</div>
+				<div class="list"></div>
+			</div>
+			<div class="hidden section">
+				<div class="border-b flex center banner">match in create chats</div>
+				<div class="list"></div>
+			</div>
+			<div class="hidden section">
+				<div class="border-b flex center banner">unblock a user</div>
+				<div class="list"></div>
+			</div>
+			<div class="hidden section">
+				<div class="border-b flex center banner">no match found</div>
+			</div>
+		</div>
+
+		<div class="list previous"></div>
+	</div>
+	<div class='hidden grid bar conversation'>
+		<div class='border-b flex header'>
+			<div class='padding flex center-y col-gap hover detail' onclick="chats.handle_click_detail()">
+				<img class="border square image icon icon-users" src="" />
+				<div>
+					<div class="title"></div>
+					<div class="conv_name"></div>
+				</div>
+			</div>
+			<div class="margin-l-a padding flex col-gap">
+				<div class='button square border call audio' onclick="chats.handle_click_call('audio')" data-tooltip='audio call'>audio call</div>
+				<div class='button square border call video' onclick='chats.handle_click_call("video")' data-tooltip='video call'>video call</div>
+				<input class='border textbox key' type='text' placeholder='enter key of this conversation' oninput='chats.handle_input_key()'>
+				<div class='button border square key' onclick='chats.handle_click_key()' data-tooltip="encrypt">encrypt</div>
+				<!--<input class='text search_conversation' type='text' placeholder='search conversation' oninput='chats.search_conversation()'>-->
+				<!-- <div class='button border square info' onclick='chats.handle_click_info()' data-tooltip="info">info</div> -->
+			</div>
+		</div>
+
+		<div class="border-b padding grid row-gap list media" onscroll='chats.handle_scroll_conv()'></div>
+
+		<div class="hidden padding media_upload">
+			<div class="border padding grid row-gap validation">
+				<div class="border-radius border padding bg-green">files of any type can be sent</div>
+				<div class="border-radius border padding bg-green">maximum 10 files can be sent at a time</div>
+				<div class="border-radius border padding bg-red bg-green">each file's size must be less than 50 MB</div>
+			</div>
+			<!-- <div class="preview"></div> -->
+		</div>
+
+		<!--<input type='file' name='select_images' class='select_images' accept='.jpg, .jpeg, .png'>-->
+
+		<%- include ('../partials/sender', {names: 'chats'}) %>
+	</div>
+	<div class="hidden border-l padding grid row-gap bar info">
+		<div class="grid row-gap">
+			<img class="border image icon icon-users" src="" />
+			<div>user name :</div>
+			<input class="border textbox conv_name" type="text" readonly />
+			<div>full name :</div>
+			<input class="border textbox title" type="text" readonly />
+		</div>
+		<div class='square border bg-red button exit delete' onclick='chats.handle_click_leave_delete()' data-tooltip="delete">delete</div>
+	</div>
+
+	<!-- <div class="shape icon-users"></div> -->
+<!-- </div> -->

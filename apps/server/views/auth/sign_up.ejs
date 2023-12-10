@@ -1,0 +1,47 @@
+<!-- <div class="grid border padding col-gap card" id="signUp"> -->
+	<div class="border padding grid row-gap">
+		<div class="border padding grid center form-name">sign up</div>
+
+		<label for="user_name">user name :</label>
+		<input type="text" class="height border textbox" id="SUUN" name="user_name" oninput=signup.handle_change_user_name(this) />
+		<label for="pass_word">pass word :</label>
+		<input type="text" class="height border textbox" id="SUPW" name="pass_word" oninput=signup.handle_change_pass_word(this) />
+		<label for="first_name">first name :</label>
+		<input type="text" class="height border textbox" id="SUFN" name="first_name" oninput=signup.handle_change_first_name(this)>
+		<label for="last_name">last name :</label>
+		<input type="text" class="height border textbox" id="SULN" name="last_name" oninput=signup.handle_change_last_name(this)>
+
+		<button class="width-100 height border padding grid center button signup" id="buttonSignUp" onclick=signup.handle_click_submit() data-tooltip="sign up">sign up</button>
+	</div>
+	<div class="border padding grid row-gap">
+		<div class="border padding grid row-gap validation">
+			<div class="border-radius padding bg-red">username must be filled</div>
+			<!-- username must be more than 0 character -->
+			<div class="border-radius padding bg-red">username must be less than 21 characters</div>
+			<!-- username must be more than 0 and less than 21 character(s) -->
+			<div class="border-radius padding bg-red">username must not contain space</div>
+			<!-- <div class="border-radius padding bg-red">username must contain only alphabets, numbers, underscore</div> -->
+			<div class="border-radius padding bg-red">username must be available</div>
+			<!-- user name must not be registered -->
+		</div>
+		<div class="border padding grid row-gap validation">
+			<div class="border-radius padding bg-red">password must be more than 7 characters</div>
+			<div class="border-radius padding bg-red">password must be less than 21 characters</div>
+			<div class="border-radius padding bg-red">password must contain at least 1 number</div>
+			<div class="border-radius padding bg-red">password must contain at least 1 alphabet</div>
+			<div class="border-radius padding bg-red">password must contain at least 1 special character</div>
+		</div>
+		<div class="border padding grid row-gap validation">
+			<div class="border-radius padding bg-red">first name must be filled</div>
+			<div class="border-radius padding bg-red">first name must be less than 21 characters</div>
+		</div>
+		<div class="border padding grid row-gap validation">
+			<div class="border-radius padding bg-red">last name must be filled</div>
+			<div class="border-radius padding bg-red">last name must be less than 21 characters</div>
+		</div>
+	</div>
+	<div class="border padding grid center">
+		<div>Already have an account ?</div>
+		<button class="grid center link" onclick=signup.handle_click_link()> log in >>>>> </button>
+	</div>
+<!-- </div> -->

@@ -1,0 +1,68 @@
+<!-- <div class='flex hidden item content calls'> -->
+	<div class="border-r grid bar explore">
+		<div class="border-b padding flex col-gap">
+			<div class="border flex flex-grow-2 center submenu" onclick="calls.handle_click_submenu(0)">chats</div>
+			<div class="border flex flex-grow-2 center submenu" onclick="calls.handle_click_submenu(1)">groups</div>
+		</div>
+
+		<div class="list previous">
+			<div class="hidden section">
+				<!-- <div class="flex center border-b banner">chat calls</div> -->
+				<!-- <div class="list"></div> -->
+			</div>
+			<div class="hidden section">
+				<!-- <div class="flex center border-b banner">group calls</div> -->
+				<!-- <div class="list"></div> -->
+			</div>
+			<!--<%- /* include ('calls/list_previous', {data: data, user_id: user_id}) */ %>-->
+		</div>
+	</div>
+	<div class="grid bar conversation">
+		<div class='border-b header'>
+			<!-- <div class='padding flex center-y col-gap details'>
+				<img class="border square image icon" src="" />
+				<div>
+					<div class="title"></div>
+					<div class="conv_name"></div>
+				</div>
+			</div> -->
+		</div>
+		<div class="border-b padding row-gap col-gap list media">
+			<!--
+			<div class="container_audio">
+				<audio controls class='audio remote' width="50%" height="auto"></audio>
+			</div>
+			<div class="container_audio">
+				<audio controls class='audio remote' width="50%" height="auto"></audio>
+			</div>
+			-->
+			<div class="hidden border media_calls local media_calls_audio">
+				<div class="border-b padding flex center-y sender_specifier">you</div>
+				<audio controls class='local media_tag tag_audio' autoplay="true" muted="true"></audio>
+			</div>
+			<div class="border media_calls local media_calls_video">
+				<div class="border-b padding flex center-y sender_specifier">you</div>
+				<video controls class='local media_tag tag_video' width="100%" height="auto" autoplay="true" muted="true"></video>
+			</div>
+		</div>
+		<div class="hidden padding flex col-gap sender calls">
+			<div class='square border button toggle_speaker speaker_on' onclick='calls.handle_click_speaker()' data-tooltip="speaker off"></div>
+			<div class='border square button toggle_mic mic_off' onclick='calls.handle_click_mic()' data-tooltip="mic on"></div>
+			<div class='border square button toggle_camera camera_off' onclick='calls.handle_click_camera()' data-tooltip="camera on"></div>
+			<div class='border square button bg-red call_end' onclick='calls.handle_click_end()' data-tooltip="end"></div>
+			<!--<div class='box square button call_canvas' onclick='calls.handle_click_canvas()'> canvas </div>-->
+		</div>
+	</div>
+	<!--
+	<div class="incoming_call_indicator">
+		<div class="images"><img src="" /></div>
+		<div></div>
+		<div class='button call_accept' onclick='calls.call_accept()'> accept call </div>
+		<div class='button call_decline' onclick='calls.call_decline()'> decline call </div>
+	</div>
+	-->
+	<div class="hidden border flex row-gap list incoming_call"></div>
+
+	<!-- <div class="shape shape-triangle"></div> -->
+
+<!-- </div> -->

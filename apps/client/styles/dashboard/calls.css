@@ -1,0 +1,104 @@
+/* accepted declined rejected missed   //   accept decline reject */
+.list.incoming_call {
+	position: absolute;
+	left: 130px;
+	top: 10px;
+	z-index: 50;
+	width: 380px;
+	min-height: max-content;
+	flex-direction: row;
+	background-color: rgb(180, 180, 180);
+}
+.list.incoming_call > div {
+	min-width: 100%;
+}
+.button.call_accept {
+	margin-left: auto;
+}
+
+.called_by {
+	height: 30px;
+	margin-bottom: 5px;
+	background-size: 60% 120%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.call_outgoing {
+	background-image: url('/media/images/icons/call_made.png');
+}
+.call_incoming {
+	background-image: url('/media/images/icons/call_received.png');
+}
+
+.calls .bar.conversation {
+	/* grid-template-rows: auto auto; */
+}
+
+.calls .list.media {
+	overflow-y: visible;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	/* display: flex; */
+	/* flex-direction: column; */
+	/* flex-wrap: wrap; */
+}
+.media_calls.local {
+	/* flex-grow: 2; */
+	/* flex-basis: 100%; */
+	/* flex-shrink: 100%; */
+}
+.media_calls {
+}
+.media_calls_audio {
+	/* flex-direction: row; */
+	/* flex-wrap: wrap; */
+}
+.media_calls_video {
+	/* flex-direction: column; */
+	/* min-width: 200px; */
+	/* width: 45%; */
+}
+.media_calls > audio {
+	/* visibility: hidden; */
+	/* display: none; */
+}
+.media_calls > video {   /* container_video //item_media_calls video */
+	/*width: fit-content;*/
+	width: 100%;
+	/* max-width: 20vw; */
+	/* height: auto; */
+	/* height: fit-content; */
+	height: 200px;
+	min-height: 200px;
+	max-height: 200px;
+
+	/* margin: auto; */
+	/*transform: rotateY(180deg);*/ /* both transforms work */
+	transform: scale(-1, 1);
+}
+.local.media_calls_audio {
+	/* display: none; */
+}
+.audio.local {
+	/*visibility: hidden;*/
+	/* display: none; */
+}
+/*
+.video.remote {
+	display: grid;
+}*/
+/*
+.controller {   controller
+	grid-area: 19 / 1 / 21 / 13;
+	display: grid;
+	grid-template-rows: repeat(2, 1fr);
+	grid-template-columns: repeat(12, 1fr);
+}*/
+
+.button.call_end {
+	margin-left: auto;
+}
+
+@media only screen and (max-width: 400px) {
+}

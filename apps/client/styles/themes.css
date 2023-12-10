@@ -1,0 +1,90 @@
+.theme1 {
+	--color-mb: rgb(80, 255, 160);
+	--color-eb: rgb(223, 223, 223);
+	--color-cb: rgb(80, 255, 160);
+	--color-ib: rgb(233, 233, 233);
+	--border-color: rgb(49, 49, 49);
+
+	--media-sent-bg: rgb(187, 187, 187);
+	--media-sent-text: rgb(10, 10, 10);
+	--media-received-bg: rgb(255, 255, 255);
+	--media-received-text: rgb(0, 0, 0);
+}
+.theme2 {
+	--color-mb: rgb(112, 215, 255);
+	--color-eb: rgb(241, 255, 159);
+	--color-cb: rgb(126, 255, 193);
+	--color-ib: rgb(255, 185, 233);
+	--border-color: rgb(97, 97, 97);
+
+	--media-sent-bg: rgb(187, 187, 187);
+	--media-sent-text: rgb(10, 10, 10);
+	--media-received-bg: rgb(255, 255, 255);
+	--media-received-text: rgb(0, 0, 0);
+}
+.theme3 { /* sem5 project documentation */
+	--bg: #ADEFD1FF;
+	--text: #00203FFF;
+}
+.theme3 {
+	--bg: #184A45FF;
+	--text: #b2d8d8;
+}
+.theme3 {
+	--color-mb: rgb(250, 150, 255);
+	--color-eb: rgb(122, 122, 122);
+	--color-cb: rgb(250, 150, 255);
+	--color-ib: rgb(122, 122, 122);
+	--border-color: rgb(27, 27, 27);
+
+	--media-sent-bg: rgb(165, 165, 165);
+	--media-sent-text: rgb(10, 10, 10);
+	--media-received-bg: rgb(255, 255, 255);
+	--media-received-text: rgb(250, 150, 255);
+}
+.theme4 {
+	--color-mb: rgb(255, 95, 95);
+	--color-eb: rgb(122, 122, 122);
+	--color-cb: rgb(255, 95, 95);
+	--color-ib: rgb(122, 122, 122);
+	--border-color: rgb(27, 27, 27);
+}
+.theme5 {
+	--color-mb: rgb(100, 255, 180);
+	--color-eb: rgb(233, 233, 233);
+	--color-cb: rgb(100, 255, 180);
+	--color-ib: rgb(224, 224, 224);
+
+	--color-mb: rgb(233, 233, 233);
+	--color-eb: rgb(130, 255, 180);
+	--color-cb: rgb(233, 233, 233);
+	--color-ib: rgb(130, 255, 180);
+
+	--border-color: rgb(27, 27, 27);
+
+	--media-sent-bg: rgb(255, 255, 255);
+	--media-sent-text: rgb(0, 0, 0);
+	--media-received-bg: rgb(130, 255, 180);
+	--media-received-text: rgb(0, 0, 0);
+}
+.theme11 {
+	--color-mb: rgb(255, 36, 91);
+	--color-eb: rgb(255, 106, 155);
+	--color-cb: rgb(255, 183, 201);
+	--color-ib: rgb(255, 106, 155);
+	--border-color: rgb(27, 27, 27);
+}
+.theme12 {
+	--color-mb: rgb(30, 240, 170);
+	--color-eb: rgb(130, 240, 190);
+	--color-cb: rgb(180, 240, 210);
+	--color-ib: rgb(130, 240, 190);
+	--border-color: rgb(27, 27, 27);
+}
+.theme13 {
+	--color-mb: #184A45FF;
+	--color-eb: rgb(169, 255, 246);
+	--color-cb: #184A45FF;
+	--color-ib: rgb(168, 255, 246);
+	--border-color: rgb(27, 27, 27);
+}

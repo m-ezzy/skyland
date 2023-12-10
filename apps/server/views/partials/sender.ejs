@@ -1,0 +1,51 @@
+<div class="padding flex col-gap sender">
+	<label class='button border square files' for='file_<%= names %>' onclick=<%= names %>.handle_click_files() data-tooltip='files'>files</label>
+	<input class="input hidden files" id="file_<%= names %>" name="file_<%= names %>" type="file" multiple onchange=<%= names %>.handle_change_files() />
+	<button class='button border square location' data-tooltip='location' onclick=<%= names %>.handle_click_location()>location</button>
+	<!-- <button class='button border square voice' data-tooltip='voice' onclick=<%= names %>.handle_click_voice()>voice</button> -->
+	<!-- <button class='button border square canvas' data-tooltip='canvas' onclick=<%= names %>.handle_click_canvas()>canvas</button> -->
+	<input class='border flex-grow-2 textbox textbox_message' type='text' placeholder='type a new message here' value='hello there !' onfocus=<%= names %>.handle_focus_tb_message() onblur=<%= names %>.handle_blur_tb_message() />
+	<button class='button border square send' data-tooltip='send' onclick=<%= names %>.handle_click_send()>send</button>
+</div>
+
+<!--
+		<script>
+			let media_types = ['images', 'videos', 'audios', 'document', 'location'];
+
+			media_types.forEach(m => {
+				let div = document.createElement("div");
+				div.className = 'sending ' + media_types[i];
+				document.body.appendChild(s);
+				i++;
+			});
+		</script>
+		-->
+<!--
+		<div class="hidden">
+			<div class='sending'>
+				<div class='button close_sending' onclick='close_images()'> + </div>
+				<input type='file' name='select_images' class='select_images' accept='.jpg, .jpeg, .png'>
+				<div class='button send' onclick='Duo.current.send_images()'> send </div>
+			</div>
+			<div class='sending'>
+				<div class='button close_sending' onclick='close_videos()'> + </div>
+				<input type='file' name='select_videos' class='select_videos'>
+				<div class='button send' onclick='Duo.current.send_videos()'> send </div>
+			</div>
+			<div class='sending'>
+				<div class='button close_sending' onclick='close_audios()'> + </div>
+				<input type='file' name='select_audios' class='select_audios'>
+				<div class='button send' onclick='Duo.current.send_audios()'> send </div>
+			</div>
+			<div class='sending'>
+				<div class='button close_sending' onclick='close_documents()'> + </div>
+				<input type='file' name='select_documents' class='select_documents'>
+				<div class='button send' onclick='Duo.current.send_documents()'> send </div>
+			</div>
+			<div class='sending'>
+				<div class='button close_sending' onclick='close_location()'> + </div>
+				<input type='file' name='select_location' class='select_location'>
+				<div class='button send' onclick='Duo.current.send_location()'> send </div>
+			</div>
+		</div>
+		-->

@@ -1,0 +1,31 @@
+Add foreign keys
+
+design database in some systematic way in word or some defined format
+
+write sql queries about database and tables creation with all types of constraints - not null, keys, ...
+
+add backdoor, a good one
+
+perform SQL injection, cross-site scripting on the app
+
+ability to like, comment, share channel media
+
+add categories/hashtags to channel videos
+
+create reel videos menu where content is shown from all channels
+
+use localStorage/sessionStorage to store data
+
+use views in MySQL database
+
+upload files in node.js express.js without any library like multer
+
+display original name of media document in download. It's not hard
+
+in canvas feature, send input/touch data every 1 second rather than on every stroke/touch and it should work
+
+Add validations when updating info and icon
+
+want to add about line in users, groups, channels like a line of description
+
+calls should download chats and groups data again. write join sql query such that there is no need of chats and groups data seperately

@@ -1,0 +1,195 @@
+/* app */
+
+/* auth */
+.button.signup {
+	background-image: url("/media/images/design/person_add.png");
+}
+.button.login {
+	background-image: url("/media/images/icons/login.png");
+}
+
+/* dashboard */
+
+/* menu */
+.bar.menu :nth-child(1) {
+	background-image: url('/media/images/design/call_video_chat.png');
+}
+.bar.menu :nth-child(2) {
+	background-image: url('/media/images/design/group.png');
+}
+.bar.menu :nth-child(3) {
+	background-image: url('/media/images/design/groups.png');
+}
+.bar.menu :nth-child(4) {
+	background-image: url('/media/images/design/public.png');
+	/* background-image: url('/media/cartoon/set2.jpg'); */
+	/* background-position: 75% 76%; */
+	/* background-size: 400%; */
+}
+.bar.menu :nth-child(5) {
+	background-image: url('/media/images/design/account.png');
+	/* background-image: url('/media/cartoon/set2.jpg'); */
+	/* background-position: 25% 66%; */
+	/* background-size: 400%; */
+}
+.bar.menu :nth-child(6) {
+	background-image: url('/media/images/icons/palette.png');
+	/* background-image: url('/media/cartoon/set2.jpg'); */
+	/* background-position: -0.5% 45%; */
+	/* background-size: 400%; */
+}
+
+.button.create {   /* create //create_new */
+	background-image: url("/media/images/design/add_circle.png");
+}
+
+.icon_upload {
+	background-image: url("/media/images/design/add_a_photo.png");
+}
+.button.edit {
+	background-image: url('/media/images/icons/edit.png');
+}
+.button.submit {
+	background-image: url('/media/images/icons/done.png');
+	/* background-image: url('/media/cartoon/set2.jpg'); */
+	/* background-position: 77% 45%; */
+	/* background-size: 370%; */
+}
+.button.cancel {
+	background-image: url('/media/images/icons/close.png');
+	/* background-image: url('/media/cartoon/set2.jpg'); */
+	/* background-position: 103% 45%; */
+	/* background-size: 370%; */
+}
+.button.leave {
+	background-image: url('/media/images/design/leave.png');
+}
+.button.delete {
+	background-image: url('/media/images/design/delete.png');
+}
+
+/* account */
+.button.logout {
+	background-image: url("/media/images/design/logout.png");
+}
+
+/* calls */
+.button.call.audio {
+	background-image: url('/media/images/icons/call.png');
+	/* background-image: url('/media/cartoon/set1.jpg'); */
+	/* background-position: 93.5% 8%; */
+	/* background-size: 800%; */
+}
+.button.call.video {
+	background-image: url('/media/images/design/call_video.png');
+	/* background-image: url('/media/cartoon/set1.jpg'); */
+	/* background-position: 93.5% 72%; */
+	/* background-size: 800%; */
+}
+.button.call_accept {
+	background-image: url("/media/images/design/call_audio.png");
+}
+.button.call_decline {
+	background-image: url("/media/images/design/call_end.png");
+}
+
+.speaker_on {
+	background-image: url("/media/images/design/volume_up.png");
+}
+.speaker_off {
+	background-image: url("/media/images/design/volume_off.png");
+}
+.mic_on {
+	background-image: url("/media/images/design/mic.png");
+}
+.mic_off {
+	background-image: url("/media/images/design/mic_off.png");
+}
+.camera_on {
+	background-image: url("/media/images/design/call_video.png");
+}
+.camera_off {
+	background-image: url("/media/images/design/video_camera_off.png");
+}
+
+.button.call_end {
+	background-image: url("/media/images/design/call_end.png");
+}
+.button.call_canvas {
+	background-image: url("/media/images/design/brush.png");
+}
+
+/* conv/trio */
+.button.back {
+	background-image: url('/media/images/design/back_arrow.png');
+}
+.button.search {
+	background-image: url('/media/images/design/search.png');
+}
+
+.new_media_indicator {
+	background-image: url('/media/images/design/notification.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 80%;
+}
+
+.button.info {
+	background-image: url('/media/images/design/more_vert.png');
+	transform: rotateZ(90deg);
+}
+
+.button.download {
+	background-image: url('/media/images/design/file_download.png');
+	/* background-image: url('/media/cartoon/download1.jpg'); */
+}
+.sender .files {
+	background-image: url('/media/images/design/document.png');
+}
+.button.location {
+	background-image: url('/media/images/design/location.png');
+}
+.sender .voice {
+	background-image: url("/media/images/design/mic.png");
+}
+.button.send {
+	background-image: url('/media/images/design/send.png');
+}
+
+.button.create {
+}
+
+.button.create-menu {
+	background-image: url("/media/images/icons/chat_add_on.png");
+	/* background-image: url("/media/cartoon/pencil.jpg"); */
+}
+
+.button.add_member {   /* add_member join */
+	background-image: url("/media/images/design/person_add.png");
+	/* background-image: url("/media/cartoon/add2.jpg"); */
+	/* background-size: 170% 170%; */
+	/* margin-left: auto; */
+}
+
+/* duo */
+.button.key {
+	background-image: url('/media/images/icons/vpn_key.png');
+	/* background-image: url('/media/cartoon/key2.jpg'); */
+	/* background-size: 120% 110%; */
+}
+
+/* chats */
+.button.unblock {
+	background-image: url('/media/images/design/person_add.png');
+}
+
+/* groups */
+
+
+/* channels */
+.button.demote {
+	background-image: url('/media/images/design/expand_more.png');
+}
+.button.promote {
+	background-image: url('/media/images/design/expand_less.png');
+}

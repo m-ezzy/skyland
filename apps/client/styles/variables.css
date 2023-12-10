@@ -1,0 +1,86 @@
+:root {
+	--color-mb: ;
+	--color-eb: ;
+	--color-cb: ;
+	--color-ib: ;
+
+	--color-border: rgb(40, 40, 40, 0.5);
+	--color-shadow: rgb(0, 0, 0);
+
+	--color-hover: rgb(155, 155, 155);
+	--color-selected: rgb(124, 124, 124);
+
+	--color-textbox-bg: ;
+	--color-textbox-text: ;
+
+	--color-button-bg: ;
+	--color-button-text: ;
+
+	--color-text: ;
+	--color-conv_name: ;
+
+	--color-media-sent-bg: ;
+	--color-media-sent-text: ;
+	--color-media-received-bg: ;
+	--color-media-received-text: ;
+}
+:root { /* small medium large, less normal more, small large, less more */
+	--width: 60px;
+	--height: 60px;
+	--square: 60px;
+
+	--border-size: 1px;
+
+	--border-radius: 5px;
+
+	--padding-s: 5px;
+	--padding-m: 10px;
+	--padding-l: 15px;
+
+	--gap-s: 5px;
+	--gap-m: 10px;
+	--gap-l: 15px;
+
+	--font-size-s: 5px;
+	--font-size-m: 10px;
+	--font-size-l: 15px;
+
+	--color-border: rgb(0, 0, 0);
+
+	--color-red: rgb(255, 60, 60);
+	--color-green: rgb(60, 255, 60);
+
+	--color-background: rgba(255, 255, 255, 0.2);
+
+	--color-hover: rgba(150, 150, 150, 0.5);
+	--color-selected: rgba(150, 150, 150);
+
+	--blur: 5px;
+}
+:root {   /* same as defining all variables to the container/app tag */
+	/* --bg-mb: rgb(255, 36, 91); */
+	/* --bg-eb: rgb(255, 106, 155); */
+	/* --bg-cb: rgb(255, 183, 201); */
+	--text: rgb(0, 0, 0);
+	--item-bg: rgb(190, 190, 190);
+	--item-text: rgb(0, 0, 0);
+	--text-box-bg: rgb(255, 255, 255);
+	--text-box-text: rgb(0, 0, 0);
+	/* text-box text-box item-hover item-selected */
+}
+.bg-mb {
+	background-color: var(--bg-mb);
+}
+
+/* :root {
+	--gap-less: 5px;
+	--gap: 10px;
+	--gap-more: 15px;
+
+	--color-border: rgb(68, 68, 68);
+
+	--bg-mb: rgb(150, 255, 230);
+	--bg-eb: rgb(78, 78, 78);
+	--bg-cb: rgb(150, 255, 230);
+	--bg-ib: rgb(78, 78, 78);
+} */

@@ -1,0 +1,27 @@
+<div class="flex container dashboard"> <!-- //dashboard //content -->
+	<div class="border-r padding flex flex-dir-col row-gap bar menu">
+		<!-- all of this can be div tags instead of input button or button -->
+		<!--<button onclick='load_home()' value='home'>-->
+		<!--<input type="button" onclick='load_frequent()' value='frequent'>-->
+
+		<button class='button square border' onclick='calls.handle_click_menu()' data-tooltip="calls"> calls </button>
+		<button class='button square border' onclick='chats.handle_click_menu()' data-tooltip="chats"> chats </button>
+		<button class='button square border' onclick='groups.handle_click_menu()' data-tooltip="groups"> groups </button>
+		<button class='button square border' onclick='channels.handle_click_menu()' data-tooltip="channels"> channels </button>
+		<button class='button square border' onclick='accounts.handle_click_menu()' data-tooltip="accounts"> accounts </button>
+		<button class='button square border' onclick=change_theme() data-tooltip="theme"> theme </button>
+	</div>
+	<div class="bar list content">
+		<div class="flex hidden item content calls"></div>
+		<div class="flex hidden item content chats"></div>
+		<div class="flex hidden item content groups"></div>
+		<div class="flex hidden item content channels"></div>
+		<div class="flex hidden item content accounts"></div>
+	</div>
+
+	<div class="hidden">
+		<audio class='sound calls_ringing' src="/media/sounds/sound-3.mp3" type="audio/mp3"></audio>
+		<audio class='sound conv_media_receive' src="/media/sounds/sound-2.mp3" type="audio/mp3"></audio>
+		<audio class='sound clicked_feedback' src="/media/sounds/sound-1.mp3" type="audio/mp3"></audio>
+	</div>
+</div>

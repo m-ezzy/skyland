@@ -1,0 +1,56 @@
+<!-- <div class="flex hidden item content account"> -->
+	<div class="padding grid row-gap col-gap bar explore">
+		<div class="height padding flex center">welcome to skyland!</div>
+
+		<div class="flex center">
+			<img class="border image icon icon-users" src='' />
+			<label class="hidden flex center-x icon-users icon_upload" for="user_icon_upload">update icon</label>
+			<input class='hidden file' id="user_icon_upload" name="user_icon_upload" type='file' onchange=account.handle_change_icon()>
+		</div>
+
+		<div class="flex col-gap update_controls">
+			<button class='border button square edit' onclick="account.handle_click_edit()" data-tooltip="edit"></button>
+			<button class='hidden bg-green square border button submit' type='button' onclick="account.handle_click_submit()" data-tooltip="submit" />
+			<button class='hidden border button square cancel' onclick='account.handle_click_cancel()' data-tooltip="cancel"></button>
+		</div>
+		<button class='bg-red square border button logout' onclick="account.handle_click_logout()" data-tooltip="logout"></button>
+		<button class='bg-red square border button delete' onclick="account.handle_click_delete()" data-tooltip="delete account"></button>
+	</div>
+	<div class="border-l border-r padding flex flex-dir-col row-gap bar conversation">
+		<label for="user_name">user name :</label>
+		<input class='height border textbox user_name' name="user_name" type='text' readonly />
+		
+		<label for="first_name">first name :</label>
+		<input class='height border textbox first_name' name="first_name" type='text' readonly />
+
+		<label for="last_name">last name :</label>
+		<input class='height border textbox last_name' name="last_name" type='text' readonly />
+
+		<label for="e_mail">e mail :</label>
+		<input class='height border textbox e_mail' name="e_mail" type='text' readonly />
+
+		<label for="mobile">mobile :</label>
+		<input class='height border textbox mobile' name="mobile" type='text' readonly />
+
+		<label for="pass_word">pass word :</label>
+		<input class='height border textbox pass_word' name="pass_word" type='password' readonly />
+	</div>
+	<div class="border-l padding grid row-gap bar info">
+		<div class="validation">
+			<div>user name must be filled</div>
+		</div>
+	</div>
+
+	<!-- <div class="shape icon-users"></div> -->
+
+<!-- </div> -->
+
+<!--
+<input type='button' />
+<input type='submit' />
+<button type='button'></button>
+<button>click me</button>
+<button value='click me'></button>
+<div class="button">click me</div>
+<div class="button" data-tooltip="click me"></div>
+-->

@@ -1,0 +1,124 @@
+/* dashboard - menu content */
+
+.container.dashboard {
+	/* display: grid; */
+	/* grid-template-columns: 140px auto; */
+	/* background-color: rgb(31, 31, 31); */
+}
+/*
+lists :
+bar - menu, explore, conversation
+list previous   item prev
+list search     item search
+list conv       item conv   //no need of this. only one media list at a time
+list media      item media
+list member     item member
+*/
+/* content - calls conv account */
+
+.list.content {
+	width: 100%;
+	/*min-height: fit-content;*/
+	height: 100vh;
+	/* height: 100%; */
+	/*flex-wrap: nowrap;*/
+	flex-grow: 2;
+	/* display: grid; */
+	/* grid-template-rows: 1fr; */
+	/* grid-template-columns: 400px auto; */
+}
+.item.content {
+	width: 100%;
+	height: 100%;
+}
+
+.images img {
+	width: 100%;
+	height: 100%;
+	/*
+	contain: ;
+	content: ;
+	*/
+}
+.image img {
+	width: 100%;
+	height: 100%;
+}
+div.title {
+	color: rgb(22, 22, 22);
+}
+div.conv_name, div.title {
+	width: max-content;
+}
+div.conv_name { /* name trio_name conv_name */
+	font-size: 15px;
+	color: rgb(83, 83, 83);
+}/*
+.name:hover {
+	color: white;
+}*/
+.icon { /* profile_picture */
+	/* width: 200px; */
+	/* height: 200px; */
+	box-shadow: 
+		5px 5px 10px 3px rgb(0, 0, 0, 0.5);
+		/* -2px -2px 10px 3px rgb(0, 0, 0, 0.5); */
+}/*
+.chats .images.profile {
+	border-radius: 100%;
+}*/
+.icon-users {
+	border-radius: 100%;
+	/* border-top-left-radius: 50%; */
+	/* border-top-right-radius: 50%; */
+	/* border-bottom-left-radius: 50%; */
+	/* border-bottom-right-radius: 50%; */
+}
+.icon-groups {
+}
+.icon-channels {
+	clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%, 50% 0%);
+	/* transform: scale(1.5); it doesn't take into account other elements around it */
+	/* width: 100px; */
+	/* min-width: 100px; */
+	/* max-width: 100px; */
+	/* border-radius: 50px; */
+}
+img.icon-channels::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: aqua;
+	box-shadow: 
+		5px 5px 8px 2px rgb(0, 0, 0, 0.5);
+}
+.icon_upload {
+	position: absolute;
+	/* top: 0; */
+	width: 200px;
+	height: 200px;
+	/* margin: auto; */
+	padding-top: 130px;
+	background-color: rgba(134, 134, 134);
+
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: 30% 30%;
+}
+.update_controls {
+}
+.button.edit {
+	min-width: 100%;
+}
+.button.submit {
+	min-width: 48%;
+}
+.button.cancel {
+	min-width: 48%;
+}
+.button.exit {
+	min-width: 100%;
+}
